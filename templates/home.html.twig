@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Bienvenue sur la page d'accueil
+{% endblock title %}
+
+{% block body %}
+    <p>Bienvenue, choisissez votre action</p>
+
+
+    <p>
+        <a href="newLib">Ajouter une librairie</a>
+    </p>
+
+
+    <p>
+        <a href="{{ path('app_librairie_listlib') }}">Consulter les librairies</a>
+    </p>
+
+
+
+
+{% endblock body %}

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+    Création d'une nouvelle Bibliothèque
+{% endblock %}
+
+
+{% block body %}
+    <h1>Création de votre nouvelle bibliothèque</h1>
+    <p>Formulaire de création de bibliothèque</p>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+    <div class="divider"></div>
+    <a href="{{ path('home') }}">Retour</a>
+
+{% endblock %}

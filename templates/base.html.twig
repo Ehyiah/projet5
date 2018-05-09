@@ -1,12 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="{{ asset('css/materialize.css') }}" />
+        <!-- style.css.twig" /> -->
+
+        <title>{% block title %} Bienvenue !{% endblock %}</title>
+
+        <!-- favicon -->
+        <link rel="icon" type="image/png" href="images/favicon/favicon.png" />
+        <meta name="description" content="Organisez vos collections">
+        <!-- Open Graph data -->
+        <meta property="og:title" content="CollecOnline, Gestion de collections" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="http://projet5.gostiaux.net/" />
+        <meta property="og:image" content="http://projet5.gostiaux.net/public/images/logo.png" />
+        <meta property="og:description" content="Organisez vos collections"
+        />
+        <!-- Twitter Card data -->
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@CollecOnline">
+        <meta name="twitter:title" content="CollecOnline, Gestion de collections">
+        <meta name="twitter:description" content="Organisez vos collections">
+        <meta name="twitter:image" content="http://projet5.gostiaux.net/images/logo.png">
+
+        <!-- {% block stylesheets %}{% endblock %} -->
     </head>
+
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <!-- message flash -->
+        {% for message in app.flashes('notice') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
+
+        {% block body %}
+
+        {% endblock %}
+
+
+
+        {% block javascripts %}
+            <script src="{{ ('js/materialize.js') }}"></script>
+
+        {% endblock %}
     </body>
+
 </html>
