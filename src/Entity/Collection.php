@@ -52,4 +52,73 @@ class Collection
     private $idUser;
 
 
+
+
+
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return \Categorie
+     */
+    public function getIdCategorie(): \Categorie
+    {
+        return $this->idCategorie;
+    }
+
+    /**
+     * @param \Categorie $idCategorie
+     */
+    public function setIdCategorie(\Categorie $idCategorie): void
+    {
+        $this->idCategorie = $idCategorie;
+    }
+
+    /**
+     * @return \Elementcollection
+     */
+    public function getIdElementcollection(): \Elementcollection
+    {
+        return $this->idElementcollection;
+    }
+
+    /**
+     * @param \Elementcollection $idElementcollection
+     */
+    public function setIdElementcollection(\Elementcollection $idElementcollection): void
+    {
+        $this->idElementcollection = $idElementcollection;
+    }
+
+    /**
+     * @return \Utilisateur
+     */
+    public function getIdUser(): \Utilisateur
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * @param \Utilisateur $idUser
+     */
+    public function setIdUser(\Utilisateur $idUser): void
+    {
+        $this->idUser = $idUser;
+    }
+
+
 }

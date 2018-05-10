@@ -42,4 +42,58 @@ class Commentaire
     private $idUser;
 
 
+
+
+
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return \Collection
+     */
+    public function getIdCollection(): \Collection
+    {
+        return $this->idCollection;
+    }
+
+    /**
+     * @param \Collection $idCollection
+     */
+    public function setIdCollection(\Collection $idCollection): void
+    {
+        $this->idCollection = $idCollection;
+    }
+
+    /**
+     * @return \Utilisateur
+     */
+    public function getIdUser(): \Utilisateur
+    {
+        return $this->idUser;
+    }
+
+    /**
+     * @param \Utilisateur $idUser
+     */
+    public function setIdUser(\Utilisateur $idUser): void
+    {
+        $this->idUser = $idUser;
+    }
+
+
+
 }
