@@ -13,6 +13,8 @@
         <field name="groupe" type="integer" unique="false" />
         <field name="creation_date" type="date" unique="false" />
         <field name="validation_date" type="date" unique="false" />
+        <one-to-many field="comments" target-entity="App\Entity\Comment" mapped-by="author" />
+        <one-to-many field="collections" target-entity="App\Entity\Collection" mapped-by="owner" />
 
     </entity>
 </doctrine-mapping>

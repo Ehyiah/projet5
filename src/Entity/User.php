@@ -51,4 +51,17 @@ class User
      */
     private $validation_date;
 
+
+
+    /**
+     * relation avec Comment
+     * @var |ArrayAccess
+     */
+    private $comments;
+
+    /**
+     * relation avec Collection
+     * @var |ArrayAccess
+     */
+    private $collections;
 }

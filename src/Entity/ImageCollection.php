@@ -42,4 +42,9 @@ class ImageCollection
      */
     private $update_date;
 
+    /**
+     * @var ElementCollection
+     */
+    private $image_element_collection;
+
 }

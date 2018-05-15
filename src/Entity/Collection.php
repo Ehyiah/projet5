@@ -47,5 +47,27 @@ class Collection
      */
     private $update_date;
 
+    /**
+     * relation avec ElementCollection
+     * @var |ArrayAccess
+     */
+    private $elements_collection;
 
+    /**
+     * relation avec Comment
+     * @var |ArrayAccess
+     */
+    private $collection_comments;
+
+    /**
+     * relation avec User
+     * @var User
+     */
+    private $owner;
+
+    /**
+     * relation avec CategoryCollection
+     * @var CategoryCollection
+     */
+    private $category;
 }

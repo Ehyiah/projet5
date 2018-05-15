@@ -67,4 +67,18 @@ class ElementCollection
      */
     private $value;
 
+
+    /**
+     * relation avec ImageCollection
+     * @var |ArrayAccess
+     */
+    private $images;
+
+    /**
+     * relation avec Collection
+     * @var Collection
+     */
+    private $collection_name;
+
+
 }

@@ -23,6 +23,11 @@ class CategoryCollection
     private $category_collection;
 
 
+    /**
+     * relation avec Collection
+     * @var |ArrayAccess
+     */
+    private $collections;
 
 
     /**

@@ -30,4 +30,17 @@ class Comment
      */
     private $creation_date;
 
+
+
+    /**
+     * relation avec Collection
+     * @var Collection
+     */
+    private $collection_name;
+
+    /**
+     * relation avec User
+     * @var User
+     */
+    private $author;
 }

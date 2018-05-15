@@ -9,6 +9,7 @@
         <id name="id" type="uuid" />
         <field name="signaled" type="integer" unique="false" />
         <field name="creation_date" type="date" unique="false" />
-
+        <many-to-one field="collection_name" target-entity="App\Entity\Collection" inversed-by="collection_comments" />
+        <many-to-one field="author" target-entity="App\Entity\User" inversed-by="comments" />
     </entity>
 </doctrine-mapping>
