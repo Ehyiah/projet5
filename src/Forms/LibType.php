@@ -21,8 +21,8 @@ class LibType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('Nom')
-            ->add('Type')
+            ->add('nom')
+            ->add('type')
 
             ->add('save', SubmitType::class);
     }

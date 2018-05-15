@@ -3,19 +3,18 @@
  * Created by PhpStorm.
  * User: Matt
  * Date: 15/05/2018
- * Time: 08:58
+ * Time: 09:37
  */
 
 namespace App\Entity;
 
-
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Class Collection
+ * Class User
  * @package App\Entity
  */
-class Collection
+class User
 {
     /**
      * @var UuidInterface
@@ -25,7 +24,22 @@ class Collection
     /**
      * @var string
      */
-    private $collection_name;
+    private $name;
+
+    /**
+     * @var string
+     */
+    private $password;
+
+    /**
+     * @var string
+     */
+    private $mail;
+
+    /**
+     * @var integer
+     */
+    private $groupe;
 
     /**
      * @var date
@@ -33,19 +47,8 @@ class Collection
     private $creation_date;
 
     /**
-     * @var string
-     */
-    private $tag;
-
-    /**
-     * @var integer
-     */
-    private $hidden;
-
-    /**
      * @var date
      */
-    private $update_date;
-
+    private $validation_date;
 
 }

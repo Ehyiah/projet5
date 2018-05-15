@@ -65,14 +65,7 @@ class LibrairieController extends Controller
     /**
      * @Route("/product/{id}", name="product_show")
      */
-    public function showAction(Librairie $lib)
-    {
 
-        // même utilité que la fonction du dessus
-
-        return $this->render('librairie/index.html.twig', ['librairie' => $lib]);
-
-    }
 
 
     /**

@@ -3,19 +3,17 @@
  * Created by PhpStorm.
  * User: Matt
  * Date: 15/05/2018
- * Time: 08:58
+ * Time: 09:42
  */
 
 namespace App\Entity;
-
-
 use Ramsey\Uuid\UuidInterface;
 
 /**
- * Class Collection
+ * Class Comment
  * @package App\Entity
  */
-class Collection
+class Comment
 {
     /**
      * @var UuidInterface
@@ -23,29 +21,13 @@ class Collection
     private $id;
 
     /**
-     * @var string
+     * @var integer
      */
-    private $collection_name;
+    private $signaled;
 
     /**
      * @var date
      */
     private $creation_date;
-
-    /**
-     * @var string
-     */
-    private $tag;
-
-    /**
-     * @var integer
-     */
-    private $hidden;
-
-    /**
-     * @var date
-     */
-    private $update_date;
-
 
 }

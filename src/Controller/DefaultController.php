@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use App\Controller\LibrairieController;
+use App\Entity\Librairie;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
@@ -23,7 +24,7 @@ class DefaultController extends Controller
     {
 
 
-
         return $this->render('home.html.twig');
     }
+
 }

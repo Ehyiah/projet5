@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                          http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+
+
+    <entity name="App\Entity\User" table="user">
+        <id name="id" type="uuid" />
+        <field name="name" type="string" length="255" unique="false" />
+        <field name="password" type="string" length="255" unique="false" />
+        <field name="mail" type="string" length="255" unique="true" />
+        <field name="groupe" type="integer" unique="false" />
+        <field name="creation_date" type="date" unique="false" />
+        <field name="validation_date" type="date" unique="false" />
+
+    </entity>
+</doctrine-mapping>
