@@ -8,9 +8,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Librairie;
-use App\Forms\LibType;
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 Use Symfony\Component\HttpFoundation\Request;

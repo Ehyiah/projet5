@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
+use App\Domain\DTO\AddCategoryDTO;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
@@ -30,6 +32,7 @@ class CategoryCollection
     private $collections;
 
 
+
     /**
      * @return UuidInterface
      */
@@ -46,26 +49,33 @@ class CategoryCollection
         return $this->category_collection;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCollections()
+    {
+        return $this->collections;
+    }
 
 
     /**
      * CategoryCollection constructor.
-     * @param $content
+     * @param AddCategoryDTO $addCategoryDTO
      */
-    public function __construct($content)
+    public function __construct(AddCategoryDTO $addCategoryDTO)
     {
         $this->id = Uuid::uuid4();
-        $this->category_collection = $content;
-    }
+        $this->category_collection = $addCategoryDTO->category_collection;
 
+        $this->collections = new ArrayCollection();
+    }
 
     /**
-     * @param string $category_collection
+     * @param $category
      */
-    public function setCategoryCollection(string $category_collection): void
+    public function edit(string $category)
     {
-        $this->category_collection = $category_collection;
+        $this->category_collection = $category;
     }
-
 
 }

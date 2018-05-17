@@ -1,15 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Matt
- * Date: 15/05/2018
- * Time: 08:58
- */
 
 namespace App\Entity;
 
-
+use App\Domain\DTO\AddCollectionDTO;
+use Doctrine\Common\Collections\ArrayCollection;
+use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+
 
 /**
  * Class Collection
@@ -28,7 +25,7 @@ class Collection
     private $collection_name;
 
     /**
-     * @var date
+     * @var \DateTime
      */
     private $creation_date;
 
@@ -43,9 +40,10 @@ class Collection
     private $hidden;
 
     /**
-     * @var date
+     * @var \DateTime
      */
     private $update_date;
+
 
     /**
      * relation avec ElementCollection
@@ -70,4 +68,136 @@ class Collection
      * @var CategoryCollection
      */
     private $category;
+
+
+
+    /**
+     * Collection constructor.
+     *
+     * @param AddCollectionDTO $addCollectionDTO
+     */
+    public function __construct(AddCollectionDTO $addCollectionDTO)
+    {
+        $this->id = Uuid::uuid4();
+        $this->collection_name = $addCollectionDTO->name;
+        $this->creation_date = new \DateTime();
+        $this->tag = $addCollectionDTO->tag;
+        $this->category = $addCollectionDTO->category;
+        $this->hidden = $addCollectionDTO->visibility;
+
+        $this->elements_collection = new ArrayCollection();
+        $this->collection_comments = new ArrayCollection();
+    }
+
+    /**
+     * @param string $collection_name
+     * @param string $tag
+     * @param string $category
+     * @param int $hidden
+     */
+
+
+
+    /**
+     * @return UuidInterface
+     */
+    public function getId(): UuidInterface
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCollectionName(): string
+    {
+        return $this->collection_name;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreationDate(): \DateTime
+    {
+        return $this->creation_date;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTag(): string
+    {
+        return $this->tag;
+    }
+
+    /**
+     * @return int
+     */
+    public function getHidden(): int
+    {
+        return $this->hidden;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdateDate(): \DateTime
+    {
+        return $this->update_date;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getElementsCollection()
+    {
+        return $this->elements_collection;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCollectionComments()
+    {
+        return $this->collection_comments;
+    }
+
+    /**
+     * @return User
+     */
+    public function getOwner(): User
+    {
+        return $this->owner;
+    }
+
+
+
+
+    public function edit(
+        string $collection_name,
+        string $tag,
+        string $category,
+        int $hidden
+    ){
+        $this->update_date = new \DateTime('now');
+        $this->collection_name = $collection_name;
+        $this->tag = $tag;
+        $this->category = $category;
+        $this->hidden = $hidden;
+    }
+
+
+    /**
+     * @param $itemToEdit
+     * @param string $content
+     */
+    public function editOne(
+        $itemToEdit,
+        string $content
+    ){
+        $this->$itemToEdit = $content;
+        $this->update_date = new \DateTime('now');
+    }
+
+
 }

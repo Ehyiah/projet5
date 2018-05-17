@@ -7,8 +7,8 @@
     <entity name="App\Entity\Collection" table="collection">
         <id name="id" type="uuid" />
         <field name="collection_name" type="string" length="255" unique="false" />
-        <field name="creation_date" type="date" unique="false" />
-        <field name="update_date" type="date" unique="false" />
+        <field name="creation_date" type="datetime" unique="false" />
+        <field name="update_date" type="datetime" unique="false" nullable="true" />
         <field name="hidden" type="integer" unique="false" />
         <field name="tag" type="string" length="255" unique="false"/>
         <one-to-many field="elements_collection" target-entity="App\Entity\ElementCollection" mapped-by="collection_name" />

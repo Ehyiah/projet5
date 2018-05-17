@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+    Création d'une nouvelle Catégorie de bibliothèque
+{% endblock %}
+
+
+{% block body %}
+    <h1>Création de votre nouvelle catégorie</h1>
+    <p>Formulaire de création de catégorie de bibliothèque</p>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+    <div class="divider"></div>
+    <a href="{{ path('home') }}">Retour</a>
+
+{% endblock %}
