@@ -8,7 +8,7 @@
         <id name="id" type="uuid" />
         <field name="title" type="string" length="255" unique="false" />
         <field name="region" type="string" length="255" unique="false" />
-        <field name="author" type="string" length="255" unique="false" />
+        <field name="author" type="string" length="255" unique="false" nullable="true" />
         <field name="publisher" type="string" length="255" unique="false" />
         <field name="etat" type="string" length="255" unique="false" />
         <field name="buy_price" type="float" unique="false" />

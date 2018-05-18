@@ -10,9 +10,13 @@ namespace App\Controller;
 
 use App\Entity\CategoryCollection;
 use App\Entity\Collection;
+use App\Entity\Comment;
+use App\Entity\ElementCollection;
 use App\Form\CategoryType;
 use App\Form\CollectionType;
 
+use App\Form\CommentType;
+use App\Form\ElementCollectionType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -47,14 +51,13 @@ class DefaultController extends Controller
             return $this->redirectToRoute('home');
         }
 
-
         return $this->render('Category/CreateNewCategory.html.twig', array('form' => $form->createView()));
     }
 
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Route ("/home2")
+     * @Route ("/newCollection")
      */
     public function form2(Request $request)
     {
@@ -70,5 +73,47 @@ class DefaultController extends Controller
         }
 
         return $this->render('Category/CreateNewCategory.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @Route ("/newComment")
+     */
+    public function newComment(Request $request)
+    {
+        $form = $this->createForm(CommentType::class)->handleRequest($request);
+
+        if ($form->isSubmitted() && ($form->isValid())) {
+            $comment = new Comment($form->getData());
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('Comment/CreateNewComment.html.twig', array('form' => $form->createView()));
+    }
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @Route ("/newElement")
+     */
+    public function newElement(Request $request)
+    {
+        $form = $this->createForm(ElementCollectionType::class)->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $element = new ElementCollection($form->getData());
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($element);
+            $em->flush();
+
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('ElementCollection/CreateNewElementCollection.html.twig', array('form' => $form->createView()));
     }
 }

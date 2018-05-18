@@ -89,12 +89,7 @@ class Collection
         $this->collection_comments = new ArrayCollection();
     }
 
-    /**
-     * @param string $collection_name
-     * @param string $tag
-     * @param string $category
-     * @param int $hidden
-     */
+
 
 
 
@@ -171,8 +166,12 @@ class Collection
     }
 
 
-
-
+    /**
+     * @param string $collection_name
+     * @param string $tag
+     * @param string $category
+     * @param integer $hidden
+     */
     public function edit(
         string $collection_name,
         string $tag,

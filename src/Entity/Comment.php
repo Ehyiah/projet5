@@ -7,8 +7,10 @@
  */
 
 namespace App\Entity;
+use App\Domain\DTO\AddCommentDTO;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+
 
 /**
  * Class Comment
@@ -27,7 +29,7 @@ class Comment
     private $signaled;
 
     /**
-     * @var date
+     * @var \DateTime
      */
     private $creation_date;
 
@@ -52,24 +54,16 @@ class Comment
 
     /**
      * Comment constructor.
-     * @param int $signaled
-     * @param date $creation_date
-     * @param string $comment_content
-     * @param string $collection_name
-     * @param string $author
+     *
+     * @param AddCommentDTO $addCommentDTO
      */
-    public function __construct(
-        int $signaled,
-        date $creation_date,
-        string $comment_content,
-        string $collection_name,
-        string $author
-    ) {
+    public function __construct(AddCommentDTO $addCommentDTO)
+    {
         $this->id = Uuid::uuid4();
-        $this->creation_date = new \DateTime('now');
-        $this->comment_content = $comment_content;
-        $this->collection_name = $collection_name;
-        $this->author = $author;
+        $this->creation_date = new \DateTime();
+        $this->comment_content = $addCommentDTO->comment_content;
+        #$this->collection_name = $collection_name;
+        #$this->author = $author;
     }
 
     /**

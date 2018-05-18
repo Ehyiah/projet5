@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Matt
- * Date: 17/05/2018
- * Time: 16:58
- */
 
 namespace App\Domain\DTO;
 

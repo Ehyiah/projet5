@@ -7,7 +7,7 @@
 
     <entity name="App\Entity\Comment" table="comment">
         <id name="id" type="uuid" />
-        <field name="signaled" type="integer" unique="false" />
+        <field name="signaled" type="integer" unique="false" nullable="true"/>
         <field name="creation_date" type="date" unique="false" />
         <field name="comment_content" type="string" length="255" unique="false" />
         <many-to-one field="collection_name" target-entity="App\Entity\Collection" inversed-by="collection_comments" />
