@@ -10,6 +10,7 @@ namespace App\Entity;
 
 
 use App\Domain\DTO\AddElementImageDTO;
+use App\Entity\Interfaces\ImageCollectionInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
@@ -18,7 +19,7 @@ use Ramsey\Uuid\UuidInterface;
  * Class ImageCollection
  * @package App\Entity
  */
-class ImageCollection
+class ImageCollection implements ImageCollectionInterface
 {
     /**
      * @var UuidInterface
@@ -118,7 +119,7 @@ class ImageCollection
         $this->creation_date = new \DateTime('now');
         #traitement de l'image avant déplacement dans le dossier
 
-        $directory = 'public/upload/CollectionImage';
+        $directory = 'upload/CollectionImage';
         $someNewFilename = 'testName.png';
 
 
@@ -150,8 +151,4 @@ class ImageCollection
     {
         $this->image = $image;
     }
-
-
-
-
 }

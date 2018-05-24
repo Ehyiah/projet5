@@ -19,6 +19,8 @@ use App\Form\CollectionType;
 use App\Form\CommentType;
 use App\Form\ElementCollectionType;
 use App\Form\ImageCollectionType;
+use App\UI\Form\Handler\Interfaces\NewImageHandlerInterface;
+use App\UI\Form\Handler\NewImageHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -136,17 +138,11 @@ class DefaultController extends Controller
      * @return Response
      * @Route ("/newImage")
      */
-    public function newImage(Request $request)
+    public function newImage(Request $request, NewImageHandlerInterface $newImageHandler)
     {
         $form = $this->createForm(ImageCollectionType::class)->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $image = new ImageCollection($form->getData());
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($image);
-            $em->flush();
-
+        if ($newImageHandler->handle($form)) {
             return $this->redirectToRoute('home');
         }
 
