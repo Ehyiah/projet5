@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+    Image
+{% endblock %}
+
+
+{% block body %}
+    <h1>Ajout d'une nouvelle image</h1>
+    <p>Formulaire de création d'une nouvelle image</p>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+    <div class="divider"></div>
+    <a href="{{ path('home') }}">Retour</a>
+
+{% endblock %}

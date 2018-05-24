@@ -70,6 +70,7 @@ class User
 
     /**
      * User constructor.
+     *
      * @param string $name
      * @param string $password
      * @param string $mail

@@ -109,7 +109,7 @@ class ElementCollection
      * @param int $player_number
      * @param float $value
      */
-    public function edit(
+    public function editAllElementCollection(
         string $title,
         string $region,
         string $author,
@@ -135,7 +135,7 @@ class ElementCollection
      * @param $itemToEdit
      * @param $content
      */
-    public function editOne($itemToEdit, $content){
+    public function editOneElementCollection($itemToEdit, $content){
         $this->$itemToEdit = $content;
     }
 }

@@ -60,7 +60,7 @@ class Comment
     public function __construct(AddCommentDTO $addCommentDTO)
     {
         $this->id = Uuid::uuid4();
-        $this->creation_date = new \DateTime();
+        $this->creation_date = new \DateTime('now');
         $this->comment_content = $addCommentDTO->comment_content;
         #$this->collection_name = $collection_name;
         #$this->author = $author;

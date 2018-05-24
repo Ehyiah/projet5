@@ -9,8 +9,10 @@
 namespace App\Entity;
 
 
+use App\Domain\DTO\AddElementImageDTO;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+
 
 /**
  * Class ImageCollection
@@ -29,17 +31,17 @@ class ImageCollection
     private $title;
 
     /**
-     * @var blob
+     * @var string
      */
     private $image;
 
     /**
-     * @var date
+     * @var \DateTime
      */
     private $creation_date;
 
     /**
-     * @var date
+     * @var \DateTime
      */
     private $update_date;
 
@@ -51,40 +53,105 @@ class ImageCollection
      */
     private $image_element_collection;
 
-
     /**
-     * ImageCollection constructor.
-     * @param string $title
-     * @param blob $image
-     * @param date $creation_date
-     * @param string $image_element_collection
+     * @return UuidInterface
      */
-    public function __construct(
-        string $title,
-        blob $image,
-        date $creation_date,
-        string $image_element_collection
-    )
+    public function getId(): UuidInterface
     {
-        $this->id = Uuid::uuid4();
-        $this->title = $title;
-        $this->creation_date = new \DateTime('now');
-        $this->image = $image;
-        $this->image_element_collection = $image_element_collection;
+        return $this->id;
     }
 
     /**
+     * @return string
+     */
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreationDate(): \DateTime
+    {
+        return $this->creation_date;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdateDate(): \DateTime
+    {
+        return $this->update_date;
+    }
+
+    /**
+     * @return ElementCollection
+     */
+    public function getImageElementCollection(): ElementCollection
+    {
+        return $this->image_element_collection;
+    }
+
+
+
+
+
+
+    /**
+     * ImageCollection constructor.
+     *
+     * @param AddElementImageDTO $addElementCollectionImage
+     */
+    public function __construct(AddElementImageDTO $addElementCollectionImage)
+    {
+        $this->id = Uuid::uuid4();
+        $this->title = $addElementCollectionImage->title;
+        $this->creation_date = new \DateTime('now');
+        #traitement de l'image avant déplacement dans le dossier
+
+        $directory = 'public/upload/CollectionImage';
+        $someNewFilename = 'testName.png';
+
+
+        $file = $addElementCollectionImage->image;
+        $file->move($directory, $someNewFilename);
+        $this->image = $addElementCollectionImage->image;
+    }
+
+
+    /**
      * @param string $title
-     * @param date $update_time
+     * @param \DateTime $update_date
      * @param blob $image
      */
     public function edit(
         string $title,
-        date $update_time,
+        \DateTime $update_date,
         blob $image
     ){
         $this->title = $title;
         $this->update_date = new \DateTime('now');
         $this->image = $image;
     }
+
+    /**
+     * @param string $image
+     */
+    public function setImage(string $image): void
+    {
+        $this->image = $image;
+    }
+
+
+
+
 }

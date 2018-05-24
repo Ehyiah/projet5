@@ -34,6 +34,20 @@ class CategoryCollection
 
 
     /**
+     * CategoryCollection constructor.
+     *
+     * @param AddCategoryDTO $addCategoryDTO
+     */
+    public function __construct(AddCategoryDTO $addCategoryDTO)
+    {
+        $this->id = Uuid::uuid4();
+        $this->category_collection = $addCategoryDTO->category_collection;
+
+        $this->collections = new ArrayCollection();
+    }
+    
+
+    /**
      * @return UuidInterface
      */
     public function getId(): UuidInterface
@@ -57,18 +71,6 @@ class CategoryCollection
         return $this->collections;
     }
 
-
-    /**
-     * CategoryCollection constructor.
-     * @param AddCategoryDTO $addCategoryDTO
-     */
-    public function __construct(AddCategoryDTO $addCategoryDTO)
-    {
-        $this->id = Uuid::uuid4();
-        $this->category_collection = $addCategoryDTO->category_collection;
-
-        $this->collections = new ArrayCollection();
-    }
 
     /**
      * @param $category
