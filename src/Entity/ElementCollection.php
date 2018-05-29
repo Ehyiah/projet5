@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Domain\DTO\AddElementCollectionDTO;
+use App\Entity\Interfaces\ElementCollectionInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
@@ -10,7 +11,7 @@ use Ramsey\Uuid\UuidInterface;
  * Class ElementCollection
  * @package App\Entity
  */
-class ElementCollection
+class ElementCollection implements ElementCollectionInterface
 {
     /**
      * @var UuidInterface

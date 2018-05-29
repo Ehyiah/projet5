@@ -5,7 +5,7 @@
                           http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
 
 
-    <entity name="App\Entity\Comment" table="comment">
+    <entity name="App\Entity\Comment" table="comment" repository-class="App\Infra\Doctrine\Repository\CommentRepository">
         <id name="id" type="uuid" />
         <field name="signaled" type="integer" unique="false" nullable="true"/>
         <field name="creation_date" type="datetime" unique="false" />

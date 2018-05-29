@@ -1,26 +1,17 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Matt
- * Date: 02/05/2018
- * Time: 16:41
- */
 
 namespace App\Controller;
 
-use App\Entity\CategoryCollection;
-use App\Entity\Collection;
-use App\Entity\Comment;
-use App\Entity\ElementCollection;
-use App\Entity\ImageCollection;
 
 use App\Form\CategoryType;
 use App\Form\CollectionType;
 use App\Form\CommentType;
 use App\Form\ElementCollectionType;
 use App\Form\ImageCollectionType;
+use App\UI\Form\Handler\Interfaces\NewCategoryCollectionHandlerInterface;
+use App\UI\Form\Handler\Interfaces\NewCollectionHandlerInterface;
+use App\UI\Form\Handler\Interfaces\NewElementCollectionHandlerInterface;
 use App\UI\Form\Handler\Interfaces\NewImageHandlerInterface;
-use App\UI\Form\Handler\NewImageHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -41,18 +32,14 @@ class DefaultController extends Controller
 
     /**
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param NewCategoryCollectionHandlerInterface $categoryCollectionHandler
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @Route ("newCategory")
      */
-    public function form(Request $request)
+    public function form(Request $request, NewCategoryCollectionHandlerInterface $categoryCollectionHandler)
     {
         $form = $this->createForm(CategoryType::class)->handleRequest($request);
-        if ($form->isSubmitted() && ($form->isValid())) {
-            $category = new CategoryCollection($form->getData());
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($category);
-            $em->flush();
-
+        if ($categoryCollectionHandler->handle($form)) {
             return $this->redirectToRoute('home');
         }
 
@@ -61,19 +48,15 @@ class DefaultController extends Controller
 
     /**
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param NewCollectionHandlerInterface $collectionHandler
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @Route ("/newCollection")
      */
-    public function form2(Request $request)
+    public function form2(Request $request, NewCollectionHandlerInterface $collectionHandler)
     {
         $form = $this->createForm(CollectionType::class)->handleRequest($request);
 
-        if ($form->isSubmitted() && ($form->isValid())) {
-            $collection = new Collection($form->getData());
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($collection);
-            $em->flush();
-
+        if ($collectionHandler->handle($form)) {
             return $this->redirectToRoute('home');
         }
 
@@ -82,19 +65,14 @@ class DefaultController extends Controller
 
     /**
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @param NewElementCollectionHandlerInterface $newElementCollectionHandler
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @Route ("/newComment")
      */
-    public function newComment(Request $request)
+    public function newComment(Request $request, NewElementCollectionHandlerInterface $newElementCollectionHandler)
     {
         $form = $this->createForm(CommentType::class)->handleRequest($request);
-
-        if ($form->isSubmitted() && ($form->isValid())) {
-            $comment = new Comment($form->getData());
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($comment);
-            $em->flush();
-
+        if ($newElementCollectionHandler->handle($form)) {
             return $this->redirectToRoute('home');
         }
 
@@ -103,19 +81,15 @@ class DefaultController extends Controller
 
     /**
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @param NewElementCollectionHandlerInterface $newElementCollectionHandler
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @Route ("/newElement")
      */
-    public function newElement(Request $request)
+    public function newElement(Request $request, NewElementCollectionHandlerInterface $newElementCollectionHandler)
     {
         $form = $this->createForm(ElementCollectionType::class)->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $element = new ElementCollection($form->getData());
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($element);
-            $em->flush();
-
+        if ($newElementCollectionHandler->handle($form)) {
             return $this->redirectToRoute('home');
         }
 
@@ -132,10 +106,10 @@ class DefaultController extends Controller
     }
 
 
-
     /**
      * @param Request $request
-     * @return Response
+     * @param NewImageHandlerInterface $newImageHandler
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      * @Route ("/newImage")
      */
     public function newImage(Request $request, NewImageHandlerInterface $newImageHandler)

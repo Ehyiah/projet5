@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Matt
- * Date: 24/05/2018
- * Time: 18:15
- */
 
 namespace App\Infra\Doctrine\Repository;
 
@@ -17,6 +11,11 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 
 final class ImageRepository extends ServiceEntityRepository implements ImageRepositoryInterface
 {
+    /**
+     * ImageRepository constructor.
+     *
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, ImageCollection::class);

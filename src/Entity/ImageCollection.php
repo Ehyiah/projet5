@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Matt
- * Date: 15/05/2018
- * Time: 09:33
- */
 
 namespace App\Entity;
-
 
 use App\Domain\DTO\AddElementImageDTO;
 use App\Entity\Interfaces\ImageCollectionInterface;

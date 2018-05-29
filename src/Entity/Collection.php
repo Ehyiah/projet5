@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Domain\DTO\AddCollectionDTO;
+use App\Entity\Interfaces\CollectionInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -12,7 +13,7 @@ use Ramsey\Uuid\UuidInterface;
  * Class Collection
  * @package App\Entity
  */
-class Collection
+class Collection implements CollectionInterface
 {
     /**
      * @var UuidInterface

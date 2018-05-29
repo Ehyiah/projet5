@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Matt
- * Date: 24/05/2018
- * Time: 18:08
- */
 
 namespace App\UI\Form\Handler;
 
@@ -36,6 +30,7 @@ final class NewImageHandler implements NewImageHandlerInterface
         if ($form->isSubmitted() && $form->isValid()) {
             $image = new ImageCollection($form->getData());
             $this->imageRepository->save($image);
+
             return true;
         }
 

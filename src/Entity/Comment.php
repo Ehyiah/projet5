@@ -1,13 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Matt
- * Date: 15/05/2018
- * Time: 09:42
- */
 
 namespace App\Entity;
+
 use App\Domain\DTO\AddCommentDTO;
+use App\Entity\Interfaces\CommentInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
@@ -16,7 +12,7 @@ use Ramsey\Uuid\UuidInterface;
  * Class Comment
  * @package App\Entity
  */
-class Comment
+class Comment implements CommentInterface
 {
     /**
      * @var UuidInterface

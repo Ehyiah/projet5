@@ -3,7 +3,7 @@
 namespace App\Entity\Interfaces;
 
 
-interface ImageCollectionInterface
+interface CommentInterface
 {
 
 }
