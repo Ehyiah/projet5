@@ -2,6 +2,7 @@
 
 namespace App\Domain\DTO;
 
+
 class AddCategoryDTO
 {
     /**

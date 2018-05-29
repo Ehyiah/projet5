@@ -8,10 +8,12 @@ use App\Form\CollectionType;
 use App\Form\CommentType;
 use App\Form\ElementCollectionType;
 use App\Form\ImageCollectionType;
+use App\Form\UserType;
 use App\UI\Form\Handler\Interfaces\NewCategoryCollectionHandlerInterface;
 use App\UI\Form\Handler\Interfaces\NewCollectionHandlerInterface;
 use App\UI\Form\Handler\Interfaces\NewElementCollectionHandlerInterface;
 use App\UI\Form\Handler\Interfaces\NewImageHandlerInterface;
+use App\UI\Form\Handler\Interfaces\NewUserHandlerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -96,16 +98,6 @@ class DefaultController extends Controller
         return $this->render('ElementCollection/CreateNewElementCollection.html.twig', array('form' => $form->createView()));
     }
 
-        /**
-         * test connexion prompt
-         * @Route("/admin")
-         */
-        public function admin()
-    {
-        return new Response('<html><body>Admin page!</body></html>');
-    }
-
-
     /**
      * @param Request $request
      * @param NewImageHandlerInterface $newImageHandler
@@ -122,4 +114,34 @@ class DefaultController extends Controller
 
         return $this->render('Image/CreateNewImage.html.twig', array('form' => $form->createView()));
     }
+
+
+    /**
+     * @param Request $request
+     * @param NewUserHandlerInterface $userHandler
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     * @Route ("newUser")
+     */
+    public function newUser(Request $request, NewUserHandlerInterface $userHandler)
+    {
+        $form = $this->createForm(UserType::class)->handleRequest($request);
+
+        if ($userHandler->handle($form)) {
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('Image/CreateNewImage.html.twig', array('form' => $form->createView()));
+    }
+
+
+    /**
+     * test connexion prompt
+     * @Route("/admin")
+     */
+    public function admin()
+    {
+        return new Response('<html><body>Admin page!</body></html>');
+    }
+
+
 }

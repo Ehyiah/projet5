@@ -33,7 +33,7 @@ services:
 
     App\Service\FileUploader:
         arguments:
-            $target_directory: '%kernel.project_dir%/public/upload/CollectionImage'
+            $targetDirectory: 'upload/CollectionImage'
 
     App\EventListener\ImageUploadListener:
         tags:

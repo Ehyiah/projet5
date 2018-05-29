@@ -1,22 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Matt
- * Date: 15/05/2018
- * Time: 09:37
- */
 
 namespace App\Entity;
 
+
+use App\Domain\DTO\AddUserDTO;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints\Date;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Class User
  * @package App\Entity
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var UuidInterface
@@ -26,7 +24,7 @@ class User
     /**
      * @var string
      */
-    private $name;
+    private $username;
 
     /**
      * @var string
@@ -36,7 +34,7 @@ class User
     /**
      * @var string
      */
-    private $mail;
+    private $email;
 
     /**
      * @var integer
@@ -53,6 +51,10 @@ class User
      */
     private $validation_date;
 
+    /**
+     * @var array
+     */
+    private $roles;
 
 
     /**
@@ -71,25 +73,18 @@ class User
     /**
      * User constructor.
      *
-     * @param string $name
-     * @param string $password
-     * @param string $mail
-     * @param int $groupe
-     * @param Date $creation_date
+     * @param AddUserDTO $addUserDTO
      */
-    public function __construct(
-        string $name,
-        string $password,
-        string $mail,
-        int $groupe,
-        date $creation_date
-    ) {
+    public function __construct(AddUserDTO $addUserDTO)
+    {
         $this->id = Uuid::uuid4();
-        $this->name = $name;
-        $this->password = $password;
-        $this->mail = $mail;
-        $this->groupe = $groupe;
-        $this->creation_date = new Date('now');
+        $this->username = $addUserDTO->username;
+        $this->password = $addUserDTO->password;
+        #$this->password = $passwordEncoder($password, null);
+        $this->email = $addUserDTO->email;
+        #$this->groupe = $groupe;
+        $this->creation_date = new \DateTime('now');
+        $this->roles[] = 'ROLE_USER';
     }
 
     /**
@@ -101,14 +96,44 @@ class User
     }
 
     /**
-     * @param string $name
-     * @param string $mail
+     * @param string $username
+     * @param string $email
      */
     public function edit(
-        string $name,
-        string $mail
+        string $username,
+        string $email
     ){
-        $this->name = $name;
-        $this->mail = $mail;
+        $this->username = $username;
+        $this->email = $email;
     }
+
+
+
+
+    public function getRoles()
+    {
+        // TODO: Implement getRoles() method.
+    }
+
+    public function getPassword()
+    {
+        // TODO: Implement getPassword() method.
+    }
+
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    public function getUsername()
+    {
+        // TODO: Implement getUsername() method.
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+
 }

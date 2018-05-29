@@ -110,14 +110,16 @@ class ImageCollection implements ImageCollectionInterface
         $this->id = Uuid::uuid4();
         $this->title = $addElementCollectionImage->title;
         $this->creation_date = new \DateTime('now');
+
         #traitement de l'image avant déplacement dans le dossier
 
-        $directory = 'upload/CollectionImage';
         $someNewFilename = 'testName.png';
-
-
         $file = $addElementCollectionImage->image;
-        $file->move($directory, $someNewFilename);
+
+        $dir = getenv('UPLOAD_DIR_IMAGE');
+
+        $file->move($dir, $someNewFilename);
+
         $this->image = $addElementCollectionImage->image;
     }
 

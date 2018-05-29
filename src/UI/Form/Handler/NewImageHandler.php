@@ -27,7 +27,7 @@ final class NewImageHandler implements NewImageHandlerInterface
 
     public function handle(FormInterface $form): bool
     {
-        if ($form->isSubmitted() && $form->isValid()) {
+         if ($form->isSubmitted() && $form->isValid()) {
             $image = new ImageCollection($form->getData());
             $this->imageRepository->save($image);
 

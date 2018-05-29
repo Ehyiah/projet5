@@ -9,7 +9,6 @@ use App\Infra\Doctrine\Repository\Interfaces\CategoryRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
-
 /**
  * @method CategoryCollection|null find($id, $lockMode = null, $lockVersion = null)
  * @method CategoryCollection|null findOneBy(array $criteria, array $orderBy = null)
