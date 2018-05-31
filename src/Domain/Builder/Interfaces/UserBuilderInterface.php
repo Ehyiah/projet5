@@ -5,11 +5,5 @@ namespace App\Domain\Builder\Interfaces;
 
 interface UserBuilderInterface
 {
-    /**
-     * @param $username
-     * @param $email
-     * @param $password
-     * @return mixed
-     */
-    public function createFromRegistration($username, $password, $email);
+    public function createFromRegistration(string $username, string $password, string $email, callable $passwordEncoder);
 }

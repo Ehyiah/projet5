@@ -11,8 +11,8 @@
         <field name="password" type="string" length="255" unique="false" />
         <field name="email" type="string" length="255" unique="true" />
         <field name="groupe" type="integer" unique="false" nullable="true" />
-        <field name="creation_date" type="date" unique="false" />
-        <field name="validation_date" type="date" unique="false" nullable="true"/>
+        <field name="creation_date" type="datetime" unique="false" />
+        <field name="validation_date" type="datetime" unique="false" nullable="true"/>
         <field name="roles" type="array" unique="false" />
         <one-to-many field="comments" target-entity="App\Entity\Comment" mapped-by="author" />
         <one-to-many field="collections" target-entity="App\Entity\Collection" mapped-by="owner" />

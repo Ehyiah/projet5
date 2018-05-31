@@ -8,6 +8,7 @@
 
 namespace App\Controller;
 
+use App\Form\CategoryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 Use Symfony\Component\HttpFoundation\Request;
@@ -25,15 +26,8 @@ class NewLib extends Controller
 
     public function new(Request $request)
     {
-        // on instancie une nouvelle librairie entity
-        $lib = new Librairie();
+        $form = $this->createForm(CategoryType::class);
 
-
-        $form = $this->createForm(LibType::class, $lib);
-
-        // traitement formulaire
-
-        $form->handleRequest($request);
 
         if ($form->isSubmitted() && ($form->isValid()))
         {

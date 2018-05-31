@@ -120,7 +120,7 @@ class DefaultController extends Controller
      * @param Request $request
      * @param NewUserHandlerInterface $userHandler
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     * @Route ("newUser")
+     * @Route ("/newUser")
      */
     public function newUser(Request $request, NewUserHandlerInterface $userHandler)
     {
@@ -142,6 +142,4 @@ class DefaultController extends Controller
     {
         return new Response('<html><body>Admin page!</body></html>');
     }
-
-
 }

@@ -10,15 +10,9 @@ class UserBuilder implements UserBuilderInterface
 {
     private $user;
 
-    /**
-     * @param $username
-     * @param $email
-     * @param $password
-     * @return $this|mixed
-     */
-    public function createFromRegistration($username, $email, $password)
+    public function createFromRegistration(string $username, string $password, string $email, callable $passwordEncoder): self
     {
-        $this->user = new User($username, $email, $password);
+        $this->user = new User($username, $password, $email, $passwordEncoder);
 
         return $this;
     }

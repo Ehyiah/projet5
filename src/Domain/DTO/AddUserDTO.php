@@ -37,6 +37,4 @@ class AddUserDTO
         $this->password = $password;
         $this->email = $email;
     }
-
-
 }

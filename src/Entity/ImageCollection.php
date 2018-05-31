@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+
 use App\Domain\DTO\AddElementImageDTO;
 use App\Entity\Interfaces\ImageCollectionInterface;
 use Ramsey\Uuid\Uuid;
@@ -25,7 +26,7 @@ class ImageCollection implements ImageCollectionInterface
     private $title;
 
     /**
-     * @var string
+     * @var \SplFileInfo
      */
     private $image;
 
@@ -64,7 +65,7 @@ class ImageCollection implements ImageCollectionInterface
     }
 
     /**
-     * @return string
+     * @return \SplFileInfo
      */
     public function getImage(): string
     {
@@ -127,12 +128,12 @@ class ImageCollection implements ImageCollectionInterface
     /**
      * @param string $title
      * @param \DateTime $update_date
-     * @param blob $image
+     * @param \SplFileInfo $image
      */
     public function edit(
         string $title,
         \DateTime $update_date,
-        blob $image
+        \SplFileInfo $image
     ){
         $this->title = $title;
         $this->update_date = new \DateTime('now');
@@ -140,9 +141,9 @@ class ImageCollection implements ImageCollectionInterface
     }
 
     /**
-     * @param string $image
+     * @param \SplFileInfo $image
      */
-    public function setImage(string $image): void
+    public function setImage(\SplFileInfo $image): void
     {
         $this->image = $image;
     }

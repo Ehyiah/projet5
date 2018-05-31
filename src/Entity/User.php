@@ -7,8 +7,8 @@ use App\Domain\DTO\AddUserDTO;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\DateTime;
+
 
 /**
  * Class User
@@ -42,12 +42,12 @@ class User implements UserInterface
     private $groupe;
 
     /**
-     * @var date
+     * @var datetime
      */
     private $creation_date;
 
     /**
-     * @var date
+     * @var datetime
      */
     private $validation_date;
 
@@ -80,9 +80,7 @@ class User implements UserInterface
         $this->id = Uuid::uuid4();
         $this->username = $addUserDTO->username;
         $this->password = $addUserDTO->password;
-        #$this->password = $passwordEncoder($password, null);
         $this->email = $addUserDTO->email;
-        #$this->groupe = $groupe;
         $this->creation_date = new \DateTime('now');
         $this->roles[] = 'ROLE_USER';
     }
@@ -92,7 +90,7 @@ class User implements UserInterface
      */
     public function validate()
     {
-        $this->validation_date = new Date('now');
+        $this->validation_date = new DateTime('now');
     }
 
     /**
