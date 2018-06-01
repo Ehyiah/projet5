@@ -1,22 +1,24 @@
 <?php
 
-namespace App\UI\Action;
+namespace App\Controller;
 
 
 use App\Domain\Builder\Interfaces\UserBuilderInterface;
-use App\Entity\User;
 use App\Form\UserType;
+use App\UI\Form\Handler\Interfaces\NewUserHandlerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Twig\Environment;
 
 /**
  * Class RegistrationAction
- * @package App\UI\Action
+ * @package App\Controller
+ * @Route ("/register")
  */
 class RegistrationAction
 {
@@ -63,29 +65,23 @@ class RegistrationAction
         $this->urlGenerator = $urlGenerator;
     }
 
+
     /**
      * @param Request $request
+     * @param NewUserHandlerInterface $userHandler
      * @return RedirectResponse|Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request, NewUserHandlerInterface $userHandler)
     {
         $form = $this->formFactory->create(UserType::class)->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $encoder = $this->encoderFactory->getEncoder(User::class);
-
-            $this->userBuilder->createFromRegistration(
-                'Toto',
-                'tot@gmail.com',
-                'azerty',
-                \Closure::fromCallable([$encoder, 'encodePassword'])
-            );
+        if ($userHandler->handle($form)) {
             return new RedirectResponse($this->urlGenerator->generate('home'));
         }
-        return new Response($this->twig->render(':Image:CreateNewImage.html.twig'));
 
+        return new Response($this->twig->render('register.html.twig', array('form' => $form->createView())));
     }
 }

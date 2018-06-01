@@ -49,7 +49,6 @@ class NewUserHandler implements NewUserHandlerInterface
 
             return true;
         }
-
         return false;
     }
 }

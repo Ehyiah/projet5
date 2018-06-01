@@ -8,17 +8,16 @@ use App\Form\CollectionType;
 use App\Form\CommentType;
 use App\Form\ElementCollectionType;
 use App\Form\ImageCollectionType;
-use App\Form\UserType;
 use App\UI\Form\Handler\Interfaces\NewCategoryCollectionHandlerInterface;
 use App\UI\Form\Handler\Interfaces\NewCollectionHandlerInterface;
 use App\UI\Form\Handler\Interfaces\NewElementCollectionHandlerInterface;
 use App\UI\Form\Handler\Interfaces\NewImageHandlerInterface;
-use App\UI\Form\Handler\Interfaces\NewUserHandlerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class DefaultController extends Controller
 {
@@ -115,22 +114,24 @@ class DefaultController extends Controller
         return $this->render('Image/CreateNewImage.html.twig', array('form' => $form->createView()));
     }
 
-
     /**
      * @param Request $request
-     * @param NewUserHandlerInterface $userHandler
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     * @Route ("/newUser")
+     * @param AuthenticationUtils $authenticationUtils
+     * @return Response
+     * @Route ("/login", name="login")
      */
-    public function newUser(Request $request, NewUserHandlerInterface $userHandler)
+    public function login(Request $request, AuthenticationUtils $authenticationUtils)
     {
-        $form = $this->createForm(UserType::class)->handleRequest($request);
+        // get the login error if there is one
+        $error = $authenticationUtils->getLastAuthenticationError();
 
-        if ($userHandler->handle($form)) {
-            return $this->redirectToRoute('home');
-        }
+        // last username entered by the user
+        $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('Image/CreateNewImage.html.twig', array('form' => $form->createView()));
+        return $this->render('login.html.twig', array(
+            'last_username' => $lastUsername,
+            'error'         => $error,
+        ));
     }
 
 

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Création d'un nouvel utilisateur
+{% endblock title %}
+
+{% block body %}
+    <h1>Ajout d'un nouvel utilisateur</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+
+
+    <a href="{{ path('home') }}">Retour</a>
+{% endblock body %}
