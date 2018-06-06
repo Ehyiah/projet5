@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
  * Class User
  * @package App\Entity
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @var UuidInterface
@@ -110,27 +110,38 @@ class User implements UserInterface
     }
 
 
-
-
+    /**
+     * @return array
+     */
     public function getRoles()
     {
         return array('ROLE_USER');
     }
 
+    /**
+     * @return string
+     */
     public function getPassword()
     {
-        // TODO: Implement getPassword() method.
+        return $this->password;
     }
 
+    /**
+     * @return null|string|void
+     */
     public function getSalt()
     {
-        // TODO: Implement getSalt() method.
+        return null;
     }
 
+    /**
+     * @return string
+     */
     public function getUsername()
     {
         return $this->username;
     }
+
 
     public function eraseCredentials()
     {
@@ -138,4 +149,22 @@ class User implements UserInterface
     }
 
 
+
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+        ));
+    }
+
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            ) = unserialize($serialized, ['allowed_classes' => true]);
+    }
 }

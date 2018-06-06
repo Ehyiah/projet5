@@ -14,4 +14,6 @@ use Symfony\Component\Security\Core\User\UserInterface;
 interface UserRepositoryInterface
 {
     public function save(UserInterface $user) : void;
+
+    public function loadUserByUsername($username);
 }

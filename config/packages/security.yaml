@@ -1,7 +1,6 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        #in_memory: { memory: ~ }
         db_provider:
             entity:
                 class: App\Entity\User
@@ -18,14 +17,21 @@ security:
             security: false
         main:
             anonymous: true
-            #http_basic: true
+
             form_login:
                 login_path: login
                 check_path: login
+                use_referer: true
 
             guard:
                 authenticators:
-                    - App\Security\TokenAuthenticator
+                    - App\Security\Authenticator
+            provider: db_provider
+
+
+            logout:
+                path: /logout
+                target: /home
             # activate different ways to authenticate
 
             # http_basic: true

@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Form;
+namespace App\UI\Form;
 
-use App\Domain\DTO\AddUserDTO;
+
+use App\Domain\DTO\LoginDTO;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserType extends AbstractType
+class LoginType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -22,12 +21,7 @@ class UserType extends AbstractType
     {
         $builder
             ->add('username', TextType::class)
-            ->add('password', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'first_options'  => array('label' => 'Password'),
-                'second_options' => array('label' => 'Repeat Password')
-            ])
-            ->add('email', EmailType::class);
+            ->add('password', PasswordType::class);
     }
 
     /**
@@ -36,14 +30,13 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-           'data_class' => AddUserDTO::class,
-           'empty_data' => function (FormInterface $form) {
-                return new AddUserDTO(
+            'data_class' => LoginDTO::class,
+            'empty_data' => function(FormInterface $form) {
+                return new LoginDTO(
                     $form->get('username')->getData(),
-                    $form->get('password')->getData(),
-                    $form->get('email')->getData()
+                    $form->get('password')->getData()
                 );
-           }
+            }
         ]);
     }
 }

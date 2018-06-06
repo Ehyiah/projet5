@@ -8,9 +8,10 @@
     <h1>Ajout d'un nouvel utilisateur</h1>
 
     {{ form_start(form) }}
-    {{ form_widget(form) }}
+    <button type="submit">Créer nouvel utilisateur</button>
     {{ form_end(form) }}
+    <p>
+        <a href="{{ path('home') }}">Retour</a>
+    </p>
 
-
-    <a href="{{ path('home') }}">Retour</a>
 {% endblock body %}
