@@ -9,6 +9,8 @@
 namespace App\Domain\DTO;
 
 
+use App\Entity\Collection;
+
 class AddElementCollectionDTO
 {
     /**
@@ -51,30 +53,25 @@ class AddElementCollectionDTO
      */
     public $value;
 
-
+    /**
+     * @var Collection
+     */
+    public $collection;
 
     /**
      * AddElementCollectionDTO constructor.
-     *
-     * @param $title
-     * @param $region
-     * @param $publisher
-     * @param $etat
-     * @param $buy_price
-     * @param $support
-     * @param $player_number
-     * @param $value
+     * @param string $title
+     * @param string $region
+     * @param string $publisher
+     * @param string $etat
+     * @param int $buy_price
+     * @param string $support
+     * @param int $player_number
+     * @param float $value
+     * @param Collection $collection
      */
-    public function __construct(
-        $title,
-        $region,
-        $publisher,
-        $etat,
-        $buy_price,
-        $support,
-        $player_number,
-        $value
-    ) {
+    public function __construct(string $title, string $region, string $publisher, string $etat, int $buy_price, string $support, int $player_number, float $value, Collection $collection)
+    {
         $this->title = $title;
         $this->region = $region;
         $this->publisher = $publisher;
@@ -83,6 +80,7 @@ class AddElementCollectionDTO
         $this->support = $support;
         $this->player_number = $player_number;
         $this->value = $value;
+        $this->collection = $collection;
     }
 
 

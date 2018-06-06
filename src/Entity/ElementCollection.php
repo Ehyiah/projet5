@@ -97,6 +97,7 @@ class ElementCollection implements ElementCollectionInterface
         $this->player_number = $addElementCollectionDTO->player_number;
         $this->value = $addElementCollectionDTO->value;
         #$this->collection_name = $collection_name;
+        $this->collection_name = $addElementCollectionDTO->collection;
     }
 
     /**
