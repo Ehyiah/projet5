@@ -35,7 +35,3 @@ services:
         arguments:
             $targetDirectory: 'upload/CollectionImage'
 
-    App\EventListener\ImageUploadListener:
-        tags:
-            - { name: doctrine.event_listener, event: prePersist }
-            - { name: doctrine.event_listener, event: preUpdate }

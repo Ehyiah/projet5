@@ -22,6 +22,8 @@ security:
                 login_path: login
                 check_path: login
                 use_referer: true
+                default_target_path: home
+                failure_path: login
 
             guard:
                 authenticators:

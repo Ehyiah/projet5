@@ -2,12 +2,20 @@
 
 namespace App\EventListener;
 
+
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use App\Entity\ImageCollection;
 use App\Service\FileUploader;
 
+/**
+ * NON UTILISE
+ *
+ *
+ * Class ImageUploadListener
+ * @package App\EventListener
+ */
 class ImageUploadListener
 {
     private $uploader;
@@ -31,9 +39,9 @@ class ImageUploadListener
         $this->uploadFile($entity);
     }
 
+
     private function uploadFile($entity)
     {
-        // upload only works for Product entities
         if (!$entity instanceof ImageCollection) {
             return;
         }

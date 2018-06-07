@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 
+use App\Infra\Doctrine\Repository\ImageRepository;
+use App\Infra\Doctrine\Repository\Interfaces\ImageRepositoryInterface;
 use App\UI\Form\Handler\Interfaces\NewElementCollectionHandlerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,6 +13,21 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
+    /**
+     * @var ImageRepository
+     */
+    private $image;
+
+    /**
+     * DefaultController constructor.
+     * @param ImageRepositoryInterface $image
+     */
+    public function __construct(ImageRepositoryInterface $image)
+    {
+        $this->image = $image;
+    }
+
+
     /**
      * @return mixed
      * @Route("/home", name="home")
@@ -21,6 +38,18 @@ class DefaultController extends Controller
     }
 
 
+    /**
+     * @Route ("/affiche", name="affiche")
+     */
+    public function afficheImage()
+    {
+       $test = $this->image->findAll();
+
+
+       return $this->render('imageTest.html.twig', array(
+           'imageTest' => $test
+       ));
+    }
 
 
     /**
@@ -44,7 +73,7 @@ class DefaultController extends Controller
 
 
     /**
-     * test connexion prompt
+     * test page protégée
      * @Route("/admin")
      */
     public function admin()

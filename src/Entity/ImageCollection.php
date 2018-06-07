@@ -8,7 +8,6 @@ use App\Entity\Interfaces\ImageCollectionInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-
 /**
  * Class ImageCollection
  * @package App\Entity
@@ -25,10 +24,6 @@ class ImageCollection implements ImageCollectionInterface
      */
     private $title;
 
-    /**
-     * @var \SplFileInfo
-     */
-    private $image;
 
     /**
      * @var \DateTime
@@ -49,6 +44,12 @@ class ImageCollection implements ImageCollectionInterface
     private $image_element_collection;
 
     /**
+     * Ajouter une relation pour ajouter une image à une collection
+     */
+
+
+
+    /**
      * @return UuidInterface
      */
     public function getId(): UuidInterface
@@ -64,13 +65,6 @@ class ImageCollection implements ImageCollectionInterface
         return $this->title;
     }
 
-    /**
-     * @return \SplFileInfo
-     */
-    public function getImage(): string
-    {
-        return $this->image;
-    }
 
     /**
      * @return \DateTime
@@ -108,20 +102,18 @@ class ImageCollection implements ImageCollectionInterface
      */
     public function __construct(AddElementImageDTO $addElementCollectionImage)
     {
+
         $this->id = Uuid::uuid4();
         $this->title = $addElementCollectionImage->title;
         $this->creation_date = new \DateTime('now');
 
+
         #traitement de l'image avant déplacement dans le dossier
-
-        $someNewFilename = 'testName.png';
-        $file = $addElementCollectionImage->image;
-
-        $dir = getenv('UPLOAD_DIR_IMAGE');
-
-        $file->move($dir, $someNewFilename);
-
-        $this->image = $addElementCollectionImage->image;
+        #$someNewFilename = 'testName.png';
+        #$file = $addElementCollectionImage->image;
+        #$dir = getenv('UPLOAD_DIR_IMAGE');
+        #$file->move($dir, $someNewFilename);
+        #$this->image = $addElementCollectionImage->image;
     }
 
 
@@ -140,11 +132,5 @@ class ImageCollection implements ImageCollectionInterface
         $this->image = $image;
     }
 
-    /**
-     * @param \SplFileInfo $image
-     */
-    public function setImage(\SplFileInfo $image): void
-    {
-        $this->image = $image;
-    }
+
 }

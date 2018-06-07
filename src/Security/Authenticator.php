@@ -97,9 +97,14 @@ class Authenticator extends AbstractGuardAuthenticator
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        return new RedirectResponse(
-            $this->urlGenerator->generate('home')
-        );
+        $targetPath = $request->getSession()->get('_security.'.$providerKey.'.target_path');
+        #$targetPath = $request->headers->get();
+
+        if ($targetPath != null) {
+            return new RedirectResponse($targetPath);
+        }
+
+        return new RedirectResponse('home');
     }
 
     /**

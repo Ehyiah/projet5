@@ -7,9 +7,10 @@ use Symfony\Component\Form\FormInterface;
 
 interface NewImageHandlerInterface
 {
+
     /**
      * @param FormInterface $form
-     *
+
      * @return bool
      */
     public function handle(FormInterface $form): bool;
