@@ -135,7 +135,7 @@
         "version": "v6.0.2"
     },
     "symfony/asset": {
-        "version": "v4.0.8"
+        "version": "v4.1.0"
     },
     "symfony/browser-kit": {
         "version": "v4.0.8"
@@ -268,6 +268,9 @@
             "version": "3.3",
             "ref": "179470cb6492db92dffee208cfdb436f175c93b4"
         }
+    },
+    "symfony/polyfill-ctype": {
+        "version": "v1.8.0"
     },
     "symfony/polyfill-intl-icu": {
         "version": "v1.7.0"

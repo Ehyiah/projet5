@@ -28,16 +28,21 @@ class NewCollectionAction
      */
     private $formFactory;
 
+
     /**
      * NewCollectionAction constructor.
+     *
      * @param EncoderFactoryInterface $encoderFactory
      * @param FormFactoryInterface $formFactory
      */
-    public function __construct(EncoderFactoryInterface $encoderFactory, FormFactoryInterface $formFactory)
-    {
+    public function __construct(
+        EncoderFactoryInterface $encoderFactory,
+        FormFactoryInterface $formFactory
+    ) {
         $this->encoderFactory = $encoderFactory;
         $this->formFactory = $formFactory;
     }
+
 
     /**
      * @param Request $request
@@ -48,8 +53,11 @@ class NewCollectionAction
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(Request $request, NewCollectionHandlerInterface $collectionHandler, NewCollectionResponder $responder)
-    {
+    public function __invoke(
+        Request $request,
+        NewCollectionHandlerInterface $collectionHandler,
+        NewCollectionResponder $responder
+    ) {
         $form = $this->formFactory->create(CollectionType::class)->handleRequest($request);
 
         if ($collectionHandler->handle($form)) {

@@ -24,7 +24,6 @@ class ImageCollection implements ImageCollectionInterface
      */
     private $title;
 
-
     /**
      * @var \DateTime
      */
@@ -36,16 +35,12 @@ class ImageCollection implements ImageCollectionInterface
     private $update_date;
 
 
-
     /**
      * relation avec ElementCollection
      * @var ElementCollection
      */
     private $image_element_collection;
 
-    /**
-     * Ajouter une relation pour ajouter une image à une collection
-     */
 
 
 
@@ -64,7 +59,6 @@ class ImageCollection implements ImageCollectionInterface
     {
         return $this->title;
     }
-
 
     /**
      * @return \DateTime
@@ -91,6 +85,14 @@ class ImageCollection implements ImageCollectionInterface
     }
 
 
+    /**
+     * @param string $title
+     */
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
+    }
+
 
 
 
@@ -102,7 +104,6 @@ class ImageCollection implements ImageCollectionInterface
      */
     public function __construct(AddElementImageDTO $addElementCollectionImage)
     {
-
         $this->id = Uuid::uuid4();
         $this->title = $addElementCollectionImage->title;
         $this->creation_date = new \DateTime('now');
@@ -115,6 +116,7 @@ class ImageCollection implements ImageCollectionInterface
         #$file->move($dir, $someNewFilename);
         #$this->image = $addElementCollectionImage->image;
     }
+
 
 
     /**
@@ -131,6 +133,4 @@ class ImageCollection implements ImageCollectionInterface
         $this->update_date = new \DateTime('now');
         $this->image = $image;
     }
-
-
 }

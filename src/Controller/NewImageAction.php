@@ -35,8 +35,10 @@ class NewImageAction
      * @param EncoderFactoryInterface $encoderFactory
      * @param FormFactoryInterface $formFactory
      */
-    public function __construct(EncoderFactoryInterface $encoderFactory, FormFactoryInterface $formFactory)
-    {
+    public function __construct(
+        EncoderFactoryInterface $encoderFactory,
+        FormFactoryInterface $formFactory
+    ) {
         $this->encoderFactory = $encoderFactory;
         $this->formFactory = $formFactory;
     }
@@ -50,8 +52,11 @@ class NewImageAction
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(Request $request, NewImageHandlerInterface $imageHandler, NewImageCollectionResponder $responder)
-    {
+    public function __invoke(
+        Request $request,
+        NewImageHandlerInterface $imageHandler,
+        NewImageCollectionResponder $responder
+    ) {
         $form = $this->formFactory->create(ImageCollectionType::class)->handleRequest($request);
 
         if ($imageHandler->handle($form)) {

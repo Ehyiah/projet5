@@ -19,14 +19,10 @@ class AddElementImageDTO
     /**
      * AddElementImageDTO constructor.
      *
-     * @param string $title
      * @param \SplFileInfo $image
      */
-    public function __construct(
-        string $title,
-        \SplFileInfo $image
-    ) {
-        $this->title = $title;
+    public function __construct(\SplFileInfo $image = null)
+    {
         $this->image = $image;
     }
 }

@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
+
 use App\Domain\DTO\AddCollectionDTO;
+use App\Domain\DTO\AddElementImageDTO;
 use App\Entity\Interfaces\CollectionInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Collection
@@ -66,10 +69,18 @@ class Collection implements CollectionInterface
 
     /**
      * relation avec CategoryCollection
+     *
      * @var CategoryCollection
      */
     private $category;
 
+    /**
+     * relation avec ImageCollection
+     *
+     * @var ImageCollection
+     *
+     */
+    private $image;
 
 
     /**
@@ -88,6 +99,7 @@ class Collection implements CollectionInterface
 
         $this->elements_collection = new ArrayCollection();
         $this->collection_comments = new ArrayCollection();
+        $this->image = $addCollectionDTO->image;
     }
 
 
@@ -159,6 +171,23 @@ class Collection implements CollectionInterface
     }
 
     /**
+     * @return CategoryCollection
+     */
+    public function getCategory(): CategoryCollection
+    {
+        return $this->category;
+    }
+
+    /**
+     * @return ImageCollection
+     */
+    public function getImage(): ImageCollection
+    {
+        return $this->image;
+    }
+
+
+    /**
      * @return User
      */
     public function getOwner(): User
@@ -198,6 +227,4 @@ class Collection implements CollectionInterface
         $this->$itemToEdit = $content;
         $this->update_date = new \DateTime('now');
     }
-
-
 }

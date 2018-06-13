@@ -2,13 +2,13 @@
 
 namespace App\Form;
 
-use App\Domain\DTO\AddCollectionDTO;
-use App\Entity\CategoryCollection;
 
+use App\Domain\DTO\AddCollectionDTO;
+use App\Domain\DTO\AddElementImageDTO;
+use App\Entity\CategoryCollection;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,10 +25,7 @@ class CollectionType extends AbstractType
             ->add('category', EntityType::class, array(
                 'class'=>CategoryCollection::class,
                 'label'=>'Catégorie de la collection',
-                'choice_label'=>function($category)
-                    {
-                        return $category->getCategoryCollection();
-                    }))
+                'choice_label'=>'category_collection'))
             ->add('visibility', ChoiceType::class, array(
                 'choices'  => array(
                     'Oui' => 1,
@@ -36,7 +33,10 @@ class CollectionType extends AbstractType
                     ),
                 'label' => 'Masquer la collection aux autres utilisateurs'
             ))
-            ->add('save', SubmitType::class)
+            ->add('image', ImageCollectionType::class, array(
+                'data_class' => AddElementImageDTO::class,
+                'required' => false
+            ))
         ;
     }
 

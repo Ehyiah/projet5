@@ -2,6 +2,8 @@
 
 namespace App\Domain\DTO;
 
+
+use App\Entity\ImageCollection;
 use App\Entity\CategoryCollection;
 
 class AddCollectionDTO
@@ -26,6 +28,12 @@ class AddCollectionDTO
      */
     public $visibility;
 
+    /**
+     * @var ImageCollection
+     */
+    public $image;
+
+
 
     /**
      * AddCollectionDTO constructor.
@@ -40,10 +48,12 @@ class AddCollectionDTO
         string $tag,
         CategoryCollection $category,
         bool $visibility
+
     ) {
         $this->name = $name;
         $this->tag = $tag;
         $this->category = $category;
         $this->visibility = $visibility;
+
     }
 }

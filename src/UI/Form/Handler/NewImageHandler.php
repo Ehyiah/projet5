@@ -21,13 +21,17 @@ final class NewImageHandler implements NewImageHandlerInterface
      */
     private $imageRepository;
 
+
     /**
      * NewImageHandler constructor.
+     *
      * @param FileUploader $fileUploader
      * @param ImageRepositoryInterface $imageRepository
      */
-    public function __construct(FileUploader $fileUploader, ImageRepositoryInterface $imageRepository)
-    {
+    public function __construct(
+        FileUploader $fileUploader,
+        ImageRepositoryInterface $imageRepository
+    ) {
         $this->fileUploader = $fileUploader;
         $this->imageRepository = $imageRepository;
     }
