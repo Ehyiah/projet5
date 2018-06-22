@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\UI\Form\Type\Comment;
 
 use App\Domain\DTO\AddCommentDTO;
 use App\Entity\Comment;
@@ -10,7 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CommentType extends AbstractType
+class NewCommentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

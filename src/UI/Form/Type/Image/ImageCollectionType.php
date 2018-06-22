@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Form;
+namespace App\UI\Form\Type\Image;
+
 
 use App\Domain\DTO\AddElementImageDTO;
 use App\Entity\ImageCollection;
@@ -9,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 
 class ImageCollectionType extends AbstractType
 {

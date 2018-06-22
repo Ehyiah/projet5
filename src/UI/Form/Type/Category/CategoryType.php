@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+namespace App\UI\Form\Type\Category;
 
 use App\Domain\DTO\AddCategoryDTO;
 

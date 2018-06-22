@@ -28,6 +28,7 @@ class NewElementCollectionHandler implements NewElementCollectionHandlerInterfac
     public function handle(FormInterface $form): bool
     {
         if ($form->isSubmitted() && $form->isValid()) {
+
             $element = new ElementCollection($form->getData());
             $this->elementCollection->save($element);
 

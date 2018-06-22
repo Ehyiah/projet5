@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UI\Form;
+namespace App\UI\Form\Type\User;
 
 
 use App\Domain\DTO\LoginDTO;

@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 
-use App\Form\CollectionType;
+use App\UI\Form\Type\Collection\CreateCollectionType;
 use App\UI\Form\Handler\Interfaces\NewCollectionHandlerInterface;
 use App\UI\Responder\NewCollectionResponder;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -58,7 +58,7 @@ class NewCollectionAction
         NewCollectionHandlerInterface $collectionHandler,
         NewCollectionResponder $responder
     ) {
-        $form = $this->formFactory->create(CollectionType::class)->handleRequest($request);
+        $form = $this->formFactory->create(CreateCollectionType::class)->handleRequest($request);
 
         if ($collectionHandler->handle($form)) {
             return $responder(true);

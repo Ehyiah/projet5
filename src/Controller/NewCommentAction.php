@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 
-use App\Form\CommentType;
+use App\UI\Form\Type\Comment\NewCommentType;
 use App\UI\Form\Handler\Interfaces\NewCommentHandlerInterface;
 use App\UI\Responder\NewCommentResponder;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -50,7 +50,7 @@ class NewCommentAction
      */
     public function __invoke(Request $request, NewCommentHandlerInterface $commentHandler, NewCommentResponder $responder)
     {
-        $form = $this->formFactory->create(CommentType::class)->handleRequest($request);
+        $form = $this->formFactory->create(NewCommentType::class)->handleRequest($request);
 
         if ($commentHandler->handle($form)) {
             return $responder(true);

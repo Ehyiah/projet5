@@ -45,7 +45,7 @@ class DefaultController extends Controller
 
     public function newComment(Request $request, NewElementCollectionHandlerInterface $newElementCollectionHandler)
     {
-        $form = $this->createForm(CommentType::class)->handleRequest($request);
+        $form = $this->createForm(NewCommentType::class)->handleRequest($request);
         if ($newElementCollectionHandler->handle($form)) {
             return $this->redirectToRoute('home');
         }

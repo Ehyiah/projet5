@@ -43,6 +43,16 @@ class ImageCollection implements ImageCollectionInterface
 
 
 
+    /**
+     * @param ElementCollection $image_element_collection
+     */
+    public function setImageElementCollection(ElementCollection $image_element_collection): void
+    {
+        $this->image_element_collection = $image_element_collection;
+    }
+
+
+
 
     /**
      * @return UuidInterface
@@ -108,6 +118,7 @@ class ImageCollection implements ImageCollectionInterface
         $this->title = $addElementCollectionImage->title;
         $this->creation_date = new \DateTime('now');
 
+        // $this->image_element_collection =
 
         #traitement de l'image avant déplacement dans le dossier
         #$someNewFilename = 'testName.png';

@@ -9,6 +9,7 @@ use App\Service\FileUploader;
 use App\UI\Form\Handler\Interfaces\NewImageHandlerInterface;
 use Symfony\Component\Form\FormInterface;
 
+
 final class NewImageHandler implements NewImageHandlerInterface
 {
     /**

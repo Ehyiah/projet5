@@ -1,9 +1,10 @@
 <?php
 
-
 namespace App\Controller;
+
+
 use App\UI\Form\Handler\LoginHandler;
-use App\UI\Form\LoginType;
+use App\UI\Form\Type\User\LoginType;
 use App\UI\Responder\LoginResponder;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,13 +43,18 @@ class LoginAction
 
     /**
      * LoginAction constructor.
+     *
      * @param EncoderFactoryInterface $encoder
      * @param FormFactoryInterface $formFactory
      * @param LoginHandler $loginHandler
      * @param AuthenticationUtils $authenticationUtils
      */
-    public function __construct(EncoderFactoryInterface $encoder, FormFactoryInterface $formFactory, LoginHandler $loginHandler, AuthenticationUtils $authenticationUtils)
-    {
+    public function __construct(
+        EncoderFactoryInterface $encoder,
+        FormFactoryInterface $formFactory,
+        LoginHandler $loginHandler,
+        AuthenticationUtils $authenticationUtils
+    ) {
         $this->encoder = $encoder;
         $this->formFactory = $formFactory;
         $this->loginHandler = $loginHandler;
@@ -65,8 +71,11 @@ class LoginAction
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(Request $request, LoginHandler $loginHandler, LoginResponder $responder)
-    {
+    public function __invoke(
+        Request $request,
+        LoginHandler $loginHandler,
+        LoginResponder $responder
+    ) {
         $form = $this->formFactory->create(LoginType::class)->handleRequest($request);
 
         return $responder(false, $form);

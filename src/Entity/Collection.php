@@ -4,13 +4,11 @@ namespace App\Entity;
 
 
 use App\Domain\DTO\AddCollectionDTO;
-use App\Domain\DTO\AddElementImageDTO;
 use App\Entity\Interfaces\CollectionInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Collection
@@ -97,9 +95,10 @@ class Collection implements CollectionInterface
         $this->category = $addCollectionDTO->category;
         $this->hidden = $addCollectionDTO->visibility;
 
+        $this->image = $addCollectionDTO->image;
+
         $this->elements_collection = new ArrayCollection();
         $this->collection_comments = new ArrayCollection();
-        $this->image = $addCollectionDTO->image;
     }
 
 

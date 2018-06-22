@@ -1,21 +1,39 @@
 <?php
 
-namespace App\Form;
+namespace App\UI\Form\Type\ElementCollection;
+
 
 use App\Domain\DTO\AddElementCollectionDTO;
 use App\Entity\Collection;
 use App\Entity\ElementCollection;
-
+use App\UI\Form\DataTransformer\ImageElementCollectionDataTransformer;
+use App\UI\Form\Type\Image\ImageCollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
-class ElementCollectionType extends AbstractType
+class NewElementCollectionType extends AbstractType
 {
+    /**
+     * @var ImageElementCollectionDataTransformer
+     */
+    private $imageElementTransformer;
+
+    /**
+     * NewElementCollectionType constructor.
+     *
+     * @param ImageElementCollectionDataTransformer $imageElementTransformer
+     */
+    public function __construct(ImageElementCollectionDataTransformer $imageElementTransformer)
+    {
+        $this->imageElementTransformer = $imageElementTransformer;
+    }
+
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -38,8 +56,16 @@ class ElementCollectionType extends AbstractType
                         return $collection->getCollectionName();
                     }
                 ))
-            ->add('save', SubmitType::class)
+            ->add('images', CollectionType::class, array(
+                'entry_type' => ImageCollectionType::class,
+                'allow_add' => true,
+                'prototype' => true,
+                'entry_options' => array('label' => false),
+                'by_reference' => false,
+                'mapped' => false
+            ))
         ;
+        $builder->get('images')->addModelTransformer($this->imageElementTransformer);
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -56,7 +82,8 @@ class ElementCollectionType extends AbstractType
                     $form->get('support')->getData(),
                     $form->get('player_number')->getData(),
                     $form->get('value')->getData(),
-                    $form->get('collection')->getData()
+                    $form->get('collection')->getData(),
+                    $form->get('images')->getData()
                 );
             }
         ]);

@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 
-use App\Form\CategoryType;
+use App\UI\Form\Type\Category\CategoryType;
 use App\UI\Form\Handler\Interfaces\NewCategoryCollectionHandlerInterface;
 use App\UI\Responder\NewImageCollectionResponder;
 use Symfony\Component\Form\FormFactoryInterface;

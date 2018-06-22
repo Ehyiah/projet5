@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 
-use App\Form\UserType;
+use App\UI\Form\Type\User\UserType;
 use App\UI\Form\Handler\Interfaces\NewUserHandlerInterface;
 use App\UI\Responder\RegistrationResponder;
 use Symfony\Component\Form\FormFactoryInterface;

@@ -11,10 +11,13 @@
     <p>Formulaire de création d'un élément de collection</p>
 
     {{ form_start(form) }}
-    {{ form_widget(form) }}
+    <div class="images" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
+    </div>
+
+    <button type="submit">Ajout d'un nouvel élément</button>
     {{ form_end(form) }}
 
-    <div class="divider"></div>
     <a href="{{ path('home') }}">Retour</a>
 
 {% endblock %}
+

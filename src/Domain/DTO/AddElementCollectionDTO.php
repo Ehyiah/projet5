@@ -1,15 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Matt
- * Date: 18/05/2018
- * Time: 09:56
- */
+
 
 namespace App\Domain\DTO;
 
 
 use App\Entity\Collection;
+use App\Entity\ImageCollection;
+
 
 class AddElementCollectionDTO
 {
@@ -59,7 +56,13 @@ class AddElementCollectionDTO
     public $collection;
 
     /**
+     * @var array
+     */
+    public $images;
+
+    /**
      * AddElementCollectionDTO constructor.
+     *
      * @param string $title
      * @param string $region
      * @param string $publisher
@@ -69,8 +72,9 @@ class AddElementCollectionDTO
      * @param int $player_number
      * @param float $value
      * @param Collection $collection
+     * @param array $images
      */
-    public function __construct(string $title, string $region, string $publisher, string $etat, int $buy_price, string $support, int $player_number, float $value, Collection $collection)
+    public function __construct(string $title, string $region, string $publisher, string $etat, int $buy_price, string $support, int $player_number, float $value, Collection $collection, array $images)
     {
         $this->title = $title;
         $this->region = $region;
@@ -81,6 +85,7 @@ class AddElementCollectionDTO
         $this->player_number = $player_number;
         $this->value = $value;
         $this->collection = $collection;
+        $this->images = $images;
     }
 
 
