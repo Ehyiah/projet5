@@ -3,12 +3,12 @@
 namespace App\UI\Responder;
 
 
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class NewCategoryCollectionResponder
+
+class MemberResponder
 {
     /**
      * @var Environment
@@ -16,8 +16,7 @@ class NewCategoryCollectionResponder
     private $twig;
 
     /**
-     * NewCategoryCollectionResponder constructor.
-     *
+     * MemberResponder constructor.
      * @param Environment $twig
      */
     public function __construct(Environment $twig)
@@ -27,22 +26,23 @@ class NewCategoryCollectionResponder
 
     /**
      * @param bool $redirect
-     * @param FormInterface $form
      * @return RedirectResponse|Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke($redirect = false, FormInterface $form)
+    public function __invoke($redirect =false, array $collections)
     {
         $redirect
             ? $response = new RedirectResponse('home')
             : $response = new Response(
-                $this->twig->render('Category/CreateNewCategory.html.twig', array(
-                    'form' => $form->createView()
+                $this->twig->render('Member/member.html.twig', array(
+                    'test' => 'bonjour',
+                    'collections' => $collections
                 ))
         );
 
         return $response;
     }
+
 }

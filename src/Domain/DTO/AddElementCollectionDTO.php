@@ -7,7 +7,6 @@ namespace App\Domain\DTO;
 use App\Entity\Collection;
 use App\Entity\ImageCollection;
 
-
 class AddElementCollectionDTO
 {
     /**
@@ -74,8 +73,18 @@ class AddElementCollectionDTO
      * @param Collection $collection
      * @param array $images
      */
-    public function __construct(string $title, string $region, string $publisher, string $etat, int $buy_price, string $support, int $player_number, float $value, Collection $collection, array $images)
-    {
+    public function __construct(
+        string $title,
+        string $region,
+        string $publisher,
+        string $etat,
+        int $buy_price,
+        string $support,
+        int $player_number,
+        float $value,
+        Collection $collection,
+        array $images = null
+    ) {
         $this->title = $title;
         $this->region = $region;
         $this->publisher = $publisher;
@@ -87,6 +96,4 @@ class AddElementCollectionDTO
         $this->collection = $collection;
         $this->images = $images;
     }
-
-
 }

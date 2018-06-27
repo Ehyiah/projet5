@@ -167,4 +167,13 @@ class User implements UserInterface, \Serializable
             $this->password,
             ) = unserialize($serialized, ['allowed_classes' => true]);
     }
+
+    /**
+     * @return UuidInterface
+     */
+    public function getId(): UuidInterface
+    {
+        return $this->id;
+    }
+
 }

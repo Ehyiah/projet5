@@ -8,6 +8,8 @@ use App\Entity\Interfaces\CollectionInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 
 /**
@@ -76,7 +78,6 @@ class Collection implements CollectionInterface
      * relation avec ImageCollection
      *
      * @var ImageCollection
-     *
      */
     private $image;
 
@@ -94,14 +95,19 @@ class Collection implements CollectionInterface
         $this->tag = $addCollectionDTO->tag;
         $this->category = $addCollectionDTO->category;
         $this->hidden = $addCollectionDTO->visibility;
-
         $this->image = $addCollectionDTO->image;
 
         $this->elements_collection = new ArrayCollection();
         $this->collection_comments = new ArrayCollection();
     }
 
-
+    /**
+     * @param User $owner
+     */
+    public function setOwner(User $owner): void
+    {
+        $this->owner = $owner;
+    }
 
 
 

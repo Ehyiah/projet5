@@ -3,8 +3,15 @@ var $collectionHolder;
 var $addImageButton = $('<button type="button" class="add_image_link">Ajout d\'une image</button>');
 var $newLink = $('<p></p>').append($addImageButton);
 
+
+
 $(document).ready(function() {
     $collectionHolder = $(".images");
+
+    // add a delete link to all of the existing image form li elements
+    $collectionHolder.find('p').each(function() {
+        addImageFormDeleteLink($(this));
+    });
 
     $collectionHolder.append($newLink);
 
@@ -14,6 +21,16 @@ $(document).ready(function() {
         addImageForm($collectionHolder, $newLink);
     });
 });
+
+function addImageFormDeleteLink($tagFormLi) {
+    var $removeFormButton = $('<button type="button">Delete this tag</button>');
+    $tagFormLi.append($removeFormButton);
+
+    $removeFormButton.on('click', function(e) {
+        // remove the li for the tag form
+        $tagFormLi.remove();
+    });
+}
 
 function addImageForm($collectionHolder, $newLink) {
     var prototype = $collectionHolder.data('prototype');
@@ -34,4 +51,7 @@ function addImageForm($collectionHolder, $newLink) {
 
     var $newFormLi = $('<p></p>').append(newForm);
     $newLink.after($newFormLi);
+
+    // add a delete link to the new form
+    addImageFormDeleteLink($newFormLi);
 }

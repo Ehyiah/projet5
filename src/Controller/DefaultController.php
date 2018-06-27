@@ -20,21 +20,16 @@ class DefaultController extends Controller
         return $this->render('home.html.twig');
     }
 
-
-
-
     /**
-     * @Route ("/affiche", name="affiche")
+     * @return mixed
+     * @Route("/home2", name="home2")
      */
-    public function afficheImage()
+    public function home2()
     {
-       $test = $this->image->findAll();
-
-
-       return $this->render('imageTest.html.twig', array(
-           'imageTest' => $test
-       ));
+        return $this->render('home2.html.twig');
     }
+
+
 
 
     /**

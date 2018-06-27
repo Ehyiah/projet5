@@ -32,6 +32,7 @@ class NewImageAction
 
     /**
      * NewImageAction constructor.
+     *
      * @param EncoderFactoryInterface $encoderFactory
      * @param FormFactoryInterface $formFactory
      */

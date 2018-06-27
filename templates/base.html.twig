@@ -3,16 +3,15 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- <link rel="stylesheet" href="{{ asset('css/materialize.css') }}" /> -->
-        <!-- style.css.twig" /> -->
 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <title>{% block title %} Bienvenue !{% endblock %}</title>
 
         <!-- favicon -->
         <link rel="icon" type="image/png" href="images/favicon/favicon.png" />
         <meta name="description" content="Organisez vos collections">
         <!-- Open Graph data -->
-        <meta property="og:title" content="CollecOnline, Gestion de collections" />
+        <meta property="og:title" content="Collec'Online, Gestion de collections" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="http://projet5.gostiaux.net/" />
         <meta property="og:image" content="http://projet5.gostiaux.net/public/images/logo.png" />
@@ -21,7 +20,7 @@
         <!-- Twitter Card data -->
         <meta name="twitter:card" content="summary">
         <meta name="twitter:site" content="@CollecOnline">
-        <meta name="twitter:title" content="CollecOnline, Gestion de collections">
+        <meta name="twitter:title" content="Collec'Online, Gestion de collections">
         <meta name="twitter:description" content="Organisez vos collections">
         <meta name="twitter:image" content="http://projet5.gostiaux.net/images/logo.png">
 
@@ -31,6 +30,62 @@
     </head>
 
     <body>
+        <!-- menu -->
+        {% block menu %}
+        <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+            <a class="navbar-brand" href="{{ path('home') }}">
+                <img src="{{ asset('images/logo/t6.png') }}" alt="Logo du site Collec'Online">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('home2') }}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Link</a>
+                    </li>
+
+
+                <!-- si connecté alors espace membre et liste des collections-->
+                    {% if is_granted('ROLE_USER') %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('member') }}">Espace Membre</a>
+                    </li>
+
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Mes Collections
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ path('show') }}">Mes Collections</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('logout') }}">Se déconnecter</a>
+                    </li>
+                    {% endif %}
+
+                <!-- si non connecté bouton connection -->
+                    {% if not is_granted('ROLE_USER') %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('login') }}">Connection</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        {% endblock menu %}
+
+
         <!-- message flash -->
         {% for message in app.flashes('notice') %}
             <div class="flash-notice">
@@ -45,9 +100,16 @@
         {% endblock %}
 
 
+        {% block footer %}
+            <div class="footer">
+                <p>footer</p>
+            </div>
+        {% endblock footer %}
 
         {% block javascripts %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
             <script src="{{ asset('js/testCollection.js') }}"></script>
         {% endblock %}
     </body>

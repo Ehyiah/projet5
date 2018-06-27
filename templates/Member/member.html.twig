@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    <p>'bienvenue dans l'espace membre'</p>
+    {{ test }}
+
+
+
+    {% for image in collections %}
+        <img src="{{ asset('upload/CollectionImage/') }}{{ image.title }}">
+    {% endfor %}
+
+
+
+{% endblock body %}

@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Count;
 
 
 class NewElementCollectionType extends AbstractType
@@ -62,7 +63,14 @@ class NewElementCollectionType extends AbstractType
                 'prototype' => true,
                 'entry_options' => array('label' => false),
                 'by_reference' => false,
-                'mapped' => false
+                'mapped' => false,
+                'constraints' => array(new Count(array(
+                    'min' => 0,
+                    'max' => 3,
+                    'maxMessage' => "Vous ne pouvez pas envoyer plus de {{ limit }} images"
+                    ))
+                ),
+                'required' => false
             ))
         ;
         $builder->get('images')->addModelTransformer($this->imageElementTransformer);

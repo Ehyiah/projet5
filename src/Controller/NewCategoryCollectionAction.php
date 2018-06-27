@@ -48,8 +48,11 @@ class NewCategoryCollectionAction
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(Request $request, NewCategoryCollectionHandlerInterface $categoryCollectionHandler, NewImageCollectionResponder $responder)
-    {
+    public function __invoke(
+        Request $request,
+        NewCategoryCollectionHandlerInterface $categoryCollectionHandler,
+        NewImageCollectionResponder $responder
+    ) {
         $form = $this->formFactory->create(CategoryType::class)->handleRequest($request);
 
         if ($categoryCollectionHandler->handle($form)) {

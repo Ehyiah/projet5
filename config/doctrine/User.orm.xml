@@ -16,6 +16,11 @@
         <field name="roles" type="array" unique="false" />
         <field name="apiKey" type="string" unique="true" nullable="true" />
         <one-to-many field="comments" target-entity="App\Entity\Comment" mapped-by="author" />
-        <one-to-many field="collections" target-entity="App\Entity\Collection" mapped-by="owner" />
+        <one-to-many field="collections" target-entity="App\Entity\Collection" mapped-by="owner">
+            <cascade>
+                <cascade-persist/>
+                <cascade-remove/>
+            </cascade>
+        </one-to-many>
     </entity>
 </doctrine-mapping>

@@ -211,52 +211,17 @@ class ElementCollection implements ElementCollectionInterface
         $this->addImageToCollection($addElementCollectionDTO->images);
     }
 
-    /**
-     * @param string $title
-     * @param string $region
-     * @param string $author
-     * @param string $publisher
-     * @param string $etat
-     * @param float $buy_price
-     * @param string $support
-     * @param int $player_number
-     * @param float $value
-     */
-    public function editAllElementCollection(
-        string $title,
-        string $region,
-        string $author,
-        string $publisher,
-        string $etat,
-        float $buy_price,
-        string $support,
-        int $player_number,
-        float $value
-    ){
-        $this->title = $title;
-        $this->region = $region;
-        $this->author = $author;
-        $this->publisher = $publisher;
-        $this->etat = $etat;
-        $this->buy_price = $buy_price;
-        $this->support = $support;
-        $this->player_number = $player_number;
-        $this->value = $value;
-    }
 
     /**
-     * @param $itemToEdit
-     * @param $content
+     * @param array|null $images
      */
-    public function editOneElementCollection($itemToEdit, $content){
-        $this->$itemToEdit = $content;
-    }
-
-    public function addImageToCollection(array $images)
+    public function addImageToCollection(array $images = null)
     {
-        foreach ($images as $image) {
-            $this->images[] = $image;
-            $image->setImageElementCollection($this);
+        if ($images != null) {
+            foreach ($images as $image) {
+                $this->images[] = $image;
+                $image->setImageElementCollection($this);
+            }
         }
     }
 }

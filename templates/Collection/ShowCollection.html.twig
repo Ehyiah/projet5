@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <p>bienvenue dans la page de vos collections</p>
+
+    {% if (collections is defined) and (collections is not null) %}
+        {{ dump(collections) }}
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Nombre d'éléments</th>
+                    <th scope="col">Image</th>
+                </tr>
+            </thead>
+            {% for collection in collections  %}
+                <tbody>
+                    <tr>
+                        <th scope="row"><a href="#">{{ collection.0.collectionName }}</a></th>
+                        <td>à définir</td>
+                        <td>
+                            {% if collection.title is not null %}
+                            <img src="{{ asset('upload/CollectionImage/') }}{{ collection.title }}">
+                            {% else %}
+                                <p>Aucune image associée à cette collection</p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            {% endfor %}
+        </table>
+
+    {% endif %}
+
+{% endblock body %}

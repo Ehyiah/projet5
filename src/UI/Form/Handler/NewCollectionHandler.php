@@ -7,6 +7,7 @@ use App\Entity\Collection;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use App\UI\Form\Handler\Interfaces\NewCollectionHandlerInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class NewCollectionHandler implements NewCollectionHandlerInterface
 {
@@ -16,13 +17,20 @@ class NewCollectionHandler implements NewCollectionHandlerInterface
     private $collection;
 
     /**
+     * @var TokenStorageInterface
+     */
+    private $token;
+
+    /**
      * NewCollectionHandler constructor.
      *
      * @param CollectionRepositoryInterface $collection
+     * @param TokenStorageInterface $token
      */
-    public function __construct(CollectionRepositoryInterface $collection)
+    public function __construct(CollectionRepositoryInterface $collection, TokenStorageInterface $token)
     {
         $this->collection = $collection;
+        $this->token = $token;
     }
 
 
@@ -32,7 +40,11 @@ class NewCollectionHandler implements NewCollectionHandlerInterface
             // instantiation d'une nouvelle Collection avec les bonnes data
             $newCollection = new Collection($form->getData());
 
-            // insertion dans la BDD
+            // récupération des informations de l'utilisateur connecté
+            $user = $this->token->getToken()->getUser();
+            $newCollection->setOwner($user);
+            // insertion dans la BDD de la collection
+
             $this->collection->save($newCollection);
 
             return true;
