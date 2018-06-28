@@ -47,10 +47,22 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Link</a>
+                        <a class="nav-link active" href="#">inutile</a>
                     </li>
 
+                    {% if is_granted('ROLE_USER') %}
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown">
+                            ici
+                        </a>
+                        <div class="dropdown-menu">
+                            {{ render(controller(
+                                'App\\Controller\\Collection\\MenuCollectionAction::getAllCollectionsForMenu'
+                            )) }}
+                        </div>
+                    {% endif %}
 
+                    </li>
                 <!-- si connecté alors espace membre et liste des collections-->
                     {% if is_granted('ROLE_USER') %}
                     <li class="nav-item">
@@ -62,9 +74,9 @@
                             Mes Collections
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ path('show') }}">Mes Collections</a>
-                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="{{ path('select') }}">Mes Collections</a>
                             <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Another action</a>
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
                     </li>
@@ -94,7 +106,6 @@
         {% endfor %}
 
 
-
         {% block body %}
 
         {% endblock %}
@@ -105,6 +116,7 @@
                 <p>footer</p>
             </div>
         {% endblock footer %}
+
 
         {% block javascripts %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

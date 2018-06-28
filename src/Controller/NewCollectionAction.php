@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\UI\Form\Type\Collection\CreateCollectionType;
 use App\UI\Form\Handler\Interfaces\NewCollectionHandlerInterface;
 use App\UI\Responder\NewCollectionResponder;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,6 +16,7 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
  * Class NewCollectionAction
  * @package App\Controller
  * @Route("/newCollection", name="newCollection")
+ * @Security("has_role('ROLE_USER')")
  */
 class NewCollectionAction
 {

@@ -49,18 +49,32 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
      */
     public function findByOwnerAndCategory($user, $category)
     {
-        $qb = $this->createQueryBuilder('a');
+        return $this->createQueryBuilder('a')
+                    ->where('a.owner = :owner')
+                        ->setParameter('owner', $user)
+                    ->andWhere('a.category = :category')
+                        ->setParameter('category', $category)
+                    ->leftJoin('a.image', 'image')
+                        ->addSelect('image.title')
+                    ->leftJoin('a.elements_collection', 'elementsCollection')
+                        ->addSelect('elementsCollection')
+                ->getQuery()
+                ->getResult();
+    }
 
-        $qb
+
+    /**
+     * @param $user
+     * @return mixed
+     */
+    public function menuFindByOwnerAndCategory($user)
+    {
+        return $this->createQueryBuilder('a')
             ->where('a.owner = :owner')
                 ->setParameter('owner', $user)
-            ->andWhere('a.category = :category')
-                ->setParameter('category', $category)
-            ->leftJoin('a.image', 'image')
-                ->addSelect('image.title')
-        ;
+            ->leftJoin('a.category', 'category')
+                ->addSelect('category')
 
-        return $qb
             ->getQuery()
             ->getResult();
     }

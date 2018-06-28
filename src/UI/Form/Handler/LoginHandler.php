@@ -21,11 +21,14 @@ class LoginHandler
 
     /**
      * LoginHandler constructor.
+     *
      * @param UserRepository $userRepository
      * @param EncoderFactoryInterface $encoderFactory
      */
-    public function __construct(UserRepository $userRepository, EncoderFactoryInterface $encoderFactory)
-    {
+    public function __construct(
+        UserRepository $userRepository,
+        EncoderFactoryInterface $encoderFactory
+    ) {
         $this->userRepository = $userRepository;
         $this->encoderFactory = $encoderFactory;
     }

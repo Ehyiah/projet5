@@ -3,16 +3,11 @@
 {% block body %}
     <p>bienvenue dans la page de vos collections</p>
 
-
-    {% if collection is null %}
         {{ form_start(form) }}
         {{ form_widget(form) }}
 
         <button type="submit">Voir mes collections</button>
         {{ form_end(form) }}
-    {% endif %}
-
-
 
 
 {% endblock body %}

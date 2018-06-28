@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <p>bienvenue dans la page de vos collections</p>
+    <p>Voice les détails de votre collection</p>
 
     {% if (collections is defined) and (collections is not null) %}
         {{ dump(collections) }}
@@ -18,7 +18,9 @@
                 <tbody>
                     <tr>
                         <th scope="row"><a href="#">{{ collection.0.collectionName }}</a></th>
-                        <td>à définir</td>
+                        <td>
+                            {{ collection.0.elementsCollection|length }}
+                        </td>
                         <td>
                             {% if collection.title is not null %}
                             <img src="{{ asset('upload/CollectionImage/') }}{{ collection.title }}">
@@ -30,7 +32,18 @@
                 </tbody>
             {% endfor %}
         </table>
-
     {% endif %}
+
+
+    {% if form is defined and not null %}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+
+        <button type="submit">Voir mes collections</button>
+        {{ form_end(form) }}
+    {% endif %}
+
+
+
 
 {% endblock body %}

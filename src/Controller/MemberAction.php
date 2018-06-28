@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use App\Infra\Doctrine\Repository\Interfaces\ImageRepositoryInterface;
 use App\UI\Responder\MemberResponder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -28,17 +29,22 @@ class MemberAction
     private $imageRepository;
 
     /**
+     * @var CollectionRepositoryInterface
+     */
+    private $collection;
+
+    /**
      * MemberAction constructor.
      *
      * @param Environment $twig
      * @param ImageRepositoryInterface $imageRepository
+     * @param CollectionRepositoryInterface $collection
      */
-    public function __construct(
-        Environment $twig,
-        ImageRepositoryInterface $imageRepository
-    ) {
+    public function __construct(Environment $twig, ImageRepositoryInterface $imageRepository, CollectionRepositoryInterface $collection)
+    {
         $this->twig = $twig;
         $this->imageRepository = $imageRepository;
+        $this->collection = $collection;
     }
 
 
@@ -52,6 +58,7 @@ class MemberAction
     public function __invoke(MemberResponder $responder)
     {
         $collections = $this->imageRepository->findAll();
+
 
         return $responder(false, $collections);
     }

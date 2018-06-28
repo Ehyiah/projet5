@@ -6,17 +6,15 @@ namespace App\UI\Form\Handler\Collection;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use Symfony\Component\Form\FormInterface;
 
-class ShowCollectionHandler
+class SelectCollectionHandler
 {
-
-
     /**
      * @var CollectionRepositoryInterface
      */
     private $collections;
 
     /**
-     * ShowCollectionHandler constructor.
+     * SelectCollectionHandler constructor.
      *
      * @param CollectionRepositoryInterface $collections
      */
