@@ -50,6 +50,7 @@
                         <a class="nav-link active" href="#">inutile</a>
                     </li>
 
+                <!-- menu personnalisé s'affiche si un utilisateur est connecté -->
                     {% if is_granted('ROLE_USER') %}
                     <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown">

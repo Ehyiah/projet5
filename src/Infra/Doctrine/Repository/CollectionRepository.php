@@ -50,16 +50,16 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
     public function findByOwnerAndCategory($user, $category)
     {
         return $this->createQueryBuilder('a')
-                    ->where('a.owner = :owner')
-                        ->setParameter('owner', $user)
-                    ->andWhere('a.category = :category')
-                        ->setParameter('category', $category)
-                    ->leftJoin('a.image', 'image')
-                        ->addSelect('image.title')
-                    ->leftJoin('a.elements_collection', 'elementsCollection')
-                        ->addSelect('elementsCollection')
-                ->getQuery()
-                ->getResult();
+            ->where('a.owner = :owner')
+                ->setParameter('owner', $user)
+            ->andWhere('a.category = :category')
+                ->setParameter('category', $category)
+            ->leftJoin('a.image', 'image')
+                ->addSelect('image.title')
+            ->leftJoin('a.elements_collection', 'elementsCollection')
+                ->addSelect('elementsCollection')
+        ->getQuery()
+        ->getResult();
     }
 
 
@@ -75,7 +75,7 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
             ->leftJoin('a.category', 'category')
                 ->addSelect('category')
 
-            ->getQuery()
-            ->getResult();
+        ->getQuery()
+        ->getResult();
     }
 }

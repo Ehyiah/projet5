@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+    {% for element in collection %}
+        {{ dump(element) }}
+
+    {% endfor %}
+
+<p>détail de la collection</p>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Nom de l'élément</th>
+                <th scope="col">Région</th>
+                <th scope="col">Auteur</th>
+                <th scope="col">Editeur</th>
+                <th scope="col">Etat ou Condition</th>
+                <th scope="col">Prix d'achat</th>
+                <th scope="col">Support</th>
+                <th scope="col">Nombre de joueurs</th>
+                <th scope="col">Valeur</th>
+                <th scope="col">Images</th>
+            </tr>
+        </thead>
+
+        {% for element in collection %}
+        <tbody>
+            <tr>
+                <th scope="row">{{ element.title }}</th>
+                <td>{{ element.region }}</td>
+                <td>{{ element.author }}</td>
+                <td>{{ element.publisher }}</td>
+                <td>{{ element.etat }}</td>
+                <td>{{ element.buyPrice }}</td>
+                <td>{{ element.support }}</td>
+                <td>{{ element.playerNumber }}</td>
+                <td>{{ element.value }}</td>
+                <td>
+                    {% for image in element %}
+                        {{ dump(image.title) }}
+                    {% endfor %}
+                </td>
+
+            </tr>
+        </tbody>
+
+
+        {% endfor %}
+
+    </table>
+
+{% endblock body %}

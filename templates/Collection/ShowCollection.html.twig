@@ -1,7 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <p>Voice les détails de votre collection</p>
+    <p>Voice les détails de votre liste de collection : </p>
+
 
     {% if (collections is defined) and (collections is not null) %}
         {{ dump(collections) }}
@@ -9,7 +10,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Nom</th>
+                    <th scope="col">Nom de la Collection</th>
                     <th scope="col">Nombre d'éléments</th>
                     <th scope="col">Image</th>
                 </tr>
@@ -17,7 +18,8 @@
             {% for collection in collections  %}
                 <tbody>
                     <tr>
-                        <th scope="row"><a href="#">{{ collection.0.collectionName }}</a></th>
+                        <th scope="row"><a href="{{ path('showDetailled', {'idCollection' : collection.0.id}) }}">{{ collection.0.collectionName }}</a>
+                        </th>
                         <td>
                             {{ collection.0.elementsCollection|length }}
                         </td>
@@ -33,17 +35,5 @@
             {% endfor %}
         </table>
     {% endif %}
-
-
-    {% if form is defined and not null %}
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-
-        <button type="submit">Voir mes collections</button>
-        {{ form_end(form) }}
-    {% endif %}
-
-
-
 
 {% endblock body %}

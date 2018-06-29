@@ -8,4 +8,6 @@ use App\Entity\Interfaces\ElementCollectionInterface;
 interface ElementCollectionRepositoryInterface
 {
     public function save(ElementCollectionInterface $elementCollection) : void;
+
+    public function findCollectionById($id);
 }

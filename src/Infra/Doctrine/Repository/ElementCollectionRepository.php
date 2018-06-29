@@ -26,4 +26,16 @@ class ElementCollectionRepository extends ServiceEntityRepository implements Ele
         $this->_em->persist($elementCollection);
         $this->_em->flush();
     }
+
+    public function findCollectionById($id)
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.collection_name = :collectionID')
+                ->setParameter('collectionID', $id)
+            ->join('c.images', 'images')
+                ->addSelect('images')
+
+        ->getQuery()
+        ->getResult();
+    }
 }
