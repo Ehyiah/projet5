@@ -32,10 +32,10 @@ class ElementCollectionRepository extends ServiceEntityRepository implements Ele
         return $this->createQueryBuilder('c')
             ->where('c.collection_name = :collectionID')
                 ->setParameter('collectionID', $id)
-            ->join('c.images', 'images')
+            ->leftJoin('c.images', 'images')
                 ->addSelect('images')
 
-        ->getQuery()
-        ->getResult();
+            ->getQuery()
+            ->getResult();
     }
 }

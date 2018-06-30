@@ -6,15 +6,15 @@
 
     <entity name="App\Entity\ElementCollection" table="element_collection" repository-class="App\Infra\Doctrine\Repository\ElementCollectionRepository">
         <id name="id" type="uuid" />
-        <field name="title" type="string" length="255" unique="false" />
-        <field name="region" type="string" length="255" unique="false" />
+        <field name="title" type="string" length="255" unique="false" nullable="false" />
+        <field name="region" type="string" length="255" unique="false" nullable="true" />
         <field name="author" type="string" length="255" unique="false" nullable="true" />
-        <field name="publisher" type="string" length="255" unique="false" />
-        <field name="etat" type="string" length="255" unique="false" />
-        <field name="buy_price" type="float" unique="false" />
-        <field name="support" type="string" length="255" unique="false" />
-        <field name="player_number" type="integer" unique="false" />
-        <field name="value" type="float" />
+        <field name="publisher" type="string" length="255" unique="false" nullable="true"/>
+        <field name="etat" type="string" length="255" unique="false" nullable="true"/>
+        <field name="buy_price" type="float" unique="false" nullable="true"/>
+        <field name="support" type="string" length="255" unique="false" nullable="true"/>
+        <field name="player_number" type="integer" unique="false" nullable="true"/>
+        <field name="value" type="float" nullable="true"/>
         <one-to-many field="images" target-entity="App\Entity\ImageCollection" mapped-by="image_element_collection">
             <cascade>
                 <cascade-persist/>

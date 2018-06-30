@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class ShowCollectionDetailledAction
  * @package App\Controller\Collection
- * @Route("/show/{idCollection}", name="showDetailled")
+ * @Route("/show/{idCollection}/{collectionName}", name="showDetailled")
  * @Security("has_role('ROLE_USER')")
  */
 class ShowCollectionDetailledAction

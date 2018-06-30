@@ -3,12 +3,8 @@
 
 {% block body %}
 
-    {% for element in collection %}
-        {{ dump(element) }}
 
-    {% endfor %}
-
-<p>détail de la collection</p>
+<p>détail de la collection : <strong>{{ app.request.get('collectionName') }}</strong></p>
 
     <table class="table table-striped">
         <thead>
@@ -30,17 +26,19 @@
         <tbody>
             <tr>
                 <th scope="row">{{ element.title }}</th>
-                <td>{{ element.region }}</td>
-                <td>{{ element.author }}</td>
-                <td>{{ element.publisher }}</td>
-                <td>{{ element.etat }}</td>
-                <td>{{ element.buyPrice }}</td>
-                <td>{{ element.support }}</td>
-                <td>{{ element.playerNumber }}</td>
-                <td>{{ element.value }}</td>
+                    <td>{{ element.region }}</td>
+                    <td>{{ element.author }}</td>
+                    <td>{{ element.publisher }}</td>
+                    <td>{{ element.etat }}</td>
+                    <td>{{ element.buyPrice }}</td>
+                    <td>{{ element.support }}</td>
+                    <td>{{ element.playerNumber }}</td>
+                    <td>{{ element.value }}</td>
                 <td>
-                    {% for image in element %}
-                        {{ dump(image.title) }}
+                    {% for image in element.images %}
+                        <img src="{{ asset('upload/CollectionImage/') }}{{ image.title }}" alt="Image d'illustration de l'élément"
+                            width="80px" height="80px"
+                        >
                     {% endfor %}
                 </td>
 

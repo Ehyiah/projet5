@@ -42,8 +42,10 @@ class ShowCollectionDetailledResponder
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke($redirect = false, $collection = null)
-    {
+    public function __invoke(
+        $redirect = false,
+        $collection = null
+    ) {
         $redirect
             ? $response = new RedirectResponse(
                 $this->urlGenerator->generate('select')

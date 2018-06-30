@@ -18,7 +18,7 @@
             {% for collection in collections  %}
                 <tbody>
                     <tr>
-                        <th scope="row"><a href="{{ path('showDetailled', {'idCollection' : collection.0.id}) }}">{{ collection.0.collectionName }}</a>
+                        <th scope="row"><a href="{{ path('showDetailled', {'idCollection' : collection.0.id, 'collectionName' : collection.0.collectionName}) }}">{{ collection.0.collectionName }}</a>
                         </th>
                         <td>
                             {{ collection.0.elementsCollection|length }}
