@@ -41,6 +41,13 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
         $this->_em->flush();
     }
 
+    /**
+     * @param $collection
+     */
+    public function edit($collection) : void
+    {
+        $this->_em->flush();
+    }
 
     /**
      * @param $user
@@ -62,6 +69,21 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
         ->getResult();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function findCollectionAndImageById($id)
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.id = :id')
+                ->setParameter('id', $id)
+            ->leftJoin('a.image', 'image')
+                ->addSelect('image.title')
+        ->getQuery()
+        ->getResult();
+    }
+
 
     /**
      * @param $user
@@ -69,13 +91,28 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
      */
     public function menuFindByOwnerAndCategory($user)
     {
+        return $this->createQueryBuilder('c')
+            ->leftJoin('c.category', 'category')
+                ->addSelect('category')
+            ->groupBy('category')
+
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @param $user
+     * @return mixed
+     */
+    public function menuFindByOwnerAndCategory2($user)
+    {
         return $this->createQueryBuilder('a')
             ->where('a.owner = :owner')
                 ->setParameter('owner', $user)
             ->leftJoin('a.category', 'category')
                 ->addSelect('category')
 
-        ->getQuery()
-        ->getResult();
+            ->getQuery()
+            ->getResult();
     }
 }

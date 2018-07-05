@@ -1,5 +1,6 @@
 {% for collection in collections %}
     <a href="#">
         {{ collection.category.categoryCollection }}
+        {{ dump(collection) }}
     </a>
 {% endfor %}

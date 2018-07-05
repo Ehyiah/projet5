@@ -34,9 +34,10 @@ class ShowCollectionDetailledResponder
         $this->urlGenerator = $urlGenerator;
     }
 
+
     /**
      * @param bool $redirect
-     * @param $collection
+     * @param null $collection
      * @return RedirectResponse|Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime

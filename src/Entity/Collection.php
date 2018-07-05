@@ -4,6 +4,7 @@ namespace App\Entity;
 
 
 use App\Domain\DTO\AddCollectionDTO;
+use App\Domain\DTO\Collection\EditCollectionDTO;
 use App\Entity\Interfaces\CollectionInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;
@@ -99,6 +100,7 @@ class Collection implements CollectionInterface
         $this->collection_comments = new ArrayCollection();
     }
 
+
     /**
      * @param User $owner
      */
@@ -106,7 +108,6 @@ class Collection implements CollectionInterface
     {
         $this->owner = $owner;
     }
-
 
 
     /**
@@ -182,13 +183,12 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @return ImageCollection
+     * @return ImageCollection|null
      */
-    public function getImage(): ImageCollection
+    public function getImage(): ?ImageCollection
     {
         return $this->image;
     }
-
 
     /**
      * @return User
@@ -200,34 +200,15 @@ class Collection implements CollectionInterface
 
 
     /**
-     * @param string $collection_name
-     * @param string $tag
-     * @param string $category
-     * @param integer $hidden
+     * @param EditCollectionDTO $editCollectionDTO
      */
-    public function edit(
-        string $collection_name,
-        string $tag,
-        string $category,
-        int $hidden
-    ){
+    public function edit(EditCollectionDTO $editCollectionDTO)
+    {
         $this->update_date = new \DateTime('now');
-        $this->collection_name = $collection_name;
-        $this->tag = $tag;
-        $this->category = $category;
-        $this->hidden = $hidden;
-    }
-
-
-    /**
-     * @param $itemToEdit
-     * @param string $content
-     */
-    public function editOne(
-        $itemToEdit,
-        string $content
-    ){
-        $this->$itemToEdit = $content;
-        $this->update_date = new \DateTime('now');
+        $this->collection_name = $editCollectionDTO->name;
+        $this->tag = $editCollectionDTO->tag;
+        $this->category = $editCollectionDTO->category;
+        $this->hidden = $editCollectionDTO->visibility;
+        $this->image = $editCollectionDTO->image;
     }
 }

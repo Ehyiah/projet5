@@ -1,14 +1,22 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Matt
+ * Date: 05/07/2018
+ * Time: 18:18
+ */
 
-namespace App\Domain\DTO;
+namespace App\Domain\DTO\Collection;
 
 
-use App\Entity\ImageCollection;
+
+
 use App\Entity\CategoryCollection;
+use App\Entity\ImageCollection;
 
-
-class AddCollectionDTO
+class EditCollectionDTO
 {
+
     /**
      * @var string
      */
@@ -35,7 +43,7 @@ class AddCollectionDTO
     public $image;
 
     /**
-     * AddCollectionDTO constructor.
+     * EditCollectionDTO constructor.
      *
      * @param string $name
      * @param string $tag

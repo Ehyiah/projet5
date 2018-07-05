@@ -43,8 +43,8 @@ class NewCollectionHandler implements NewCollectionHandlerInterface
             // récupération des informations de l'utilisateur connecté
             $user = $this->token->getToken()->getUser();
             $newCollection->setOwner($user);
-            // insertion dans la BDD de la collection
 
+            // insertion dans la BDD de la collection
             $this->collection->save($newCollection);
 
             return true;

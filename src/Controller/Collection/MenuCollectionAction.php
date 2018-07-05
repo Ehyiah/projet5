@@ -59,8 +59,9 @@ class MenuCollectionAction extends Controller
     {
         $user = $this->security->getToken()->getUser();
 
-        // $collections = $this->collectionRepository->findByOwner($user);
-        $collections = $this->collectionRepository->menuFindByOwnerAndCategory($user);
+        //$collections = $this->collectionRepository->findByOwner($user);
+         $collections = $this->collectionRepository->menuFindByOwnerAndCategory($user);
+
 
         return $this->render('MenuCollection.html.twig', array(
            'collections' => $collections

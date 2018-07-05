@@ -1,14 +1,16 @@
 <?php
 
-namespace App\UI\Responder\Collection;
+namespace App\UI\Responder\ElementCollection;
 
 
+use App\Entity\ElementCollection;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
-class ShowCollectionResponder
+class EditElementCollectionResponder
 {
     /**
      * @var Environment
@@ -21,21 +23,22 @@ class ShowCollectionResponder
     private $urlGenerator;
 
     /**
-     * ShowCollectionResponder constructor.
+     * EditElementCollectionResponder constructor.
+     *
      * @param Environment $twig
      * @param UrlGeneratorInterface $urlGenerator
      */
-    public function __construct(
-        Environment $twig,
-        UrlGeneratorInterface $urlGenerator
-    ) {
+    public function __construct(Environment $twig, UrlGeneratorInterface $urlGenerator)
+    {
         $this->twig = $twig;
         $this->urlGenerator = $urlGenerator;
     }
 
+
     /**
      * @param bool $redirect
-     * @param $collections
+     * @param FormInterface|null $form
+     * @param ElementCollection|null $element
      * @return RedirectResponse|Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
@@ -43,15 +46,18 @@ class ShowCollectionResponder
      */
     public function __invoke(
         $redirect = false,
-        $collections = null
+        FormInterface $form = null,
+        ElementCollection $element = null
     ) {
         $redirect
             ? $response = new RedirectResponse(
-                $this->urlGenerator->generate('select')
-                )
+                $this->urlGenerator->generate('editElementCollection', array(
+                    'id' => $_SESSION['idElement']))
+        )
             : $response = new Response(
-                $this->twig->render('Collection/ShowCollection.html.twig', array(
-                    'collections' => $collections
+                $this->twig->render('ElementCollection/EditElementCollection.html.twig', array(
+                    'element' => $element,
+                    'form' => $form->createView()
                 ))
         );
 

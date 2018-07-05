@@ -21,12 +21,27 @@ class ElementCollectionRepository extends ServiceEntityRepository implements Ele
         parent::__construct($registry, ElementCollection::class);
     }
 
+    /**
+     * @param ElementCollectionInterface $elementCollection
+     */
     public function save(ElementCollectionInterface $elementCollection): void
     {
         $this->_em->persist($elementCollection);
         $this->_em->flush();
     }
 
+    /**
+     * @param $elementCollection
+     */
+    public function edit($elementCollection)
+    {
+        $this->_em->flush();
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function findCollectionById($id)
     {
         return $this->createQueryBuilder('c')

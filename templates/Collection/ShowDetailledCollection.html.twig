@@ -25,7 +25,9 @@
         {% for element in collection %}
         <tbody>
             <tr>
-                <th scope="row">{{ element.title }}</th>
+                <th scope="row"><a href="{{ path('editElementCollection', {'id' : element.id}) }}">
+                    {{ element.title }}</a>
+                    </th>
                     <td>{{ element.region }}</td>
                     <td>{{ element.author }}</td>
                     <td>{{ element.publisher }}</td>

@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 /**
  * Class ShowCollectionAction
  * @package App\Controller\Collection
- * @Route("/show", name="show")
+ * @Route("/show/{id}", name="show")
  * @Security("has_role('ROLE_USER')")
  */
 class ShowCollectionAction
@@ -46,6 +46,7 @@ class ShowCollectionAction
     /**
      * @param Request $request
      * @param ShowCollectionResponder $responder
+     * @param null $id
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
@@ -53,15 +54,18 @@ class ShowCollectionAction
      */
     public function __invoke(
         Request $request,
-        ShowCollectionResponder $responder
+        ShowCollectionResponder $responder,
+        $id = null
     ) {
-        if (isset($_SESSION['ShowCollectionByCategory'])) {
+        if ($id == null) {
+            $id = $_SESSION['ShowCollectionByCategory'];
+        }
+
+        if (isset($id)) {
             $collections = $this->collectionRepository->findByOwnerAndCategory(
                 $this->security->getToken()->getUser(),
-                $_SESSION['ShowCollectionByCategory']
+                $id
             );
-
-                unset($_SESSION['ShowCollectionByCategory']);
 
             return $responder(false, $collections);
         }

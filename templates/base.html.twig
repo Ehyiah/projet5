@@ -50,38 +50,37 @@
                         <a class="nav-link active" href="#">inutile</a>
                     </li>
 
-                <!-- menu personnalisé s'affiche si un utilisateur est connecté -->
+
+                <!-- menu personnalisé s'affiche en fonction des collections de l'utilisateur si celui-ci est connecté -->
                     {% if is_granted('ROLE_USER') %}
                     <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown">
-                            ici
+                            Mes Collections
                         </a>
                         <div class="dropdown-menu">
-                            {{ render(controller(
-                                'App\\Controller\\Collection\\MenuCollectionAction::getAllCollectionsForMenu'
-                            )) }}
+                            {% for coll in collection_helper.menuHelper %}
+                                <a class="dropdown-item" href="{{ path('show', { 'id' : coll.category.id } )}}">{{ coll.category.categoryCollection }}</a>
+                            {% endfor %}
                         </div>
-                    {% endif %}
+                    </li>
 
-                    </li>
-                <!-- si connecté alors espace membre et liste des collections-->
-                    {% if is_granted('ROLE_USER') %}
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{ path('member') }}">Espace Membre</a>
-                    </li>
+                <!-- si connecté alors espace membre et menu gestion des collections-->
 
                     <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Mes Collections
+                            Collections
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ path('select') }}">Mes Collections</a>
+                            <a class="dropdown-item" href="{{ path('select') }}">Collections</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Another action</a>
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('member') }}">Espace Membre</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ path('logout') }}">Se déconnecter</a>
                     </li>

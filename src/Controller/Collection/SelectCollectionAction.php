@@ -64,6 +64,7 @@ class SelectCollectionAction
         if ($collectionHandler->handle($form)) {
 
             $collectionCategory = $this->categoryCollection->findById($form->getData()->categoryCollection);
+
             $_SESSION['ShowCollectionByCategory'] = $collectionCategory;
 
             return $responder(true,null);

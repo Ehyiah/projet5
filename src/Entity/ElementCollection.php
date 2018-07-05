@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Domain\DTO\AddElementCollectionDTO;
+use App\Domain\DTO\ElementCollection\EditElementCollectionDTO;
 use App\Entity\Interfaces\ElementCollectionInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;
@@ -76,6 +77,7 @@ class ElementCollection implements ElementCollectionInterface
      * @var Collection
      */
     private $collection_name;
+
 
     /**
      * @return UuidInterface
@@ -175,7 +177,6 @@ class ElementCollection implements ElementCollectionInterface
     }
 
 
-
     /**
      * @return Collection
      */
@@ -212,7 +213,6 @@ class ElementCollection implements ElementCollectionInterface
         $this->addImageToCollection($addElementCollectionDTO->images);
     }
 
-
     /**
      * @param array|null $images
      */
@@ -224,5 +224,24 @@ class ElementCollection implements ElementCollectionInterface
                 $image->setImageElementCollection($this);
             }
         }
+    }
+
+
+    /**
+     * @param EditElementCollectionDTO $elementCollectionDTO
+     */
+    public function editElement(EditElementCollectionDTO $elementCollectionDTO)
+    {
+        $this->title = $elementCollectionDTO->title;
+        $this->region = $elementCollectionDTO->region;
+        // $this->author = $elementCollectionDTO->author;
+        $this->publisher = $elementCollectionDTO->publisher;
+        $this->etat = $elementCollectionDTO->etat;
+        $this->buy_price = $elementCollectionDTO->buy_price;
+        $this->support = $elementCollectionDTO->support;
+        $this->player_number = $elementCollectionDTO->player_number;
+        $this->value = $elementCollectionDTO->value;
+        $this->images = new ArrayCollection();
+        $this->addImageToCollection($elementCollectionDTO->images);
     }
 }

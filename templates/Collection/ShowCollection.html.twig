@@ -5,7 +5,6 @@
 
 
     {% if (collections is defined) and (collections is not null) %}
-        {{ dump(collections) }}
 
         <table class="table table-striped">
             <thead>
@@ -19,6 +18,10 @@
                 <tbody>
                     <tr>
                         <th scope="row"><a href="{{ path('showDetailled', {'idCollection' : collection.0.id, 'collectionName' : collection.0.collectionName}) }}">{{ collection.0.collectionName }}</a>
+                            <p>
+                                <a href="{{ path('editCollection', {'id': collection.0.id}) }}">Editer cette collection</a>
+                            </p>
+
                         </th>
                         <td>
                             {{ collection.0.elementsCollection|length }}

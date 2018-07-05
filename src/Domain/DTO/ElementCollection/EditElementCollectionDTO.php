@@ -1,12 +1,17 @@
 <?php
 
-namespace App\Domain\DTO;
+namespace App\Domain\DTO\ElementCollection;
 
 
 use App\Entity\Collection;
 
-class AddElementCollectionDTO
+class EditElementCollectionDTO
 {
+    /**
+     * @var string
+     */
+    public $id;
+
     /**
      * @var string
      */
