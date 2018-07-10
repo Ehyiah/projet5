@@ -39,6 +39,16 @@ class ElementCollectionRepository extends ServiceEntityRepository implements Ele
     }
 
     /**
+     * @param $elementCollection
+     */
+    public function remove($elementCollection)
+    {
+        $this->_em->remove($elementCollection);
+        $this->_em->flush();
+    }
+
+
+    /**
      * @param $id
      * @return mixed
      */

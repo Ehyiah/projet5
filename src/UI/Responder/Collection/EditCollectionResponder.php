@@ -54,13 +54,13 @@ class EditCollectionResponder
         $redirect
             ? $response = new RedirectResponse(
                 $this->urlGenerator->generate('editCollection', array(
-                    'id' => $_SESSION['idCollection']
+                    'id' => $_SESSION['idCollection'],
                 ))
         )
             : $response = new Response(
                 $this->twig->render('Collection\EditCollection.html.twig', array(
                     'collection' => $collection,
-                    'form' => $form->createView()
+                    'form' => $form->createView(),
                 ))
         );
 

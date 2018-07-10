@@ -103,8 +103,12 @@
             <div class="flash-notice">
                 {{ message }}
             </div>
+
         {% endfor %}
 
+        {% block test %}
+            {{ dump(app.request.headers.get('referer')) }}
+        {% endblock test %}
 
         {% block body %}
 
@@ -113,7 +117,17 @@
 
         {% block footer %}
             <div class="footer">
-                <p>footer</p>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <p>test</p>
+                        </div>
+                        <div class="col">
+                            <p>test2</p>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         {% endblock footer %}
 

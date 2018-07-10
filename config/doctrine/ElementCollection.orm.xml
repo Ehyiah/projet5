@@ -15,12 +15,13 @@
         <field name="support" type="string" length="255" unique="false" nullable="true"/>
         <field name="player_number" type="integer" unique="false" nullable="true"/>
         <field name="value" type="float" nullable="true"/>
-        <one-to-many field="images" target-entity="App\Entity\ImageCollection" mapped-by="image_element_collection">
+        <one-to-many field="images" target-entity="App\Entity\ImageCollection" mapped-by="image_element_collection" orphan-removal="true">
             <cascade>
                 <cascade-persist/>
+                <cascade-remove/>
             </cascade>
         </one-to-many>
-        <many-to-one field="collection_name" target-entity="App\Entity\Collection" inversed-by="elements_collection" />
+        <many-to-one field="collection_name" target-entity="App\Entity\Collection" inversed-by="elements_collection"/>
     </entity>
 
 </doctrine-mapping>

@@ -12,4 +12,6 @@ interface ElementCollectionRepositoryInterface
     public function findCollectionById($id);
 
     public function edit($elementCollection);
+
+    public function remove($elementCollection);
 }

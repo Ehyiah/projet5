@@ -3,7 +3,6 @@
 namespace App\UI\Form\Type\Collection;
 
 
-use App\Domain\DTO\AddCollectionDTO;
 use App\Domain\DTO\Collection\EditCollectionDTO;
 use App\Entity\CategoryCollection;
 use App\Subscriber\Form\EditCollectionTypeSubscriber;
@@ -35,8 +34,10 @@ class EditCollectionType extends AbstractType
      * @param ImageCollectionDataTransformer $imageCollectionDataTransformer
      * @param EditCollectionTypeSubscriber $editCollectionTypeSubscriber
      */
-    public function __construct(ImageCollectionDataTransformer $imageCollectionDataTransformer, EditCollectionTypeSubscriber $editCollectionTypeSubscriber)
-    {
+    public function __construct(
+        ImageCollectionDataTransformer $imageCollectionDataTransformer,
+        EditCollectionTypeSubscriber $editCollectionTypeSubscriber
+    ) {
         $this->imageCollectionDataTransformer = $imageCollectionDataTransformer;
         $this->editCollectionTypeSubscriber = $editCollectionTypeSubscriber;
     }

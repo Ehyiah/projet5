@@ -16,4 +16,6 @@ interface CollectionRepositoryInterface
     public function findCollectionAndImageById($id);
 
     public function menuFindByOwnerAndCategory($user);
+
+    public function remove($collection);
 }

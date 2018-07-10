@@ -2,8 +2,14 @@
 
 {% block body %}
 
+
+
     {{ form_start(form) }}
     {{ form_widget(form) }}
     <button type="submit">valider</button>
     {{ form_end(form) }}
+
+
+
+    <a href="{{ app.request.headers.get('referer') }}">Retour</a>
 {% endblock body %}

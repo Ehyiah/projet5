@@ -1,14 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Matt
- * Date: 05/07/2018
- * Time: 18:18
- */
 
 namespace App\Domain\DTO\Collection;
-
-
 
 
 use App\Entity\CategoryCollection;

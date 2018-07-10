@@ -50,6 +50,16 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
     }
 
     /**
+     * @param $collection
+     */
+    public function remove($collection)
+    {
+        $this->_em->remove($collection);
+        $this->_em->flush();
+    }
+
+
+    /**
      * @param $user
      * @param $category
      * @return mixed

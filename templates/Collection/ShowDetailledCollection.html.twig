@@ -27,6 +27,9 @@
             <tr>
                 <th scope="row"><a href="{{ path('editElementCollection', {'id' : element.id}) }}">
                     {{ element.title }}</a>
+                    <p>
+                        <a class="btn btn-outline-danger" href="{{ path('deleteElement', {'id' : element.id}) }}">Supprimer</a>
+                    </p>
                     </th>
                     <td>{{ element.region }}</td>
                     <td>{{ element.author }}</td>
@@ -52,4 +55,6 @@
 
     </table>
 
+
+    <a href="{{ app.request.headers.get('referer') }}">retour</a>
 {% endblock body %}
