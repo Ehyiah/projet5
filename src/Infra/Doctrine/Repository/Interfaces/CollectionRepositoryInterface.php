@@ -9,7 +9,7 @@ interface CollectionRepositoryInterface
 {
     public function save(CollectionInterface $collection) : void;
 
-    public function edit($collection) : void;
+    public function edit(CollectionInterface $collection) : void;
 
     public function findByOwnerAndCategory($user, $category);
 
@@ -17,5 +17,5 @@ interface CollectionRepositoryInterface
 
     public function menuFindByOwnerAndCategory($user);
 
-    public function remove($collection);
+    public function remove(CollectionInterface $collection);
 }

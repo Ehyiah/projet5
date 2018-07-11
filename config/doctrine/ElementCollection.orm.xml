@@ -21,7 +21,10 @@
                 <cascade-remove/>
             </cascade>
         </one-to-many>
-        <many-to-one field="collection_name" target-entity="App\Entity\Collection" inversed-by="elements_collection"/>
+        <many-to-one field="collection_name" target-entity="App\Entity\Collection" inversed-by="elements_collection">
+            <join-column name="collection_name" referenced-column-name="id">
+            </join-column>
+        </many-to-one>
     </entity>
 
 </doctrine-mapping>

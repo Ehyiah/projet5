@@ -53,7 +53,7 @@ class EditElementCollectionResponder
             ? $response = new RedirectResponse(
                 $this->urlGenerator->generate('editElementCollection', array(
                     'id' => $_SESSION['idElement']))
-        )
+                )
             : $response = new Response(
                 $this->twig->render('ElementCollection/EditElementCollection.html.twig', array(
                     'element' => $element,

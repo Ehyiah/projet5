@@ -42,17 +42,17 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
     }
 
     /**
-     * @param $collection
+     * @param CollectionInterface $collection
      */
-    public function edit($collection) : void
+    public function edit(CollectionInterface $collection) : void
     {
         $this->_em->flush();
     }
 
     /**
-     * @param $collection
+     * @param CollectionInterface $collection
      */
-    public function remove($collection)
+    public function remove(CollectionInterface $collection)
     {
         $this->_em->remove($collection);
         $this->_em->flush();

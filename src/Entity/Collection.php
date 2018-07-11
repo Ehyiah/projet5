@@ -10,7 +10,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 
-
 /**
  * Class Collection
  * @package App\Entity
@@ -99,6 +98,7 @@ class Collection implements CollectionInterface
         $this->elements_collection = new ArrayCollection();
         $this->collection_comments = new ArrayCollection();
     }
+
 
 
     /**

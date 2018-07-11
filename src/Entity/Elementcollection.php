@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Domain\DTO\AddElementCollectionDTO;
+use App\Domain\DTO\ElementCollection\EditElementCollectionDTO;
 use App\Entity\Interfaces\ElementCollectionInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;
@@ -77,6 +78,7 @@ class ElementCollection implements ElementCollectionInterface
      */
     private $collection_name;
 
+
     /**
      * @return UuidInterface
      */
@@ -94,73 +96,74 @@ class ElementCollection implements ElementCollectionInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getRegion(): string
+    public function getRegion(): ?string
     {
         return $this->region;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getAuthor(): string
+    public function getAuthor(): ?string
     {
         return $this->author;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPublisher(): string
+    public function getPublisher(): ?string
     {
         return $this->publisher;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEtat(): string
+    public function getEtat(): ?string
     {
         return $this->etat;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getBuyPrice(): float
+    public function getBuyPrice(): ?float
     {
         return $this->buy_price;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getSupport(): string
+    public function getSupport(): ?string
     {
         return $this->support;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getPlayerNumber(): int
+    public function getPlayerNumber(): ?int
     {
         return $this->player_number;
     }
 
     /**
-     * @return float
+     * @return float|null
      */
-    public function getValue(): float
+    public function getValue(): ?float
     {
         return $this->value;
     }
 
     /**
-     * @return ArrayCollection
+     * @return ImageCollection
+     * au lieu de ArrayCollection
      */
-    public function getImages(): ArrayCollection
+    public function getImages()
     {
         return $this->images;
     }
@@ -172,7 +175,6 @@ class ElementCollection implements ElementCollectionInterface
     {
         $this->images = $images;
     }
-
 
 
     /**
@@ -211,7 +213,6 @@ class ElementCollection implements ElementCollectionInterface
         $this->addImageToCollection($addElementCollectionDTO->images);
     }
 
-
     /**
      * @param array|null $images
      */
@@ -223,5 +224,26 @@ class ElementCollection implements ElementCollectionInterface
                 $image->setImageElementCollection($this);
             }
         }
+    }
+
+
+
+
+    /**
+     * @param EditElementCollectionDTO $elementCollectionDTO
+     */
+    public function editElement(EditElementCollectionDTO $elementCollectionDTO)
+    {
+        $this->title = $elementCollectionDTO->title;
+        $this->region = $elementCollectionDTO->region;
+        // $this->author = $elementCollectionDTO->author;
+        $this->publisher = $elementCollectionDTO->publisher;
+        $this->etat = $elementCollectionDTO->etat;
+        $this->buy_price = $elementCollectionDTO->buy_price;
+        $this->support = $elementCollectionDTO->support;
+        $this->player_number = $elementCollectionDTO->player_number;
+        $this->value = $elementCollectionDTO->value;
+        $this->images = new ArrayCollection();
+        $this->addImageToCollection($elementCollectionDTO->images);
     }
 }
