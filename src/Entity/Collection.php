@@ -6,6 +6,7 @@ namespace App\Entity;
 use App\Domain\DTO\AddCollectionDTO;
 use App\Domain\DTO\Collection\EditCollectionDTO;
 use App\Entity\Interfaces\CollectionInterface;
+use App\Entity\Interfaces\ElementCollectionInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -48,8 +49,7 @@ class Collection implements CollectionInterface
 
 
     /**
-     * relation avec ElementCollection
-     * @var |ArrayAccess
+     * @var ElementCollectionInterface
      */
     private $elements_collection;
 
@@ -60,20 +60,17 @@ class Collection implements CollectionInterface
     private $collection_comments;
 
     /**
-     * relation avec User
      * @var User
      */
     private $owner;
 
     /**
-     * relation avec CategoryCollection
      *
      * @var CategoryCollection
      */
     private $category;
 
     /**
-     * relation avec ImageCollection
      *
      * @var ImageCollection
      */
@@ -159,7 +156,7 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @return mixed
+     * @return ElementCollectionInterface|ArrayCollection
      */
     public function getElementsCollection()
     {

@@ -4,29 +4,36 @@ namespace App\Subscriber\Form;
 
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
 class EditCollectionTypeSubscriber implements EventSubscriberInterface
 {
+    /**
+     * @var FileType
+     */
+    private $image;
+
+
     public static function getSubscribedEvents()
     {
         return [
             FormEvents::POST_SET_DATA => 'onPostSetData',
-            FormEvents::PRE_SUBMIT => 'onPreSubmit'
+            FormEvents::SUBMIT => 'onSubmit'
         ];
     }
 
 
     public function onPostSetData(FormEvent $event)
     {
-
-        dump($event);
+        $this->image = $event->getForm()->getData()->image;
     }
 
-    public function onPreSubmit(FormEvent $event)
+    public function onSubmit(FormEvent $event)
     {
-        dump($event);
-        die();
+        if (($event->getData()->image == null) && ($this->image != null) ) {
+            $event->getForm()->getData()->image = $this->image;
+        }
     }
 }

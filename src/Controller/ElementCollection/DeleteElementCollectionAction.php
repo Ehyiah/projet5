@@ -36,13 +36,11 @@ class DeleteElementCollectionAction
 
     /**
      * @param Request $request
-     * @param ElementCollection $elementCollection
      * @param $id
      * @return RedirectResponse
      */
     public function __invoke(
         Request $request,
-        ElementCollection $elementCollection,
         $id
     ) {
         $element = $this->elementRepository->find($id);
@@ -50,6 +48,7 @@ class DeleteElementCollectionAction
         foreach ($element->getImages() as $image) {
             $element->getImages()->removeElement($image);
         }
+
         $this->elementRepository->remove($element);
 
         return new RedirectResponse($request->headers->get('referer'));

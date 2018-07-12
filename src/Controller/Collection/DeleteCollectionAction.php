@@ -3,8 +3,8 @@
 namespace App\Controller\Collection;
 
 
-use App\Entity\Collection;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
+use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,26 +24,44 @@ class DeleteCollectionAction
     private $collectionRepository;
 
     /**
+     * @var ElementCollectionRepositoryInterface
+     */
+    private $elementRepository;
+
+    /**
      * DeleteCollectionAction constructor.
      *
      * @param CollectionRepositoryInterface $collectionRepository
+     * @param ElementCollectionRepositoryInterface $elementRepository
      */
-    public function __construct(CollectionRepositoryInterface $collectionRepository)
-    {
+    public function __construct(
+        CollectionRepositoryInterface $collectionRepository,
+        ElementCollectionRepositoryInterface $elementRepository
+    ) {
         $this->collectionRepository = $collectionRepository;
+        $this->elementRepository = $elementRepository;
     }
 
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return RedirectResponse
+     */
     public function __invoke(
         Request $request,
-        Collection $collection,
         $id
     ) {
         $collection = $this->collectionRepository->find($id);
+        dump($collection->getImage());
+
+        foreach ($collection->getElementsCollection() as $item) {
+
+            $collection->getElementsCollection()->removeElement($item);
+        }
 
 
 
-        die();
         $this->collectionRepository->remove($collection);
 
         return new RedirectResponse($request->headers->get('referer'));

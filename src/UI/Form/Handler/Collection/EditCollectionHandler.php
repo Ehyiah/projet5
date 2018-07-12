@@ -28,6 +28,8 @@ class EditCollectionHandler
     {
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
+            dump($data);
+            //die();
 
             $collection->edit($data);
 
