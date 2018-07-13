@@ -2,12 +2,12 @@
 
 namespace App\UI\Form\Type\ElementCollection;
 
-use App\Entity\ImageCollection;
+
 use App\Infra\Doctrine\Repository\Interfaces\ImageRepositoryInterface;
+use App\Subscriber\Form\EditElementCollectionTypeSubscriber;
 use App\UI\Form\DataTransformer\ImageElementCollectionDataTransformer;
 use App\Domain\DTO\ElementCollection\EditElementCollectionDTO;
 use App\Entity\Collection;
-use App\Entity\ElementCollection;
 use App\UI\Form\Type\Image\ImageCollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -26,6 +26,11 @@ class EditElementCollectionType extends AbstractType
     private $imageElementTransformer;
 
     /**
+     * @var EditElementCollectionTypeSubscriber
+     */
+    private $editElementCollectionTypeSubscriber;
+
+    /**
      * @var ImageRepositoryInterface
      */
     private $imageRepository;
@@ -34,11 +39,16 @@ class EditElementCollectionType extends AbstractType
      * EditElementCollectionType constructor.
      *
      * @param ImageElementCollectionDataTransformer $imageElementTransformer
+     * @param EditElementCollectionTypeSubscriber $editElementCollectionTypeSubscriber
      * @param ImageRepositoryInterface $imageRepository
      */
-    public function __construct(ImageElementCollectionDataTransformer $imageElementTransformer, ImageRepositoryInterface $imageRepository)
-    {
+    public function __construct(
+        ImageElementCollectionDataTransformer $imageElementTransformer,
+        EditElementCollectionTypeSubscriber $editElementCollectionTypeSubscriber,
+        ImageRepositoryInterface $imageRepository
+    ) {
         $this->imageElementTransformer = $imageElementTransformer;
+        $this->editElementCollectionTypeSubscriber = $editElementCollectionTypeSubscriber;
         $this->imageRepository = $imageRepository;
     }
 
@@ -65,11 +75,6 @@ class EditElementCollectionType extends AbstractType
                     return $collection->getCollectionName();
                 }
             ))
-            ->add('Image', EntityType::class, array(
-                'class'=>ImageCollection::class,
-                'label'=>'Collection',
-                'choice_label'=>'title')
-            )
             ->add('images', CollectionType::class, array(
                 'entry_type' => ImageCollectionType::class,
                 'allow_add' => true,
@@ -85,6 +90,7 @@ class EditElementCollectionType extends AbstractType
                 ),
                 'required' => false
             ))
+            ->addEventSubscriber($this->editElementCollectionTypeSubscriber)
         ;
         $builder->get('images')->addModelTransformer($this->imageElementTransformer);
     }
@@ -92,7 +98,7 @@ class EditElementCollectionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => ElementCollection::class,
+            'data_class' => EditElementCollectionDTO::class,
             'empty_data' => function(FormInterface $form) {
                 return new EditElementCollectionDTO(
                     $form->get('title')->getData(),

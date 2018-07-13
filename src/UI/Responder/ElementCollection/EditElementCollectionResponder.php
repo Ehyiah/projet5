@@ -3,7 +3,6 @@
 namespace App\UI\Responder\ElementCollection;
 
 
-use App\Entity\ElementCollection;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,8 +27,10 @@ class EditElementCollectionResponder
      * @param Environment $twig
      * @param UrlGeneratorInterface $urlGenerator
      */
-    public function __construct(Environment $twig, UrlGeneratorInterface $urlGenerator)
-    {
+    public function __construct(
+        Environment $twig,
+        UrlGeneratorInterface $urlGenerator
+    ) {
         $this->twig = $twig;
         $this->urlGenerator = $urlGenerator;
     }
@@ -38,7 +39,6 @@ class EditElementCollectionResponder
     /**
      * @param bool $redirect
      * @param FormInterface|null $form
-     * @param ElementCollection|null $element
      * @return RedirectResponse|Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
@@ -46,17 +46,16 @@ class EditElementCollectionResponder
      */
     public function __invoke(
         $redirect = false,
-        FormInterface $form = null,
-        ElementCollection $element = null
+        FormInterface $form = null
     ) {
         $redirect
             ? $response = new RedirectResponse(
                 $this->urlGenerator->generate('editElementCollection', array(
-                    'id' => $_SESSION['idElement']))
-                )
+                    'id' => $_SESSION['idElement']
+                ))
+            )
             : $response = new Response(
                 $this->twig->render('ElementCollection/EditElementCollection.html.twig', array(
-                    'element' => $element,
                     'form' => $form->createView()
                 ))
         );

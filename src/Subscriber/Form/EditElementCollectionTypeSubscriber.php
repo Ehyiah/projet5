@@ -8,10 +8,10 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
-class EditCollectionTypeSubscriber implements EventSubscriberInterface
+class EditElementCollectionTypeSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var FileType
+     * @var array
      */
     private $image;
 
@@ -24,18 +24,17 @@ class EditCollectionTypeSubscriber implements EventSubscriberInterface
         ];
     }
 
-
     public function onPostSetData(FormEvent $event)
     {
-        $this->image = $event->getForm()->getData()->image;
+        foreach ($event->getForm()->getData()->images as $image) {
+            $this->image[] = $image;
+        }
         dump($event);
-
     }
 
     public function onSubmit(FormEvent $event)
     {
-        if (($event->getData()->image == null) && ($this->image != null) ) {
-            $event->getForm()->getData()->image = $this->image;
-        }
+        dump($event);
+        //die();
     }
 }

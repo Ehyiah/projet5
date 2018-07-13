@@ -3,7 +3,7 @@
 namespace App\Controller\ElementCollection;
 
 
-use App\Entity\ElementCollection;
+use App\Domain\DTO\ElementCollection\EditElementCollectionDTO;
 use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface;
 use App\UI\Form\Handler\ElementCollection\EditElementCollectionHandler;
 use App\UI\Form\Type\ElementCollection\EditElementCollectionType;
@@ -51,7 +51,6 @@ class EditElementCollectionAction
      * @param EditElementCollectionResponder $responder
      * @param EditElementCollectionHandler $handler
      * @param $id
-     * @param ElementCollection $elementObject
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
@@ -61,12 +60,24 @@ class EditElementCollectionAction
         Request $request,
         EditElementCollectionResponder $responder,
         EditElementCollectionHandler $handler,
-        $id,
-        ElementCollection $elementObject
+        $id
     ) {
         $elementObjet = $this->elementRepository->find($id);
 
-        $form = $this->formFactory->create(EditElementCollectionType::class)
+        $dto = new EditElementCollectionDTO(
+            $elementObjet->getTitle(),
+            $elementObjet->getRegion(),
+            $elementObjet->getPublisher(),
+            $elementObjet->getEtat(),
+            $elementObjet->getBuyPrice(),
+            $elementObjet->getSupport(),
+            $elementObjet->getPlayerNumber(),
+            $elementObjet->getValue(),
+            $elementObjet->getCollectionName(),
+            $elementObjet->getImages()->toArray()
+        );
+
+        $form = $this->formFactory->create(EditElementCollectionType::class, $dto)
                                     ->handleRequest($request);
 
             $_SESSION['idElement'] = $id;
@@ -75,6 +86,6 @@ class EditElementCollectionAction
             return $responder(true);
         }
 
-        return $responder(false, $form, $elementObjet);
+        return $responder(false, $form);
     }
 }

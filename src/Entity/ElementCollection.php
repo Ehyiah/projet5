@@ -161,7 +161,6 @@ class ElementCollection implements ElementCollectionInterface
 
     /**
      * @return ImageCollection
-     * au lieu de ArrayCollection
      */
     public function getImages()
     {
@@ -206,7 +205,6 @@ class ElementCollection implements ElementCollectionInterface
         $this->support = $addElementCollectionDTO->support;
         $this->player_number = $addElementCollectionDTO->player_number;
         $this->value = $addElementCollectionDTO->value;
-        #$this->collection_name = $collection_name;
         $this->collection_name = $addElementCollectionDTO->collection;
 
         $this->images = new ArrayCollection();
@@ -227,8 +225,6 @@ class ElementCollection implements ElementCollectionInterface
     }
 
 
-
-
     /**
      * @param EditElementCollectionDTO $elementCollectionDTO
      */
@@ -243,7 +239,8 @@ class ElementCollection implements ElementCollectionInterface
         $this->support = $elementCollectionDTO->support;
         $this->player_number = $elementCollectionDTO->player_number;
         $this->value = $elementCollectionDTO->value;
-        $this->images = new ArrayCollection();
+
+        //$this->images = new ArrayCollection();
         $this->addImageToCollection($elementCollectionDTO->images);
     }
 }

@@ -24,12 +24,11 @@ class EditCollectionHandler
         $this->collectionRepository = $collectionRepository;
     }
 
+
     public function handle(FormInterface $form, Collection $collection) : bool
     {
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            dump($data);
-            //die();
 
             $collection->edit($data);
 

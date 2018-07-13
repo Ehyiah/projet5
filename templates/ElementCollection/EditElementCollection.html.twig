@@ -1,38 +1,37 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-{#
-    {{ form_start(form) }}
-    {{ form_row(form.title, {'value' : element[0].title }) }}
-    {{ form_row(form.region, {'value' : element[0].region }) }}
-    {{ form_row(form.publisher, {'value' : element[0].publisher }) }}
-    {{ form_row(form.etat, {'value' : element[0].etat }) }}
-    {{ form_row(form.buy_price, {'value' : element[0].buyPrice }) }}
-    {{ form_row(form.support, {'value' : element[0].support }) }}
-    {{ form_row(form.player_number, {'value' : element[0].playerNumber }) }}
-    {{ form_row(form.value, {'value' : element[0].value }) }}
-
-    {{ form_row(form.collection, { 'disabled' : true }) }}
-    <div class="images" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
-    </div>
-    <button type="submit">Modifier</button>
-    {{ form_end(form) }}
-
-#}
 
     {{ form_start(form) }}
-    {{ form_row(form.title, {'value' : element.title }) }}
-    {{ form_row(form.region, {'value' : element.region }) }}
-    {{ form_row(form.publisher, {'value' : element.publisher }) }}
-    {{ form_row(form.etat, {'value' : element.etat }) }}
-    {{ form_row(form.buy_price, {'value' : element.buyPrice }) }}
-    {{ form_row(form.support, {'value' : element.support }) }}
-    {{ form_row(form.player_number, {'value' : element.playerNumber }) }}
-    {{ form_row(form.value, {'value' : element.value }) }}
+
+    {{ form_row(form.title) }}
+    {{ form_row(form.region) }}
+    {{ form_row(form.publisher) }}
+    {{ form_row(form.etat) }}
+    {{ form_row(form.buy_price) }}
+    {{ form_row(form.support) }}
+    {{ form_row(form.player_number) }}
+    {{ form_row(form.value) }}
 
     {{ form_row(form.collection, { 'disabled' : true }) }}
+
+
+    <h5>Images associées à cette collection : </h5>
+    {% if form.vars.data.images is not null %}
+        {% for image in form.vars.data.images %}
+            <img src="{{ asset('upload/CollectionImage/') }}{{ image.title }}" alt="image d'illustration de l'élément">
+        {% endfor %}
+
+        {% if form.vars.data.images is empty %}
+        <h6>Aucune image n'est associée à cet élément</h6>
+            {% endif %}
+    {% endif %}
+
+
     <div class="images" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
     </div>
+
+
     <button type="submit">Modifier</button>
     {{ form_end(form) }}
 

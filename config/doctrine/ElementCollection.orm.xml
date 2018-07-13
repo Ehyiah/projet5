@@ -15,12 +15,21 @@
         <field name="support" type="string" length="255" unique="false" nullable="true"/>
         <field name="player_number" type="integer" unique="false" nullable="true"/>
         <field name="value" type="float" nullable="true"/>
-        <one-to-many field="images" target-entity="App\Entity\ImageCollection" mapped-by="image_element_collection" orphan-removal="true">
+        <many-to-many field="images" target-entity="App\Entity\ImageCollection" orphan-removal="true">
             <cascade>
                 <cascade-persist/>
                 <cascade-remove/>
             </cascade>
-        </one-to-many>
+            <join-table name="elements_images">
+                <join-columns>
+                    <join-column name="element_collection_id" referenced-column-name="id"/>
+                </join-columns>
+                <inverse-join-columns>
+                    <join-column name="image_collection_id" referenced-column-name="id" unique="true"/>
+                </inverse-join-columns>
+            </join-table>
+
+        </many-to-many>
         <many-to-one field="collection_name" target-entity="App\Entity\Collection" inversed-by="elements_collection">
             <join-column name="collection_name" referenced-column-name="id">
             </join-column>

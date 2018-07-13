@@ -63,7 +63,7 @@ class EditElementCollectionDTO
     public $images;
 
     /**
-     * AddElementCollectionDTO constructor.
+     * EditElementCollectionDTO constructor.
      *
      * @param string $title
      * @param string|null $region

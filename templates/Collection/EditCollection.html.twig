@@ -2,27 +2,22 @@
 
 {% block body %}
 
-
-{#
-        {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button type="submit">valider</button>
-    {{ form_end(form) }}
-
-#}
     {{ form_start(form) }}
 
     {{ form_row(form.name) }}
     {{ form_row(form.tag) }}
     {{ form_row(form.category) }}
     {{ form_row(form.visibility) }}
+        {% if form.vars.data.image is not null %}
+        <img src="{{ asset('upload/CollectionImage/') }}{{ form.vars.data.image.title }}" alt="image d'illustration de la collection">
+            {% else %}
+            <h6>aucune image n'est associée à cette collection</h6>
+        {% endif %}
     {{ form_row(form.image) }}
 
 
     <button type="submit">Valider</button>
     {{ form_end(form) }}
-
-
 
     <a href="{{ app.request.headers.get('referer') }}">Retour</a>
 {% endblock body %}

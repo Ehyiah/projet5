@@ -61,7 +61,12 @@ class EditCollectionAction
     ) {
         $collectionObjet = $this->collectionRepository->find($request->attributes->get('id'));
 
-        $dto = new EditCollectionDTO($collectionObjet->getCollectionName(), $collectionObjet->getTag(), $collectionObjet->getCategory(), $collectionObjet->getHidden(), $collectionObjet->getImage());
+        $dto = new EditCollectionDTO(
+            $collectionObjet->getCollectionName(),
+            $collectionObjet->getTag(),
+            $collectionObjet->getCategory(),
+            $collectionObjet->getHidden(),
+            $collectionObjet->getImage());
 
         $form = $this->formFactory->create(EditCollectionType::class, $dto)
                                     ->handleRequest($request);
@@ -74,6 +79,6 @@ class EditCollectionAction
             return $responder(true);
         }
 
-        return $responder(false, $form, $collectionObjet);
+        return $responder(false, $form);
     }
 }

@@ -9,8 +9,6 @@
         <field name="title" type="string" length="255" unique="false" />
         <field name="creation_date" type="datetime" unique="false" />
         <field name="update_date" type="datetime" unique="false" nullable="true"/>
-        <many-to-one field="image_element_collection" target-entity="App\Entity\ElementCollection" inversed-by="images">
 
-        </many-to-one>
     </entity>
 </doctrine-mapping>

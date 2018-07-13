@@ -1,13 +1,10 @@
 <?php
 
-
 namespace App\UI\Responder\Collection;
 
 
-use App\Entity\Collection;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
@@ -26,11 +23,14 @@ class EditCollectionResponder
 
     /**
      * EditCollectionResponder constructor.
+     *
      * @param Environment $twig
      * @param UrlGeneratorInterface $urlGenerator
      */
-    public function __construct(Environment $twig, UrlGeneratorInterface $urlGenerator)
-    {
+    public function __construct(
+        Environment $twig,
+        UrlGeneratorInterface $urlGenerator
+    ) {
         $this->twig = $twig;
         $this->urlGenerator = $urlGenerator;
     }
@@ -39,7 +39,6 @@ class EditCollectionResponder
     /**
      * @param bool $redirect
      * @param FormInterface|null $form
-     * @param Collection|null $collection
      * @return RedirectResponse|Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
@@ -47,19 +46,16 @@ class EditCollectionResponder
      */
     public function __invoke(
         $redirect = false,
-        FormInterface $form = null,
-        Collection $collection = null
+        FormInterface $form = null
     ) {
-
         $redirect
             ? $response = new RedirectResponse(
                 $this->urlGenerator->generate('editCollection', array(
-                    'id' => $_SESSION['idCollection'],
+                    'id' => $_SESSION['idCollection']
                 ))
-        )
+            )
             : $response = new Response(
                 $this->twig->render('Collection\EditCollection.html.twig', array(
-                    'collection' => $collection,
                     'form' => $form->createView(),
                 ))
         );
