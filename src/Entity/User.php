@@ -9,7 +9,6 @@ use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints\DateTime;
 
-
 /**
  * Class User
  * @package App\Entity
@@ -107,6 +106,11 @@ class User implements UserInterface, \Serializable
     ){
         $this->username = $username;
         $this->email = $email;
+    }
+
+    public function editPassword($password)
+    {
+        $this->password = $password;
     }
 
 

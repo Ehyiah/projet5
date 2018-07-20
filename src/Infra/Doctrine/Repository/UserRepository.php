@@ -30,6 +30,14 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
     }
 
     /**
+     * @param UserInterface $user
+     */
+    public function edit(UserInterface $user) :void
+    {
+        $this->_em->flush();
+    }
+
+    /**
      * @param string $username
      * @return mixed|null|UserInterface
      */
