@@ -1,15 +1,14 @@
 <?php
 
-namespace App\UI\Form\DataTransformer;
 
+namespace App\UI\Form\DataTransformer;
 
 use App\Entity\ImageCollection;
 use App\Service\FileUploader;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
-
-class ImageElementCollectionDataTransformer implements DataTransformerInterface
+class ImagesElementCollectionDataTransformerFromCollection implements DataTransformerInterface
 {
     /**
      * @var FileUploader
@@ -34,10 +33,6 @@ class ImageElementCollectionDataTransformer implements DataTransformerInterface
 
     public function reverseTransform($value)
     {
-        dump($value);
-
-        dump($test);
-        die();
         if ($value == null) {
             return null;
         }
@@ -45,6 +40,7 @@ class ImageElementCollectionDataTransformer implements DataTransformerInterface
         foreach ($value as $image) {
             $image->title = $this->fileUploader->upload($image->image);
             $value[] = new ImageCollection($image);
+
             unset($value[array_search($image, $value)]);
         }
 

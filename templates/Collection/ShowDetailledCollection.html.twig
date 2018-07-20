@@ -3,7 +3,9 @@
 
 {% block body %}
 
-
+<p>
+    <a href="{{ path('addElement', {'id' : app.request.get('idCollection')}) }}">ajouter un element</a>
+</p>
 <p>détail de la collection : <strong>{{ app.request.get('collectionName') }}</strong></p>
 
     <table class="table table-striped">
@@ -22,8 +24,8 @@
             </tr>
         </thead>
 
-        {% for element in collection %}
         <tbody>
+        {% for element in collection %}
             <tr>
                 <th scope="row"><a href="{{ path('editElementCollection', {'id' : element.id}) }}">
                     {{ element.title }}</a>
@@ -48,11 +50,8 @@
                 </td>
 
             </tr>
-        </tbody>
-
-
         {% endfor %}
-
+        </tbody>
     </table>
 
 

@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/monStyle.css') }}">
         <title>{% block title %} Bienvenue !{% endblock %}</title>
 
         <!-- favicon -->
@@ -32,7 +32,7 @@
     <body>
         <!-- menu -->
         {% block menu %}
-        <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark" id="monMenu" style="background-color: #31b0d5;">
             <a class="navbar-brand" href="{{ path('home') }}">
                 <img src="{{ asset('images/logo/t6.png') }}" alt="Logo du site Collec'Online">
             </a>
@@ -61,6 +61,8 @@
                             {% for coll in collection_helper.menuHelper %}
                                 <a class="dropdown-item" href="{{ path('show', { 'id' : coll.category.id } )}}">{{ coll.category.categoryCollection }}</a>
                             {% endfor %}
+                            <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ path('newCollection') }}">Créer une nouvelle collection</a>
                         </div>
                     </li>
 
@@ -124,10 +126,10 @@
                 <div class="container">
                     <div class="row">
                         <div class="col">
-                            <p>test</p>
+                            <p>Collec'Online</p>
                         </div>
                         <div class="col">
-                            <p>test2</p>
+                            <p>2018</p>
                         </div>
 
                     </div>

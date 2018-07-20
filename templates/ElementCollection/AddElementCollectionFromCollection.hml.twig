@@ -12,6 +12,20 @@
 
     {{ form_start(form) }}
 
+    {{ form_row(form.title) }}
+    {{ form_row(form.region) }}
+    {{ form_row(form.publisher) }}
+    {{ form_row(form.etat) }}
+    {{ form_row(form.buy_price) }}
+    {{ form_row(form.support) }}
+    {{ form_row(form.player_number) }}
+    {{ form_row(form.value) }}
+
+    <div style="display: none">
+        {{ form_row(form.collection) }}
+    </div>
+
+
     <div class="images" data-prototype="{{ form_row(form.images.vars.prototype)|e('html_attr') }}">
     </div>
 

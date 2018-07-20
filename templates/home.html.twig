@@ -7,8 +7,21 @@
 
 
 
-
 {% block body %}
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Bienvenue sur Collec'Online</h1>
+            <p class="lead">Un site qui va vous permettre de gérer toutes sortes de collection simplement et facilement.</p>
+            <hr class="my-4">
+            <p>Pour cela c'est simple, il suffit de vous inscrire pour commencer à remplir votre bibliothèque</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="{{ path('register') }}" role="button">S'inscrire</a>
+            </p>
+        </div>
+    </div>
+
+
 
 
 {% endblock body %}

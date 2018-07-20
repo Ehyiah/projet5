@@ -18,7 +18,7 @@ use Twig\Environment;
 /**
  * Class RegistrationAction
  * @package App\Controller
- * @Route ("/register")
+ * @Route ("/register", name="register")
  */
 class RegistrationAction
 {
@@ -44,13 +44,18 @@ class RegistrationAction
 
     /**
      * RegistrationAction constructor.
+     *
      * @param EncoderFactoryInterface $encoderFactory
      * @param FormFactoryInterface $formFactory
      * @param Environment $twig
      * @param UrlGeneratorInterface $urlGenerator
      */
-    public function __construct(EncoderFactoryInterface $encoderFactory, FormFactoryInterface $formFactory, Environment $twig, UrlGeneratorInterface $urlGenerator)
-    {
+    public function __construct(
+        EncoderFactoryInterface $encoderFactory,
+        FormFactoryInterface $formFactory,
+        Environment $twig,
+        UrlGeneratorInterface $urlGenerator
+    ) {
         $this->encoderFactory = $encoderFactory;
         $this->formFactory = $formFactory;
         $this->twig = $twig;
@@ -67,8 +72,11 @@ class RegistrationAction
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(Request $request, NewUserHandlerInterface $userHandler, RegistrationResponder $responder)
-    {
+    public function __invoke(
+        Request $request,
+        NewUserHandlerInterface $userHandler,
+        RegistrationResponder $responder
+    ) {
         $form = $this->formFactory->create(UserType::class)->handleRequest($request);
 
         if ($userHandler->handle($form)) {

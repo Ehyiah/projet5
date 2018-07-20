@@ -240,7 +240,7 @@ class ElementCollection implements ElementCollectionInterface
         $this->player_number = $elementCollectionDTO->player_number;
         $this->value = $elementCollectionDTO->value;
 
-        //$this->images = new ArrayCollection();
+        $this->images = new ArrayCollection();
         $this->addImageToCollection($elementCollectionDTO->images);
     }
 }

@@ -26,6 +26,7 @@ class MemberResponder
 
     /**
      * @param bool $redirect
+     * @param array $collections
      * @return RedirectResponse|Response
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime

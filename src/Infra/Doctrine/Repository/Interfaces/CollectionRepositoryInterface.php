@@ -13,6 +13,8 @@ interface CollectionRepositoryInterface
 
     public function findByOwnerAndCategory($user, $category);
 
+    public function findCollection($id);
+
     public function findCollectionAndImageById($id);
 
     public function menuFindByOwnerAndCategory($user);

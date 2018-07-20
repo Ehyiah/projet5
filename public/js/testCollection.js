@@ -4,7 +4,6 @@ var $addImageButton = $('<button type="button" class="add_image_link">Ajout d\'u
 var $newLink = $('<p></p>').append($addImageButton);
 
 
-
 $(document).ready(function() {
     $collectionHolder = $(".images");
 
@@ -23,7 +22,7 @@ $(document).ready(function() {
 });
 
 function addImageFormDeleteLink($tagFormLi) {
-    var $removeFormButton = $('<button type="button">Delete this tag</button>');
+    var $removeFormButton = $('<button type="button">enlever cette image</button>');
     $tagFormLi.append($removeFormButton);
 
     $removeFormButton.on('click', function(e) {
@@ -45,6 +44,7 @@ function addImageForm($collectionHolder, $newLink) {
 
     // Replace '__name__' in the prototype's HTML to
     // instead be a number based on how many items we have
+
     newForm = newForm.replace(/__name__/g, index);
 
     $collectionHolder.data('index', index + 1);

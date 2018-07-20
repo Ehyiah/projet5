@@ -31,7 +31,6 @@ class NewElementCollectionAction
     /**
      * NewElementCollectionAction constructor.
      *
-     *
      * @param EncoderFactoryInterface $encoderFactory
      * @param FormFactoryInterface $formFactory
      */
@@ -58,7 +57,8 @@ class NewElementCollectionAction
         NewElementCollectionHandlerInterface $newElementCollectionHandler,
         NewElementCollectionResponder $responder
     ) {
-        $form = $this->formFactory->create(NewElementCollectionType::class)->handleRequest($request);
+        $form = $this->formFactory->create(NewElementCollectionType::class)
+                                    ->handleRequest($request);
 
         if ($newElementCollectionHandler->handle($form)) {
             return $responder(true);

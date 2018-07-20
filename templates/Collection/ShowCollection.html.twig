@@ -1,45 +1,117 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <p>Voice les détails de votre liste de collection : </p>
 
+
+{% if (collections is defined) and (collections is not null) %}
+    <div class="container" style="padding: 5px">
+        <div class="card-deck">
+            {% for collection in collections  %}
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="card mb-4">
+                        {% if collection.title is not null %}
+                            <img class="card-img-top img-fluid" src="{{ asset('upload/CollectionImage/') }}{{ collection.title }}"
+                                 style="height: 180px;">
+                            <hr>
+                        {% else %}
+                            <p>Aucune image associée à cette collection</p>
+                            <hr>
+                        {% endif %}
+
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{{ path('showDetailled', {'idCollection' : collection.0.id, 'collectionName' : collection.0.collectionName}) }}">{{ collection.0.collectionName }}</a>
+                            </h5>
+                            <hr>
+
+                            <p class="card-text">Nombre d'éléments : {{ collection.0.elementsCollection|length }}</p>
+
+                        </div>
+
+                        <div class="card-footer text-center">
+                            <a class="card-link btn btn-primary" href="{{ path('editCollection', {'id': collection.0.id}) }}">Modifier</a>
+                            <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#{{ collection.0.id }}">
+                                Supprimer
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="{{ collection.0.id }}" tabindex="-1" role="dialog" aria-labelledby="editionModal" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Supprimer cette collection</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Etes-vous sur ?</p>
+                                    <p>Cela supprimera cette collection ainsi que tous ses éléments</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+
+                                    <a class="card-link btn btn-outline-danger" href="{{ path('deleteCollection', {'id' : collection.0.id}) }}">Supprimer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            {% endfor %}
+
+        </div>
+
+        <a href="{{ app.request.headers.get('referer') }}">retour</a>
+    </div>
+{% endif %}
+
+
+    {#
 
     {% if (collections is defined) and (collections is not null) %}
+    <div class="table-responsive">
 
         <table class="table table-striped">
             <thead>
-                <tr>
-                    <th scope="col">Nom de la Collection</th>
-                    <th scope="col">Nombre d'éléments</th>
-                    <th scope="col">Image</th>
-                </tr>
+            <tr>
+                <th scope="col">Nom de la Collection</th>
+                <th scope="col">Nombre d'éléments</th>
+                <th scope="col">Image</th>
+            </tr>
             </thead>
+            <tbody>
             {% for collection in collections  %}
-                <tbody>
-                    <tr>
-                        <th scope="row"><a href="{{ path('showDetailled', {'idCollection' : collection.0.id, 'collectionName' : collection.0.collectionName}) }}">{{ collection.0.collectionName }}</a>
-                            <p>
-                                <a class="btn btn-primary btn-sm" href="{{ path('editCollection', {'id': collection.0.id}) }}">Editer cette collection</a>
-                            </p>
-                            <p>
-                                <a class="btn btn-outline-danger" href="{{ path('deleteCollection', {'id' : collection.0.id}) }}">Supprimer</a>
-                            </p>
+                <tr>
+                    <th scope="row"><a href="{{ path('showDetailled', {'idCollection' : collection.0.id, 'collectionName' : collection.0.collectionName}) }}">{{ collection.0.collectionName }}</a>
+                        <p>
+                            <a class="btn btn-primary btn-sm" href="{{ path('editCollection', {'id': collection.0.id}) }}">Editer cette collection</a>
+                        </p>
+                        <p>
+                            <a class="btn btn-outline-danger" href="{{ path('deleteCollection', {'id' : collection.0.id}) }}">Supprimer</a>
+                        </p>
 
-                        </th>
-                        <td>
-                            {{ collection.0.elementsCollection|length }}
-                        </td>
-                        <td>
-                            {% if collection.title is not null %}
+                    </th>
+                    <td>
+                        {{ collection.0.elementsCollection|length }}
+                    </td>
+                    <td>
+                        {% if collection.title is not null %}
                             <img src="{{ asset('upload/CollectionImage/') }}{{ collection.title }}">
-                            {% else %}
-                                <p>Aucune image associée à cette collection</p>
-                            {% endif %}
-                        </td>
-                    </tr>
-                </tbody>
+                        {% else %}
+                            <p>Aucune image associée à cette collection</p>
+                        {% endif %}
+                    </td>
+                </tr>
             {% endfor %}
+            </tbody>
         </table>
+    </div>
+
     {% endif %}
+    #}
+
 
 {% endblock body %}

@@ -29,7 +29,7 @@ class EditCollectionTypeSubscriber implements EventSubscriberInterface
     {
         $this->image = $event->getForm()->getData()->image;
         dump($event);
-
+        die();
     }
 
     public function onSubmit(FormEvent $event)
