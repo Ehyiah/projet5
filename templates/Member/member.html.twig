@@ -4,12 +4,16 @@
 {% block body %}
 
     <p>bienvenue dans votre espace membre : <strong>{{ collections.0.username }}</strong></p>
-    {{ dump(collections) }}
+{#
+{{ dump(collections) }}
+
+#}
 
 
     <a type="button" class="btn btn-primary" href="{{ path('changePassword') }}">
         Changer le mot de passe
     </a>
+
 
 
     <div>
@@ -25,7 +29,10 @@
 
     <div>
         {% for collection in collections.2 %}
-            {{ dump(collection.category.categoryCollection) }}
+            {#
+                        {{ dump(collection.category.categoryCollection) }}
+            #}
+
 
         {% endfor %}
     </div>

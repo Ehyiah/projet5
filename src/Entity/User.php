@@ -113,6 +113,11 @@ class User implements UserInterface, \Serializable
         $this->password = $password;
     }
 
+    public function editToken($token)
+    {
+        $this->apiKey = $token;
+    }
+
 
     /**
      * @return array

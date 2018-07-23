@@ -41,7 +41,7 @@ class ChangePasswordResponder
     public function __invoke($redirect = false, FormInterface $form = null)
     {
         $redirect
-            ? $response = new RedirectResponse('home')
+            ? $response = new RedirectResponse('member')
             : $response = new Response(
                 $this->twig->render('Security/ChangePassword.html.twig', array(
                     'form' => $form->createView()
