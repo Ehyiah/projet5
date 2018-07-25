@@ -3,6 +3,7 @@
 namespace App\Controller\ElementCollection;
 
 
+use App\Controller\ElementCollection\Interfaces\EditElementCollectionActionInterface;
 use App\Domain\DTO\ElementCollection\EditElementCollectionDTO;
 use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface;
 use App\UI\Form\Handler\ElementCollection\EditElementCollectionHandler;
@@ -19,7 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/edit/{id}", name="editElementCollection")
  * @Security("has_role('ROLE_USER')")
  */
-class EditElementCollectionAction
+class EditElementCollectionAction implements EditElementCollectionActionInterface
 {
     /**
      * @var ElementCollectionRepositoryInterface

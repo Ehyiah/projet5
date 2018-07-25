@@ -3,7 +3,7 @@
 namespace App\Controller\ElementCollection;
 
 
-use App\Entity\ElementCollection;
+use App\Controller\ElementCollection\Interfaces\DeleteElementCollectionActionInterface;
 use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/delete/element/{id}", name="deleteElement")
  * @Security("has_role('ROLE_USER')")
  */
-class DeleteElementCollectionAction
+class DeleteElementCollectionAction implements DeleteElementCollectionActionInterface
 {
     /**
      * @var ElementCollectionRepositoryInterface

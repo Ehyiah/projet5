@@ -28,8 +28,6 @@ class EditCollectionTypeSubscriber implements EventSubscriberInterface
     public function onPostSetData(FormEvent $event)
     {
         $this->image = $event->getForm()->getData()->image;
-        dump($event);
-        die();
     }
 
     public function onSubmit(FormEvent $event)

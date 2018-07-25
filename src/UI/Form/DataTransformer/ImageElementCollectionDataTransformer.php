@@ -8,7 +8,6 @@ use App\Service\FileUploader;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
-
 class ImageElementCollectionDataTransformer implements DataTransformerInterface
 {
     /**
@@ -36,8 +35,7 @@ class ImageElementCollectionDataTransformer implements DataTransformerInterface
     {
         dump($value);
 
-        dump($test);
-        die();
+        //die();
         if ($value == null) {
             return null;
         }

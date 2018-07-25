@@ -26,28 +26,23 @@ class EditElementCollectionTypeSubscriber implements EventSubscriberInterface
 
     public function onPostSetData(FormEvent $event)
     {
+        dump($event);
         foreach ($event->getForm()->getData()->images as $image) {
             $this->image[] = $image;
         }
-
-        dump($this->image);
-
-        dump($event);
-        //die();
-
     }
 
     public function onPreSubmit(FormEvent $event)
     {
         dump($event);
-        //die();
+
     }
 
     public function onSubmit(FormEvent $event)
     {
         dump($event);
         dump($this->image);
-        die();
+        //die();
         if (empty($event->getData()->images) && ($this->image != null)) {
             foreach ($this->image as $img) {
                 $event->getForm()->getData()->images[] = $img;
