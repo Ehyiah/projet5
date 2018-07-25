@@ -3,12 +3,13 @@
 namespace App\UI\Responder\Collection;
 
 
+use App\UI\Responder\Collection\Interfaces\ShowCollectionResponderInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
-class ShowCollectionResponder
+class ShowCollectionResponder implements ShowCollectionResponderInterface
 {
     /**
      * @var Environment

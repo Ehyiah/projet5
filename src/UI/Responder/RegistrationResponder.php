@@ -3,12 +3,13 @@
 namespace App\UI\Responder;
 
 
+use App\UI\Responder\Interfaces\RegistrationResponderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class RegistrationResponder
+class RegistrationResponder implements RegistrationResponderInterface
 {
     /**
      * @var Environment

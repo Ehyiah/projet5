@@ -3,12 +3,13 @@
 namespace App\UI\Responder;
 
 
+use App\UI\Responder\Interfaces\NewElementCollectionResponderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class NewElementCollectionResponder
+class NewElementCollectionResponder implements NewElementCollectionResponderInterface
 {
     /**
      * @var Environment

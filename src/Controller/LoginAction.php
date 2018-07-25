@@ -76,7 +76,8 @@ class LoginAction
         LoginHandler $loginHandler,
         LoginResponder $responder
     ) {
-        $form = $this->formFactory->create(LoginType::class)->handleRequest($request);
+        $form = $this->formFactory->create(LoginType::class)
+                                    ->handleRequest($request);
 
         return $responder(false, $form);
     }

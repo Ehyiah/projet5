@@ -74,6 +74,16 @@ class User implements UserInterface, \Serializable
     private $apiKey;
 
     /**
+     * @var \DateTime
+     */
+    private $token_validity;
+
+    /**
+     * @var string
+     */
+    private $token_reset;
+
+    /**
      * User constructor.
      *
      * @param AddUserDTO $addUserDTO
@@ -113,9 +123,12 @@ class User implements UserInterface, \Serializable
         $this->password = $password;
     }
 
-    public function editToken($token)
+    public function newResetToken($token)
     {
-        $this->apiKey = $token;
+        $this->token_reset = $token;
+        $date = new \DateTime('now');
+        $date->add(new \DateInterval('PT1H'));
+        $this->token_validity = $date;
     }
 
 
@@ -184,5 +197,31 @@ class User implements UserInterface, \Serializable
     {
         return $this->id;
     }
+
+    /**
+     * @return \DateTime
+     */
+    public function getTokenValidity(): \DateTime
+    {
+        return $this->token_validity;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTokenReset(): string
+    {
+        return $this->token_reset;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+
 
 }

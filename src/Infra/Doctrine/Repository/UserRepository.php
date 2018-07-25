@@ -38,6 +38,37 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
     }
 
     /**
+     * @param $token
+     * @return mixed
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findByToken($token)
+    {
+        return $this->createQueryBuilder('u')
+            ->where('u.token_reset = :token')
+                ->setParameter('token', $token)
+            ->getQuery()
+            ->getSingleResult();
+    }
+
+    /**
+     * @param $name
+     * @return mixed
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findByName($name)
+    {
+        return $this->createQueryBuilder('n')
+            ->where('n.username = :name')
+                ->setParameter('name', $name)
+            ->getQuery()
+            ->getSingleResult();
+    }
+
+
+    /**
      * @param string $username
      * @return mixed|null|UserInterface
      */

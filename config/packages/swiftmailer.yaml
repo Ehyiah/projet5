@@ -6,6 +6,8 @@ swiftmailer:
     #transport: %mailer_transport%
     host:      auth.smtp.1and1.fr
     #    host:      smtp.1and1.fr
-    port:      25
+    port:      465
+    #    port:      25
     username:  projet5@gostiaux.net
-    password:  Chobits69
+    password:  Chobits69!
+    encryption: ssl

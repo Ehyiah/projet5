@@ -4,9 +4,10 @@ namespace App\UI\Form\Handler\Collection;
 
 
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
+use App\UI\Form\Handler\Collection\Interfaces\SelectCollectionHandlerInterface;
 use Symfony\Component\Form\FormInterface;
 
-class SelectCollectionHandler
+class SelectCollectionHandler implements SelectCollectionHandlerInterface
 {
     /**
      * @var CollectionRepositoryInterface

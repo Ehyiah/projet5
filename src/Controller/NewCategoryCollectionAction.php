@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 
-use App\UI\Form\Type\Category\CategoryType;
 use App\UI\Form\Handler\Interfaces\NewCategoryCollectionHandlerInterface;
+use App\UI\Form\Type\Security\PasswordRecoverInputType;
 use App\UI\Responder\NewImageCollectionResponder;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -53,7 +53,8 @@ class NewCategoryCollectionAction
         NewCategoryCollectionHandlerInterface $categoryCollectionHandler,
         NewImageCollectionResponder $responder
     ) {
-        $form = $this->formFactory->create(CategoryType::class)->handleRequest($request);
+        $form = $this->formFactory->create(PasswordRecoverInputType::class)
+                                    ->handleRequest($request);
 
         if ($categoryCollectionHandler->handle($form)) {
             return $responder(true);

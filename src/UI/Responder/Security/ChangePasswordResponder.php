@@ -1,20 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Matt
- * Date: 20/07/2018
- * Time: 17:07
- */
 
 namespace App\UI\Responder\Security;
 
 
+use App\UI\Responder\Security\Interfaces\ChangePasswordResponderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class ChangePasswordResponder
+class ChangePasswordResponder implements ChangePasswordResponderInterface
 {
     /**
      * @var Environment

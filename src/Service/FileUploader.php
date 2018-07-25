@@ -2,9 +2,10 @@
 
 namespace App\Service;
 
+use App\Service\Interfaces\FileUploaderInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class FileUploader
+class FileUploader implements FileUploaderInterface
 {
     /**
      * @var string

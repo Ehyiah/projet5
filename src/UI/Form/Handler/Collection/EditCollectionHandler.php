@@ -5,9 +5,10 @@ namespace App\UI\Form\Handler\Collection;
 
 use App\Entity\Collection;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
+use App\UI\Form\Handler\Collection\Interfaces\EditCollectionHandlerInterface;
 use Symfony\Component\Form\FormInterface;
 
-class EditCollectionHandler
+class EditCollectionHandler implements EditCollectionHandlerInterface
 {
     /**
      * @var CollectionRepositoryInterface

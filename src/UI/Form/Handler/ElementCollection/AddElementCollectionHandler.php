@@ -5,9 +5,10 @@ namespace App\UI\Form\Handler\ElementCollection;
 
 use App\Entity\ElementCollection;
 use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface;
+use App\UI\Form\Handler\ElementCollection\Interfaces\AddElementCollectionHandlerInterface;
 use Symfony\Component\Form\FormInterface;
 
-class AddElementCollectionHandler
+class AddElementCollectionHandler implements AddElementCollectionHandlerInterface
 {
     /**
      * @var ElementCollectionRepositoryInterface

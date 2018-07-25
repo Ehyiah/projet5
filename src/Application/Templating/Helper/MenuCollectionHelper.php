@@ -32,7 +32,9 @@ class MenuCollectionHelper extends \Twig_Extension
         $this->collectionRepository = $collectionRepository;
     }
 
-
+    /**
+     * @return mixed
+     */
     public function menuHelper()
     {
         $user = $this->security->getToken()->getUser();

@@ -11,5 +11,7 @@
     <button type="submit">Se connecter</button>
     {{ form_end(form) }}
 
+    <p>mot de passe oublié ? Cliquez <a href="{{ path('recoverPassword') }}">ici</a> </p>
+
     <a href="{{ path('home') }}">Retour</a>
 {% endblock %}

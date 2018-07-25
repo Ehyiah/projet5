@@ -14,7 +14,8 @@
         <field name="creation_date" type="datetime" unique="false" />
         <field name="validation_date" type="datetime" unique="false" nullable="true"/>
         <field name="roles" type="array" unique="false" />
-        <field name="apiKey" type="string" unique="true" nullable="true" />
+        <field name="token_reset" type="string" unique="true" nullable="true" />
+        <field name="token_validity" type="datetime" unique="false" nullable="true" />
         <one-to-many field="comments" target-entity="App\Entity\Comment" mapped-by="author" />
         <one-to-many field="collections" target-entity="App\Entity\Collection" mapped-by="owner">
             <cascade>

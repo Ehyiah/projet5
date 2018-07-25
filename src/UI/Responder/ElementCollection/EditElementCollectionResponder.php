@@ -3,13 +3,14 @@
 namespace App\UI\Responder\ElementCollection;
 
 
+use App\UI\Responder\ElementCollection\Interfaces\EditElementCollectionResponderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
-class EditElementCollectionResponder
+class EditElementCollectionResponder implements EditElementCollectionResponderInterface
 {
     /**
      * @var Environment
