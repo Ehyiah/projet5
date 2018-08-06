@@ -59,6 +59,7 @@ class AddElementCollectionDTO
 
     /**
      * AddElementCollectionDTO constructor.
+     *
      * @param string|null $title
      * @param string|null $region
      * @param string|null $publisher
@@ -68,7 +69,7 @@ class AddElementCollectionDTO
      * @param int|null $player_number
      * @param float|null $value
      * @param Collection|null $collection
-     * @param array $images
+     * @param array|null $images
      */
     public function __construct(
         string $title = null,
@@ -80,7 +81,7 @@ class AddElementCollectionDTO
         int $player_number = null,
         float $value = null,
         Collection $collection = null,
-        array $images = []
+        array $images = null
     ) {
         $this->title = $title;
         $this->region = $region;

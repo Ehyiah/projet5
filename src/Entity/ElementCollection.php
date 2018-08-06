@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+
 use App\Domain\DTO\AddElementCollectionDTO;
 use App\Domain\DTO\ElementCollection\EditElementCollectionDTO;
 use App\Entity\Interfaces\ElementCollectionInterface;
@@ -218,8 +219,8 @@ class ElementCollection implements ElementCollectionInterface
     {
         if ($images != null) {
             foreach ($images as $image) {
-                $this->images[] = $image;
-                $image->setImageElementCollection($this);
+                $this->images[] = $image->image;
+                $image->image->setImageElementCollection($this);
             }
         }
     }
@@ -239,8 +240,19 @@ class ElementCollection implements ElementCollectionInterface
         $this->support = $elementCollectionDTO->support;
         $this->player_number = $elementCollectionDTO->player_number;
         $this->value = $elementCollectionDTO->value;
-
-        $this->images = new ArrayCollection();
+    dump($elementCollectionDTO->images);
+    //die;
+        //$this->images = new ArrayCollection();
         $this->addImageToCollection($elementCollectionDTO->images);
+    }
+
+    /**
+     * @param ImageCollection $image
+     */
+    public function removeImageFromCollection(ImageCollection $image)
+    {
+        dump($this->images);
+        die();
+        $this->images->removeElement($image);
     }
 }

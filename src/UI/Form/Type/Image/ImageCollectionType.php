@@ -4,7 +4,7 @@ namespace App\UI\Form\Type\Image;
 
 
 use App\Domain\DTO\AddElementImageDTO;
-use App\Entity\ImageCollection;
+use App\UI\Form\DataTransformer\ImageElementCollectionDataTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,17 +14,37 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ImageCollectionType extends AbstractType
 {
+    /**
+     * @var ImageElementCollectionDataTransformer
+     */
+    private $imageElementTransformer;
+
+    /**
+     * ImageCollectionType constructor.
+     *
+     * @param ImageElementCollectionDataTransformer $imageElementTransformer
+     */
+    public function __construct(ImageElementCollectionDataTransformer $imageElementTransformer)
+    {
+        $this->imageElementTransformer = $imageElementTransformer;
+    }
+
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('image', FileType::class)
+            ->add('image', FileType::class, array(
+                'required' => false,
+                'image_property' => 'image_url'
+            ))
         ;
+        $builder->get('image')->addModelTransformer($this->imageElementTransformer);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => ImageCollection::class,
+            'data_class' => AddElementImageDTO::class,
             'empty_data' => function(FormInterface $form) {
                 return new AddElementImageDTO(
                     $form->get('image')->getData()

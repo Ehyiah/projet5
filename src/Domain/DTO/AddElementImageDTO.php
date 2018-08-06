@@ -1,16 +1,12 @@
 <?php
 
-
 namespace App\Domain\DTO;
 
 
+use App\Entity\ImageCollection;
+
 class AddElementImageDTO
 {
-    /**
-     * @var string
-     */
-    public $title;
-
     /**
      * @var \SplFileInfo
      */
@@ -19,10 +15,20 @@ class AddElementImageDTO
     /**
      * AddElementImageDTO constructor.
      *
-     * @param \SplFileInfo $image
+     * @param ImageCollection $imageCollection
      */
-    public function __construct(\SplFileInfo $image = null)
+    public function __construct(ImageCollection $imageCollection)
     {
-        $this->image = $image;
+        $this->image = $imageCollection;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImageUrl()
+    {
+        $title = $this->image->getTitle();
+
+        return '/upload/CollectionImage/'.$title;
     }
 }

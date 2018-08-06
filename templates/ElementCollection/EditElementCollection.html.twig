@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
+{% form_theme form 'Form/fields.html.twig' %}
+
 
 {% block body %}
 
-    {{ dump(form) }}
 
     {{ form_start(form) }}
 
@@ -14,11 +15,53 @@
     {{ form_row(form.support) }}
     {{ form_row(form.player_number) }}
     {{ form_row(form.value) }}
-
     {{ form_row(form.collection, { 'disabled' : true }) }}
 
+    {% block _images_entry_widget %}
+        <div>
+            {% for image in form.children.images.children %}
+                {% spaceless %}
 
-    <h5>Images associées à cette collection : </h5>
+                    {{ block('form_widget') }}
+                    {% if image.children.image.vars.image_url is not null %}
+                        <img src="{{ asset(image.children.image.vars.image_url) }}"/>
+                    {% endif %}
+
+                {% endspaceless %}
+            {% endfor %}
+            <div class="images" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
+            </div>
+        </div>
+    {% endblock %}
+
+
+
+
+    {#
+    {% block file_widget %}
+        {% for image in form.children.images.children %}
+        {% spaceless %}
+
+            {{ block('form_widget') }}
+            {% if image.children.image.vars.image_url is not null %}
+                <img src="{{ asset(image.children.image.vars.image_url) }}"/>
+            {% endif %}
+
+        {% endspaceless %}
+        {% endfor %}
+
+        <div class="images" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
+        </div>
+    {% endblock file_widget %}
+    #}
+
+
+
+
+
+
+    {#
+        {{ dump(form.vars) }}
     {% if form.vars.data.images is not null %}
         {% for image in form.vars.data.images %}
             <img src="{{ asset('upload/CollectionImage/') }}{{ image.title }}" alt="image d'illustration de l'élément">
@@ -28,10 +71,10 @@
         <h6>Aucune image n'est associée à cet élément</h6>
             {% endif %}
     {% endif %}
+    #}
 
 
-    <div class="images" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
-    </div>
+
 
 
     <button type="submit">Modifier</button>

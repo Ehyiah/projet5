@@ -3,6 +3,7 @@
 namespace App\UI\Form\Type\ElementCollection;
 
 
+use App\Domain\DTO\AddElementImageDTO;
 use App\Infra\Doctrine\Repository\Interfaces\ImageRepositoryInterface;
 use App\Subscriber\Form\EditElementCollectionTypeSubscriber;
 use App\UI\Form\DataTransformer\ImageElementCollectionDataTransformer;
@@ -21,35 +22,18 @@ use Symfony\Component\Validator\Constraints\Count;
 class EditElementCollectionType extends AbstractType
 {
     /**
-     * @var ImageElementCollectionDataTransformer
-     */
-    private $imageElementTransformer;
-
-    /**
      * @var EditElementCollectionTypeSubscriber
      */
     private $editElementCollectionTypeSubscriber;
 
     /**
-     * @var ImageRepositoryInterface
-     */
-    private $imageRepository;
-
-    /**
      * EditElementCollectionType constructor.
      *
-     * @param ImageElementCollectionDataTransformer $imageElementTransformer
      * @param EditElementCollectionTypeSubscriber $editElementCollectionTypeSubscriber
-     * @param ImageRepositoryInterface $imageRepository
      */
-    public function __construct(
-        ImageElementCollectionDataTransformer $imageElementTransformer,
-        EditElementCollectionTypeSubscriber $editElementCollectionTypeSubscriber,
-        ImageRepositoryInterface $imageRepository
-    ) {
-        $this->imageElementTransformer = $imageElementTransformer;
+    public function __construct(EditElementCollectionTypeSubscriber $editElementCollectionTypeSubscriber)
+    {
         $this->editElementCollectionTypeSubscriber = $editElementCollectionTypeSubscriber;
-        $this->imageRepository = $imageRepository;
     }
 
 
@@ -78,6 +62,8 @@ class EditElementCollectionType extends AbstractType
             ->add('images', CollectionType::class, array(
                 'entry_type' => ImageCollectionType::class,
                 'allow_add' => true,
+                'allow_delete' => true,
+                'delete_empty' => true,
                 'prototype' => true,
                 'entry_options' => array('label' => false),
                 'constraints' => array(new Count(array(
@@ -86,11 +72,10 @@ class EditElementCollectionType extends AbstractType
                     'maxMessage' => "Vous ne pouvez pas envoyer plus de {{ limit }} images"
                 ))
                 ),
-                'required' => false
+                'required' => false,
             ))
             ->addEventSubscriber($this->editElementCollectionTypeSubscriber)
         ;
-        $builder->get('images')->addModelTransformer($this->imageElementTransformer);
     }
 
     public function configureOptions(OptionsResolver $resolver)

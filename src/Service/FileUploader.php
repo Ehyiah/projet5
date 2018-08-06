@@ -24,15 +24,11 @@ class FileUploader implements FileUploaderInterface
 
     /**
      * @param UploadedFile $file
-     *
-     * @return string
+     * @param string $fileName
      */
-    public function upload(UploadedFile $file)
+    public function upload(UploadedFile $file, string $fileName)
     {
-        $fileName = md5(uniqid()).'.'.$file->guessExtension();
         $file->move($this->getTargetDirectory(), $fileName);
-
-        return $fileName;
     }
 
     public function getTargetDirectory()

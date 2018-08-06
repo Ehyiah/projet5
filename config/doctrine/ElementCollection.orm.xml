@@ -18,6 +18,7 @@
         <many-to-many field="images" target-entity="App\Entity\ImageCollection" orphan-removal="true">
             <cascade>
                 <cascade-persist/>
+                <cascade-merge/>
                 <cascade-remove/>
             </cascade>
             <join-table name="elements_images">

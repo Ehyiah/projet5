@@ -4,6 +4,7 @@ namespace App\Controller\ElementCollection;
 
 
 use App\Controller\ElementCollection\Interfaces\EditElementCollectionActionInterface;
+use App\Domain\DTO\AddElementImageDTO;
 use App\Domain\DTO\ElementCollection\EditElementCollectionDTO;
 use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface;
 use App\UI\Form\Handler\ElementCollection\EditElementCollectionHandler;
@@ -64,6 +65,11 @@ class EditElementCollectionAction implements EditElementCollectionActionInterfac
         $id
     ) {
         $elementObjet = $this->elementRepository->find($id);
+        $imageCollection =[];
+
+        foreach ($elementObjet->getImages()->toArray() as $image) {
+            $imageCollection[] = new AddElementImageDTO($image);
+        }
 
         $dto = new EditElementCollectionDTO(
             $elementObjet->getTitle(),
@@ -75,8 +81,9 @@ class EditElementCollectionAction implements EditElementCollectionActionInterfac
             $elementObjet->getPlayerNumber(),
             $elementObjet->getValue(),
             $elementObjet->getCollectionName(),
-            $elementObjet->getImages()->toArray()
+            $imageCollection
         );
+    dump($dto);
 
         $form = $this->formFactory->create(EditElementCollectionType::class, $dto)
                                     ->handleRequest($request);

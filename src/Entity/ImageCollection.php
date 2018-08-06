@@ -4,6 +4,7 @@ namespace App\Entity;
 
 
 use App\Domain\DTO\AddElementImageDTO;
+use App\Domain\ValueObject\Interfaces\PictureInterface;
 use App\Entity\Interfaces\ImageCollectionInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -106,26 +107,33 @@ class ImageCollection implements ImageCollectionInterface
 
 
 
+    /**
+     * @return $this
+     */
+    public function getImage()
+    {
+        return $this;
+    }
+
+    /**
+     * @param ImageCollection|null $image_element_collection
+     */
+    public function setImage(ImageCollection $image_element_collection = null): void
+    {
+        $this->image_element_collection = $image_element_collection;
+    }
+
 
     /**
      * ImageCollection constructor.
-     *
-     * @param AddElementImageDTO $addElementCollectionImage
+     * @param PictureInterface $picture
+     * @throws \Exception
      */
-    public function __construct(AddElementImageDTO $addElementCollectionImage)
+    public function __construct(PictureInterface $picture)
     {
         $this->id = Uuid::uuid4();
-        $this->title = $addElementCollectionImage->title;
-        $this->creation_date = new \DateTime('now');
-
-        // $this->image_element_collection =
-
-        #traitement de l'image avant déplacement dans le dossier
-        #$someNewFilename = 'testName.png';
-        #$file = $addElementCollectionImage->image;
-        #$dir = getenv('UPLOAD_DIR_IMAGE');
-        #$file->move($dir, $someNewFilename);
-        #$this->image = $addElementCollectionImage->image;
+        $this->title = $picture->getNewFileName();
+        $this->creation_date = new \DateTimeImmutable();
     }
 
 

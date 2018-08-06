@@ -35,3 +35,7 @@ services:
         arguments:
             $targetDirectory: 'upload/CollectionImage'
 
+    App\UI\Form\Extension\ImageTypeExtension:
+        tags:
+            - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FileType }
+

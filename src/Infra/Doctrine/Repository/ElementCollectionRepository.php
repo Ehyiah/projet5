@@ -31,9 +31,9 @@ class ElementCollectionRepository extends ServiceEntityRepository implements Ele
     }
 
     /**
-     * @param $elementCollection
+     * @param ElementCollectionInterface $elementCollection
      */
-    public function edit($elementCollection)
+    public function edit(ElementCollectionInterface $elementCollection)
     {
         $this->_em->flush();
     }

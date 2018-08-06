@@ -74,7 +74,7 @@ class EditElementCollectionDTO
      * @param int|null $player_number
      * @param float|null $value
      * @param Collection|null $collection
-     * @param array|null $images
+     * @param array $images
      */
     public function __construct(
         string $title,
@@ -86,7 +86,7 @@ class EditElementCollectionDTO
         int $player_number = null,
         float $value = null,
         Collection $collection = null,
-        array $images = null
+        array $images = []
     ) {
         $this->title = $title;
         $this->region = $region;

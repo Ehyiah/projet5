@@ -43,9 +43,35 @@
                     <td>{{ element.value }}</td>
                 <td>
                     {% for image in element.images %}
-                        <img src="{{ asset('upload/CollectionImage/') }}{{ image.title }}" alt="Image d'illustration de l'élément"
-                            width="80px" height="80px"
+                    <a href="#" data-toggle="modal" data-target="#{{ image.title }}">
+                        <img src="{{ asset('upload/CollectionImage/') }}{{ image.title }}" alt="Image d'illustration de l'élément" id="ImageElementCollection{{ image.id }}"
+                             width="80px" height="80px"
                         >
+                    </a>
+
+
+                        <div class="modal fade" id="{{ image.title }}" tabindex="-1" role="dialog" aria-labelledby="deleteImage" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Supprimer cette image</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">x</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <img src="{{ asset('upload/CollectionImage/') }}{{ image.title }}">
+                                        <p>Etes-vous sur ?</p>
+                                        <p>Cette image sera supprimée de cet élément</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                                        <a class="card-link btn btn-outline-danger" href="{{ path('deleteImageFromCollection', {'id' : image.id, 'idElement' : element.id}) }}">Supprimer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     {% endfor %}
                 </td>
 
