@@ -7,6 +7,8 @@ use App\UI\Responder\Collection\Interfaces\EditCollectionResponderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
@@ -23,17 +25,25 @@ class EditCollectionResponder implements EditCollectionResponderInterface
     private $urlGenerator;
 
     /**
+     * @var SessionInterface
+     */
+    private $session;
+
+    /**
      * EditCollectionResponder constructor.
      *
      * @param Environment $twig
      * @param UrlGeneratorInterface $urlGenerator
+     * @param SessionInterface $session
      */
     public function __construct(
         Environment $twig,
-        UrlGeneratorInterface $urlGenerator
+        UrlGeneratorInterface $urlGenerator,
+        SessionInterface $session
     ) {
         $this->twig = $twig;
         $this->urlGenerator = $urlGenerator;
+        $this->session = $session;
     }
 
 
@@ -52,7 +62,7 @@ class EditCollectionResponder implements EditCollectionResponderInterface
         $redirect
             ? $response = new RedirectResponse(
                 $this->urlGenerator->generate('editCollection', array(
-                    'id' => $_SESSION['idCollection']
+                    'id' => $this->session->get('idCollection')
                 ))
             )
             : $response = new Response(

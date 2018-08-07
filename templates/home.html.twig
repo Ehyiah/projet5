@@ -9,18 +9,39 @@
 
 {% block body %}
 
+    {% if not is_granted('ROLE_USER') %}
     <div class="container">
         <div class="jumbotron">
             <h1 class="display-4">Bienvenue sur Collec'Online</h1>
             <p class="lead">Un site qui va vous permettre de gérer toutes sortes de collection simplement et facilement.</p>
             <hr class="my-4">
             <p>Pour cela c'est simple, il suffit de vous inscrire pour commencer à remplir votre bibliothèque</p>
-            <p class="lead">
-                <a class="btn btn-primary btn-lg" href="{{ path('register') }}" role="button">S'inscrire</a>
-            </p>
+            <div>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="{{ path('register') }}" role="button">S'inscrire</a>
+
+                <a class="btn btn-outline-primary" href="{{ path('login') }}">Déjà inscrit ? Connectez-vous</a>
+                </p>
+            </div>
+
         </div>
     </div>
+    {% endif %}
 
+
+    {% if is_granted('ROLE_USER') %}
+        <div class="container">
+            <div class="jumbotron">
+                <h1 class="display-4">Bon retour sur Collec'Online</h1>
+                <p class="lead">Vous pouvez avoir accès dès à présent à vos Collections.</p>
+                <hr class="my-4">
+                <p>Pour cela c'est simple, il suffit de vous rendre dans votre bibliothèque personne</p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-sm" href="{{ path('member') }}" role="button">Accès espace membre</a>
+                </p>
+            </div>
+        </div>
+    {% endif %}
 
 
 

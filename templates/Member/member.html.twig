@@ -2,51 +2,54 @@
 
 
 {% block body %}
+    <div class="container">
+        <p>bienvenue dans votre espace membre : <strong>{{ collections.0.username }}</strong></p>
 
-    <p>bienvenue dans votre espace membre : <strong>{{ collections.0.username }}</strong></p>
-{#
-{{ dump(collections) }}
-
-#}
-
-
-    <a type="button" class="btn btn-primary" href="{{ path('changePassword') }}">
-        Changer le mot de passe
-    </a>
+        {{ dump(collections) }}
 
 
 
-    <div>
-        <h3>Voici la liste de vos collections</h3>
-        {% for collection in collections.2 %}
-            <p>
-                <a href="{{ path('showDetailled', {'idCollection':collection.id, 'collectionName' : collection.collectionName}) }}">{{ collection.collectionName }}</a>
-            </p>
 
-        {% endfor %}
+        <a class="btn btn-primary" href="{{ path('changePassword') }}">
+            Changer le mot de passe
+        </a>
+
+
+
+        <div>
+            <h3>Voici la liste de vos collections</h3>
+
+            {% for collection in collections.2 %}
+                <p>
+                    <a href="{{ path('showDetailled', {'idCollection':collection.id, 'collectionName' : collection.collectionName}) }}">{{ collection.collectionName }}</a>
+                </p>
+
+            {% endfor %}
+        </div>
+
+
+        <div>
+            {% for collection in collections.2 %}
+
+
+                {{ dump(collection.category.categoryCollection) }}
+
+
+
+            {% endfor %}
+        </div>
+
+
+
+
+
+        <div>
+            <a href="{{ path('home') }}">Accueil</a>
+        </div>
+
     </div>
 
 
-    <div>
-        {% for collection in collections.2 %}
-            {#
-                        {{ dump(collection.category.categoryCollection) }}
-            #}
-
-
-        {% endfor %}
-    </div>
-
-
-    {% for image in collections.1 %}
-        <img src="{{ asset('upload/CollectionImage/') }}{{ image.title }}">
-    {% endfor %}
-
-
-
-    <div>
-        <a href="{{ app.request.headers.get('referer') }}">retour</a>
-    </div>
 
 
 {% endblock body %}

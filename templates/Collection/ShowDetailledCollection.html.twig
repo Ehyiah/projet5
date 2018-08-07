@@ -3,10 +3,12 @@
 
 {% block body %}
 
-<p>
-    <a href="{{ path('addElement', {'id' : app.request.get('idCollection')}) }}">ajouter un element</a>
-</p>
+
 <p>détail de la collection : <strong>{{ app.request.get('collectionName') }}</strong></p>
+<p>
+    <a class="btn btn-primary" href="{{ path('addElement', {'id' : app.request.get('idCollection')}) }}">Ajouter un élément</a>
+</p>
+
 
     <table class="table table-striped">
         <thead>
@@ -81,5 +83,4 @@
     </table>
 
 
-    <a href="{{ app.request.headers.get('referer') }}">retour</a>
 {% endblock body %}

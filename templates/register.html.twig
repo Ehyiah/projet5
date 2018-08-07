@@ -5,6 +5,7 @@
 {% endblock title %}
 
 {% block body %}
+    {% if not is_granted('ROLE_USER') %}
     <h1>Ajout d'un nouvel utilisateur</h1>
 
     {{ form_start(form) }}
@@ -13,5 +14,6 @@
     <p>
         <a href="{{ path('home') }}">Retour</a>
     </p>
+    {% endif %}
 
 {% endblock body %}

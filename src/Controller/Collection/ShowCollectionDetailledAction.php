@@ -48,6 +48,9 @@ class ShowCollectionDetailledAction
     ) {
         $collection = $this->elementCollectionRepository->findCollectionById($idCollection);
 
+        $request->getSession()->set('collectionName', $request->attributes->get('collectionName'));
+        $request->getSession()->set('id', $request->attributes->get('idCollection'));
+
         if ($collection == null) {
             return $responder(true);
         }

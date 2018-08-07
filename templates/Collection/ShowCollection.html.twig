@@ -64,54 +64,9 @@
 
         </div>
 
-        <a href="{{ app.request.headers.get('referer') }}">retour</a>
+
     </div>
 {% endif %}
-
-
-    {#
-
-    {% if (collections is defined) and (collections is not null) %}
-    <div class="table-responsive">
-
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">Nom de la Collection</th>
-                <th scope="col">Nombre d'éléments</th>
-                <th scope="col">Image</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for collection in collections  %}
-                <tr>
-                    <th scope="row"><a href="{{ path('showDetailled', {'idCollection' : collection.0.id, 'collectionName' : collection.0.collectionName}) }}">{{ collection.0.collectionName }}</a>
-                        <p>
-                            <a class="btn btn-primary btn-sm" href="{{ path('editCollection', {'id': collection.0.id}) }}">Editer cette collection</a>
-                        </p>
-                        <p>
-                            <a class="btn btn-outline-danger" href="{{ path('deleteCollection', {'id' : collection.0.id}) }}">Supprimer</a>
-                        </p>
-
-                    </th>
-                    <td>
-                        {{ collection.0.elementsCollection|length }}
-                    </td>
-                    <td>
-                        {% if collection.title is not null %}
-                            <img src="{{ asset('upload/CollectionImage/') }}{{ collection.title }}">
-                        {% else %}
-                            <p>Aucune image associée à cette collection</p>
-                        {% endif %}
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
-
-    {% endif %}
-    #}
 
 
 {% endblock body %}

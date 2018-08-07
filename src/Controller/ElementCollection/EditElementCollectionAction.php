@@ -87,7 +87,7 @@ class EditElementCollectionAction implements EditElementCollectionActionInterfac
         $form = $this->formFactory->create(EditElementCollectionType::class, $dto)
                                     ->handleRequest($request);
 
-            $_SESSION['idElement'] = $id;
+        $request->getSession()->set('idElement', $request->attributes->get('id'));
 
         if ($handler->handle($form, $elementObjet)) {
             return $responder(true);

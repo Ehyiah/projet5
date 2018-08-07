@@ -32,6 +32,6 @@
     <button type="submit">Ajout d'un nouvel élément</button>
     {{ form_end(form) }}
 
-    <a href="{{ path('home') }}">Retour</a>
+    <a href="{{ app.request.headers.get('referer') }}">Retour</a>
 
 {% endblock %}

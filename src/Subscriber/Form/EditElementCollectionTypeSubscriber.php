@@ -51,7 +51,7 @@ class EditElementCollectionTypeSubscriber implements EventSubscriberInterface
 
         foreach ($tab as $item) {
             $number = count($newTab);
-            dump($number);
+
             if ( ($item->image != null) && ($number < 3) ) {
                 $newTab[] = new AddElementImageDTO($item->image);
             }
@@ -62,6 +62,5 @@ class EditElementCollectionTypeSubscriber implements EventSubscriberInterface
                 $event->getForm()->getData()->images = $newTab;
             }
         }
-
     }
 }

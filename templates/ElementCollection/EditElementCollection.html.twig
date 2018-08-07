@@ -36,48 +36,8 @@
 
 
 
-
-    {#
-    {% block file_widget %}
-        {% for image in form.children.images.children %}
-        {% spaceless %}
-
-            {{ block('form_widget') }}
-            {% if image.children.image.vars.image_url is not null %}
-                <img src="{{ asset(image.children.image.vars.image_url) }}"/>
-            {% endif %}
-
-        {% endspaceless %}
-        {% endfor %}
-
-        <div class="images" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
-        </div>
-    {% endblock file_widget %}
-    #}
-
-
-
-
-
-
-    {#
-        {{ dump(form.vars) }}
-    {% if form.vars.data.images is not null %}
-        {% for image in form.vars.data.images %}
-            <img src="{{ asset('upload/CollectionImage/') }}{{ image.title }}" alt="image d'illustration de l'élément">
-        {% endfor %}
-
-        {% if form.vars.data.images is empty %}
-        <h6>Aucune image n'est associée à cet élément</h6>
-            {% endif %}
-    {% endif %}
-    #}
-
-
-
-
-
     <button type="submit">Modifier</button>
     {{ form_end(form) }}
 
+    <a href="{{ app.request.headers.get('referer') }}">Retour</a>
 {% endblock body %}

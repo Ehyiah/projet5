@@ -72,6 +72,8 @@ class AddElementCollectionFromCollectionAction implements AddElementCollectionFr
         $form = $this->formFactory->create(AddElementCollectionFromCollectionType::class, $dto)
                                     ->handleRequest($request);
 
+        $request->getSession()->set('id', $id);
+
 
         if ($handler->handle($form)) {
             return $responder(true);

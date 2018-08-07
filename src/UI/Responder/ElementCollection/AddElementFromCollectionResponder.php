@@ -7,6 +7,7 @@ use App\UI\Responder\ElementCollection\Interfaces\AddElementFromCollectionRespon
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
@@ -23,18 +24,27 @@ class AddElementFromCollectionResponder implements AddElementFromCollectionRespo
     private $urlGenerator;
 
     /**
+     * @var SessionInterface
+     */
+    private $session;
+
+    /**
      * AddElementFromCollectionResponder constructor.
      *
      * @param Environment $twig
      * @param UrlGeneratorInterface $urlGenerator
+     * @param SessionInterface $session
      */
     public function __construct(
         Environment $twig,
-        UrlGeneratorInterface $urlGenerator
+        UrlGeneratorInterface $urlGenerator,
+        SessionInterface $session
     ) {
         $this->twig = $twig;
         $this->urlGenerator = $urlGenerator;
+        $this->session = $session;
     }
+
 
     /**
      * @param bool $redirect
@@ -46,9 +56,13 @@ class AddElementFromCollectionResponder implements AddElementFromCollectionRespo
      */
     public function __invoke($redirect = false, FormInterface $form = null)
     {
+
         $redirect
             ? $response = new RedirectResponse(
-                $this->urlGenerator->generate('home')
+                $this->urlGenerator->generate('showDetailled', array(
+                    'idCollection' => $this->session->get('id'),
+                    'collectionName' => $this->session->get('collectionName')
+                ))
             )
             : $response = new Response(
                 $this->twig->render('ElementCollection/AddElementCollectionFromCollection.hml.twig', array(

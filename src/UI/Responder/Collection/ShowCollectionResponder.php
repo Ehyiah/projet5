@@ -23,6 +23,7 @@ class ShowCollectionResponder implements ShowCollectionResponderInterface
 
     /**
      * ShowCollectionResponder constructor.
+     *
      * @param Environment $twig
      * @param UrlGeneratorInterface $urlGenerator
      */

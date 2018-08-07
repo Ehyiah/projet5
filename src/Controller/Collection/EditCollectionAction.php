@@ -11,6 +11,7 @@ use App\UI\Responder\Collection\EditCollectionResponder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -71,9 +72,9 @@ class EditCollectionAction
         $form = $this->formFactory->create(EditCollectionType::class, $dto)
                                     ->handleRequest($request);
 
-        $_SESSION['idCollection'] = $request->attributes->get('id');
+        //$_SESSION['idCollection'] = $request->attributes->get('id');
 
-            //$request->getSession()->set('id', $request->attributes->get('id'));
+        $request->getSession()->set('idCollection', $request->attributes->get('id'));
 
         if ($handler->handle($form, $collectionObjet)) {
             return $responder(true);
