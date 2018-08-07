@@ -3,10 +3,7 @@
 namespace App\UI\Form\Type\ElementCollection;
 
 
-use App\Domain\DTO\AddElementImageDTO;
-use App\Infra\Doctrine\Repository\Interfaces\ImageRepositoryInterface;
 use App\Subscriber\Form\EditElementCollectionTypeSubscriber;
-use App\UI\Form\DataTransformer\ImageElementCollectionDataTransformer;
 use App\Domain\DTO\ElementCollection\EditElementCollectionDTO;
 use App\Entity\Collection;
 use App\UI\Form\Type\Image\ImageCollectionType;
@@ -17,7 +14,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Count;
-
 
 class EditElementCollectionType extends AbstractType
 {

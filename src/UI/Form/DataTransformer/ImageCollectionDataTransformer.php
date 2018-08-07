@@ -4,6 +4,7 @@ namespace App\UI\Form\DataTransformer;
 
 
 use App\Domain\DTO\AddElementImageDTO;
+use App\Domain\ValueObject\Picture;
 use App\Entity\ImageCollection;
 use App\Service\FileUploader;
 use Symfony\Component\Form\DataTransformerInterface;
@@ -39,8 +40,9 @@ class ImageCollectionDataTransformer implements DataTransformerInterface
             return null;
         }
 
-        $image = new AddElementImageDTO($value);
-        $image->title = $this->fileUploader->upload($image->image);
-        return new ImageCollection($image);
+        $picture = new Picture($value->getClientOriginalName(), $value->guessExtension());
+        $this->fileUploader->upload($value, $picture->getFileName());
+
+        return new ImageCollection($picture);
     }
 }

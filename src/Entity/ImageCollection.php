@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 
-use App\Domain\DTO\AddElementImageDTO;
 use App\Domain\ValueObject\Interfaces\PictureInterface;
 use App\Entity\Interfaces\ImageCollectionInterface;
 use Ramsey\Uuid\Uuid;

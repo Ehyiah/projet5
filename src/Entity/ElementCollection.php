@@ -240,10 +240,22 @@ class ElementCollection implements ElementCollectionInterface
         $this->support = $elementCollectionDTO->support;
         $this->player_number = $elementCollectionDTO->player_number;
         $this->value = $elementCollectionDTO->value;
-    dump($elementCollectionDTO->images);
-    //die;
-        //$this->images = new ArrayCollection();
-        $this->addImageToCollection($elementCollectionDTO->images);
+
+        $this->editImageToCollection($elementCollectionDTO->images);
+    }
+
+    /**
+     * @param array|null $images
+     */
+    public function editImageToCollection(array $images = null)
+    {
+        if ($images != null) {
+            unset($this->images);
+            foreach ($images as $image) {
+                $this->images[] = $image->image;
+                $image->image->setImageElementCollection($this);
+            }
+        }
     }
 
     /**

@@ -47,24 +47,9 @@ class DeleteImageFromElementCollectionAction implements DeleteImageFromElementCo
         $idElement,
         $id
     ) {
-        $elementCollection = $this->elementRepository->find($idElement);
         $image = $this->imageRepository->find($id);
 
-        dump($elementCollection->getImages());
-        foreach ($elementCollection->getImages() as $img) {
-            dump($img);
-        }
-
-
-
-        $elementCollection->removeImageFromCollection($image);
-
-        dump($elementCollection);
-        foreach ($elementCollection->getImages() as $img2) {
-            dump($img2);
-        }
-
-        //die();
+        $this->elementRepository->removeImage($image);
 
         return new RedirectResponse($request->headers->get('referer'));
     }

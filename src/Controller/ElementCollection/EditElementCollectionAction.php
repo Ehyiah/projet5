@@ -83,7 +83,6 @@ class EditElementCollectionAction implements EditElementCollectionActionInterfac
             $elementObjet->getCollectionName(),
             $imageCollection
         );
-    dump($dto);
 
         $form = $this->formFactory->create(EditElementCollectionType::class, $dto)
                                     ->handleRequest($request);

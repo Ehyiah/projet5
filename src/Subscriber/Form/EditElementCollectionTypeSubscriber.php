@@ -3,7 +3,9 @@
 namespace App\Subscriber\Form;
 
 
+use App\Domain\DTO\AddElementImageDTO;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
@@ -28,9 +30,8 @@ class EditElementCollectionTypeSubscriber implements EventSubscriberInterface
     {
         //stock les images deja presentes
         foreach ($event->getForm()->getData()->images as $image) {
-            $this->image[] = $image;
+            $this->image[] = $image->image;
         }
-
     }
 
     public function onPreSubmit(FormEvent $event)
@@ -40,18 +41,27 @@ class EditElementCollectionTypeSubscriber implements EventSubscriberInterface
 
     public function onSubmit(FormEvent $event)
     {
-        dump($event);
-        // si pas de nouvelles images on conserve les anciennes
-        if (($event->getData()->images == null) && ($this->image != null)) {
-            $event->getForm()->getData()->images = $this->image;
+        foreach ($this->image as $imageCollection) {
+            $newImage = new AddElementImageDTO($imageCollection);
+            $newTab[] = $newImage;
         }
 
-        dump($event);
-        //die();
+        // tableaux d'images
+        $tab = $event->getData()->images;
 
+        foreach ($tab as $item) {
+            $number = count($newTab);
+            dump($number);
+            if ( ($item->image != null) && ($number < 3) ) {
+                $newTab[] = new AddElementImageDTO($item->image);
+            }
+        }
 
-
-
+        foreach ($event->getData()->images as $oldImage) {
+            if (($oldImage->image == null) && ($this->image != null)) {
+                $event->getForm()->getData()->images = $newTab;
+            }
+        }
 
     }
 }

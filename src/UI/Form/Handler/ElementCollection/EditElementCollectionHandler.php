@@ -30,8 +30,6 @@ class EditElementCollectionHandler implements EditElementCollectionHandlerInterf
     {
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            dump($data);
-            //die();
 
             $element->editElement($data);
 

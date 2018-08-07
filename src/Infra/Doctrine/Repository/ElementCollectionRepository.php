@@ -4,6 +4,7 @@ namespace App\Infra\Doctrine\Repository;
 
 
 use App\Entity\ElementCollection;
+use App\Entity\ImageCollection;
 use App\Entity\Interfaces\ElementCollectionInterface;
 use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -47,6 +48,14 @@ class ElementCollectionRepository extends ServiceEntityRepository implements Ele
         $this->_em->flush();
     }
 
+    /**
+     * @param ImageCollection $imageCollection
+     */
+    public function removeImage(ImageCollection $imageCollection)
+    {
+        $this->_em->remove($imageCollection);
+        $this->_em->flush();
+    }
 
     /**
      * @param $id
