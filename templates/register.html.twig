@@ -5,15 +5,26 @@
 {% endblock title %}
 
 {% block body %}
-    {% if not is_granted('ROLE_USER') %}
-    <h1>Ajout d'un nouvel utilisateur</h1>
+    <div class="container">
+        {% if not is_granted('ROLE_USER') %}
+            <h1>Création d'un nouvel utilisateur</h1>
+            <hr>
 
-    {{ form_start(form) }}
-    <button type="submit">Créer nouvel utilisateur</button>
-    {{ form_end(form) }}
-    <p>
-        <a href="{{ path('home') }}">Retour</a>
-    </p>
-    {% endif %}
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <button type="submit" class="btn btn-primary">Créer nouvel utilisateur</button>
+            {{ form_end(form) }}
+            <p>
+                <a href="{{ path('home') }}">Retour</a>
+            </p>
+        {% endif %}
+
+        {% if is_granted('ROLE_USER') %}
+        <p>Vous êtes déjà enregistré en tant qu'utilisateur</p>
+            <a href="{{ path('home') }}">Accueil</a>
+        {% endif %}
+
+    </div>
+
 
 {% endblock body %}

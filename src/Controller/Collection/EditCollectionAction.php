@@ -3,6 +3,7 @@
 namespace App\Controller\Collection;
 
 
+use App\Controller\Collection\Interfaces\EditCollectionActionInterface;
 use App\Domain\DTO\Collection\EditCollectionDTO;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use App\UI\Form\Handler\Collection\EditCollectionHandler;
@@ -11,7 +12,6 @@ use App\UI\Responder\Collection\EditCollectionResponder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -20,7 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/editCollection/{id}", name="editCollection")
  * @Security("has_role('ROLE_USER')")
  */
-class EditCollectionAction
+class EditCollectionAction implements EditCollectionActionInterface
 {
     /**
      * @var CollectionRepositoryInterface
@@ -72,7 +72,6 @@ class EditCollectionAction
         $form = $this->formFactory->create(EditCollectionType::class, $dto)
                                     ->handleRequest($request);
 
-        //$_SESSION['idCollection'] = $request->attributes->get('id');
 
         $request->getSession()->set('idCollection', $request->attributes->get('id'));
 

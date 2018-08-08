@@ -1,15 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <p>bienvenue dans la page de vos collections</p>
 
+    <div class="container">
 
+        <h1>bienvenue dans la page de vos collections</h1>
+        <hr>
 
         {{ form_start(form) }}
         {{ form_widget(form) }}
 
-        <button type="submit">Voir mes collections</button>
+        <button type="submit" class="btn btn-primary">Voir mes collections</button>
         {{ form_end(form) }}
+    </div>
+
+
 
 
 {% endblock body %}

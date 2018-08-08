@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Collection\Interfaces;
+namespace App\Controller\ElementCollection\Interfaces;
 
 
 use App\UI\Responder\Collection\ShowCollectionDetailledResponder;

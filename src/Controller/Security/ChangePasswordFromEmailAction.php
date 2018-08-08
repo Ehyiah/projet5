@@ -3,6 +3,7 @@
 namespace App\Controller\Security;
 
 
+use App\Controller\Security\Interfaces\ChangePasswordFromEmailActionInterface;
 use App\Domain\DTO\Security\ChangePasswordFromEmailDTO;
 use App\Infra\Doctrine\Repository\UserRepository;
 use App\UI\Form\Handler\Security\ChangePasswordFromEmailHandler;
@@ -18,7 +19,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  * @package App\Controller\Security
  * @Route("/recovery/{token}", name="recoveryToken")
  */
-class ChangePasswordFromEmailAction
+class ChangePasswordFromEmailAction implements ChangePasswordFromEmailActionInterface
 {
     /**
      * @var UserRepository

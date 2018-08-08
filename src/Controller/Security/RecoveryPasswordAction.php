@@ -3,6 +3,7 @@
 namespace App\Controller\Security;
 
 
+use App\Controller\Security\Interfaces\RecoveryPasswordActionInterface;
 use App\UI\Form\Handler\Security\PasswordRecoverInputHandler;
 use App\UI\Form\Type\Security\PasswordRecoverInputType;
 use App\UI\Responder\Security\PasswordRecoverInputResponder;
@@ -16,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @package App\Controller\Security
  * @Route("/recoverPassword", name="recoverPassword")
  */
-class RecoveryPasswordAction
+class RecoveryPasswordAction implements RecoveryPasswordActionInterface
 {
     /**
      * @var FormFactoryInterface

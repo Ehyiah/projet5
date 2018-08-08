@@ -7,14 +7,20 @@
 
 
 {% block body %}
-    <h1>Création</h1>
-    <p>Formulaire de création</p>
+    <div class="container">
+        <h1>Création de Catégories</h1>
+        <h3>Formulaire de création d'une nouvelle Catégorie de Collections</h3>
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+        <hr>
 
-    <div class="divider"></div>
-    <a href="{{ path('home') }}">Retour</a>
+        {{ form_start(form) }}
+        {{ form_row(form.name, {label : 'Nom de la nouvelle Catégorie'}) }}
+        <button type="submit" class="btn btn-primary">Créer une nouvelle Catégorie</button>
+        {{ form_end(form) }}
+
+        <div class="divider"></div>
+        <a href="{{ path('home') }}">Retour</a>
+    </div>
+
 
 {% endblock %}

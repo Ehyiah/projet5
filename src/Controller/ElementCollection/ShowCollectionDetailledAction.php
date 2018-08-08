@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Controller\Collection;
+namespace App\Controller\ElementCollection;
 
+
+use App\Controller\ElementCollection\Interfaces\ShowCollectionDetailledActionInterface;
 use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface;
 use App\UI\Responder\Collection\ShowCollectionDetailledResponder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -14,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/show/{idCollection}/{collectionName}", name="showDetailled")
  * @Security("has_role('ROLE_USER')")
  */
-class ShowCollectionDetailledAction
+class ShowCollectionDetailledAction implements ShowCollectionDetailledActionInterface
 {
     /**
      * @var ElementCollectionRepositoryInterface

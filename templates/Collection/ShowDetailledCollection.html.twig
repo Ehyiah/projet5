@@ -3,11 +3,14 @@
 
 {% block body %}
 
+    <div class="container">
+        <p>Eléments présents dans la collection : <strong>{{ app.request.get('collectionName') }}</strong></p>
+    </div>
 
-<p>détail de la collection : <strong>{{ app.request.get('collectionName') }}</strong></p>
-<p>
-    <a class="btn btn-primary" href="{{ path('addElement', {'id' : app.request.get('idCollection')}) }}">Ajouter un élément</a>
-</p>
+
+    <p>
+        <a class="btn btn-primary btn-sm" href="{{ path('addElement', {'id' : app.request.get('idCollection')}) }}">Ajouter un élément</a>
+    </p>
 
 
     <table class="table table-striped">
@@ -32,7 +35,8 @@
                 <th scope="row"><a href="{{ path('editElementCollection', {'id' : element.id}) }}">
                     {{ element.title }}</a>
                     <p>
-                        <a class="btn btn-outline-danger" href="{{ path('deleteElement', {'id' : element.id}) }}">Supprimer</a>
+                        <a class="btn btn-outline-danger btn-sm" href="{{ path('deleteElement', {'id' : element.id}) }}">Supprimer</a>
+                        <a class="btn btn-primary" href="{{ path('editElementCollection', {'id' : element.id}) }}">Modifier</a>
                     </p>
                     </th>
                     <td>{{ element.region }}</td>

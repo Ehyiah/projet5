@@ -6,3 +6,4 @@ twig:
         collection_helper: '@App\Application\Templating\Helper\MenuCollectionHelper'
     form_themes:
         - 'Form/fields.html.twig'
+        - 'bootstrap_4_layout.html.twig'

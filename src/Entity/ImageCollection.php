@@ -125,6 +125,7 @@ class ImageCollection implements ImageCollectionInterface
 
     /**
      * ImageCollection constructor.
+     *
      * @param PictureInterface $picture
      * @throws \Exception
      */

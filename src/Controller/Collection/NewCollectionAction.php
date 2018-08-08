@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Collection;
 
 
+use App\Controller\Collection\Interfaces\NewCollectionActionInterface;
 use App\UI\Form\Type\Collection\CreateCollectionType;
 use App\UI\Form\Handler\Interfaces\NewCollectionHandlerInterface;
 use App\UI\Responder\NewCollectionResponder;
@@ -18,7 +19,7 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
  * @Route("/newCollection", name="newCollection")
  * @Security("has_role('ROLE_USER')")
  */
-class NewCollectionAction
+class NewCollectionAction implements NewCollectionActionInterface
 {
     /**
      * @var EncoderFactoryInterface

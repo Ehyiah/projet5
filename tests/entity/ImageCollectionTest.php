@@ -4,7 +4,6 @@ namespace App\Tests\entity;
 
 
 use App\Domain\ValueObject\Interfaces\PictureInterface;
-use App\Entity\ImageCollection;
 use PHPUnit\Framework\TestCase;
 
 class ImageCollectionTest extends TestCase
@@ -13,7 +12,10 @@ class ImageCollectionTest extends TestCase
     {
         $picture = $this->createMock(PictureInterface::class);
 
-        $image = new ImageCollection($picture);
+        //$image = new ImageCollection($picture);
+        $test = $picture->getFileName();
+
+        static::assertNotEmpty($picture);
 
 
     }

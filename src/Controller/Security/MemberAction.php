@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Security;
 
 
+use App\Controller\Security\Interfaces\MemberActionInterface;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use App\Infra\Doctrine\Repository\Interfaces\ImageRepositoryInterface;
 use App\UI\Responder\MemberResponder;
@@ -18,7 +19,7 @@ use Twig\Environment;
  * @Route("/member", name="member")
  * @Security("has_role('ROLE_USER')")
  */
-class MemberAction
+class MemberAction implements MemberActionInterface
 {
     /**
      * @var Environment
@@ -70,8 +71,10 @@ class MemberAction
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(Request $request, MemberResponder $responder)
-    {
+    public function __invoke(
+        Request $request,
+        MemberResponder $responder
+    ) {
         $user = $this->security->getToken()->getUser();
 
         $collections = $this->imageRepository->findAll();

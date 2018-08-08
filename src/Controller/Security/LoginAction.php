@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Security;
 
 
+use App\Controller\Security\Interfaces\LoginActionInterface;
 use App\UI\Form\Handler\LoginHandler;
 use App\UI\Form\Type\User\LoginType;
 use App\UI\Responder\LoginResponder;
@@ -19,7 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
  * @package App\Controller
  * @Route("/login", name="login")
  */
-class LoginAction
+class LoginAction implements LoginActionInterface
 {
     /**
      * @var EncoderFactoryInterface

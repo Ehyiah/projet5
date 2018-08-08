@@ -3,6 +3,7 @@
 namespace App\Controller\Security;
 
 
+use App\Controller\Security\Interfaces\ChangePasswordActionInterface;
 use App\UI\Form\Handler\Security\ChangePasswordHandler;
 use App\UI\Form\Type\Security\ChangePasswordType;
 use App\UI\Responder\Security\ChangePasswordResponder;
@@ -20,7 +21,7 @@ use Twig\Environment;
  * @Security("has_role('ROLE_USER')")
  * @Route("/passwordChange", name="changePassword")
  */
-class ChangePasswordAction
+class ChangePasswordAction implements ChangePasswordActionInterface
 {
     /**
      * @SecurityAssert\UserPassword(

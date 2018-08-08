@@ -6,6 +6,7 @@ namespace App\Tests\entity;
 use App\Domain\DTO\AddCollectionDTO;
 use App\Entity\CategoryCollection;
 use App\Entity\Collection;
+use App\Entity\Interfaces\CollectionInterface;
 use PHPUnit\Framework\TestCase;
 
 class CollectionTest extends TestCase
@@ -24,6 +25,7 @@ class CollectionTest extends TestCase
         $collection = new Collection($collectionDTO);
 
         static::assertNotEmpty($collection);
+        static::assertInstanceOf(CollectionInterface::class, $collection);
 
         static::assertSame('testNom', $collection->getCollectionName());
         static::assertSame(null, $collection->getImage());

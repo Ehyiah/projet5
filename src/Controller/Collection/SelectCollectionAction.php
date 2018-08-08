@@ -3,6 +3,7 @@
 namespace App\Controller\Collection;
 
 
+use App\Controller\Collection\Interfaces\SelectionCollectionActionInterface;
 use App\Infra\Doctrine\Repository\Interfaces\CategoryRepositoryInterface;
 use App\UI\Form\Handler\Collection\SelectCollectionHandler;
 use App\UI\Form\Type\Collection\ShowCollectionType;
@@ -18,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/select", name="select")
  * @Security("has_role('ROLE_USER')")
  */
-class SelectCollectionAction
+class SelectCollectionAction implements SelectionCollectionActionInterface
 {
     /**
      * @var FormFactoryInterface

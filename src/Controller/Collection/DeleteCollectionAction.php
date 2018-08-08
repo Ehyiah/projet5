@@ -3,6 +3,7 @@
 namespace App\Controller\Collection;
 
 
+use App\Controller\Collection\Interfaces\DeleteCollectionActionInterface;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -16,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/delete/collection/{id}", name="deleteCollection")
  * @Security("has_role('ROLE_USER')")
  */
-class DeleteCollectionAction
+class DeleteCollectionAction implements DeleteCollectionActionInterface
 {
     /**
      * @var CollectionRepositoryInterface
@@ -53,7 +54,7 @@ class DeleteCollectionAction
         $id
     ) {
         $collection = $this->collectionRepository->find($id);
-        dump($collection->getImage());
+        //dump($collection->getImage());
 
         foreach ($collection->getElementsCollection() as $item) {
 

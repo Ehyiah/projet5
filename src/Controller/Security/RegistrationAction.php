@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Security;
 
 
+use App\Controller\Security\Interfaces\RegistrationActionInterface;
 use App\UI\Form\Type\User\UserType;
 use App\UI\Form\Handler\Interfaces\NewUserHandlerInterface;
 use App\UI\Responder\RegistrationResponder;
@@ -20,7 +21,7 @@ use Twig\Environment;
  * @package App\Controller
  * @Route ("/register", name="register")
  */
-class RegistrationAction
+class RegistrationAction implements RegistrationActionInterface
 {
     /**
      * @var EncoderFactoryInterface

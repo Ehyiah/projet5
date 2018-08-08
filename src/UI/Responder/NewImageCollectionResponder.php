@@ -38,7 +38,7 @@ class NewImageCollectionResponder implements NewImageCollectionResponderInterfac
         $redirect
             ? $response = new RedirectResponse('home')
             : $response = new Response(
-                $this->twig->render('Image/CreateNewImage.html.twig', array(
+                $this->twig->render('Category/CreateNewCategory.html.twig', array(
                     'form' => $form->createView()
                 ))
         );

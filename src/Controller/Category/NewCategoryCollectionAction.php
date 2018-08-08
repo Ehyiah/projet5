@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Category;
 
 
+use App\Controller\Category\Interfaces\NewCategoryCollectionActionInterface;
 use App\UI\Form\Handler\Interfaces\NewCategoryCollectionHandlerInterface;
 use App\UI\Form\Type\Security\PasswordRecoverInputType;
 use App\UI\Responder\NewImageCollectionResponder;
@@ -16,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @package App\Controller
  * @Route ("/newCategory", name="newCategory")
  */
-class NewCategoryCollectionAction
+class NewCategoryCollectionAction implements NewCategoryCollectionActionInterface
 {
     /**
      * @var EncoderFactoryInterface

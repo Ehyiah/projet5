@@ -3,6 +3,7 @@
 namespace App\Controller\Collection;
 
 
+use App\Controller\Collection\Interfaces\ShowCollectionActionInterface;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use App\UI\Responder\Collection\ShowCollectionResponder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -16,7 +17,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  * @Route("/show/{id}", name="show")
  * @Security("has_role('ROLE_USER')")
  */
-class ShowCollectionAction
+class ShowCollectionAction implements ShowCollectionActionInterface
 {
     /**
      * @var CollectionRepositoryInterface

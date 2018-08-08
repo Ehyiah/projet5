@@ -7,16 +7,20 @@
 
 
 {% block body %}
-    <h1>Création de votre nouvelle bibliothèque</h1>
-    <p>Formulaire de création de bibliothèque</p>
+    <div class="container">
+        <h1>Création de votre nouvelle bibliothèque</h1>
+        <p>Formulaire de création de bibliothèque</p>
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
 
-    <button type="submit">Ajouter une nouvelle collection</button>
-    {{ form_end(form) }}
+        <button type="submit" class="btn btn-primary">Ajouter une nouvelle collection</button>
+        {{ form_end(form) }}
 
-    <div class="divider"></div>
-    <a href="{{ path('home') }}">Retour</a>
+        <div class="divider"></div>
+        <a href="{{ path('home') }}">Retour</a>
+
+    </div>
+
 
 {% endblock %}

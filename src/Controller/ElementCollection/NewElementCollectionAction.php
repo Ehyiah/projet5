@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\ElementCollection;
 
 
+use App\Controller\ElementCollection\Interfaces\NewElementCollectionActionInterface;
 use App\UI\Form\Type\ElementCollection\NewElementCollectionType;
 use App\UI\Form\Handler\Interfaces\NewElementCollectionHandlerInterface;
 use App\UI\Responder\NewElementCollectionResponder;
@@ -16,7 +17,7 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
  * @package App\Controller
  * @Route("/newElement", name="newElement")
  */
-class NewElementCollectionAction
+class NewElementCollectionAction implements NewElementCollectionActionInterface
 {
     /**
      * @var EncoderFactoryInterface

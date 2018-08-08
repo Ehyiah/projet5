@@ -7,31 +7,36 @@
 
 
 {% block body %}
-    <h1>Création</h1>
-    <p>Formulaire de création d'un élément de collection</p>
+    <div class="container">
+        <h1>Création</h1>
+        <p>Formulaire de création d'un élément de collection</p>
+        <hr>
 
-    {{ form_start(form) }}
+        {{ form_start(form) }}
 
-    {{ form_row(form.title) }}
-    {{ form_row(form.region) }}
-    {{ form_row(form.publisher) }}
-    {{ form_row(form.etat) }}
-    {{ form_row(form.buy_price) }}
-    {{ form_row(form.support) }}
-    {{ form_row(form.player_number) }}
-    {{ form_row(form.value) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.region) }}
+        {{ form_row(form.publisher) }}
+        {{ form_row(form.etat) }}
+        {{ form_row(form.buy_price) }}
+        {{ form_row(form.support) }}
+        {{ form_row(form.player_number) }}
+        {{ form_row(form.value) }}
 
-    <div style="display: none">
-        {{ form_row(form.collection) }}
+        <div style="display: none">
+            {{ form_row(form.collection) }}
+        </div>
+
+        {{ form_row(form.images) }}
+        <div class="images" data-prototype="{{ form_row(form.images.vars.prototype)|e('html_attr') }}">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Ajout d'un nouvel élément</button>
+        {{ form_end(form) }}
+
+        <a href="{{ app.request.headers.get('referer') }}">Retour</a>
+
     </div>
 
-
-    <div class="images" data-prototype="{{ form_row(form.images.vars.prototype)|e('html_attr') }}">
-    </div>
-
-    <button type="submit">Ajout d'un nouvel élément</button>
-    {{ form_end(form) }}
-
-    <a href="{{ app.request.headers.get('referer') }}">Retour</a>
 
 {% endblock %}

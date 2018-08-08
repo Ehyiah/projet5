@@ -1,23 +1,27 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="container">
+        {{ form_start(form) }}
 
-    {{ form_start(form) }}
-
-    {{ form_row(form.name) }}
-    {{ form_row(form.tag) }}
-    {{ form_row(form.category) }}
-    {{ form_row(form.visibility) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.tag) }}
+        {{ form_row(form.category) }}
+        {{ form_row(form.visibility) }}
         {% if form.vars.data.image is not null %}
-        <img src="{{ asset('upload/CollectionImage/') }}{{ form.vars.data.image.title }}" alt="image d'illustration de la collection">
-            {% else %}
+            <img src="{{ asset('upload/CollectionImage/') }}{{ form.vars.data.image.title }}" alt="image d'illustration de la collection">
+        {% else %}
             <h6>aucune image n'est associée à cette collection</h6>
         {% endif %}
-    {{ form_row(form.image) }}
+        {{ form_row(form.image) }}
 
 
-    <button type="submit">Valider</button>
-    {{ form_end(form) }}
+        <button type="submit" class="btn btn-primary">Modifier</button>
+        {{ form_end(form) }}
 
-    <a href="{{ app.request.headers.get('referer') }}">Retour</a>
+        <a href="{{ app.request.headers.get('referer') }}">Retour</a>
+
+    </div>
+
+
 {% endblock body %}

@@ -7,15 +7,19 @@
 
 
 {% block body %}
-    <h1>Ajout d'une nouvelle image</h1>
-    <p>Formulaire de création d'une nouvelle image</p>
+    <div class="container">
+        <h1>Ajout d'une nouvelle image</h1>
+        <p>Formulaire de création d'une nouvelle image</p>
 
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button type="submit">ajout</button>
-    {{ form_end(form) }}
+            {{ form_start(form) }}
+            {{ form_row(form.name) }}
+            <button type="submit" class="btn btn-primary">Ajout</button>
+            {{ form_end(form) }}
 
-    <div class="divider"></div>
-    <a href="{{ path('home') }}">Retour</a>
+        <div class="divider"></div>
+        <a href="{{ path('home') }}">Retour</a>
+
+    </div>
+
 
 {% endblock %}

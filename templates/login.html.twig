@@ -4,14 +4,20 @@
 
 {% block body %}
 
-    <p>Login</p>
+    <div class="container">
+        <h1>Connection</h1>
+        <hr>
+        {{ form_start(form) }}
+        {{ form_row(form.username) }}
+        {{ form_row(form.password) }}
+        <button type="submit" class="btn btn-primary">Se connecter</button>
+        {{ form_end(form) }}
+
+        <p>mot de passe oublié ? Cliquez <a href="{{ path('recoverPassword') }}">ici</a> </p>
+
+        <a href="{{ path('home') }}">Retour</a>
 
 
-    {{ form_start(form) }}
-    <button type="submit">Se connecter</button>
-    {{ form_end(form) }}
+    </div>
 
-    <p>mot de passe oublié ? Cliquez <a href="{{ path('recoverPassword') }}">ici</a> </p>
-
-    <a href="{{ path('home') }}">Retour</a>
 {% endblock %}

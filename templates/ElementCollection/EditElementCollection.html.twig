@@ -3,41 +3,47 @@
 
 
 {% block body %}
+    <div class="container">
 
+        {{ form_start(form) }}
 
-    {{ form_start(form) }}
-
-    {{ form_row(form.title) }}
-    {{ form_row(form.region) }}
-    {{ form_row(form.publisher) }}
-    {{ form_row(form.etat) }}
-    {{ form_row(form.buy_price) }}
-    {{ form_row(form.support) }}
-    {{ form_row(form.player_number) }}
-    {{ form_row(form.value) }}
-    {{ form_row(form.collection, { 'disabled' : true }) }}
-
-    {% block _images_entry_widget %}
-        <div>
-            {% for image in form.children.images.children %}
-                {% spaceless %}
-
-                    {{ block('form_widget') }}
-                    {% if image.children.image.vars.image_url is not null %}
-                        <img src="{{ asset(image.children.image.vars.image_url) }}"/>
-                    {% endif %}
-
-                {% endspaceless %}
-            {% endfor %}
-            <div class="images" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
-            </div>
+        {{ form_row(form.title) }}
+        {{ form_row(form.region) }}
+        {{ form_row(form.publisher) }}
+        {{ form_row(form.etat) }}
+        {{ form_row(form.buy_price) }}
+        {{ form_row(form.support) }}
+        {{ form_row(form.player_number) }}
+        {{ form_row(form.value) }}
+        <div style="display: none">
+            {{ form_row(form.collection, { 'disabled' : true }) }}
         </div>
-    {% endblock %}
+
+
+        {% block _images_entry_widget %}
+            <div>
+                {% for image in form.children.images.children %}
+                    {% spaceless %}
+
+                        {{ block('form_widget') }}
+                        {% if image.children.image.vars.image_url is not null %}
+                            <img src="{{ asset(image.children.image.vars.image_url) }}"/>
+                        {% endif %}
+
+                    {% endspaceless %}
+                {% endfor %}
+                <div class="images" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
+                </div>
+            </div>
+        {% endblock %}
 
 
 
-    <button type="submit">Modifier</button>
-    {{ form_end(form) }}
+        <button type="submit" class="btn btn-primary">Modifier</button>
+        {{ form_end(form) }}
 
-    <a href="{{ app.request.headers.get('referer') }}">Retour</a>
+        <a href="{{ app.request.headers.get('referer') }}">Retour</a>
+
+    </div>
+
 {% endblock body %}
