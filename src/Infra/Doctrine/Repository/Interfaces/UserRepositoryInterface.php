@@ -1,19 +1,22 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Matt
- * Date: 29/05/2018
- * Time: 15:45
- */
 
 namespace App\Infra\Doctrine\Repository\Interfaces;
 
 
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 interface UserRepositoryInterface
 {
+    public function __construct(ManagerRegistry $registry);
+
     public function save(UserInterface $user) : void;
+
+    public function edit(UserInterface $user) :void;
+
+    public function findByToken($token);
+
+    public function findByName($name);
 
     public function loadUserByUsername($username);
 }

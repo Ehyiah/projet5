@@ -18,6 +18,7 @@ class RegistrationResponder implements RegistrationResponderInterface
 
     /**
      * RegistrationResponder constructor.
+     *
      * @param Environment $twig
      */
     public function __construct(Environment $twig)

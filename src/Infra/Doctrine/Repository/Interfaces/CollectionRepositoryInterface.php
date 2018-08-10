@@ -4,9 +4,16 @@ namespace App\Infra\Doctrine\Repository\Interfaces;
 
 
 use App\Entity\Interfaces\CollectionInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 interface CollectionRepositoryInterface
 {
+    public function __construct(
+        ManagerRegistry $registry,
+        TokenStorageInterface $security
+    );
+
     public function save(CollectionInterface $collection) : void;
 
     public function edit(CollectionInterface $collection) : void;

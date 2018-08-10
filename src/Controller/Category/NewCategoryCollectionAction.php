@@ -7,6 +7,7 @@ use App\Controller\Category\Interfaces\NewCategoryCollectionActionInterface;
 use App\UI\Form\Handler\Interfaces\NewCategoryCollectionHandlerInterface;
 use App\UI\Form\Type\Security\PasswordRecoverInputType;
 use App\UI\Responder\NewImageCollectionResponder;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
@@ -16,6 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class NewCategoryCollectionAction
  * @package App\Controller
  * @Route ("/newCategory", name="newCategory")
+ * @Security("has_role('ROLE_ADMIN')")
  */
 class NewCategoryCollectionAction implements NewCategoryCollectionActionInterface
 {
@@ -31,11 +33,14 @@ class NewCategoryCollectionAction implements NewCategoryCollectionActionInterfac
 
     /**
      * NewCategoryCollectionAction constructor.
+     *
      * @param EncoderFactoryInterface $encoderFactory
      * @param FormFactoryInterface $formFactory
      */
-    public function __construct(EncoderFactoryInterface $encoderFactory, FormFactoryInterface $formFactory)
-    {
+    public function __construct(
+        EncoderFactoryInterface $encoderFactory,
+        FormFactoryInterface $formFactory
+    ) {
         $this->encoderFactory = $encoderFactory;
         $this->formFactory = $formFactory;
     }

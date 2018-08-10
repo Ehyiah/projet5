@@ -23,7 +23,7 @@
             </cascade>
             <join-table name="elements_images">
                 <join-columns>
-                    <join-column name="element_collection_id" referenced-column-name="id"/>
+                    <join-column name="element_collection_id" referenced-column-name="id" on-delete="CASCADE"/>
                 </join-columns>
                 <inverse-join-columns>
                     <join-column name="image_collection_id" referenced-column-name="id" unique="true" on-delete="CASCADE"/>

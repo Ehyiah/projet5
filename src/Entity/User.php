@@ -135,9 +135,17 @@ class User implements UserInterface, \Serializable
     /**
      * @return array
      */
-    public function getRoles()
+    public function getRoles0()
     {
         return array('ROLE_USER');
+    }
+
+    /**
+     * @return array
+     */
+    public function getRoles()
+    {
+        return $this->roles;
     }
 
     /**
@@ -223,5 +231,12 @@ class User implements UserInterface, \Serializable
     }
 
 
+    public function addRoleAdmin()
+    {
+        if (in_array('ROLE_ADMIN', $this->roles)) {
+            return true;
+        }
 
+        return $this->roles[] = 'ROLE_ADMIN';
+    }
 }

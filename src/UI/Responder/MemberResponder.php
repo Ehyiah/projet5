@@ -18,6 +18,7 @@ class MemberResponder implements MemberResponderInterface
 
     /**
      * MemberResponder constructor.
+     *
      * @param Environment $twig
      */
     public function __construct(Environment $twig)

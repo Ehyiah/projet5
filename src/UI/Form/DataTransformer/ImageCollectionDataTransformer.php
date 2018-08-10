@@ -3,7 +3,6 @@
 namespace App\UI\Form\DataTransformer;
 
 
-use App\Domain\DTO\AddElementImageDTO;
 use App\Domain\ValueObject\Picture;
 use App\Entity\ImageCollection;
 use App\Service\FileUploader;

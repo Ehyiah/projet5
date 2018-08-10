@@ -21,7 +21,6 @@ class EditElementCollectionTypeSubscriber implements EventSubscriberInterface
     {
         return [
             FormEvents::POST_SET_DATA => 'onPostSetData',
-            FormEvents::PRE_SUBMIT => 'onPreSubmit',
             FormEvents::SUBMIT => 'onSubmit'
         ];
     }
@@ -34,13 +33,14 @@ class EditElementCollectionTypeSubscriber implements EventSubscriberInterface
         }
     }
 
-    public function onPreSubmit(FormEvent $event)
-    {
-
-    }
-
     public function onSubmit(FormEvent $event)
     {
+        if ($this->image == null)
+        {
+            return;
+        }
+
+
         foreach ($this->image as $imageCollection) {
             $newImage = new AddElementImageDTO($imageCollection);
             $newTab[] = $newImage;

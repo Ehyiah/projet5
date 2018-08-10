@@ -61,8 +61,6 @@ class DeleteCollectionAction implements DeleteCollectionActionInterface
             $collection->getElementsCollection()->removeElement($item);
         }
 
-
-
         $this->collectionRepository->remove($collection);
 
         return new RedirectResponse($request->headers->get('referer'));

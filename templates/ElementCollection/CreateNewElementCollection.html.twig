@@ -13,9 +13,9 @@
         <hr>
 
         {{ form_start(form) }}
-        {{ form_widget(form) }}
 
-        <div class="images" data-prototype="{{ form_row(form.images.vars.prototype)|e('html_attr') }}">
+
+        <div class="images" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
         </div>
 
         <button type="submit" class="btn btn-primary">Ajout d'un nouvel élément</button>

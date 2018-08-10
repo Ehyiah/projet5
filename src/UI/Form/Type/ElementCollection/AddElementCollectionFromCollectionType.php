@@ -5,7 +5,6 @@ namespace App\UI\Form\Type\ElementCollection;
 
 use App\Domain\DTO\AddElementCollectionDTO;
 use App\Entity\Collection;
-use App\UI\Form\DataTransformer\ImagesElementCollectionDataTransformerFromCollection;
 use App\UI\Form\Type\Image\ImageCollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -17,22 +16,6 @@ use Symfony\Component\Validator\Constraints\Count;
 
 class AddElementCollectionFromCollectionType extends AbstractType
 {
-    /**
-     * @var ImagesElementCollectionDataTransformerFromCollection
-     */
-    private $imageElementTransformer;
-
-    /**
-     * AddElementCollectionFromCollectionType constructor.
-     *
-     * @param ImagesElementCollectionDataTransformerFromCollection $imageElementTransformer
-     */
-    public function __construct(ImagesElementCollectionDataTransformerFromCollection $imageElementTransformer)
-    {
-        $this->imageElementTransformer = $imageElementTransformer;
-    }
-
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -56,6 +39,7 @@ class AddElementCollectionFromCollectionType extends AbstractType
             ->add('images', CollectionType::class, array(
                 'entry_type' => ImageCollectionType::class,
                 'allow_add' => true,
+                'allow_delete' => true,
                 'prototype' => true,
                 'entry_options' => array('label' => false),
                 'constraints' => array(new Count(array(
@@ -67,7 +51,6 @@ class AddElementCollectionFromCollectionType extends AbstractType
                 'required' => false
             ))
         ;
-        $builder->get('images')->addModelTransformer($this->imageElementTransformer);
     }
 
     public function configureOptions(OptionsResolver $resolver)

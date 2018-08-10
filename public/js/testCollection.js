@@ -1,6 +1,6 @@
 var $collectionHolder;
 
-var $addImageButton = $('<button type="button" class="add_image_link">Ajout d\'une image</button>');
+var $addImageButton = $('<button type="button" class="add_image_link btn btn-outline-primary btn-sm">Ajout d\'une image</button>');
 var $newLink = $('<p></p>').append($addImageButton);
 
 
@@ -22,7 +22,7 @@ $(document).ready(function() {
 });
 
 function addImageFormDeleteLink($tagFormLi) {
-    var $removeFormButton = $('<button type="button">enlever cette image</button>');
+    var $removeFormButton = $('<button type="button" class="btn btn-outline-danger btn-sm">Enlever cette image</button>');
     $tagFormLi.append($removeFormButton);
 
     $removeFormButton.on('click', function(e) {

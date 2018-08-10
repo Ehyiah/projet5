@@ -18,6 +18,7 @@ class NewCollectionResponder implements NewCollectionResponderInterface
 
     /**
      * NewCollectionResponder constructor.
+     *
      * @param Environment $twig
      */
     public function __construct(Environment $twig)

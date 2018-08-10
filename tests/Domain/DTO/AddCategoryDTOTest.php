@@ -5,7 +5,7 @@ namespace App\Tests\Domain\DTO;
 use App\Domain\DTO\AddCategoryDTO;
 use PHPUnit\Framework\TestCase;
 
-class AddCategoryDTOTest extends TestCase
+final class AddCategoryDTOTest extends TestCase
 {
     /**
      * @param string $category

@@ -27,13 +27,18 @@ class NewCollectionHandler implements NewCollectionHandlerInterface
      * @param CollectionRepositoryInterface $collection
      * @param TokenStorageInterface $token
      */
-    public function __construct(CollectionRepositoryInterface $collection, TokenStorageInterface $token)
-    {
+    public function __construct(
+        CollectionRepositoryInterface $collection,
+        TokenStorageInterface $token
+    ) {
         $this->collection = $collection;
         $this->token = $token;
     }
 
-
+    /**
+     * @param FormInterface $form
+     * @return bool
+     */
     public function handle(FormInterface $form): bool
     {
         if ($form->isSubmitted() && $form->isValid()) {

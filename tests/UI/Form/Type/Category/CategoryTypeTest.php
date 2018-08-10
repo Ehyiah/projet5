@@ -3,24 +3,24 @@
 namespace App\Tests\UI\Form\Type\Category;
 
 
+use App\Domain\DTO\AddCategoryDTO;
 use App\UI\Form\Type\Category\CategoryType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
-class CategoryTypeTest extends TypeTestCase
+final class CategoryTypeTest extends TypeTestCase
 {
     public function testItImplements()
     {
         $type = new CategoryType();
 
         static::assertInstanceOf(AbstractType::class, $type);
-        static::assertInstanceOf(CategoryType::class, $type);
     }
 
     /**
      * @param string $category
      *
-     * @dataProvider provideData
+     * @dataProvider provideGoodData
      */
     public function testItAcceptData(string $category)
     {
@@ -32,13 +32,14 @@ class CategoryTypeTest extends TypeTestCase
 
         static::assertTrue($type->isSubmitted());
         static::assertTrue($type->isValid());
+        static::assertInstanceOf(AddCategoryDTO::class, $type->getData());
         static::assertSame($category, $type->getData()->category_collection);
     }
 
     /**
      * @return \Generator
      */
-    public function provideData()
+    public function provideGoodData()
     {
         yield array('Categorie');
         yield array('Categorie1');

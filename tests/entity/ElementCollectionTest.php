@@ -4,10 +4,10 @@ namespace App\Tests\entity;
 
 
 use App\Domain\DTO\AddElementCollectionDTO;
+use App\Domain\DTO\AddElementImageDTO;
 use App\Entity\Collection;
 use App\Entity\ElementCollection;
 use App\Entity\ImageCollection;
-use Doctrine\Common\Collections\ArrayCollection;
 use PHPUnit\Framework\TestCase;
 
 class ElementCollectionTest extends TestCase
@@ -16,24 +16,13 @@ class ElementCollectionTest extends TestCase
     {
         $collection = $this->createMock(Collection::class);
         $image = $this->createMock(ImageCollection::class);
+        $addElementImageDTO = new AddElementImageDTO($image);
 
-        $elementCollectionDTO = $this->createMock(AddElementCollectionDTO::class);
-            $elementCollectionDTO->title = 'titre';
-            $elementCollectionDTO->region = 'region';
-            $elementCollectionDTO->publisher = 'publisher';
-            $elementCollectionDTO->etat = 'etat';
-            $elementCollectionDTO->buy_price = '20.0';
-            $elementCollectionDTO->support = 'support';
-            $elementCollectionDTO->player_number = '2';
-            $elementCollectionDTO->value = '12';
-            $elementCollectionDTO->collection = $collection;
-            $elementCollectionDTO->images = new ArrayCollection();
-
+        $elementCollectionDTO = new AddElementCollectionDTO(
+            'titre', 'region', 'publisher', 'etat', '20.0', 'support', '2', '12', $collection, [$addElementImageDTO]
+        );
 
         $elementCollection = new ElementCollection($elementCollectionDTO);
-        $arrayCollection = new ArrayCollection();
-
-        static::assertNotEmpty($elementCollection);
 
         static::assertSame('titre', $elementCollection->getTitle());
         static::assertSame('region', $elementCollection->getRegion());
@@ -43,7 +32,7 @@ class ElementCollectionTest extends TestCase
         static::assertSame('support', $elementCollection->getSupport());
         static::assertEquals('2', $elementCollection->getPlayerNumber());
         static::assertEquals('12', $elementCollection->getValue());
-        static::assertSame($collection, $elementCollection->getCollectionName());
-        static::assertSame($image, $elementCollection->getImages());
+        static::assertCount(1, $elementCollection->getImages());
+        static::assertInstanceOf(Collection::class, $elementCollection->getCollectionName());
     }
 }

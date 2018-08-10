@@ -35,8 +35,10 @@ class DeleteImageFromElementCollectionAction implements DeleteImageFromElementCo
      * @param ElementCollectionRepositoryInterface $elementRepository
      * @param ImageRepositoryInterface $imageRepository
      */
-    public function __construct(ElementCollectionRepositoryInterface $elementRepository, ImageRepositoryInterface $imageRepository)
-    {
+    public function __construct(
+        ElementCollectionRepositoryInterface $elementRepository,
+        ImageRepositoryInterface $imageRepository
+    ) {
         $this->elementRepository = $elementRepository;
         $this->imageRepository = $imageRepository;
     }

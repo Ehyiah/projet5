@@ -4,10 +4,11 @@ namespace App\UI\Form\Handler;
 
 
 use App\Infra\Doctrine\Repository\UserRepository;
+use App\UI\Form\Handler\Interfaces\LoginHandlerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
-class LoginHandler
+class LoginHandler implements LoginHandlerInterface
 {
     /**
      * @var UserRepository

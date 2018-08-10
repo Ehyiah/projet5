@@ -3,6 +3,7 @@
 namespace App\Security;
 
 
+use App\Security\Interfaces\AuthenticatorInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +15,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 
-class Authenticator extends AbstractGuardAuthenticator
+class Authenticator extends AbstractGuardAuthenticator implements AuthenticatorInterface
 {
     /**
      * @var UserPasswordEncoderInterface
@@ -27,16 +28,16 @@ class Authenticator extends AbstractGuardAuthenticator
     private $urlGenerator;
 
 
-
-
-
     /**
      * Authenticator constructor.
+     *
      * @param UserPasswordEncoderInterface $userPasswordEncoder
      * @param UrlGeneratorInterface $urlGenerator
      */
-    public function __construct(UserPasswordEncoderInterface $userPasswordEncoder, UrlGeneratorInterface $urlGenerator)
-    {
+    public function __construct(
+        UserPasswordEncoderInterface $userPasswordEncoder,
+        UrlGeneratorInterface $urlGenerator
+    ) {
         $this->userPasswordEncoder = $userPasswordEncoder;
         $this->urlGenerator = $urlGenerator;
     }

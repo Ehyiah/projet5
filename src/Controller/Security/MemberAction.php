@@ -85,8 +85,6 @@ class MemberAction implements MemberActionInterface
         $tab[] = $collections;
         $tab[] = $collection;
 
-        dump($tab);
-        //die();
 
         return $responder(false, $tab);
     }

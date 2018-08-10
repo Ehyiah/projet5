@@ -18,6 +18,7 @@ class LoginResponder implements LoginResponderInterface
 
     /**
      * RegistrationResponder constructor.
+     *
      * @param Environment $twig
      */
     public function __construct(Environment $twig)

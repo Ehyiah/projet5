@@ -53,8 +53,11 @@ class ChangePasswordAction implements ChangePasswordActionInterface
      * @param Environment $twig
      * @param UrlGeneratorInterface $urlGenerator
      */
-    public function __construct(FormFactoryInterface $formFactory, Environment $twig, UrlGeneratorInterface $urlGenerator)
-    {
+    public function __construct(
+        FormFactoryInterface $formFactory,
+        Environment $twig,
+        UrlGeneratorInterface $urlGenerator
+    ) {
         $this->formFactory = $formFactory;
         $this->twig = $twig;
         $this->urlGenerator = $urlGenerator;

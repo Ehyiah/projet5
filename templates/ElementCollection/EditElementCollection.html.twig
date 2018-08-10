@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-{% form_theme form 'Form/fields.html.twig' %}
+
 
 
 {% block body %}
@@ -20,14 +20,14 @@
         </div>
 
 
-        {% block _images_entry_widget %}
             <div>
                 {% for image in form.children.images.children %}
                     {% spaceless %}
 
-                        {{ block('form_widget') }}
+
                         {% if image.children.image.vars.image_url is not null %}
                             <img src="{{ asset(image.children.image.vars.image_url) }}"/>
+
                         {% endif %}
 
                     {% endspaceless %}
@@ -35,7 +35,7 @@
                 <div class="images" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
                 </div>
             </div>
-        {% endblock %}
+
 
 
 

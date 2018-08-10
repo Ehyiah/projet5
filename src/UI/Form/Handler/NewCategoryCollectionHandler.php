@@ -25,6 +25,10 @@ class NewCategoryCollectionHandler implements NewCategoryCollectionHandlerInterf
         $this->categoryCollection = $categoryCollectionRepository;
     }
 
+    /**
+     * @param FormInterface $form
+     * @return bool
+     */
     public function handle(FormInterface $form): bool
     {
         if ($form->isSubmitted() && $form->isValid()) {

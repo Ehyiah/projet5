@@ -29,13 +29,18 @@ class NewUserHandler implements NewUserHandlerInterface
      * @param UserRepository $user
      * @param EncoderFactoryInterface $encoderFactory
      */
-    public function __construct(UserRepository $user, EncoderFactoryInterface $encoderFactory)
-    {
+    public function __construct(
+        UserRepository $user,
+        EncoderFactoryInterface $encoderFactory
+    ) {
         $this->user = $user;
         $this->encoderFactory = $encoderFactory;
     }
 
-
+    /**
+     * @param FormInterface $form
+     * @return bool
+     */
     public function handle(FormInterface $form) : bool
     {
         if ($form->isSubmitted() && $form->isValid()) {

@@ -25,6 +25,10 @@ class NewElementCollectionHandler implements NewElementCollectionHandlerInterfac
         $this->elementCollection = $collectionRepository;
     }
 
+    /**
+     * @param FormInterface $form
+     * @return bool
+     */
     public function handle(FormInterface $form): bool
     {
         if ($form->isSubmitted() && $form->isValid()) {

@@ -37,7 +37,11 @@ final class NewImageHandler implements NewImageHandlerInterface
         $this->imageRepository = $imageRepository;
     }
 
-
+    /**
+     * @param FormInterface $form
+     * @return bool
+     * @throws \Exception
+     */
     public function handle(FormInterface $form): bool
     {
          if ($form->isSubmitted() && $form->isValid()) {
