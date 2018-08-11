@@ -81,6 +81,7 @@ class ChangePasswordAction implements ChangePasswordActionInterface
                                     ->handleRequest($request);
 
         if ($handler->handle($form)) {
+            $request->getSession()->getFlashBag()->add('success', 'Le mot de passe a bien été modifié');
             return $responder(true);
         }
 

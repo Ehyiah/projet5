@@ -3,6 +3,7 @@
 namespace App\Infra\Doctrine\Repository\Interfaces;
 
 
+use App\Entity\ImageCollection;
 use App\Entity\Interfaces\CollectionInterface;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -27,4 +28,6 @@ interface CollectionRepositoryInterface
     public function menuFindByOwnerAndCategory($user);
 
     public function remove(CollectionInterface $collection);
+
+    public function removeImage(ImageCollection $imageCollection);
 }

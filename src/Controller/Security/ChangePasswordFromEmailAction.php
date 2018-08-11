@@ -79,6 +79,7 @@ class ChangePasswordFromEmailAction implements ChangePasswordFromEmailActionInte
 
 
         if ($handler->handle($form, $request)) {
+            $request->getSession()->getFlashBag()->add('success', 'Le mot de passe a bien été modifié');
             return $responder(true);
         }
 

@@ -90,6 +90,7 @@ class EditElementCollectionAction implements EditElementCollectionActionInterfac
         $request->getSession()->set('idElement', $request->attributes->get('id'));
 
         if ($handler->handle($form, $elementObjet)) {
+            $request->getSession()->getFlashBag()->add('success', 'L\'élément a bien été modifié');
             return $responder(true);
         }
 

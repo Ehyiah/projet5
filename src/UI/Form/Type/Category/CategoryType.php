@@ -25,7 +25,6 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('category_collection', TextType::class)
-            ->add('save', SubmitType::class, array('label' => 'Créer une nouvelle catégorie'))
         ;
     }
 

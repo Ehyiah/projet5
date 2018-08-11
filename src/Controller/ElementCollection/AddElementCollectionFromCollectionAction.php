@@ -76,6 +76,7 @@ class AddElementCollectionFromCollectionAction implements AddElementCollectionFr
 
 
         if ($handler->handle($form)) {
+            $request->getSession()->getFlashBag()->add('success', 'L\'élément a bien été ajoutée à la collection');
             return $responder(true);
         }
 

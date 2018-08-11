@@ -62,7 +62,9 @@ class PromoteUserCommand extends Command implements PromoteUserCommandInterface
             $output->writeln('Cet utilisateur possède déjà le role ADMIN');
             return;
         }
+        else {
 
+        }
 
         $this->userRepository->edit($user);
 

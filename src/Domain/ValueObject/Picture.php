@@ -36,7 +36,7 @@ final class Picture implements PictureInterface
 
     public function getFileName()
     {
-        $this->newFileName = md5(str_rot13($this->name)).".".$this->extension;
+        $this->newFileName = md5(uniqid(str_rot13($this->name))).".".$this->extension;
 
         return $this->newFileName;
     }

@@ -15,6 +15,7 @@
             <cascade>
                 <cascade-persist/>
                 <cascade-remove/>
+                <cascade-refresh/>
             </cascade>
         </one-to-many>
         <one-to-many field="collection_comments" target-entity="App\Entity\Comment" mapped-by="collection_name" orphan-removal="true" />
@@ -29,7 +30,7 @@
                 <cascade-persist/>
                 <cascade-remove/>
             </cascade>
-            <join-column name="image_id" referenced-column-name="id" nullable="true" on-delete="CASCADE"/>
+            <join-column name="image_id" referenced-column-name="id" nullable="true" on-delete="SET NULL"/>
         </one-to-one>
     </entity>
 </doctrine-mapping>

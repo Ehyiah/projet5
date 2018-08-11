@@ -64,6 +64,7 @@ class NewCollectionAction implements NewCollectionActionInterface
         $form = $this->formFactory->create(CreateCollectionType::class)->handleRequest($request);
 
         if ($collectionHandler->handle($form)) {
+            $request->getSession()->getFlashBag()->add('success', 'La collection a bien été ajoutée');
             return $responder(true);
         }
 

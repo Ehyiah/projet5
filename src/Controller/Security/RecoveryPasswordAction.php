@@ -55,6 +55,7 @@ class RecoveryPasswordAction implements RecoveryPasswordActionInterface
                                     ->handleRequest($request);
 
         if ($handler->handle($form)) {
+            $request->getSession()->getFlashBag()->add('success', 'Un mail contenant un lien de réinitilisation vous a été envoyé à l\'adresse renseignée lors de la création du compte');
             return $responder(true);
         }
 

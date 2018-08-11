@@ -76,6 +76,7 @@ class EditCollectionAction implements EditCollectionActionInterface
         $request->getSession()->set('idCollection', $request->attributes->get('id'));
 
         if ($handler->handle($form, $collectionObjet)) {
+            $request->getSession()->getFlashBag()->add('success', 'La Collection a bien été modifiée');
             return $responder(true);
         }
 

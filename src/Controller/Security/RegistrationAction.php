@@ -81,6 +81,7 @@ class RegistrationAction implements RegistrationActionInterface
         $form = $this->formFactory->create(UserType::class)->handleRequest($request);
 
         if ($userHandler->handle($form)) {
+            $request->getSession()->getFlashBag()->add('success', 'Nouvel utilisateur enregistré');
             return $responder(true);
             #return new RedirectResponse($this->urlGenerator->generate('home'));
         }

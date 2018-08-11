@@ -7,6 +7,7 @@ use App\Controller\Collection\Interfaces\DeleteCollectionActionInterface;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,17 +31,25 @@ class DeleteCollectionAction implements DeleteCollectionActionInterface
     private $elementRepository;
 
     /**
+     * @var Filesystem
+     */
+    private $fileSystem;
+
+    /**
      * DeleteCollectionAction constructor.
      *
      * @param CollectionRepositoryInterface $collectionRepository
      * @param ElementCollectionRepositoryInterface $elementRepository
+     * @param Filesystem $fileSystem
      */
     public function __construct(
         CollectionRepositoryInterface $collectionRepository,
-        ElementCollectionRepositoryInterface $elementRepository
+        ElementCollectionRepositoryInterface $elementRepository,
+        Filesystem $fileSystem
     ) {
         $this->collectionRepository = $collectionRepository;
         $this->elementRepository = $elementRepository;
+        $this->fileSystem = $fileSystem;
     }
 
 
@@ -54,14 +63,19 @@ class DeleteCollectionAction implements DeleteCollectionActionInterface
         $id
     ) {
         $collection = $this->collectionRepository->find($id);
-        //dump($collection->getImage());
 
         foreach ($collection->getElementsCollection() as $item) {
-
+            foreach ($item->getImages() as $image) {
+                $this->fileSystem->remove('../public/upload/CollectionImage/'.$image->getTitle());
+            }
             $collection->getElementsCollection()->removeElement($item);
         }
 
+        $this->fileSystem->remove('../public/upload/CollectionImage/'.$collection->getImage()->getTitle());
         $this->collectionRepository->remove($collection);
+
+
+        $request->getSession()->getFlashBag()->add('success', 'La collection a bien été supprimée');
 
         return new RedirectResponse($request->headers->get('referer'));
     }

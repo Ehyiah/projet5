@@ -7,11 +7,38 @@
     <div class="container" style="padding: 5px">
         <div class="card-deck">
             {% for collection in collections  %}
+
                 <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="card mb-4">
                         {% if collection.title is not null %}
-                            <img class="card-img-top img-fluid" src="{{ asset('upload/CollectionImage/') }}{{ collection.title }}"
-                                 style="height: 180px;">
+                            <a href="#" data-toggle="modal" data-target="#{{ collection.title }}">
+                                <img class="card-img-top img-fluid" src="{{ asset('upload/CollectionImage/') }}{{ collection.title }}"
+                                     style="height: 180px;"
+                                >
+                            </a>
+
+                                    <div class="modal fade" id="{{ collection.title }}" tabindex="-1" role="dialog" aria-labelledby="deleteImage" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Supprimer cette image</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">x</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <img src="{{ asset('upload/CollectionImage/') }}{{ collection.title }}">
+                                                    <p>Etes-vous sur ?</p>
+                                                    <p>Cette image sera supprimée de cet élément</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                                                    <a class="card-link btn btn-outline-danger" href="{{ path('deleteImage', {'id' : collection.0.image.id}) }}">Supprimer</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                             <hr>
                         {% else %}
                             <p>Aucune image associée à cette collection</p>

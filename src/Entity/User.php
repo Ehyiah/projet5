@@ -237,6 +237,8 @@ class User implements UserInterface, \Serializable
             return true;
         }
 
-        return $this->roles[] = 'ROLE_ADMIN';
+        $this->roles[] = 'ROLE_ADMIN';
+
+        return false;
     }
 }

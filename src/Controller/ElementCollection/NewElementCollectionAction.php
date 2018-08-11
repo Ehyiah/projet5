@@ -62,6 +62,7 @@ class NewElementCollectionAction implements NewElementCollectionActionInterface
                                     ->handleRequest($request);
 
         if ($newElementCollectionHandler->handle($form)) {
+            $request->getSession()->getFlashBag()->add('success', 'L\'élément a bien été créé');
             return $responder(true);
         }
 

@@ -6,6 +6,7 @@ namespace App\Controller\ElementCollection;
 use App\Controller\ElementCollection\Interfaces\DeleteElementCollectionActionInterface;
 use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,13 +25,22 @@ class DeleteElementCollectionAction implements DeleteElementCollectionActionInte
     private $elementRepository;
 
     /**
+     * @var Filesystem
+     */
+    private $fileSystem;
+
+    /**
      * DeleteElementCollectionAction constructor.
      *
      * @param ElementCollectionRepositoryInterface $elementRepository
+     * @param Filesystem $fileSystem
      */
-    public function __construct(ElementCollectionRepositoryInterface $elementRepository)
-    {
+    public function __construct(
+        ElementCollectionRepositoryInterface $elementRepository,
+        Filesystem $fileSystem
+    ) {
         $this->elementRepository = $elementRepository;
+        $this->fileSystem = $fileSystem;
     }
 
 
@@ -47,9 +57,12 @@ class DeleteElementCollectionAction implements DeleteElementCollectionActionInte
 
         foreach ($element->getImages() as $image) {
             $element->getImages()->removeElement($image);
+            $this->fileSystem->remove('../public/upload/CollectionImage/'.$image->getTitle());
         }
 
         $this->elementRepository->remove($element);
+
+        $request->getSession()->getFlashBag()->add('success', 'L\'élément a bien été supprimé');
 
         return new RedirectResponse($request->headers->get('referer'));
     }

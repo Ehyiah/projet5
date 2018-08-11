@@ -5,6 +5,7 @@ namespace App\Controller\Category;
 
 use App\Controller\Category\Interfaces\NewCategoryCollectionActionInterface;
 use App\UI\Form\Handler\Interfaces\NewCategoryCollectionHandlerInterface;
+use App\UI\Form\Type\Category\CategoryType;
 use App\UI\Form\Type\Security\PasswordRecoverInputType;
 use App\UI\Responder\NewImageCollectionResponder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -59,10 +60,11 @@ class NewCategoryCollectionAction implements NewCategoryCollectionActionInterfac
         NewCategoryCollectionHandlerInterface $categoryCollectionHandler,
         NewImageCollectionResponder $responder
     ) {
-        $form = $this->formFactory->create(PasswordRecoverInputType::class)
+        $form = $this->formFactory->create(CategoryType::class)
                                     ->handleRequest($request);
 
         if ($categoryCollectionHandler->handle($form)) {
+            $request->getSession()->getFlashBag()->add('success', 'Nouvelle catégorie crée');
             return $responder(true);
         }
 

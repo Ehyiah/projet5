@@ -4,6 +4,7 @@ namespace App\Infra\Doctrine\Repository;
 
 
 use App\Entity\Collection;
+use App\Entity\ImageCollection;
 use App\Entity\Interfaces\CollectionInterface;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -55,6 +56,15 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
     public function remove(CollectionInterface $collection)
     {
         $this->_em->remove($collection);
+        $this->_em->flush();
+    }
+
+    /**
+     * @param ImageCollection $imageCollection
+     */
+    public function removeImage(ImageCollection $imageCollection)
+    {
+        $this->_em->remove($imageCollection);
         $this->_em->flush();
     }
 
