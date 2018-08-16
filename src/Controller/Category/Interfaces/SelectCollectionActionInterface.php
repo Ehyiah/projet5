@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Controller\Collection\Interfaces;
+namespace App\Controller\Category\Interfaces;
 
 
-use App\Infra\Doctrine\Repository\Interfaces\CategoryRepositoryInterface;
+use App\Infra\Doctrine\Repository\Interfaces\CategoryCollectionRepositoryInterface;
 use App\UI\Form\Handler\Collection\SelectCollectionHandler;
-use App\UI\Responder\Collection\SelectCollectionResponder;
+use App\UI\Responder\Category\SelectCollectionResponder;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-interface SelectionCollectionActionInterface
+interface SelectCollectionActionInterface
 {
     public function __construct(
         FormFactoryInterface $formFactory,
-        CategoryRepositoryInterface $categoryCollection
+        CategoryCollectionRepositoryInterface $categoryCollection
     );
 
     public function __invoke(

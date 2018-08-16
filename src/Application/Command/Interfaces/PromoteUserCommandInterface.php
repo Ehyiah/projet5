@@ -3,11 +3,15 @@
 namespace App\Application\Command\Interfaces;
 
 
-use App\Infra\Doctrine\Repository\UserRepository;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
+use App\Infra\Doctrine\Repository\Interfaces\UserRepositoryInterface;
+
 
 interface PromoteUserCommandInterface
 {
-    public function __construct(UserRepository $userRepository);
+    /**
+     * PromoteUserCommandInterface constructor.
+     *
+     * @param UserRepositoryInterface $userRepository
+     */
+    public function __construct(UserRepositoryInterface $userRepository);
 }

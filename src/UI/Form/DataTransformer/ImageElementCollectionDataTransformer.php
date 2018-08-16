@@ -32,6 +32,11 @@ class ImageElementCollectionDataTransformer implements DataTransformerInterface
         // TODO: Implement transform() method.
     }
 
+    /**
+     * @param mixed $value
+     * @return ImageCollection|mixed|null
+     * @throws \Exception
+     */
     public function reverseTransform($value)
     {
         if ($value == null) {

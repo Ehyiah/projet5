@@ -4,6 +4,7 @@ namespace App\Entity;
 
 
 use App\Domain\DTO\AddUserDTO;
+use App\Entity\Interfaces\UserInterface as BaseUserInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -13,7 +14,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
  * Class User
  * @package App\Entity
  */
-class User implements UserInterface, \Serializable
+class User implements BaseUserInterface, UserInterface, \Serializable
 {
     /**
      * @var UuidInterface
@@ -87,6 +88,7 @@ class User implements UserInterface, \Serializable
      * User constructor.
      *
      * @param AddUserDTO $addUserDTO
+     * @throws \Exception
      */
     public function __construct(AddUserDTO $addUserDTO)
     {
@@ -231,14 +233,18 @@ class User implements UserInterface, \Serializable
     }
 
 
-    public function addRoleAdmin()
+    public function addRoleAdmin(): bool
     {
-        if (in_array('ROLE_ADMIN', $this->roles)) {
-            return true;
+        if (\in_array('ROLE_ADMIN', $this->roles)) {
+            try {
+                throw new \LogicException(sprintf(''));
+            } catch (\LogicException $exception) {
+                return false;
+            }
         }
 
         $this->roles[] = 'ROLE_ADMIN';
 
-        return false;
+        return true;
     }
 }

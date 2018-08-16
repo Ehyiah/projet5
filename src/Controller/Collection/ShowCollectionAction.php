@@ -58,9 +58,11 @@ class ShowCollectionAction implements ShowCollectionActionInterface
         ShowCollectionResponder $responder,
         $id = null
     ) {
+        /*
         if ($id == null) {
             $id = $_SESSION['ShowCollectionByCategory'];
         }
+        */
 
         if (isset($id)) {
             $collections = $this->collectionRepository->findByOwnerAndCategory(

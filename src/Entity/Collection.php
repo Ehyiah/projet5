@@ -132,9 +132,9 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTag(): string
+    public function getTag(): ?string
     {
         return $this->tag;
     }

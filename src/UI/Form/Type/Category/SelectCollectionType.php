@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UI\Form\Type\Collection;
+namespace App\UI\Form\Type\Category;
 
 
 use App\Domain\DTO\Collection\ShowCollectionDTO;
@@ -11,7 +11,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ShowCollectionType extends AbstractType
+class SelectCollectionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

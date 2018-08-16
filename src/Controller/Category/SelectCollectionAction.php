@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Controller\Collection;
+namespace App\Controller\Category;
 
 
-use App\Controller\Collection\Interfaces\SelectionCollectionActionInterface;
-use App\Infra\Doctrine\Repository\Interfaces\CategoryRepositoryInterface;
+use App\Controller\Category\Interfaces\SelectCollectionActionInterface;
+use App\Infra\Doctrine\Repository\Interfaces\CategoryCollectionRepositoryInterface;
 use App\UI\Form\Handler\Collection\SelectCollectionHandler;
-use App\UI\Form\Type\Collection\ShowCollectionType;
-use App\UI\Responder\Collection\SelectCollectionResponder;
+use App\UI\Responder\Category\SelectCollectionResponder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/select", name="select")
  * @Security("has_role('ROLE_USER')")
  */
-class SelectCollectionAction implements SelectionCollectionActionInterface
+class SelectCollectionAction implements SelectCollectionActionInterface
 {
     /**
      * @var FormFactoryInterface
@@ -27,7 +26,7 @@ class SelectCollectionAction implements SelectionCollectionActionInterface
     private $formFactory;
 
     /**
-     * @var CategoryRepositoryInterface
+     * @var CategoryCollectionRepositoryInterface
      */
     private $categoryCollection;
 
@@ -35,11 +34,11 @@ class SelectCollectionAction implements SelectionCollectionActionInterface
      * SelectCollectionAction constructor.
      *
      * @param FormFactoryInterface $formFactory
-     * @param CategoryRepositoryInterface $categoryCollection
+     * @param CategoryCollectionRepositoryInterface $categoryCollection
      */
     public function __construct(
         FormFactoryInterface $formFactory,
-        CategoryRepositoryInterface $categoryCollection
+        CategoryCollectionRepositoryInterface $categoryCollection
     ) {
         $this->formFactory = $formFactory;
         $this->categoryCollection = $categoryCollection;
@@ -60,15 +59,12 @@ class SelectCollectionAction implements SelectionCollectionActionInterface
         SelectCollectionHandler $collectionHandler,
         SelectCollectionResponder $responder
     ) {
-        $form = $this->formFactory->create(ShowCollectionType::class)->handleRequest($request);
+        $form = $this->formFactory->create(\App\UI\Form\Type\Category\SelectCollectionType::class)
+                                    ->handleRequest($request);
 
         if ($collectionHandler->handle($form)) {
-
-            $collectionCategory = $this->categoryCollection->findById($form->getData()->categoryCollection);
-
-            $_SESSION['ShowCollectionByCategory'] = $collectionCategory;
-
-            return $responder(true,null);
+            $request->getSession()->getFlashBag()->add('success', 'La catégorie a bien été supprimée');
+            return $responder(true);
         }
 
         return $responder (false, $form);

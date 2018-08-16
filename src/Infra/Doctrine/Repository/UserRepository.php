@@ -4,12 +4,13 @@ namespace App\Infra\Doctrine\Repository;
 
 
 use App\Entity\User;
+use App\Infra\Doctrine\Repository\Interfaces\UserRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
+use App\Entity\Interfaces\UserInterface;
 
-class UserRepository extends ServiceEntityRepository implements UserLoaderInterface
+class UserRepository extends ServiceEntityRepository implements UserRepositoryInterface, UserLoaderInterface
 {
     /**
      * UserRepository constructor.
@@ -38,12 +39,12 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
     }
 
     /**
-     * @param $token
-     * @return mixed
+     * {@inheritdoc}
+     *
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findByToken($token)
+    public function findByToken($token): ?UserInterface
     {
         return $this->createQueryBuilder('u')
             ->where('u.token_reset = :token')
@@ -53,12 +54,12 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
     }
 
     /**
-     * @param $name
-     * @return mixed
+     * {@inheritdoc}
+     *
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function findByName($name)
+    public function findByName(string $name): ?UserInterface
     {
         return $this->createQueryBuilder('n')
             ->where('n.username = :name')
@@ -69,10 +70,11 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
 
 
     /**
-     * @param string $username
-     * @return mixed|null|UserInterface
+     * {@inheritdoc}
+     *
+     * @return UserInterface|null
      */
-    public function loadUserByUsername($username)
+    public function loadUserByUsername($username): ?UserInterface
     {
         return $this->createQueryBuilder('u')
             ->where('u.username = :username OR u.email = :email')

@@ -38,14 +38,14 @@ class EditCollectionDTO
      * EditCollectionDTO constructor.
      *
      * @param string $name
-     * @param string $tag
+     * @param string|null $tag
      * @param CategoryCollection $category
      * @param bool $visibility
      * @param ImageCollection|null $image
      */
     public function __construct(
         string $name,
-        string $tag,
+        string $tag = null,
         CategoryCollection $category,
         bool $visibility,
         ImageCollection $image = null

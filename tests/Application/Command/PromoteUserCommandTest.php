@@ -1,59 +1,77 @@
 <?php
 
-namespace App\Tests\Application\Command;
+declare(strict_types=1);
 
+namespace App\Tests\Application\Command;
 
 use App\Application\Command\PromoteUserCommand;
 use App\Domain\DTO\AddUserDTO;
 use App\Entity\User;
 use App\Infra\Doctrine\Repository\Interfaces\UserRepositoryInterface;
-use App\Infra\Doctrine\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 
-
-class PromoteUserCommandTest extends KernelTestCase
+/**
+ * Class PromoteUserCommandTest.
+ */
+final class PromoteUserCommandTest extends KernelTestCase
 {
     /**
-     * @var UserRepositoryInterface
+     * @var UserRepositoryInterface|null
      */
-    private $userRepository;
+    private $userRepository = null;
 
-    public function setUp()
+    /**
+     * {@inheritdoc}
+     */
+    protected function setUp()
     {
-        $this->userRepository = $this->createMock(UserRepository::class);
+        $this->userRepository = $this->createMock(UserRepositoryInterface::class);
     }
 
-
-    public function testExecute()
+    /**
+     * @param string $username
+     * @param string $password
+     * @param string $email
+     *
+     * @throws \Exception
+     *
+     * @dataProvider provideUserCredentials
+     */
+    public function testExecute(string $username, string $password, string $email)
     {
         $kernel = self::bootKernel();
         $application = new Application($kernel);
 
-
-        $userDTO = new AddUserDTO(
-            'TestUser',
-            'password',
-            'user@gmail.com'
-        );
-
+        $userDTO = new AddUserDTO($username, $password, $email);
         $user = new User($userDTO);
+
+        $this->userRepository->method('findByName')->willReturn($user);
 
         $application->add(new PromoteUserCommand($this->userRepository));
 
         $command = $application->find('promoteUser');
 
         $commandTester = new CommandTester($command);
-        $commandTester->setInputs(array(
-            'Username' => $user->getUsername(),
-        ));
+
         $commandTester->execute(array(
             'command' => $command->getName(),
-            'Username' => $commandTester->getInput()->getArgument('Username'),
+            'Username' => $user->getUsername()
         ));
 
-        $outpout = $commandTester->getDisplay();
-        $this->assertContains('Username: TestUser', $outpout);
+        static::assertContains('Utilisateur promu ADMIN', $commandTester->getDisplay());
+        static::assertContains('ROLE_ADMIN', $user->getRoles());
+    }
+
+    /**
+     * @return \Generator
+     */
+    public function provideUserCredentials()
+    {
+        yield array('test', 'testUser', 'user@gmail.com');
+        yield array('test1', 'testUser1', 'user1@gmail.com');
+        yield array('test2', 'testUser2', 'user2@gmail.com');
+        yield array('test3', 'testUser3', 'user3@gmail.com');
     }
 }

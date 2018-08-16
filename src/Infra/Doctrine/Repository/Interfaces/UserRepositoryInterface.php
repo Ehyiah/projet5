@@ -3,20 +3,46 @@
 namespace App\Infra\Doctrine\Repository\Interfaces;
 
 
+use App\Entity\Interfaces\UserInterface;
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 interface UserRepositoryInterface
 {
+    /**
+     * UserRepositoryInterface constructor.
+     *
+     * @param ManagerRegistry $registry
+     */
     public function __construct(ManagerRegistry $registry);
 
-    public function save(UserInterface $user) : void;
+    /**
+     * @param UserInterface $user
+     */
+    public function save(UserInterface $user): void;
 
-    public function edit(UserInterface $user) :void;
+    /**
+     * @param UserInterface $user
+     */
+    public function edit(UserInterface $user): void;
 
-    public function findByToken($token);
+    /**
+     * @param $token
+     *
+     * @return UserInterface|null
+     */
+    public function findByToken($token): ?UserInterface;
 
-    public function findByName($name);
+    /**
+     * @param string $name
+     *
+     * @return UserInterface|null
+     */
+    public function findByName(string $name): ?UserInterface;
 
-    public function loadUserByUsername($username);
+    /**
+     * @param $username
+     *
+     * @return UserInterface|null
+     */
+    public function loadUserByUsername($username): ?UserInterface;
 }

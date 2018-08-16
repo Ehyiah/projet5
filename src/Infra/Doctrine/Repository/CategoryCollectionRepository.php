@@ -5,7 +5,7 @@ namespace App\Infra\Doctrine\Repository;
 
 use App\Entity\CategoryCollection;
 use App\Entity\Interfaces\CategoryCollectionInterface;
-use App\Infra\Doctrine\Repository\Interfaces\CategoryRepositoryInterface;
+use App\Infra\Doctrine\Repository\Interfaces\CategoryCollectionRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
@@ -15,7 +15,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
  * @method CategoryCollection[]    findAll()
  * @method CategoryCollection[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CategoryCollectionRepository extends ServiceEntityRepository implements CategoryRepositoryInterface
+class CategoryCollectionRepository extends ServiceEntityRepository implements CategoryCollectionRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -25,6 +25,12 @@ class CategoryCollectionRepository extends ServiceEntityRepository implements Ca
     public function save(CategoryCollectionInterface $categoryCollection) : void
     {
         $this->_em->persist($categoryCollection);
+        $this->_em->flush();
+    }
+
+    public function remove(CategoryCollection $collection)
+    {
+        $this->_em->remove($collection);
         $this->_em->flush();
     }
 }

@@ -23,8 +23,10 @@ final class PictureTest extends TestCase
             $extension
         );
 
-        static::assertInstanceOf(Picture::class, $picture);
+        $newFileName = $picture->getFileName();
 
+        static::assertInstanceOf(Picture::class, $picture);
+        static::assertSame($picture->getNewFileName(), $newFileName);
 
 
     }

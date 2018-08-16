@@ -1,9 +1,9 @@
 <?php
 
-namespace App\UI\Responder\Collection;
+namespace App\UI\Responder\Category;
 
 
-use App\UI\Responder\Collection\Interfaces\SelectCollectionResponderInterface;
+use App\UI\Responder\Category\Interfaces\SelectCollectionResponderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,7 +52,7 @@ class SelectCollectionResponder implements SelectCollectionResponderInterface
                 $this->urlGenerator->generate('show')
             )
             : $response = new Response(
-                $this->twig->render('Collection/SelectCollectionType.html.twig', array(
+                $this->twig->render('Category/SelectCollectionType.html.twig', array(
                     'form' => $form->createView()
                 ))
         );

@@ -46,9 +46,18 @@
                         <a class="nav-link" href="{{ path('home2') }}">Home <span class="sr-only">(current)</span></a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">inutile</a>
+                <!-- actions pour roles ADMIN -->
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item dropdown active">
+                        <a class="nav-link dropdown-toggle" id="navAdminDropdown" href="#" role="button" data-toggle="dropdown">
+                            Admin
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ path('newCategory') }}">Nouvelle catégorie</a>
+                            <a class="dropdown-item" href="{{ path('select') }}">Supprimer une catégorie</a>
+                        </div>
                     </li>
+                    {% endif %}
 
 
                 <!-- menu personnalisé s'affiche en fonction des collections de l'utilisateur si celui-ci est connecté -->
@@ -67,18 +76,6 @@
                     </li>
 
                 <!-- si connecté alors espace membre et menu gestion des collections-->
-
-                    <li class="nav-item dropdown active">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Collections
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ path('select') }}">Collections</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
 
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ path('member') }}">Espace Membre</a>
@@ -138,7 +135,7 @@
 
 
 
-
+{#
         {% block footer %}
             <div class="footer">
                 <div class="container">
@@ -154,6 +151,8 @@
                 </div>
             </div>
         {% endblock footer %}
+#}
+
 
 
         {% block javascripts %}

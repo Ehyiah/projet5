@@ -14,7 +14,8 @@ $(document).ready(function() {
 
     $collectionHolder.append($newLink);
 
-    $collectionHolder.data('index', $collectionHolder.find(':input').length);
+    $collectionHolder.data('index', $collectionHolder.find('p').length+3);
+    //$collectionHolder.data('index', $collectionHolder.find('p').length);
 
     $addImageButton.on('click', function(e) {
         addImageForm($collectionHolder, $newLink);

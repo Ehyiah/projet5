@@ -64,12 +64,6 @@ class NewElementCollectionType extends AbstractType
                 'entry_options' => array('label' => false),
                 'by_reference' => false,
                 'mapped' => false,
-                'constraints' => array(new Count(array(
-                    'min' => 0,
-                    'max' => 3,
-                    'maxMessage' => "Vous ne pouvez pas envoyer plus de {{ limit }} images"
-                    ))
-                ),
                 'required' => false
             ))
         ;

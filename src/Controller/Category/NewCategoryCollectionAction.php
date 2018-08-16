@@ -33,22 +33,30 @@ class NewCategoryCollectionAction implements NewCategoryCollectionActionInterfac
     private $formFactory;
 
     /**
+     * @var NewCategoryCollectionHandlerInterface
+     */
+    private $formHandler;
+
+    /**
      * NewCategoryCollectionAction constructor.
      *
      * @param EncoderFactoryInterface $encoderFactory
      * @param FormFactoryInterface $formFactory
+     * @param NewCategoryCollectionHandlerInterface $formHandler
      */
     public function __construct(
         EncoderFactoryInterface $encoderFactory,
-        FormFactoryInterface $formFactory
+        FormFactoryInterface $formFactory,
+        NewCategoryCollectionHandlerInterface $formHandler
     ) {
         $this->encoderFactory = $encoderFactory;
         $this->formFactory = $formFactory;
+        $this->formHandler = $formHandler;
     }
+
 
     /**
      * @param Request $request
-     * @param NewCategoryCollectionHandlerInterface $categoryCollectionHandler
      * @param NewImageCollectionResponder $responder
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @throws \Twig_Error_Loader
@@ -57,14 +65,13 @@ class NewCategoryCollectionAction implements NewCategoryCollectionActionInterfac
      */
     public function __invoke(
         Request $request,
-        NewCategoryCollectionHandlerInterface $categoryCollectionHandler,
         NewImageCollectionResponder $responder
     ) {
         $form = $this->formFactory->create(CategoryType::class)
                                     ->handleRequest($request);
 
-        if ($categoryCollectionHandler->handle($form)) {
-            $request->getSession()->getFlashBag()->add('success', 'Nouvelle catégorie crée');
+        if ($this->formHandler->handle($form)) {
+            $request->getSession()->getFlashBag()->add('success', 'Nouvelle catégorie créée');
             return $responder(true);
         }
 

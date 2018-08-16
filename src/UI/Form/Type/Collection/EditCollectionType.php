@@ -47,7 +47,9 @@ class EditCollectionType extends AbstractType
     {
         $builder
             ->add('name', TextType::class)
-            ->add('tag', TextType::class)
+            ->add('tag', TextType::class, array(
+                'required' => false
+            ))
             ->add('category', EntityType::class, array(
                 'class'=>CategoryCollection::class,
                 'label'=>'Catégorie de la collection',

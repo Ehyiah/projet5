@@ -1,6 +1,6 @@
 <?php
 
-namespace App\UI\Responder\Collection\Interfaces;
+namespace App\UI\Responder\Category\Interfaces;
 
 
 use Symfony\Component\Form\FormInterface;

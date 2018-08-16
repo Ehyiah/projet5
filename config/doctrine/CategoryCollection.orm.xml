@@ -6,7 +6,11 @@
     <entity name="App\Entity\CategoryCollection" table="category_collection" repository-class="App\Infra\Doctrine\Repository\CategoryCollectionRepository">
         <id name="id" type="uuid" />
         <field name="category_collection" type="string" length="255" unique="false"/>
-        <one-to-many field="collections" target-entity="App\Entity\Collection" mapped-by="category" />
+        <one-to-many field="collections" target-entity="App\Entity\Collection" mapped-by="category">
+            <cascade>
+                <cascade-remove/>
+            </cascade>
+        </one-to-many>
     </entity>
 
 </doctrine-mapping>

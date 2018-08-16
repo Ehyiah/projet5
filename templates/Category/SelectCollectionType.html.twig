@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+
+        <h1>bienvenue dans la page de vos collections</h1>
+        <hr>
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+
+        <a href="#" data-toggle="modal" data-target="#deleteModal" class="btn btn-primary">
+            Supprimer cette catégorie
+        </a>
+
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5>Supprimer cette catégorie</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">x</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Etes-vous sur ?</p>
+                        <p>Cette catégorie sera supprimée ainsi que toutes les collections qu'elle contient</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                        <button type="submit" class="btn btn-outline-danger">Oui</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {{ form_end(form) }}
+    </div>
+
+
+
+
+{% endblock body %}

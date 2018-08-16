@@ -62,12 +62,6 @@ class EditElementCollectionType extends AbstractType
                 'delete_empty' => true,
                 'prototype' => true,
                 'entry_options' => array('label' => false),
-                'constraints' => array(new Count(array(
-                    'min' => 0,
-                    'max' => 3,
-                    'maxMessage' => "Vous ne pouvez pas envoyer plus de {{ limit }} images"
-                ))
-                ),
                 'required' => false,
             ))
             ->addEventSubscriber($this->editElementCollectionTypeSubscriber)

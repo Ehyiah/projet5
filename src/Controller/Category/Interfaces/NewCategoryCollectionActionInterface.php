@@ -13,12 +13,12 @@ interface NewCategoryCollectionActionInterface
 {
     public function __construct(
         EncoderFactoryInterface $encoderFactory,
-        FormFactoryInterface $formFactory
+        FormFactoryInterface $formFactory,
+        NewCategoryCollectionHandlerInterface $formHandler
     );
 
     public function __invoke(
         Request $request,
-        NewCategoryCollectionHandlerInterface $categoryCollectionHandler,
         NewImageCollectionResponder $responder
     );
 }
