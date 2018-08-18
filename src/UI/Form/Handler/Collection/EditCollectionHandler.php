@@ -8,7 +8,10 @@ use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use App\UI\Form\Handler\Collection\Interfaces\EditCollectionHandlerInterface;
 use Symfony\Component\Form\FormInterface;
 
-class EditCollectionHandler implements EditCollectionHandlerInterface
+/**
+ * Class EditCollectionHandler
+ */
+final class EditCollectionHandler implements EditCollectionHandlerInterface
 {
     /**
      * @var CollectionRepositoryInterface
@@ -18,14 +21,16 @@ class EditCollectionHandler implements EditCollectionHandlerInterface
     /**
      * EditCollectionHandler constructor.
      *
-     * @param CollectionRepositoryInterface $collectionRepository
+     * {@inheritdoc}
      */
     public function __construct(CollectionRepositoryInterface $collectionRepository)
     {
         $this->collectionRepository = $collectionRepository;
     }
 
-
+    /**
+     * {@inheritdoc}
+     */
     public function handle(FormInterface $form, Collection $collection) : bool
     {
         if ($form->isSubmitted() && $form->isValid()) {

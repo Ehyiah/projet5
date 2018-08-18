@@ -2,7 +2,9 @@
 
 namespace App\UI\Form\Type\User;
 
-use App\Domain\DTO\AddUserDTO;
+
+use App\Domain\DTO\Security\AddUserDTO;
+use App\Domain\DTO\Security\Interfaces\AddUserDTOInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -36,7 +38,7 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-           'data_class' => AddUserDTO::class,
+           'data_class' => AddUserDTOInterface::class,
            'empty_data' => function (FormInterface $form) {
                 return new AddUserDTO(
                     $form->get('username')->getData(),

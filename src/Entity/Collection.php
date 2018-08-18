@@ -3,8 +3,8 @@
 namespace App\Entity;
 
 
-use App\Domain\DTO\AddCollectionDTO;
-use App\Domain\DTO\Collection\EditCollectionDTO;
+use App\Domain\DTO\Collection\Interfaces\AddCollectionDTOInterface;
+use App\Domain\DTO\Collection\Interfaces\EditCollectionDTOInterface;
 use App\Entity\Interfaces\CollectionInterface;
 use App\Entity\Interfaces\ElementCollectionInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -13,7 +13,6 @@ use Ramsey\Uuid\UuidInterface;
 
 /**
  * Class Collection
- * @package App\Entity
  */
 class Collection implements CollectionInterface
 {
@@ -80,9 +79,11 @@ class Collection implements CollectionInterface
     /**
      * Collection constructor.
      *
-     * @param AddCollectionDTO $addCollectionDTO
+     * @param AddCollectionDTOInterface $addCollectionDTO
+     *
+     * @throws \Exception
      */
-    public function __construct(AddCollectionDTO $addCollectionDTO)
+    public function __construct(AddCollectionDTOInterface $addCollectionDTO)
     {
         $this->id = Uuid::uuid4();
         $this->collection_name = $addCollectionDTO->name;
@@ -105,7 +106,6 @@ class Collection implements CollectionInterface
     {
         $this->owner = $owner;
     }
-
 
     /**
      * @return UuidInterface
@@ -195,11 +195,10 @@ class Collection implements CollectionInterface
         return $this->owner;
     }
 
-
     /**
-     * @param EditCollectionDTO $editCollectionDTO
+     * @param EditCollectionDTOInterface $editCollectionDTO
      */
-    public function edit(EditCollectionDTO $editCollectionDTO)
+    public function edit(EditCollectionDTOInterface $editCollectionDTO)
     {
         $this->update_date = new \DateTime('now');
         $this->collection_name = $editCollectionDTO->name;

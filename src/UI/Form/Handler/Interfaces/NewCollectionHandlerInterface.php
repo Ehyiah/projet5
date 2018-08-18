@@ -9,10 +9,21 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 interface NewCollectionHandlerInterface
 {
+    /**
+     * NewCollectionHandlerInterface constructor.
+     *
+     * @param CollectionRepositoryInterface $collection
+     * @param TokenStorageInterface $token
+     */
     public function __construct(
         CollectionRepositoryInterface $collection,
         TokenStorageInterface $token
     );
 
+    /**
+     * @param FormInterface $form
+     *
+     * @return bool
+     */
     public function handle(FormInterface $form) : bool;
 }

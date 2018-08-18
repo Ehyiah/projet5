@@ -4,30 +4,32 @@ namespace App\UI\Form\Handler;
 
 
 use App\Entity\CategoryCollection;
-use App\Infra\Doctrine\Repository\CategoryCollectionRepository;
+use App\Infra\Doctrine\Repository\Interfaces\CategoryCollectionRepositoryInterface;
 use App\UI\Form\Handler\Interfaces\NewCategoryCollectionHandlerInterface;
 use Symfony\Component\Form\FormInterface;
 
-class NewCategoryCollectionHandler implements NewCategoryCollectionHandlerInterface
+/**
+ * Class NewCategoryCollectionHandler
+ */
+final class NewCategoryCollectionHandler implements NewCategoryCollectionHandlerInterface
 {
     /**
-     * @var CategoryCollectionRepository
+     * @var CategoryCollectionRepositoryInterface
      */
     private $categoryCollection;
 
     /**
      * NewCategoryCollectionHandler constructor.
      *
-     * @param CategoryCollectionRepository $categoryCollectionRepository
+     * {@inheritdoc}
      */
-    public function __construct(CategoryCollectionRepository $categoryCollectionRepository)
+    public function __construct(CategoryCollectionRepositoryInterface $categoryCollectionRepository)
     {
         $this->categoryCollection = $categoryCollectionRepository;
     }
 
     /**
-     * @param FormInterface $form
-     * @return bool
+     * {@inheritdoc}
      */
     public function handle(FormInterface $form): bool
     {

@@ -8,10 +8,19 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 interface MenuCollectionHelperInterface
 {
+    /**
+     * MenuCollectionHelperInterface constructor.
+     *
+     * @param TokenStorageInterface $security
+     * @param CollectionRepositoryInterface $collectionRepository
+     */
     public function __construct(
         TokenStorageInterface $security,
         CollectionRepositoryInterface $collectionRepository
     );
 
+    /**
+     * @return mixed
+     */
     public function menuHelper();
 }

@@ -3,7 +3,7 @@
 namespace App\UI\Form\Type\ElementCollection;
 
 
-use App\Domain\DTO\AddElementCollectionDTO;
+use App\Domain\DTO\ElementCollection\AddElementCollectionDTO;
 use App\Entity\Collection;
 use App\Entity\ElementCollection;
 use App\UI\Form\DataTransformer\ImageElementCollectionDataTransformer;
@@ -70,6 +70,9 @@ class NewElementCollectionType extends AbstractType
         $builder->get('images')->addModelTransformer($this->imageElementTransformer);
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

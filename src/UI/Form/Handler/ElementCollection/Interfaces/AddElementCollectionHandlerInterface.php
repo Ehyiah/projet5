@@ -8,7 +8,17 @@ use Symfony\Component\Form\FormInterface;
 
 interface AddElementCollectionHandlerInterface
 {
+    /**
+     * AddElementCollectionHandlerInterface constructor.
+     *
+     * @param ElementCollectionRepositoryInterface $elementCollection
+     */
     public function __construct(ElementCollectionRepositoryInterface $elementCollection);
 
+    /**
+     * @param FormInterface $form
+     *
+     * @return bool
+     */
     public function handle(FormInterface $form): bool;
 }

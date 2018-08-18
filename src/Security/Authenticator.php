@@ -15,6 +15,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 
+/**
+ * Class Authenticator
+ */
 class Authenticator extends AbstractGuardAuthenticator implements AuthenticatorInterface
 {
     /**
@@ -31,8 +34,7 @@ class Authenticator extends AbstractGuardAuthenticator implements AuthenticatorI
     /**
      * Authenticator constructor.
      *
-     * @param UserPasswordEncoderInterface $userPasswordEncoder
-     * @param UrlGeneratorInterface $urlGenerator
+     * {@inheritdoc}
      */
     public function __construct(
         UserPasswordEncoderInterface $userPasswordEncoder,
@@ -44,8 +46,7 @@ class Authenticator extends AbstractGuardAuthenticator implements AuthenticatorI
 
 
     /**
-     * @param Request $request
-     * @return bool
+     * {@inheritdoc}
      */
     public function supports(Request $request)
     {
@@ -56,8 +57,7 @@ class Authenticator extends AbstractGuardAuthenticator implements AuthenticatorI
     }
 
     /**
-     * @param Request $request
-     * @return array|mixed
+     * {@inheritdoc}
      */
     public function getCredentials(Request $request)
     {
@@ -68,9 +68,7 @@ class Authenticator extends AbstractGuardAuthenticator implements AuthenticatorI
     }
 
     /**
-     * @param mixed $credentials
-     * @param UserProviderInterface $userProvider
-     * @return null|UserInterface
+     * {@inheritdoc}
      */
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
@@ -78,9 +76,7 @@ class Authenticator extends AbstractGuardAuthenticator implements AuthenticatorI
     }
 
     /**
-     * @param mixed $credentials
-     * @param UserInterface $user
-     * @return bool
+     * {@inheritdoc}
      */
     public function checkCredentials($credentials, UserInterface $user)
     {
@@ -91,10 +87,7 @@ class Authenticator extends AbstractGuardAuthenticator implements AuthenticatorI
     }
 
     /**
-     * @param Request $request
-     * @param TokenInterface $token
-     * @param string $providerKey
-     * @return null|RedirectResponse|Response
+     * {@inheritdoc}
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
@@ -109,9 +102,7 @@ class Authenticator extends AbstractGuardAuthenticator implements AuthenticatorI
     }
 
     /**
-     * @param Request $request
-     * @param AuthenticationException $exception
-     * @return null|RedirectResponse|Response
+     * {@inheritdoc}
      */
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
@@ -121,9 +112,7 @@ class Authenticator extends AbstractGuardAuthenticator implements AuthenticatorI
     }
 
     /**
-     * @param Request $request
-     * @param AuthenticationException|null $authException
-     * @return \Symfony\Component\HttpFoundation\Response|void
+     * {@inheritdoc}
      */
     public function start(Request $request, AuthenticationException $authException = null)
     {
@@ -131,7 +120,7 @@ class Authenticator extends AbstractGuardAuthenticator implements AuthenticatorI
     }
 
     /**
-     * @return bool|void
+     * {@inheritdoc}
      */
     public function supportsRememberMe()
     {

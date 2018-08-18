@@ -5,6 +5,9 @@ namespace App\Domain\ValueObject;
 
 use App\Domain\ValueObject\Interfaces\PictureInterface;
 
+/**
+ * Class Picture
+ */
 final class Picture implements PictureInterface
 {
     /**
@@ -25,8 +28,7 @@ final class Picture implements PictureInterface
     /**
      * Picture constructor.
      *
-     * @param string $name
-     * @param string $extension
+     * {@inheritdoc}
      */
     public function __construct(string $name, string $extension)
     {
@@ -34,6 +36,9 @@ final class Picture implements PictureInterface
         $this->extension = $extension;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getFileName()
     {
         $this->newFileName = md5(uniqid(str_rot13($this->name))).".".$this->extension;
@@ -42,7 +47,7 @@ final class Picture implements PictureInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getNewFileName(): string
     {

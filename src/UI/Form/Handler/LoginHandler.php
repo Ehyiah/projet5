@@ -3,15 +3,18 @@
 namespace App\UI\Form\Handler;
 
 
-use App\Infra\Doctrine\Repository\UserRepository;
+use App\Infra\Doctrine\Repository\Interfaces\UserRepositoryInterface;
 use App\UI\Form\Handler\Interfaces\LoginHandlerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
-class LoginHandler implements LoginHandlerInterface
+/**
+ * Class LoginHandler
+ */
+final class LoginHandler implements LoginHandlerInterface
 {
     /**
-     * @var UserRepository
+     * @var UserRepositoryInterface
      */
     private $userRepository;
 
@@ -23,11 +26,10 @@ class LoginHandler implements LoginHandlerInterface
     /**
      * LoginHandler constructor.
      *
-     * @param UserRepository $userRepository
-     * @param EncoderFactoryInterface $encoderFactory
+     * {@inheritdoc}
      */
     public function __construct(
-        UserRepository $userRepository,
+        UserRepositoryInterface $userRepository,
         EncoderFactoryInterface $encoderFactory
     ) {
         $this->userRepository = $userRepository;
@@ -36,8 +38,7 @@ class LoginHandler implements LoginHandlerInterface
 
 
     /**
-     * @param FormInterface $form
-     * @return bool
+     * {@inheritdoc}
      */
     public function handle(FormInterface $form) : bool
     {

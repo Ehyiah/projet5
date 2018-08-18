@@ -3,6 +3,7 @@
 namespace App\Controller\Collection;
 
 
+use App\Controller\Collection\Interfaces\DeleteImageFromCollectionInterface;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use App\Infra\Doctrine\Repository\Interfaces\ImageRepositoryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -12,11 +13,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class DeleteImageFromCollection
- * @package App\Controller\Collection
  * @Route("/deleteImageFromCollection/{id}", name="deleteImage")
  * @Security("has_role('ROLE_USER')")
  */
-class DeleteImageFromCollection
+class DeleteImageFromCollection implements DeleteImageFromCollectionInterface
 {
     /**
      * @var CollectionRepositoryInterface
@@ -31,8 +31,7 @@ class DeleteImageFromCollection
     /**
      * DeleteImageFromCollection constructor.
      *
-     * @param CollectionRepositoryInterface $collectionRepository
-     * @param ImageRepositoryInterface $imageRepository
+     * {@inheritdoc}
      */
     public function __construct(
         CollectionRepositoryInterface $collectionRepository,
@@ -42,6 +41,9 @@ class DeleteImageFromCollection
         $this->imageRepository = $imageRepository;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function __invoke(
         Request $request,
         $id

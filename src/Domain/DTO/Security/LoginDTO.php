@@ -1,9 +1,14 @@
 <?php
 
-namespace App\Domain\DTO;
+namespace App\Domain\DTO\Security;
 
 
-class LoginDTO
+use App\Domain\DTO\Security\Interfaces\LoginDTOInterface;
+
+/**
+ * Class LoginDTO
+ */
+class LoginDTO implements LoginDTOInterface
 {
     /**
      * @var string
@@ -17,8 +22,8 @@ class LoginDTO
 
     /**
      * LoginDTO constructor.
-     * @param string $username
-     * @param string $password
+     *
+     * {@inheritdoc}
      */
     public function __construct(
         string $username,
@@ -28,9 +33,8 @@ class LoginDTO
         $this->password = $password;
     }
 
-
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getUsername(): string
     {
@@ -38,7 +42,7 @@ class LoginDTO
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getPassword(): string
     {

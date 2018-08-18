@@ -2,7 +2,6 @@
 
 namespace App\Tests\Controller\Category;
 
-
 use App\Domain\DTO\AddUserDTO;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -10,6 +9,9 @@ use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Guard\Token\PostAuthenticationGuardToken;
 
+/**
+ * Class NewCategoryCollectionActionFunctionnalTest
+ */
 class NewCategoryCollectionActionFunctionnalTest extends WebTestCase
 {
     private $client = null;

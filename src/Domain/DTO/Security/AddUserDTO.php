@@ -1,9 +1,14 @@
 <?php
 
-namespace App\Domain\DTO;
+namespace App\Domain\DTO\Security;
 
 
-class AddUserDTO
+use App\Domain\DTO\Security\Interfaces\AddUserDTOInterface;
+
+/**
+ * Class AddUserDTO
+ */
+class AddUserDTO implements AddUserDTOInterface
 {
     /**
      * @var string
@@ -24,9 +29,7 @@ class AddUserDTO
     /**
      * AddUserDTO constructor.
      *
-     * @param string $username
-     * @param string $password
-     * @param string $email
+     * {@inheritdoc}
      */
     public function __construct(
         string $username,

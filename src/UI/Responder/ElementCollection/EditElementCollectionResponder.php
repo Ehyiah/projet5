@@ -11,7 +11,10 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
-class EditElementCollectionResponder implements EditElementCollectionResponderInterface
+/**
+ * Class EditElementCollectionResponder
+ */
+final class EditElementCollectionResponder implements EditElementCollectionResponderInterface
 {
     /**
      * @var Environment
@@ -31,9 +34,7 @@ class EditElementCollectionResponder implements EditElementCollectionResponderIn
     /**
      * EditElementCollectionResponder constructor.
      *
-     * @param Environment $twig
-     * @param UrlGeneratorInterface $urlGenerator
-     * @param SessionInterface $session
+     * {@inheritdoc}
      */
     public function __construct(
         Environment $twig,
@@ -47,9 +48,8 @@ class EditElementCollectionResponder implements EditElementCollectionResponderIn
 
 
     /**
-     * @param bool $redirect
-     * @param FormInterface|null $form
-     * @return RedirectResponse|Response
+     * {@inheritdoc}
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax

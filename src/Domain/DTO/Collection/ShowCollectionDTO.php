@@ -3,9 +3,14 @@
 namespace App\Domain\DTO\Collection;
 
 
+use App\Domain\DTO\Collection\Interfaces\ShowCollectionDTOInterface;
 use App\Entity\CategoryCollection;
+use App\Entity\Interfaces\CategoryCollectionInterface;
 
-class ShowCollectionDTO
+/**
+ * Class ShowCollectionDTO
+ */
+class ShowCollectionDTO implements ShowCollectionDTOInterface
 {
     /**
      * @var CategoryCollection
@@ -15,15 +20,15 @@ class ShowCollectionDTO
     /**
      * ShowCollectionDTO constructor.
      *
-     * @param CategoryCollection $categoryCollection
+     * {@inheritdoc}
      */
-    public function __construct(CategoryCollection $categoryCollection)
+    public function __construct(CategoryCollectionInterface $categoryCollection)
     {
         $this->categoryCollection = $categoryCollection;
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function __toString() :string
     {

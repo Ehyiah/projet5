@@ -7,6 +7,9 @@ use App\Application\Templating\Helper\Interfaces\MenuCollectionHelperInterface;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
+/**
+ * Class MenuCollectionHelper
+ */
 class MenuCollectionHelper extends \Twig_Extension implements MenuCollectionHelperInterface
 {
     /**
@@ -22,8 +25,7 @@ class MenuCollectionHelper extends \Twig_Extension implements MenuCollectionHelp
     /**
      * MenuCollectionHelper constructor.
      *
-     * @param TokenStorageInterface $security
-     * @param CollectionRepositoryInterface $collectionRepository
+     * {@inheritdoc}
      */
     public function __construct(
         TokenStorageInterface $security,
@@ -34,7 +36,7 @@ class MenuCollectionHelper extends \Twig_Extension implements MenuCollectionHelp
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     public function menuHelper()
     {

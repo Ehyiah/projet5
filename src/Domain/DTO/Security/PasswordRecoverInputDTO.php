@@ -3,7 +3,9 @@
 namespace App\Domain\DTO\Security;
 
 
-class PasswordRecoverInputDTO
+use App\Domain\DTO\Security\Interfaces\PasswordRecoverInputDTOInterface;
+
+class PasswordRecoverInputDTO implements PasswordRecoverInputDTOInterface
 {
     /**
      * @var string
@@ -13,12 +15,10 @@ class PasswordRecoverInputDTO
     /**
      * PasswordRecoverInputDTO constructor.
      *
-     * @param string $name
+     * {@inheritdoc}
      */
     public function __construct(string $name)
     {
         $this->name = $name;
     }
-
-
 }

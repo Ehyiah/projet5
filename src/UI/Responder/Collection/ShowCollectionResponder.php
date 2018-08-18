@@ -9,7 +9,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
-class ShowCollectionResponder implements ShowCollectionResponderInterface
+/**
+ * Class ShowCollectionResponder
+ */
+final class ShowCollectionResponder implements ShowCollectionResponderInterface
 {
     /**
      * @var Environment
@@ -24,8 +27,7 @@ class ShowCollectionResponder implements ShowCollectionResponderInterface
     /**
      * ShowCollectionResponder constructor.
      *
-     * @param Environment $twig
-     * @param UrlGeneratorInterface $urlGenerator
+     * {@inheritdoc}
      */
     public function __construct(
         Environment $twig,
@@ -36,9 +38,8 @@ class ShowCollectionResponder implements ShowCollectionResponderInterface
     }
 
     /**
-     * @param bool $redirect
-     * @param $collections
-     * @return RedirectResponse|Response
+     * {@inheritdoc}
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax

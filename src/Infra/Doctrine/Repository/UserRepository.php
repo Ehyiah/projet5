@@ -10,11 +10,15 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 use App\Entity\Interfaces\UserInterface;
 
-class UserRepository extends ServiceEntityRepository implements UserRepositoryInterface, UserLoaderInterface
+/**
+ * Class UserRepository
+ */
+final class UserRepository extends ServiceEntityRepository implements UserRepositoryInterface, UserLoaderInterface
 {
     /**
      * UserRepository constructor.
-     * @param ManagerRegistry $registry
+     *
+     * {@inheritdoc}
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -22,7 +26,7 @@ class UserRepository extends ServiceEntityRepository implements UserRepositoryIn
     }
 
     /**
-     * @param UserInterface $user
+     * {@inheritdoc}
      */
     public function save(UserInterface $user): void
     {
@@ -31,7 +35,7 @@ class UserRepository extends ServiceEntityRepository implements UserRepositoryIn
     }
 
     /**
-     * @param UserInterface $user
+     * {@inheritdoc}
      */
     public function edit(UserInterface $user) :void
     {
@@ -71,8 +75,6 @@ class UserRepository extends ServiceEntityRepository implements UserRepositoryIn
 
     /**
      * {@inheritdoc}
-     *
-     * @return UserInterface|null
      */
     public function loadUserByUsername($username): ?UserInterface
     {

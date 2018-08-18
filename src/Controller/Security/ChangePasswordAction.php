@@ -4,9 +4,9 @@ namespace App\Controller\Security;
 
 
 use App\Controller\Security\Interfaces\ChangePasswordActionInterface;
-use App\UI\Form\Handler\Security\ChangePasswordHandler;
+use App\UI\Form\Handler\Security\Interfaces\ChangePasswordHandlerInterface;
 use App\UI\Form\Type\Security\ChangePasswordType;
-use App\UI\Responder\Security\ChangePasswordResponder;
+use App\UI\Responder\Security\Interfaces\ChangePasswordResponderInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +17,6 @@ use Twig\Environment;
 
 /**
  * Class ChangePasswordAction
- * @package App\Controller\Security
  * @Security("has_role('ROLE_USER')")
  * @Route("/passwordChange", name="changePassword")
  */
@@ -25,11 +24,11 @@ class ChangePasswordAction implements ChangePasswordActionInterface
 {
     /**
      * @SecurityAssert\UserPassword(
-     *     message = "Wrong value for your current password"
+     *     message = "Mauvais mot de passe Actuel"
      * )
-     * @var string
+     * @var string|null
      */
-    protected $oldPassword;
+    protected $oldPassword = null;
 
     /**
      * @var FormFactoryInterface
@@ -47,40 +46,41 @@ class ChangePasswordAction implements ChangePasswordActionInterface
     private $urlGenerator;
 
     /**
+     * @var ChangePasswordHandlerInterface
+     */
+    private $handler;
+
+    /**
      * ChangePasswordAction constructor.
      *
-     * @param FormFactoryInterface $formFactory
-     * @param Environment $twig
-     * @param UrlGeneratorInterface $urlGenerator
+     * {@inheritdoc}
      */
     public function __construct(
+        string $oldPassword = null,
         FormFactoryInterface $formFactory,
         Environment $twig,
-        UrlGeneratorInterface $urlGenerator
+        UrlGeneratorInterface $urlGenerator,
+        ChangePasswordHandlerInterface $handler
     ) {
+        $this->oldPassword = $oldPassword;
         $this->formFactory = $formFactory;
         $this->twig = $twig;
         $this->urlGenerator = $urlGenerator;
+        $this->handler = $handler;
     }
 
+
     /**
-     * @param Request $request
-     * @param ChangePasswordHandler $handler
-     * @param ChangePasswordResponder $responder
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
+     * {@inheritdoc}
      */
     public function __invoke(
         Request $request,
-        ChangePasswordHandler $handler,
-        ChangePasswordResponder $responder
+        ChangePasswordResponderInterface $responder
     ) {
         $form = $this->formFactory->create(ChangePasswordType::class)
                                     ->handleRequest($request);
 
-        if ($handler->handle($form)) {
+        if ($this->handler->handle($form)) {
             $request->getSession()->getFlashBag()->add('success', 'Le mot de passe a bien été modifié');
             return $responder(true);
         }

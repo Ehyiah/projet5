@@ -10,60 +10,55 @@ use App\UI\Responder\NewCollectionResponder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
+
 
 /**
  * Class NewCollectionAction
- * @package App\Controller
  * @Route("/newCollection", name="newCollection")
  * @Security("has_role('ROLE_USER')")
  */
 class NewCollectionAction implements NewCollectionActionInterface
 {
     /**
-     * @var EncoderFactoryInterface
-     */
-    private $encoderFactory;
-
-    /**
      * @var FormFactoryInterface
      */
     private $formFactory;
 
+    /**
+     * @var NewCollectionHandlerInterface
+     */
+    private $handler;
 
     /**
      * NewCollectionAction constructor.
      *
-     * @param EncoderFactoryInterface $encoderFactory
-     * @param FormFactoryInterface $formFactory
+     * {@inheritdoc}
      */
     public function __construct(
-        EncoderFactoryInterface $encoderFactory,
-        FormFactoryInterface $formFactory
+        FormFactoryInterface $formFactory,
+        NewCollectionHandlerInterface $handler
     ) {
-        $this->encoderFactory = $encoderFactory;
         $this->formFactory = $formFactory;
+        $this->handler = $handler;
     }
 
 
     /**
-     * @param Request $request
-     * @param NewCollectionHandlerInterface $collectionHandler
-     * @param NewCollectionResponder $responder
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * {@inheritdoc}
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
     public function __invoke(
         Request $request,
-        NewCollectionHandlerInterface $collectionHandler,
         NewCollectionResponder $responder
-    ) {
+    ): Response {
         $form = $this->formFactory->create(CreateCollectionType::class)->handleRequest($request);
 
-        if ($collectionHandler->handle($form)) {
+        if ($this->handler->handle($form)) {
             $request->getSession()->getFlashBag()->add('success', 'La collection a bien été ajoutée');
             return $responder(true);
         }

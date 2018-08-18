@@ -6,7 +6,8 @@ namespace App\Controller\ElementCollection;
 use App\Controller\ElementCollection\Interfaces\NewElementCollectionActionInterface;
 use App\UI\Form\Type\ElementCollection\NewElementCollectionType;
 use App\UI\Form\Handler\Interfaces\NewElementCollectionHandlerInterface;
-use App\UI\Responder\NewElementCollectionResponder;
+use App\UI\Responder\Interfaces\NewElementCollectionResponderInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,8 +15,8 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 /**
  * Class NewElementCollectionAction
- * @package App\Controller
  * @Route("/newElement", name="newElement")
+ * @Security("has_role('ROLE_ADMIN')")
  */
 class NewElementCollectionAction implements NewElementCollectionActionInterface
 {
@@ -30,38 +31,37 @@ class NewElementCollectionAction implements NewElementCollectionActionInterface
     private $formFactory;
 
     /**
+     * @var NewElementCollectionHandlerInterface
+     */
+    private $handler;
+
+    /**
      * NewElementCollectionAction constructor.
      *
-     * @param EncoderFactoryInterface $encoderFactory
-     * @param FormFactoryInterface $formFactory
+     * {@inheritdoc}
      */
     public function __construct(
         EncoderFactoryInterface $encoderFactory,
-        FormFactoryInterface $formFactory
+        FormFactoryInterface $formFactory,
+        NewElementCollectionHandlerInterface $handler
     ) {
         $this->encoderFactory = $encoderFactory;
         $this->formFactory = $formFactory;
+        $this->handler = $handler;
     }
 
 
     /**
-     * @param Request $request
-     * @param NewElementCollectionHandlerInterface $newElementCollectionHandler
-     * @param NewElementCollectionResponder $responder
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
+     * {@inheritdoc}
      */
     public function __invoke(
         Request $request,
-        NewElementCollectionHandlerInterface $newElementCollectionHandler,
-        NewElementCollectionResponder $responder
+        NewElementCollectionResponderInterface $responder
     ) {
         $form = $this->formFactory->create(NewElementCollectionType::class)
                                     ->handleRequest($request);
 
-        if ($newElementCollectionHandler->handle($form)) {
+        if ($this->handler->handle($form)) {
             $request->getSession()->getFlashBag()->add('success', 'L\'élément a bien été créé');
             return $responder(true);
         }

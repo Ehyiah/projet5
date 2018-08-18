@@ -8,7 +8,10 @@ use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterfac
 use App\UI\Form\Handler\Interfaces\NewElementCollectionHandlerInterface;
 use Symfony\Component\Form\FormInterface;
 
-class NewElementCollectionHandler implements NewElementCollectionHandlerInterface
+/**
+ * Class NewElementCollectionHandler
+ */
+final class NewElementCollectionHandler implements NewElementCollectionHandlerInterface
 {
     /**
      * @var ElementCollectionRepositoryInterface
@@ -18,7 +21,7 @@ class NewElementCollectionHandler implements NewElementCollectionHandlerInterfac
     /**
      * NewElementCollectionHandler constructor.
      *
-     * @param ElementCollectionRepositoryInterface $collectionRepository
+     * {@inheritdoc}
      */
     public function __construct(ElementCollectionRepositoryInterface $collectionRepository)
     {
@@ -26,8 +29,7 @@ class NewElementCollectionHandler implements NewElementCollectionHandlerInterfac
     }
 
     /**
-     * @param FormInterface $form
-     * @return bool
+     * {@inheritdoc}
      */
     public function handle(FormInterface $form): bool
     {

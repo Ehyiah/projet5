@@ -2,13 +2,17 @@
 
 namespace App\Domain\DTO\Collection;
 
-
+use App\Domain\DTO\Collection\Interfaces\EditCollectionDTOInterface;
 use App\Entity\CategoryCollection;
 use App\Entity\ImageCollection;
+use App\Entity\Interfaces\CategoryCollectionInterface;
+use App\Entity\Interfaces\ImageCollectionInterface;
 
-class EditCollectionDTO
+/**
+ * Class EditCollectionDTO
+ */
+class EditCollectionDTO implements EditCollectionDTOInterface
 {
-
     /**
      * @var string
      */
@@ -37,18 +41,14 @@ class EditCollectionDTO
     /**
      * EditCollectionDTO constructor.
      *
-     * @param string $name
-     * @param string|null $tag
-     * @param CategoryCollection $category
-     * @param bool $visibility
-     * @param ImageCollection|null $image
+     * {@inheritdoc}
      */
     public function __construct(
         string $name,
         string $tag = null,
-        CategoryCollection $category,
+        CategoryCollectionInterface $category,
         bool $visibility,
-        ImageCollection $image = null
+        ImageCollectionInterface $image = null
     ) {
         $this->name = $name;
         $this->tag = $tag;

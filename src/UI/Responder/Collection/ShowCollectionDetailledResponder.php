@@ -10,7 +10,10 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
-class ShowCollectionDetailledResponder implements ShowCollectionDetailledResponderInterface
+/**
+ * Class ShowCollectionDetailledResponder
+ */
+final class ShowCollectionDetailledResponder implements ShowCollectionDetailledResponderInterface
 {
     /**
      * @var Environment
@@ -30,9 +33,7 @@ class ShowCollectionDetailledResponder implements ShowCollectionDetailledRespond
     /**
      * ShowCollectionDetailledResponder constructor.
      *
-     * @param Environment $twig
-     * @param UrlGeneratorInterface $urlGenerator
-     * @param SessionInterface $session
+     * {@inheritdoc}
      */
     public function __construct(
         Environment $twig,
@@ -46,9 +47,8 @@ class ShowCollectionDetailledResponder implements ShowCollectionDetailledRespond
 
 
     /**
-     * @param bool $redirect
-     * @param null $collection
-     * @return RedirectResponse|Response
+     * {@inheritdoc}
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax

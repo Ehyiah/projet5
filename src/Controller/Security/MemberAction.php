@@ -6,7 +6,7 @@ namespace App\Controller\Security;
 use App\Controller\Security\Interfaces\MemberActionInterface;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use App\Infra\Doctrine\Repository\Interfaces\ImageRepositoryInterface;
-use App\UI\Responder\MemberResponder;
+use App\UI\Responder\Interfaces\MemberResponderInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -45,10 +45,7 @@ class MemberAction implements MemberActionInterface
     /**
      * MemberAction constructor.
      *
-     * @param Environment $twig
-     * @param ImageRepositoryInterface $imageRepository
-     * @param CollectionRepositoryInterface $collection
-     * @param TokenStorageInterface $security
+     * {@inheritdoc}
      */
     public function __construct(
         Environment $twig,
@@ -64,16 +61,11 @@ class MemberAction implements MemberActionInterface
 
 
     /**
-     * @param Request $request
-     * @param MemberResponder $responder
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
+     * {@inheritdoc}
      */
     public function __invoke(
         Request $request,
-        MemberResponder $responder
+        MemberResponderInterface $responder
     ) {
         $user = $this->security->getToken()->getUser();
 

@@ -7,12 +7,14 @@ use App\UI\Responder\Collection\Interfaces\EditCollectionResponderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
-class EditCollectionResponder implements EditCollectionResponderInterface
+/**
+ * Class EditCollectionResponder
+ */
+final class EditCollectionResponder implements EditCollectionResponderInterface
 {
     /**
      * @var Environment
@@ -32,9 +34,7 @@ class EditCollectionResponder implements EditCollectionResponderInterface
     /**
      * EditCollectionResponder constructor.
      *
-     * @param Environment $twig
-     * @param UrlGeneratorInterface $urlGenerator
-     * @param SessionInterface $session
+     * {@inheritdoc}
      */
     public function __construct(
         Environment $twig,
@@ -48,9 +48,8 @@ class EditCollectionResponder implements EditCollectionResponderInterface
 
 
     /**
-     * @param bool $redirect
-     * @param FormInterface|null $form
-     * @return RedirectResponse|Response
+     * {@inheritdoc}
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax

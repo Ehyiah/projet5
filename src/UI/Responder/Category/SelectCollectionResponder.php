@@ -10,7 +10,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
-class SelectCollectionResponder implements SelectCollectionResponderInterface
+/**
+ * Class SelectCollectionResponder
+ */
+final class SelectCollectionResponder implements SelectCollectionResponderInterface
 {
     /**
      * @var Environment
@@ -25,8 +28,7 @@ class SelectCollectionResponder implements SelectCollectionResponderInterface
     /**
      * SelectCollectionResponder constructor.
      *
-     * @param Environment $twig
-     * @param UrlGeneratorInterface $urlGenerator
+     * {@inheritdoc}
      */
     public function __construct(
         Environment $twig,
@@ -38,9 +40,8 @@ class SelectCollectionResponder implements SelectCollectionResponderInterface
 
 
     /**
-     * @param bool $redirect
-     * @param FormInterface|null $form
-     * @return RedirectResponse|Response
+     * {@inheritdoc}
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax

@@ -12,7 +12,6 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Class User
- * @package App\Entity
  */
 class User implements BaseUserInterface, UserInterface, \Serializable
 {
@@ -87,7 +86,8 @@ class User implements BaseUserInterface, UserInterface, \Serializable
     /**
      * User constructor.
      *
-     * @param AddUserDTO $addUserDTO
+     * {@inheritdoc}
+     *
      * @throws \Exception
      */
     public function __construct(AddUserDTO $addUserDTO)
@@ -120,11 +120,19 @@ class User implements BaseUserInterface, UserInterface, \Serializable
         $this->email = $email;
     }
 
-    public function editPassword($password)
+    /**
+     * {@inheritdoc}
+     */
+    public function editPassword(string $password): string
     {
-        $this->password = $password;
+        return $this->password = $password;
     }
 
+    /**
+     * @param $token
+     *
+     * @throws \Exception
+     */
     public function newResetToken($token)
     {
         $this->token_reset = $token;
@@ -233,6 +241,9 @@ class User implements BaseUserInterface, UserInterface, \Serializable
     }
 
 
+    /**
+     * {@inheritdoc}
+     */
     public function addRoleAdmin(): bool
     {
         if (\in_array('ROLE_ADMIN', $this->roles)) {

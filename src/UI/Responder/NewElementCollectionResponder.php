@@ -9,7 +9,10 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class NewElementCollectionResponder implements NewElementCollectionResponderInterface
+/**
+ * Class NewElementCollectionResponder
+ */
+final class NewElementCollectionResponder implements NewElementCollectionResponderInterface
 {
     /**
      * @var Environment
@@ -19,7 +22,7 @@ class NewElementCollectionResponder implements NewElementCollectionResponderInte
     /**
      * NewElementCollectionResponder constructor.
      *
-     * @param Environment $twig
+     * {@inheritdoc}
      */
     public function __construct(Environment $twig)
     {
@@ -27,9 +30,8 @@ class NewElementCollectionResponder implements NewElementCollectionResponderInte
     }
 
     /**
-     * @param bool $redirect
-     * @param FormInterface|null $form
-     * @return RedirectResponse|Response
+     * {@inheritdoc}
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax

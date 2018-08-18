@@ -3,12 +3,16 @@
 namespace App\UI\Form\Handler\Security;
 
 
+use App\Infra\Doctrine\Repository\Interfaces\UserRepositoryInterface;
 use App\Infra\Doctrine\Repository\UserRepository;
 use App\UI\Form\Handler\Security\Interfaces\PasswordRecoverInputHandlerInterface;
 use Symfony\Component\Form\FormInterface;
 use Twig\Environment;
 
-class PasswordRecoverInputHandler implements PasswordRecoverInputHandlerInterface
+/**
+ * Class PasswordRecoverInputHandler
+ */
+final class PasswordRecoverInputHandler implements PasswordRecoverInputHandlerInterface
 {
     /**
      * @var UserRepository
@@ -28,12 +32,10 @@ class PasswordRecoverInputHandler implements PasswordRecoverInputHandlerInterfac
     /**
      * PasswordRecoverInputHandler constructor.
      *
-     * @param UserRepository $userRepository
-     * @param Environment $twig
-     * @param \Swift_Mailer $mail
+     * {@inheritdoc}
      */
     public function __construct(
-        UserRepository $userRepository,
+        UserRepositoryInterface $userRepository,
         Environment $twig,
         \Swift_Mailer $mail
     ) {
@@ -44,18 +46,16 @@ class PasswordRecoverInputHandler implements PasswordRecoverInputHandlerInterfac
 
 
     /**
-     * @param FormInterface $form
-     * @return bool
+     * {@inheritdoc}
+     *
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function handle(
-        FormInterface $form
-    ) {
-
+    public function handle(FormInterface $form)
+    {
         if ($form->isSubmitted() && $form->isValid()) {
             // on récupère le nom dans le Form
             $userName = $form->getData()->name;

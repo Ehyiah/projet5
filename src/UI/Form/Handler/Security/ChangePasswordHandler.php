@@ -4,13 +4,17 @@ namespace App\UI\Form\Handler\Security;
 
 
 use App\Entity\User;
+use App\Infra\Doctrine\Repository\Interfaces\UserRepositoryInterface;
 use App\Infra\Doctrine\Repository\UserRepository;
 use App\UI\Form\Handler\Security\Interfaces\ChangePasswordHandlerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
-class ChangePasswordHandler implements ChangePasswordHandlerInterface
+/**
+ * Class ChangePasswordHandler
+ */
+final class ChangePasswordHandler implements ChangePasswordHandlerInterface
 {
     /**
      * @var TokenStorageInterface
@@ -18,7 +22,7 @@ class ChangePasswordHandler implements ChangePasswordHandlerInterface
     private $security;
 
     /**
-     * @var UserRepository
+     * @var UserRepositoryInterface
      */
     private $user;
 
@@ -30,13 +34,11 @@ class ChangePasswordHandler implements ChangePasswordHandlerInterface
     /**
      * ChangePasswordHandler constructor.
      *
-     * @param TokenStorageInterface $security
-     * @param UserRepository $user
-     * @param EncoderFactoryInterface $encoderFactory
+     * {@inheritdoc}
      */
     public function __construct(
         TokenStorageInterface $security,
-        UserRepository $user,
+        UserRepositoryInterface $user,
         EncoderFactoryInterface $encoderFactory
     ) {
         $this->security = $security;
@@ -44,7 +46,9 @@ class ChangePasswordHandler implements ChangePasswordHandlerInterface
         $this->encoderFactory = $encoderFactory;
     }
 
-
+    /**
+     * {@inheritdoc}
+     */
     public function handle(FormInterface $form)
     {
         if ($form->isSubmitted() && $form->isValid()) {

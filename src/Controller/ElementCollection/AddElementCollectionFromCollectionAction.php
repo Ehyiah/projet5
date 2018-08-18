@@ -7,6 +7,7 @@ use App\Controller\ElementCollection\Interfaces\AddElementCollectionFromCollecti
 use App\Domain\DTO\AddElementCollectionDTO;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use App\UI\Form\Handler\ElementCollection\AddElementCollectionHandler;
+use App\UI\Form\Handler\ElementCollection\Interfaces\AddElementCollectionHandlerInterface;
 use App\UI\Form\Type\ElementCollection\AddElementCollectionFromCollectionType;
 use App\UI\Responder\ElementCollection\AddElementFromCollectionResponder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -16,7 +17,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class AddElementCollectionFromCollectionAction
- * @package App\Controller\ElementCollection
  * @Route("/addElement/{id}", name="addElement")
  * @Security("has_role('ROLE_USER')")
  */
@@ -33,26 +33,29 @@ class AddElementCollectionFromCollectionAction implements AddElementCollectionFr
     private $collection;
 
     /**
+     * @var AddElementCollectionHandlerInterface
+     */
+    private $handler;
+
+    /**
      * AddElementCollectionFromCollectionAction constructor.
      *
-     * @param FormFactoryInterface $formFactory
-     * @param CollectionRepositoryInterface $collection
+     * {@inheritdoc}
      */
     public function __construct(
         FormFactoryInterface $formFactory,
-        CollectionRepositoryInterface $collection
+        CollectionRepositoryInterface $collection,
+        AddElementCollectionHandlerInterface $handler
     ) {
         $this->formFactory = $formFactory;
         $this->collection = $collection;
+        $this->handler = $handler;
     }
 
 
     /**
-     * @param Request $request
-     * @param $id
-     * @param AddElementCollectionHandler $handler
-     * @param AddElementFromCollectionResponder $responder
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * {@inheritdoc}
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
@@ -60,7 +63,6 @@ class AddElementCollectionFromCollectionAction implements AddElementCollectionFr
     public function __invoke(
         Request $request,
         $id,
-        AddElementCollectionHandler $handler,
         AddElementFromCollectionResponder $responder
     ) {
 
@@ -75,7 +77,7 @@ class AddElementCollectionFromCollectionAction implements AddElementCollectionFr
         $request->getSession()->set('id', $id);
 
 
-        if ($handler->handle($form)) {
+        if ($this->handler->handle($form)) {
             $request->getSession()->getFlashBag()->add('success', 'L\'élément a bien été ajoutée à la collection');
             return $responder(true);
         }

@@ -3,9 +3,13 @@
 namespace App\Domain\DTO\Security;
 
 
+use App\Domain\DTO\Security\Interfaces\ChangePasswordFromEmailDTOInterface;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
-class ChangePasswordFromEmailDTO
+/**
+ * Class ChangePasswordFromEmailDTO
+ */
+class ChangePasswordFromEmailDTO implements ChangePasswordFromEmailDTOInterface
 {
     /**
      * @var PasswordType
@@ -20,8 +24,7 @@ class ChangePasswordFromEmailDTO
     /**
      * ChangePasswordFromEmailDTO constructor.
      *
-     * @param PasswordType|null $password
-     * @param string|null $token
+     * {@inheritdoc}
      */
     public function __construct(
         PasswordType $password = null,

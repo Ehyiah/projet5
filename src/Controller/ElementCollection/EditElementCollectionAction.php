@@ -7,7 +7,7 @@ use App\Controller\ElementCollection\Interfaces\EditElementCollectionActionInter
 use App\Domain\DTO\AddElementImageDTO;
 use App\Domain\DTO\ElementCollection\EditElementCollectionDTO;
 use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface;
-use App\UI\Form\Handler\ElementCollection\EditElementCollectionHandler;
+use App\UI\Form\Handler\ElementCollection\Interfaces\EditElementCollectionHandlerInterface;
 use App\UI\Form\Type\ElementCollection\EditElementCollectionType;
 use App\UI\Responder\ElementCollection\EditElementCollectionResponder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -17,7 +17,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class EditElementCollectionAction
- * @package App\Controller\ElementCollection
  * @Route("/edit/{id}", name="editElementCollection")
  * @Security("has_role('ROLE_USER')")
  */
@@ -34,26 +33,29 @@ class EditElementCollectionAction implements EditElementCollectionActionInterfac
     private $formFactory;
 
     /**
+     * @var EditElementCollectionHandlerInterface
+     */
+    private $handler;
+
+    /**
      * EditElementCollectionAction constructor.
      *
-     * @param ElementCollectionRepositoryInterface $elementRepository
-     * @param FormFactoryInterface $formFactory
+     * {@inheritdoc}
      */
     public function __construct(
         ElementCollectionRepositoryInterface $elementRepository,
-        FormFactoryInterface $formFactory
+        FormFactoryInterface $formFactory,
+        EditElementCollectionHandlerInterface $handler
     ) {
         $this->elementRepository = $elementRepository;
         $this->formFactory = $formFactory;
+        $this->handler = $handler;
     }
 
 
     /**
-     * @param Request $request
-     * @param EditElementCollectionResponder $responder
-     * @param EditElementCollectionHandler $handler
-     * @param $id
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * {@inheritdoc}
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
@@ -61,7 +63,6 @@ class EditElementCollectionAction implements EditElementCollectionActionInterfac
     public function __invoke(
         Request $request,
         EditElementCollectionResponder $responder,
-        EditElementCollectionHandler $handler,
         $id
     ) {
         $elementObjet = $this->elementRepository->find($id);
@@ -89,7 +90,7 @@ class EditElementCollectionAction implements EditElementCollectionActionInterfac
 
         $request->getSession()->set('idElement', $request->attributes->get('id'));
 
-        if ($handler->handle($form, $elementObjet)) {
+        if ($this->handler->handle($form, $elementObjet)) {
             $request->getSession()->getFlashBag()->add('success', 'L\'élément a bien été modifié');
             return $responder(true);
         }

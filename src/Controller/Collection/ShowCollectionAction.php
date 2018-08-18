@@ -13,7 +13,6 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 /**
  * Class ShowCollectionAction
- * @package App\Controller\Collection
  * @Route("/show/{id}", name="show")
  * @Security("has_role('ROLE_USER')")
  */
@@ -32,8 +31,7 @@ class ShowCollectionAction implements ShowCollectionActionInterface
     /**
      * ShowCollectionAction constructor.
      *
-     * @param CollectionRepositoryInterface $collectionRepository
-     * @param TokenStorageInterface $security
+     * {@inheritdoc}
      */
     public function __construct(
         CollectionRepositoryInterface $collectionRepository,
@@ -45,10 +43,8 @@ class ShowCollectionAction implements ShowCollectionActionInterface
 
 
     /**
-     * @param Request $request
-     * @param ShowCollectionResponder $responder
-     * @param null $id
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * {@inheritdoc}
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax

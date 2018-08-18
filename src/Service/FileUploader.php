@@ -5,6 +5,9 @@ namespace App\Service;
 use App\Service\Interfaces\FileUploaderInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+/**
+ * Class FileUploader
+ */
 class FileUploader implements FileUploaderInterface
 {
     /**
@@ -15,7 +18,7 @@ class FileUploader implements FileUploaderInterface
     /**
      * FileUploader constructor.
      *
-     * @param $targetDirectory
+     * {@inheritdoc}
      */
     public function __construct($targetDirectory)
     {
@@ -23,14 +26,16 @@ class FileUploader implements FileUploaderInterface
     }
 
     /**
-     * @param UploadedFile $file
-     * @param string $fileName
+     * {@inheritdoc}
      */
     public function upload(UploadedFile $file, string $fileName)
     {
         $file->move($this->getTargetDirectory(), $fileName);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getTargetDirectory()
     {
         return $this->targetDirectory;

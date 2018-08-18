@@ -10,12 +10,15 @@ use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterfac
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
-class ElementCollectionRepository extends ServiceEntityRepository implements ElementCollectionRepositoryInterface
+/**
+ * Class ElementCollectionRepository
+ */
+final class ElementCollectionRepository extends ServiceEntityRepository implements ElementCollectionRepositoryInterface
 {
     /**
      * ElementCollectionRepository constructor.
      *
-     * @param ManagerRegistry $registry
+     * {@inheritdoc}
      */
     public function __construct(ManagerRegistry $registry)
     {
@@ -23,7 +26,7 @@ class ElementCollectionRepository extends ServiceEntityRepository implements Ele
     }
 
     /**
-     * @param ElementCollectionInterface $elementCollection
+     * {@inheritdoc}
      */
     public function save(ElementCollectionInterface $elementCollection): void
     {
@@ -32,7 +35,7 @@ class ElementCollectionRepository extends ServiceEntityRepository implements Ele
     }
 
     /**
-     * @param ElementCollectionInterface $elementCollection
+     * {@inheritdoc}
      */
     public function edit(ElementCollectionInterface $elementCollection)
     {
@@ -40,7 +43,7 @@ class ElementCollectionRepository extends ServiceEntityRepository implements Ele
     }
 
     /**
-     * @param $elementCollection
+     * {@inheritdoc}
      */
     public function remove($elementCollection)
     {
@@ -49,7 +52,7 @@ class ElementCollectionRepository extends ServiceEntityRepository implements Ele
     }
 
     /**
-     * @param ImageCollection $imageCollection
+     * {@inheritdoc}
      */
     public function removeImage(ImageCollection $imageCollection)
     {
@@ -58,8 +61,7 @@ class ElementCollectionRepository extends ServiceEntityRepository implements Ele
     }
 
     /**
-     * @param $id
-     * @return mixed
+     * {@inheritdoc}
      */
     public function findCollectionById($id)
     {

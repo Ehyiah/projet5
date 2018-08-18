@@ -3,9 +3,14 @@
 namespace App\Domain\DTO\ElementCollection;
 
 
+use App\Domain\DTO\ElementCollection\Interfaces\EditElementCollectionDTOInterface;
 use App\Entity\Collection;
+use App\Entity\Interfaces\CollectionInterface;
 
-class EditElementCollectionDTO
+/**
+ * Class EditElementCollectionDTO
+ */
+class EditElementCollectionDTO implements EditElementCollectionDTOInterface
 {
     /**
      * @var string
@@ -65,16 +70,7 @@ class EditElementCollectionDTO
     /**
      * EditElementCollectionDTO constructor.
      *
-     * @param string $title
-     * @param string|null $region
-     * @param string|null $publisher
-     * @param string|null $etat
-     * @param int|null $buy_price
-     * @param string|null $support
-     * @param int|null $player_number
-     * @param float|null $value
-     * @param Collection|null $collection
-     * @param array $images
+     * {@inheritdoc}
      */
     public function __construct(
         string $title,
@@ -85,7 +81,7 @@ class EditElementCollectionDTO
         string $support = null,
         int $player_number = null,
         float $value = null,
-        Collection $collection = null,
+        CollectionInterface $collection = null,
         array $images = []
     ) {
         $this->title = $title;

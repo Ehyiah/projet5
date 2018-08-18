@@ -7,7 +7,10 @@ use App\Infra\Doctrine\Repository\Interfaces\CategoryCollectionRepositoryInterfa
 use App\UI\Form\Handler\Collection\Interfaces\SelectCollectionHandlerInterface;
 use Symfony\Component\Form\FormInterface;
 
-class SelectCollectionHandler implements SelectCollectionHandlerInterface
+/**
+ * Class SelectCollectionHandler
+ */
+final class SelectCollectionHandler implements SelectCollectionHandlerInterface
 {
     /**
      * @var CategoryCollectionRepositoryInterface
@@ -17,14 +20,16 @@ class SelectCollectionHandler implements SelectCollectionHandlerInterface
     /**
      * SelectCollectionHandler constructor.
      *
-     * @param CategoryCollectionRepositoryInterface $categoryRepository
+     * {@inheritdoc}
      */
     public function __construct(CategoryCollectionRepositoryInterface $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }
 
-
+    /**
+     * {@inheritdoc}
+     */
     public function handle(FormInterface $form)
     {
         if ($form->isSubmitted() && $form->isValid()) {

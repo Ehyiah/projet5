@@ -1,11 +1,16 @@
 <?php
 
-namespace App\Domain\DTO;
+namespace App\Domain\DTO\ElementCollection;
 
 
+use App\Domain\DTO\ElementCollection\Interfaces\AddElementCollectionDTOInterface;
 use App\Entity\Collection;
+use App\Entity\Interfaces\CollectionInterface;
 
-class AddElementCollectionDTO
+/**
+ * Class AddElementCollectionDTO
+ */
+class AddElementCollectionDTO implements AddElementCollectionDTOInterface
 {
     /**
      * @var string
@@ -60,16 +65,7 @@ class AddElementCollectionDTO
     /**
      * AddElementCollectionDTO constructor.
      *
-     * @param string|null $title
-     * @param string|null $region
-     * @param string|null $publisher
-     * @param string|null $etat
-     * @param int|null $buy_price
-     * @param string|null $support
-     * @param int|null $player_number
-     * @param float|null $value
-     * @param Collection|null $collection
-     * @param array|null $images
+     * {@inheritdoc}
      */
     public function __construct(
         string $title = null,
@@ -80,7 +76,7 @@ class AddElementCollectionDTO
         string $support = null,
         int $player_number = null,
         float $value = null,
-        Collection $collection = null,
+        CollectionInterface $collection = null,
         array $images = null
     ) {
         $this->title = $title;

@@ -6,7 +6,6 @@ namespace App\Controller\Category;
 use App\Controller\Category\Interfaces\NewCategoryCollectionActionInterface;
 use App\UI\Form\Handler\Interfaces\NewCategoryCollectionHandlerInterface;
 use App\UI\Form\Type\Category\CategoryType;
-use App\UI\Form\Type\Security\PasswordRecoverInputType;
 use App\UI\Responder\NewImageCollectionResponder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -16,7 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class NewCategoryCollectionAction
- * @package App\Controller
  * @Route ("/newCategory", name="newCategory")
  * @Security("has_role('ROLE_ADMIN')")
  */
@@ -40,9 +38,7 @@ class NewCategoryCollectionAction implements NewCategoryCollectionActionInterfac
     /**
      * NewCategoryCollectionAction constructor.
      *
-     * @param EncoderFactoryInterface $encoderFactory
-     * @param FormFactoryInterface $formFactory
-     * @param NewCategoryCollectionHandlerInterface $formHandler
+     * {@inheritdoc}
      */
     public function __construct(
         EncoderFactoryInterface $encoderFactory,
@@ -56,9 +52,8 @@ class NewCategoryCollectionAction implements NewCategoryCollectionActionInterfac
 
 
     /**
-     * @param Request $request
-     * @param NewImageCollectionResponder $responder
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * {@inheritdoc}
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax

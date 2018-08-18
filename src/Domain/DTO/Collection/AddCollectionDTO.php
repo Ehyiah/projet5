@@ -1,13 +1,18 @@
 <?php
 
-namespace App\Domain\DTO;
+namespace App\Domain\DTO\Collection;
 
 
+use App\Domain\DTO\Collection\Interfaces\AddCollectionDTOInterface;
 use App\Entity\ImageCollection;
 use App\Entity\CategoryCollection;
+use App\Entity\Interfaces\CategoryCollectionInterface;
+use App\Entity\Interfaces\ImageCollectionInterface;
 
-
-class AddCollectionDTO
+/**
+ * Class AddCollectionDTO
+ */
+class AddCollectionDTO implements AddCollectionDTOInterface
 {
     /**
      * @var string
@@ -37,18 +42,14 @@ class AddCollectionDTO
     /**
      * AddCollectionDTO constructor.
      *
-     * @param string $name
-     * @param string|null $tag
-     * @param CategoryCollection $category
-     * @param bool $visibility
-     * @param ImageCollection|null $image
+     * {@inheritdoc}
      */
     public function __construct(
         string $name,
         string $tag = null,
-        CategoryCollection $category,
+        CategoryCollectionInterface $category,
         bool $visibility,
-        ImageCollection $image = null
+        ImageCollectionInterface $image = null
     ) {
         $this->name = $name;
         $this->tag = $tag;

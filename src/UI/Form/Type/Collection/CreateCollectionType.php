@@ -3,7 +3,8 @@
 namespace App\UI\Form\Type\Collection;
 
 
-use App\Domain\DTO\AddCollectionDTO;
+use App\Domain\DTO\Collection\AddCollectionDTO;
+use App\Domain\DTO\Collection\Interfaces\AddCollectionDTOInterface;
 use App\Entity\CategoryCollection;
 use App\UI\Form\DataTransformer\ImageCollectionDataTransformer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -58,10 +59,13 @@ class CreateCollectionType extends AbstractType
         $builder->get('image')->addModelTransformer($this->imageCollectionDataTransformer);
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => AddCollectionDTO::class,
+            'data_class' => AddCollectionDTOInterface::class,
             'empty_data' => function (FormInterface $form){
                 return new AddCollectionDTO(
                     $form->get('name')->getData(),

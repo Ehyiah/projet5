@@ -8,7 +8,10 @@ use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterfac
 use App\UI\Form\Handler\ElementCollection\Interfaces\AddElementCollectionHandlerInterface;
 use Symfony\Component\Form\FormInterface;
 
-class AddElementCollectionHandler implements AddElementCollectionHandlerInterface
+/**
+ * Class AddElementCollectionHandler
+ */
+final class AddElementCollectionHandler implements AddElementCollectionHandlerInterface
 {
     /**
      * @var ElementCollectionRepositoryInterface
@@ -18,14 +21,18 @@ class AddElementCollectionHandler implements AddElementCollectionHandlerInterfac
     /**
      * AddElementCollectionHandler constructor.
      *
-     * @param ElementCollectionRepositoryInterface $elementCollection
+     * {@inheritdoc}
      */
     public function __construct(ElementCollectionRepositoryInterface $elementCollection)
     {
         $this->elementCollection = $elementCollection;
     }
 
-
+    /**
+     * {@inheritdoc}
+     *
+     * @throws \Exception
+     */
     public function handle(FormInterface $form): bool
     {
         if ($form->isSubmitted() && $form->isValid()) {

@@ -4,15 +4,18 @@ namespace App\UI\Form\Handler;
 
 
 use App\Entity\User;
-use App\Infra\Doctrine\Repository\UserRepository;
+use App\Infra\Doctrine\Repository\Interfaces\UserRepositoryInterface;
 use App\UI\Form\Handler\Interfaces\NewUserHandlerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
-class NewUserHandler implements NewUserHandlerInterface
+/**
+ * Class NewUserHandler
+ */
+final class NewUserHandler implements NewUserHandlerInterface
 {
     /**
-     * @var UserRepository
+     * @var UserRepositoryInterface
      */
     private $user;
 
@@ -21,16 +24,13 @@ class NewUserHandler implements NewUserHandlerInterface
      */
     private $encoderFactory;
 
-
-
     /**
      * NewUserHandler constructor.
      *
-     * @param UserRepository $user
-     * @param EncoderFactoryInterface $encoderFactory
+     * {@inheritdoc}
      */
     public function __construct(
-        UserRepository $user,
+        UserRepositoryInterface $user,
         EncoderFactoryInterface $encoderFactory
     ) {
         $this->user = $user;
@@ -38,8 +38,7 @@ class NewUserHandler implements NewUserHandlerInterface
     }
 
     /**
-     * @param FormInterface $form
-     * @return bool
+     * {@inheritdoc}
      */
     public function handle(FormInterface $form) : bool
     {

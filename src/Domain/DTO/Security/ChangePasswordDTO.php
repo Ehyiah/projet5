@@ -3,7 +3,12 @@
 namespace App\Domain\DTO\Security;
 
 
-class ChangePasswordDTO
+use App\Domain\DTO\Security\Interfaces\ChangePasswordDTOInterface;
+
+/**
+ * Class ChangePasswordDTO
+ */
+class ChangePasswordDTO implements ChangePasswordDTOInterface
 {
     /**
      * @var string
@@ -15,12 +20,10 @@ class ChangePasswordDTO
      */
     public $oldPassword;
 
-
     /**
      * ChangePasswordDTO constructor.
      *
-     * @param string $password
-     * @param string $oldPassword
+     * {@inheritdoc}
      */
     public function __construct(
         string $password,

@@ -4,24 +4,39 @@ namespace App\Controller\Security\Interfaces;
 
 
 use App\Infra\Doctrine\Repository\UserRepository;
-use App\UI\Form\Handler\Security\ChangePasswordFromEmailHandler;
-use App\UI\Responder\Security\ChangePasswordFromEmailResponder;
+use App\UI\Form\Handler\Security\Interfaces\ChangePasswordFromEmailHandlerInterface;
+use App\UI\Responder\Security\Interfaces\ChangePasswordFromEmailResponderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 interface ChangePasswordFromEmailActionInterface
 {
+    /**
+     * ChangePasswordFromEmailActionInterface constructor.
+     *
+     * @param UserRepository $userRepository
+     * @param TokenStorageInterface $security
+     * @param FormFactoryInterface $formFactory
+     * @param ChangePasswordFromEmailHandlerInterface $handler
+     */
     public function __construct(
         UserRepository $userRepository,
         TokenStorageInterface $security,
-        FormFactoryInterface $formFactory
-    );
+        FormFactoryInterface $formFactory,
+        ChangePasswordFromEmailHandlerInterface $handler
+    ) ;
 
+    /**
+     * @param Request $request
+     * @param ChangePasswordFromEmailResponderInterface $responder
+     * @param $token
+     *
+     * @return mixed
+     */
     public function __invoke(
         Request $request,
-        ChangePasswordFromEmailResponder $responder,
-        ChangePasswordFromEmailHandler $handler,
+        ChangePasswordFromEmailResponderInterface $responder,
         $token
     );
 }

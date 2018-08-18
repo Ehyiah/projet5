@@ -10,7 +10,6 @@ use Ramsey\Uuid\UuidInterface;
 
 /**
  * Class ImageCollection
- * @package App\Entity
  */
 class ImageCollection implements ImageCollectionInterface
 {
@@ -50,9 +49,6 @@ class ImageCollection implements ImageCollectionInterface
     {
         $this->image_element_collection = $image_element_collection;
     }
-
-
-
 
     /**
      * @return UuidInterface
@@ -94,7 +90,6 @@ class ImageCollection implements ImageCollectionInterface
         return $this->image_element_collection;
     }
 
-
     /**
      * @param string $title
      */
@@ -102,9 +97,6 @@ class ImageCollection implements ImageCollectionInterface
     {
         $this->title = $title;
     }
-
-
-
 
     /**
      * @return $this
@@ -122,7 +114,6 @@ class ImageCollection implements ImageCollectionInterface
         $this->image_element_collection = $image_element_collection;
     }
 
-
     /**
      * ImageCollection constructor.
      *
@@ -136,12 +127,8 @@ class ImageCollection implements ImageCollectionInterface
         $this->creation_date = new \DateTimeImmutable();
     }
 
-
-
     /**
-     * @param string $title
-     * @param \DateTime $update_date
-     * @param \SplFileInfo $image
+     * {@inheritdoc}
      */
     public function edit(
         string $title,

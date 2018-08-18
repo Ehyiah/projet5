@@ -9,7 +9,18 @@ use Symfony\Component\Form\FormInterface;
 
 interface EditCollectionHandlerInterface
 {
+    /**
+     * EditCollectionHandlerInterface constructor.
+     *
+     * @param CollectionRepositoryInterface $collectionRepository
+     */
     public function __construct(CollectionRepositoryInterface $collectionRepository);
 
+    /**
+     * @param FormInterface $form
+     * @param Collection $collection
+     *
+     * @return bool
+     */
     public function handle(FormInterface $form, Collection $collection) : bool;
 }

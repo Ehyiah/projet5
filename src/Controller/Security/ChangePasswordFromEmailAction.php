@@ -6,9 +6,9 @@ namespace App\Controller\Security;
 use App\Controller\Security\Interfaces\ChangePasswordFromEmailActionInterface;
 use App\Domain\DTO\Security\ChangePasswordFromEmailDTO;
 use App\Infra\Doctrine\Repository\UserRepository;
-use App\UI\Form\Handler\Security\ChangePasswordFromEmailHandler;
+use App\UI\Form\Handler\Security\Interfaces\ChangePasswordFromEmailHandlerInterface;
 use App\UI\Form\Type\User\ChangePasswordFromEmailType;
-use App\UI\Responder\Security\ChangePasswordFromEmailResponder;
+use App\UI\Responder\Security\Interfaces\ChangePasswordFromEmailResponderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,7 +16,6 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 /**
  * Class ChangePasswordFromEmailAction
- * @package App\Controller\Security
  * @Route("/recovery/{token}", name="recoveryToken")
  */
 class ChangePasswordFromEmailAction implements ChangePasswordFromEmailActionInterface
@@ -37,39 +36,36 @@ class ChangePasswordFromEmailAction implements ChangePasswordFromEmailActionInte
     private $formFactory;
 
     /**
+     * @var ChangePasswordFromEmailHandlerInterface
+     */
+    private $handler;
+
+    /**
      * ChangePasswordFromEmailAction constructor.
      *
-     * @param UserRepository $userRepository
-     * @param TokenStorageInterface $security
-     * @param FormFactoryInterface $formFactory
+     * {@inheritdoc}
      */
     public function __construct(
         UserRepository $userRepository,
         TokenStorageInterface $security,
-        FormFactoryInterface $formFactory
+        FormFactoryInterface $formFactory,
+        ChangePasswordFromEmailHandlerInterface $handler
     ) {
         $this->userRepository = $userRepository;
         $this->security = $security;
         $this->formFactory = $formFactory;
+        $this->handler = $handler;
     }
 
 
     /**
-     * @param Request $request
-     * @param ChangePasswordFromEmailResponder $responder
-     * @param ChangePasswordFromEmailHandler $handler
-     * @param $token
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
+     * {@inheritdoc}
+     *
+     * @return mixed
      */
     public function __invoke(
         Request $request,
-        ChangePasswordFromEmailResponder $responder,
-        ChangePasswordFromEmailHandler $handler,
+        ChangePasswordFromEmailResponderInterface $responder,
         $token
     ) {
         $dto = new ChangePasswordFromEmailDTO(null, $token);
@@ -77,8 +73,7 @@ class ChangePasswordFromEmailAction implements ChangePasswordFromEmailActionInte
         $form = $this->formFactory->create(ChangePasswordFromEmailType::class, $dto)
                                     ->handleRequest($request);
 
-
-        if ($handler->handle($form, $request)) {
+        if ($this->handler->handle($form, $request)) {
             $request->getSession()->getFlashBag()->add('success', 'Le mot de passe a bien été modifié');
             return $responder(true);
         }

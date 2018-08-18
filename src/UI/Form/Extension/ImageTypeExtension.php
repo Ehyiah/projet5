@@ -11,18 +11,30 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
+/**
+ * Class ImageTypeExtension
+ */
 class ImageTypeExtension extends AbstractTypeExtension implements ImageTypeExtensionInterface
 {
+    /**
+     * {@inheritdoc}
+     */
     public function getExtendedType()
     {
         return FileType::class;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefined(array('image_property'));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         if (isset($options['image_property'])) {

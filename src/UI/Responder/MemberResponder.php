@@ -8,7 +8,9 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-
+/**
+ * Class MemberResponder
+ */
 class MemberResponder implements MemberResponderInterface
 {
     /**
@@ -19,7 +21,7 @@ class MemberResponder implements MemberResponderInterface
     /**
      * MemberResponder constructor.
      *
-     * @param Environment $twig
+     * {@inheritdoc}
      */
     public function __construct(Environment $twig)
     {
@@ -27,9 +29,8 @@ class MemberResponder implements MemberResponderInterface
     }
 
     /**
-     * @param bool $redirect
-     * @param array $collections
-     * @return RedirectResponse|Response
+     * {@inheritdoc}
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
@@ -47,5 +48,4 @@ class MemberResponder implements MemberResponderInterface
 
         return $response;
     }
-
 }

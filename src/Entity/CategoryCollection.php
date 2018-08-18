@@ -2,16 +2,15 @@
 
 namespace App\Entity;
 
-use App\Domain\DTO\AddCategoryDTO;
+
+use App\Domain\DTO\Category\Interfaces\AddCategoryDTOInterface;
 use App\Entity\Interfaces\CategoryCollectionInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
-
 /**
  * Class CategoryCollection
- * @package App\Entity
  */
 class CategoryCollection implements CategoryCollectionInterface
 {
@@ -33,13 +32,14 @@ class CategoryCollection implements CategoryCollectionInterface
     private $collections;
 
 
-
     /**
      * CategoryCollection constructor.
      *
-     * @param AddCategoryDTO $addCategoryDTO
+     * {@inheritdoc}
+     *
+     * @throws \Exception
      */
-    public function __construct(AddCategoryDTO $addCategoryDTO)
+    public function __construct(AddCategoryDTOInterface $addCategoryDTO)
     {
         $this->id = Uuid::uuid4();
         $this->category_collection = $addCategoryDTO->category_collection;
@@ -49,7 +49,7 @@ class CategoryCollection implements CategoryCollectionInterface
     
 
     /**
-     * @return UuidInterface
+     * {@inheritdoc}
      */
     public function getId(): UuidInterface
     {
@@ -57,7 +57,7 @@ class CategoryCollection implements CategoryCollectionInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getCategoryCollection(): string
     {
@@ -65,20 +65,18 @@ class CategoryCollection implements CategoryCollectionInterface
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     public function getCollections()
     {
         return $this->collections;
     }
 
-
     /**
-     * @param $category
+     * {@inheritdoc}
      */
     public function edit(string $category)
     {
-        $this->category_collection = $category;
+        return $this->category_collection = $category;
     }
-
 }

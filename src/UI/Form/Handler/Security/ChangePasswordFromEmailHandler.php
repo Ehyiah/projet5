@@ -4,17 +4,20 @@ namespace App\UI\Form\Handler\Security;
 
 
 use App\Entity\User;
-use App\Infra\Doctrine\Repository\UserRepository;
+use App\Infra\Doctrine\Repository\Interfaces\UserRepositoryInterface;
 use App\UI\Form\Handler\Security\Interfaces\ChangePasswordFromEmailHandlerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
-class ChangePasswordFromEmailHandler implements ChangePasswordFromEmailHandlerInterface
+/**
+ * Class ChangePasswordFromEmailHandler
+ */
+final class ChangePasswordFromEmailHandler implements ChangePasswordFromEmailHandlerInterface
 {
     /**
-     * @var UserRepository
+     * @var UserRepositoryInterface
      */
     private $userRepository;
 
@@ -31,12 +34,10 @@ class ChangePasswordFromEmailHandler implements ChangePasswordFromEmailHandlerIn
     /**
      * ChangePasswordFromEmailHandler constructor.
      *
-     * @param UserRepository $userRepository
-     * @param EncoderFactoryInterface $encoderFactory
-     * @param SessionInterface $session
+     * {@inheritdoc}
      */
     public function __construct(
-        UserRepository $userRepository,
+        UserRepositoryInterface $userRepository,
         EncoderFactoryInterface $encoderFactory,
         SessionInterface $session
     ) {
@@ -47,11 +48,7 @@ class ChangePasswordFromEmailHandler implements ChangePasswordFromEmailHandlerIn
 
 
     /**
-     * @param FormInterface $form
-     * @param Request $request
-     * @return bool
-     * @throws \Doctrine\ORM\NoResultException
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * {@inheritdoc}
      */
     public function handle(FormInterface $form, Request $request)
     {

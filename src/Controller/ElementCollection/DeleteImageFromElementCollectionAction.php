@@ -14,7 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class DeleteImageFromElementCollectionAction
- * @package App\Controller\ElementCollection
  * @Route("/deleteImage/{id}/{idElement}", name="deleteImageFromCollection")
  * @Security("has_role('ROLE_USER')")
  */
@@ -38,9 +37,7 @@ class DeleteImageFromElementCollectionAction implements DeleteImageFromElementCo
     /**
      * DeleteImageFromElementCollectionAction constructor.
      *
-     * @param ElementCollectionRepositoryInterface $elementRepository
-     * @param ImageRepositoryInterface $imageRepository
-     * @param Filesystem $filesystem
+     * {@inheritdoc}
      */
     public function __construct(
         ElementCollectionRepositoryInterface $elementRepository,
@@ -53,6 +50,9 @@ class DeleteImageFromElementCollectionAction implements DeleteImageFromElementCo
     }
 
 
+    /**
+     * {@inheritdoc}
+     */
     public function __invoke(
         Request $request,
         $idElement,

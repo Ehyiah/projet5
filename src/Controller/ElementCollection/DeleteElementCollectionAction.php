@@ -13,7 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class DeleteElementCollectionAction
- * @package App\Controller\ElementCollection
  * @Route("/delete/element/{id}", name="deleteElement")
  * @Security("has_role('ROLE_USER')")
  */
@@ -32,8 +31,7 @@ class DeleteElementCollectionAction implements DeleteElementCollectionActionInte
     /**
      * DeleteElementCollectionAction constructor.
      *
-     * @param ElementCollectionRepositoryInterface $elementRepository
-     * @param Filesystem $fileSystem
+     * {@inheritdoc}
      */
     public function __construct(
         ElementCollectionRepositoryInterface $elementRepository,
@@ -45,9 +43,7 @@ class DeleteElementCollectionAction implements DeleteElementCollectionActionInte
 
 
     /**
-     * @param Request $request
-     * @param $id
-     * @return RedirectResponse
+     * {@inheritdoc}
      */
     public function __invoke(
         Request $request,

@@ -14,7 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class DeleteCollectionAction
- * @package App\Controller\Collection
  * @Route("/delete/collection/{id}", name="deleteCollection")
  * @Security("has_role('ROLE_USER')")
  */
@@ -38,9 +37,7 @@ class DeleteCollectionAction implements DeleteCollectionActionInterface
     /**
      * DeleteCollectionAction constructor.
      *
-     * @param CollectionRepositoryInterface $collectionRepository
-     * @param ElementCollectionRepositoryInterface $elementRepository
-     * @param Filesystem $fileSystem
+     * {@inheritdoc}
      */
     public function __construct(
         CollectionRepositoryInterface $collectionRepository,
@@ -54,9 +51,7 @@ class DeleteCollectionAction implements DeleteCollectionActionInterface
 
 
     /**
-     * @param Request $request
-     * @param $id
-     * @return RedirectResponse
+     * {@inheritdoc}
      */
     public function __invoke(
         Request $request,
@@ -71,7 +66,10 @@ class DeleteCollectionAction implements DeleteCollectionActionInterface
             $collection->getElementsCollection()->removeElement($item);
         }
 
-        $this->fileSystem->remove('../public/upload/CollectionImage/'.$collection->getImage()->getTitle());
+        if (!\is_null($collection->getImage())) {
+            $this->fileSystem->remove('../public/upload/CollectionImage/'.$collection->getImage()->getTitle());
+        }
+
         $this->collectionRepository->remove($collection);
 
 

@@ -9,7 +9,10 @@ use App\UI\Form\Handler\Interfaces\NewCollectionHandlerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
-class NewCollectionHandler implements NewCollectionHandlerInterface
+/**
+ * Class NewCollectionHandler
+ */
+final class NewCollectionHandler implements NewCollectionHandlerInterface
 {
     /**
      * @var CollectionRepositoryInterface
@@ -24,8 +27,7 @@ class NewCollectionHandler implements NewCollectionHandlerInterface
     /**
      * NewCollectionHandler constructor.
      *
-     * @param CollectionRepositoryInterface $collection
-     * @param TokenStorageInterface $token
+     * {@inheritdoc}
      */
     public function __construct(
         CollectionRepositoryInterface $collection,
@@ -36,8 +38,7 @@ class NewCollectionHandler implements NewCollectionHandlerInterface
     }
 
     /**
-     * @param FormInterface $form
-     * @return bool
+     * {@inheritdoc}
      */
     public function handle(FormInterface $form): bool
     {

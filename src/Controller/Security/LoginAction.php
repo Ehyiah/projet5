@@ -4,20 +4,18 @@ namespace App\Controller\Security;
 
 
 use App\Controller\Security\Interfaces\LoginActionInterface;
+use App\UI\Form\Handler\Interfaces\LoginHandlerInterface;
 use App\UI\Form\Handler\LoginHandler;
 use App\UI\Form\Type\User\LoginType;
-use App\UI\Responder\LoginResponder;
+use App\UI\Responder\Interfaces\LoginResponderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Symfony\Component\HttpFoundation\Response;
-
 
 /**
  * Class LoginAction
- * @package App\Controller
  * @Route("/login", name="login")
  */
 class LoginAction implements LoginActionInterface
@@ -43,39 +41,36 @@ class LoginAction implements LoginActionInterface
     private $authenticationUtils;
 
     /**
+     * @var LoginHandlerInterface
+     */
+    private $handler;
+
+    /**
      * LoginAction constructor.
      *
-     * @param EncoderFactoryInterface $encoder
-     * @param FormFactoryInterface $formFactory
-     * @param LoginHandler $loginHandler
-     * @param AuthenticationUtils $authenticationUtils
+     * {@inheritdoc}
      */
     public function __construct(
         EncoderFactoryInterface $encoder,
         FormFactoryInterface $formFactory,
         LoginHandler $loginHandler,
-        AuthenticationUtils $authenticationUtils
+        AuthenticationUtils $authenticationUtils,
+        LoginHandlerInterface $handler
     ) {
         $this->encoder = $encoder;
         $this->formFactory = $formFactory;
         $this->loginHandler = $loginHandler;
         $this->authenticationUtils = $authenticationUtils;
+        $this->handler = $handler;
     }
 
 
     /**
-     * @param Request $request
-     * @param LoginHandler $loginHandler
-     * @param LoginResponder $responder
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
+     * {@inheritdoc}
      */
     public function __invoke(
         Request $request,
-        LoginHandler $loginHandler,
-        LoginResponder $responder
+        LoginResponderInterface $responder
     ) {
         $form = $this->formFactory->create(LoginType::class)
                                     ->handleRequest($request);

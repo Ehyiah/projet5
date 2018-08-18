@@ -11,6 +11,9 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
+/**
+ * Class CollectionRepository
+ */
 final class CollectionRepository extends ServiceEntityRepository implements CollectionRepositoryInterface
 {
     /**
@@ -21,8 +24,7 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
     /**
      * CollectionRepository constructor.
      *
-     * @param ManagerRegistry $registry
-     * @param TokenStorageInterface $security
+     * {@inheritdoc}
      */
     public function __construct(
         ManagerRegistry $registry,
@@ -34,7 +36,7 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
 
 
     /**
-     * @param CollectionInterface $collection
+     * {@inheritdoc}
      */
     public function save(CollectionInterface $collection): void
     {
@@ -43,7 +45,7 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
     }
 
     /**
-     * @param CollectionInterface $collection
+     * {@inheritdoc}
      */
     public function edit(CollectionInterface $collection) : void
     {
@@ -51,7 +53,7 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
     }
 
     /**
-     * @param CollectionInterface $collection
+     * {@inheritdoc}
      */
     public function remove(CollectionInterface $collection)
     {
@@ -60,7 +62,7 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
     }
 
     /**
-     * @param ImageCollection $imageCollection
+     * {@inheritdoc}
      */
     public function removeImage(ImageCollection $imageCollection)
     {
@@ -70,9 +72,7 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
 
 
     /**
-     * @param $user
-     * @param $category
-     * @return mixed
+     * {@inheritdoc}
      */
     public function findByOwnerAndCategory($user, $category)
     {
@@ -90,8 +90,7 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
     }
 
     /**
-     * @param $id
-     * @return mixed
+     * {@inheritdoc}
      */
     public function findCollection($id)
     {
@@ -103,8 +102,7 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
     }
 
     /**
-     * @param $id
-     * @return mixed
+     * {@inheritdoc}
      */
     public function findCollectionAndImageById($id)
     {
@@ -119,8 +117,7 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
 
 
     /**
-     * @param $user
-     * @return mixed
+     * {@inheritdoc}
      */
     public function menuFindByOwnerAndCategory($user)
     {
@@ -134,5 +131,4 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
             ->getQuery()
             ->getResult();
     }
-
 }

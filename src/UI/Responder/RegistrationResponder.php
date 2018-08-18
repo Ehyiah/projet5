@@ -9,7 +9,10 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
-class RegistrationResponder implements RegistrationResponderInterface
+/**
+ * Class RegistrationResponder
+ */
+final class RegistrationResponder implements RegistrationResponderInterface
 {
     /**
      * @var Environment
@@ -19,7 +22,7 @@ class RegistrationResponder implements RegistrationResponderInterface
     /**
      * RegistrationResponder constructor.
      *
-     * @param Environment $twig
+     * {@inheritdoc}
      */
     public function __construct(Environment $twig)
     {
@@ -27,9 +30,8 @@ class RegistrationResponder implements RegistrationResponderInterface
     }
 
     /**
-     * @param bool $redirect
-     * @param FormInterface|null $registrationType
-     * @return RedirectResponse|Response
+     * {@inheritdoc}
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
