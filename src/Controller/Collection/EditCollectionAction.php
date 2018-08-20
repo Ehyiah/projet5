@@ -61,7 +61,7 @@ class EditCollectionAction implements EditCollectionActionInterface
         Request $request,
         EditCollectionResponderInterface $responder
     ) {
-        $collectionObjet = $this->collectionRepository->find($request->attributes->get('id'));
+        $collectionObjet = $this->collectionRepository->findCollection($request->attributes->get('id'));
 
         $dto = new EditCollectionDTO(
             $collectionObjet->getCollectionName(),

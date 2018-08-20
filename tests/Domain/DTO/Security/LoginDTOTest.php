@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Tests\Domain\DTO;
+namespace App\Tests\Domain\DTO\Security;
 
 
-use App\Domain\DTO\LoginDTO;
+use App\Domain\DTO\Security\LoginDTO;
 use PHPUnit\Framework\TestCase;
 
 final class LoginDTOTest extends TestCase

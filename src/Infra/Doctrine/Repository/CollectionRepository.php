@@ -91,6 +91,9 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
 
     /**
      * {@inheritdoc}
+     *
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findCollection($id)
     {
@@ -98,7 +101,7 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
             ->where('a.id = :id')
                 ->setParameter('id', $id)
             ->getQuery()
-            ->getResult();
+            ->getSingleResult();
     }
 
     /**

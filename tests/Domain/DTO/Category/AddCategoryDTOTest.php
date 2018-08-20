@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Tests\Domain\DTO;
+namespace App\Tests\Domain\DTO\Category;
 
-use App\Domain\DTO\AddCategoryDTO;
+use App\Domain\DTO\Category\AddCategoryDTO;
 use PHPUnit\Framework\TestCase;
 
 final class AddCategoryDTOTest extends TestCase

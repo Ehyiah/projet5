@@ -5,7 +5,7 @@ namespace App\Controller\Category;
 
 use App\Controller\Category\Interfaces\SelectCollectionActionInterface;
 use App\Infra\Doctrine\Repository\Interfaces\CategoryCollectionRepositoryInterface;
-use App\UI\Form\Handler\Collection\SelectCollectionHandler;
+use App\UI\Form\Handler\Collection\Interfaces\SelectCollectionHandlerInterface;
 use App\UI\Responder\Category\SelectCollectionResponder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -30,16 +30,23 @@ class SelectCollectionAction implements SelectCollectionActionInterface
     private $categoryCollection;
 
     /**
+     * @var SelectCollectionHandlerInterface
+     */
+    private $handler;
+
+    /**
      * SelectCollectionAction constructor.
      *
      * {@inheritdoc}
      */
     public function __construct(
         FormFactoryInterface $formFactory,
-        CategoryCollectionRepositoryInterface $categoryCollection
+        CategoryCollectionRepositoryInterface $categoryCollection,
+        SelectCollectionHandlerInterface $handler
     ) {
         $this->formFactory = $formFactory;
         $this->categoryCollection = $categoryCollection;
+        $this->handler = $handler;
     }
 
 
@@ -52,13 +59,12 @@ class SelectCollectionAction implements SelectCollectionActionInterface
      */
     public function __invoke(
         Request $request,
-        SelectCollectionHandler $collectionHandler,
         SelectCollectionResponder $responder
     ) {
         $form = $this->formFactory->create(\App\UI\Form\Type\Category\SelectCollectionType::class)
                                     ->handleRequest($request);
 
-        if ($collectionHandler->handle($form)) {
+        if ($this->handler->handle($form)) {
             $request->getSession()->getFlashBag()->add('success', 'La catégorie a bien été supprimée');
             return $responder(true);
         }

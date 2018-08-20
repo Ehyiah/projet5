@@ -19,7 +19,7 @@ interface PictureInterface
     public function getFileName();
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getNewFileName(): string;
+    public function getNewFileName(): ?string;
 }

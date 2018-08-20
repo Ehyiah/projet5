@@ -3,7 +3,7 @@
 namespace App\UI\Form\Type\ElementCollection;
 
 
-use App\Domain\DTO\AddElementCollectionDTO;
+use App\Domain\DTO\ElementCollection\AddElementCollectionDTO;
 use App\Entity\Collection;
 use App\UI\Form\Type\Image\ImageCollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Application\Command;
 
 use App\Application\Command\PromoteUserCommand;
-use App\Domain\DTO\AddUserDTO;
+use App\Domain\DTO\Security\AddUserDTO;
 use App\Entity\User;
 use App\Infra\Doctrine\Repository\Interfaces\UserRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Console\Application;

@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Twig\Environment;
 
-class NewCategoryCollectionActionTest extends KernelTestCase
+final class NewCategoryCollectionActionTest extends KernelTestCase
 {
     /**
      * @var FormFactoryInterface|null
@@ -86,7 +86,6 @@ class NewCategoryCollectionActionTest extends KernelTestCase
 
         $session = new Session(new MockArraySessionStorage());
         $request->setSession($session);
-
         $request->getSession()->getFlashBag()->add('success', 'Nouvelle catégorie créée');
 
         static::assertInstanceOf(
@@ -114,11 +113,6 @@ class NewCategoryCollectionActionTest extends KernelTestCase
             '/newCategory',
             'POST'
         );
-
-        $session = new Session(new MockArraySessionStorage());
-        $request->setSession($session);
-
-        $request->getSession()->getFlashBag()->add('success', 'Nouvelle catégorie créée');
 
         static::assertInstanceOf(
             Response::class,

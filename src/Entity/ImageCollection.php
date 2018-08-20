@@ -33,17 +33,14 @@ class ImageCollection implements ImageCollectionInterface
      */
     private $update_date;
 
-
     /**
      * relation avec ElementCollection
      * @var ElementCollection
      */
     private $image_element_collection;
 
-
-
     /**
-     * @param ElementCollection $image_element_collection
+     * {@inheritdoc}
      */
     public function setImageElementCollection(ElementCollection $image_element_collection): void
     {
@@ -51,7 +48,7 @@ class ImageCollection implements ImageCollectionInterface
     }
 
     /**
-     * @return UuidInterface
+     * {@inheritdoc}
      */
     public function getId(): UuidInterface
     {
@@ -59,7 +56,7 @@ class ImageCollection implements ImageCollectionInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getTitle(): string
     {
@@ -67,7 +64,7 @@ class ImageCollection implements ImageCollectionInterface
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
     public function getCreationDate(): \DateTime
     {
@@ -75,7 +72,7 @@ class ImageCollection implements ImageCollectionInterface
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
     public function getUpdateDate(): \DateTime
     {
@@ -83,7 +80,7 @@ class ImageCollection implements ImageCollectionInterface
     }
 
     /**
-     * @return ElementCollection
+     * {@inheritdoc}
      */
     public function getImageElementCollection(): ElementCollection
     {
@@ -91,7 +88,7 @@ class ImageCollection implements ImageCollectionInterface
     }
 
     /**
-     * @param string $title
+     * {@inheritdoc}
      */
     public function setTitle(string $title): void
     {
@@ -99,7 +96,7 @@ class ImageCollection implements ImageCollectionInterface
     }
 
     /**
-     * @return $this
+     * {@inheritdoc}
      */
     public function getImage()
     {
@@ -107,7 +104,7 @@ class ImageCollection implements ImageCollectionInterface
     }
 
     /**
-     * @param ImageCollection|null $image_element_collection
+     * {@inheritdoc}
      */
     public function setImage(ImageCollection $image_element_collection = null): void
     {

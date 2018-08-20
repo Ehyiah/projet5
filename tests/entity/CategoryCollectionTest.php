@@ -3,12 +3,15 @@
 namespace App\Tests\entity;
 
 
-use App\Domain\DTO\AddCategoryDTO;
+use App\Domain\DTO\Category\AddCategoryDTO;
 use App\Entity\CategoryCollection;
 use PHPUnit\Framework\TestCase;
 
 class CategoryCollectionTest extends TestCase
 {
+    /**
+     * @throws \Exception
+     */
     public function testConstruct()
     {
         $categoryCollectionDTO = $this->createMock(AddCategoryDTO::class);

@@ -44,4 +44,19 @@ final class CategoryCollectionRepository extends ServiceEntityRepository impleme
         $this->_em->remove($collection);
         $this->_em->flush();
     }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findCategory($id)
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.id = :id')
+                ->setParameter('id', $id)
+            ->getQuery()
+            ->getSingleResult();
+    }
 }

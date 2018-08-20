@@ -32,4 +32,19 @@ final class ImageRepository extends ServiceEntityRepository implements ImageRepo
         $this->_em->persist($imageCollection);
         $this->_em->flush();
     }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findImage($id)
+    {
+        return $this->createQueryBuilder('i')
+            ->where('i.id = :id')
+                ->setParameter('id', $id)
+            ->getQuery()
+            ->getSingleResult();
+    }
 }

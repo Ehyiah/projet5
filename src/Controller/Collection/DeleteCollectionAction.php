@@ -57,7 +57,7 @@ class DeleteCollectionAction implements DeleteCollectionActionInterface
         Request $request,
         $id
     ) {
-        $collection = $this->collectionRepository->find($id);
+        $collection = $this->collectionRepository->findCollection($id);
 
         foreach ($collection->getElementsCollection() as $item) {
             foreach ($item->getImages() as $image) {

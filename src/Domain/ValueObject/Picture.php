@@ -49,7 +49,7 @@ final class Picture implements PictureInterface
     /**
      * {@inheritdoc}
      */
-    public function getNewFileName(): string
+    public function getNewFileName(): ?string
     {
         return $this->newFileName;
     }

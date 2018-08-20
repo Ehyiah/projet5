@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 
-use App\Domain\DTO\AddUserDTO;
+use App\Domain\DTO\Security\Interfaces\AddUserDTOInterface;
 use App\Entity\Interfaces\UserInterface as BaseUserInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -90,7 +90,7 @@ class User implements BaseUserInterface, UserInterface, \Serializable
      *
      * @throws \Exception
      */
-    public function __construct(AddUserDTO $addUserDTO)
+    public function __construct(AddUserDTOInterface $addUserDTO)
     {
         $this->id = Uuid::uuid4();
         $this->username = $addUserDTO->username;

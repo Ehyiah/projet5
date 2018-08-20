@@ -15,7 +15,6 @@ use Twig\Environment;
 
 /**
  * Class MemberAction
- * @package App\Controller
  * @Route("/member", name="member")
  * @Security("has_role('ROLE_USER')")
  */

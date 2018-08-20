@@ -98,9 +98,8 @@ class Collection implements CollectionInterface
     }
 
 
-
     /**
-     * @param User $owner
+     * {@inheritdoc}
      */
     public function setOwner(User $owner): void
     {
@@ -108,7 +107,7 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @return UuidInterface
+     * {@inheritdoc}
      */
     public function getId(): UuidInterface
     {
@@ -116,7 +115,7 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getCollectionName(): string
     {
@@ -124,7 +123,7 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
     public function getCreationDate(): \DateTime
     {
@@ -132,7 +131,7 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @return string|null
+     * {@inheritdoc}
      */
     public function getTag(): ?string
     {
@@ -140,7 +139,7 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @return int
+     * {@inheritdoc}
      */
     public function getHidden(): int
     {
@@ -148,7 +147,7 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
     public function getUpdateDate(): \DateTime
     {
@@ -156,7 +155,7 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @return ElementCollectionInterface|ArrayCollection
+     * {@inheritdoc}
      */
     public function getElementsCollection()
     {
@@ -164,7 +163,7 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @return mixed
+     * {@inheritdoc}
      */
     public function getCollectionComments()
     {
@@ -172,7 +171,7 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @return CategoryCollection
+     * {@inheritdoc}
      */
     public function getCategory(): CategoryCollection
     {
@@ -180,7 +179,7 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @return ImageCollection|null
+     * {@inheritdoc}
      */
     public function getImage(): ?ImageCollection
     {
@@ -188,7 +187,7 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @return User
+     * {@inheritdoc}
      */
     public function getOwner(): User
     {
@@ -196,7 +195,7 @@ class Collection implements CollectionInterface
     }
 
     /**
-     * @param EditCollectionDTOInterface $editCollectionDTO
+     * {@inheritdoc}
      */
     public function edit(EditCollectionDTOInterface $editCollectionDTO)
     {

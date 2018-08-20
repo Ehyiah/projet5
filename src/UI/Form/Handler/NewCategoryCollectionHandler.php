@@ -11,7 +11,7 @@ use Symfony\Component\Form\FormInterface;
 /**
  * Class NewCategoryCollectionHandler
  */
-final class NewCategoryCollectionHandler implements NewCategoryCollectionHandlerInterface
+class NewCategoryCollectionHandler implements NewCategoryCollectionHandlerInterface
 {
     /**
      * @var CategoryCollectionRepositoryInterface

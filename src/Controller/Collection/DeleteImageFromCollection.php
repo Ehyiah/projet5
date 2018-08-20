@@ -48,7 +48,7 @@ class DeleteImageFromCollection implements DeleteImageFromCollectionInterface
         Request $request,
         $id
     ) {
-        $image = $this->imageRepository->find($id);
+        $image = $this->imageRepository->findImage($id);
         $this->collectionRepository->removeImage($image);
 
         $request->getSession()->getFlashBag()->add('success', 'L\'image a bien été supprimée');

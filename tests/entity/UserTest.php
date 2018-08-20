@@ -3,12 +3,15 @@
 namespace App\Tests\entity;
 
 
-use App\Domain\DTO\AddUserDTO;
+use App\Domain\DTO\Security\AddUserDTO;
 use App\Entity\User;
 use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
+    /**
+     * @throws \Exception
+     */
     public function testConstruct()
     {
         $userDTO = $this->createMock(AddUserDTO::class);

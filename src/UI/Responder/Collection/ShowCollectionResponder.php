@@ -49,9 +49,7 @@ final class ShowCollectionResponder implements ShowCollectionResponderInterface
         $collections = null
     ) {
         $redirect
-            ? $response = new RedirectResponse(
-                $this->urlGenerator->generate('select')
-                )
+            ? $response = new RedirectResponse('select')
             : $response = new Response(
                 $this->twig->render('Collection/ShowCollection.html.twig', array(
                     'collections' => $collections

@@ -49,9 +49,7 @@ final class SelectCollectionResponder implements SelectCollectionResponderInterf
     public function __invoke($redirect = false, FormInterface $form = null)
     {
         $redirect
-            ? $response = new RedirectResponse(
-                $this->urlGenerator->generate('show')
-            )
+            ? $response = new RedirectResponse('select')
             : $response = new Response(
                 $this->twig->render('Category/SelectCollectionType.html.twig', array(
                     'form' => $form->createView()

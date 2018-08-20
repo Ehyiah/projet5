@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Tests\Domain\DTO;
+namespace App\Tests\Domain\DTO\ElementCollection;
 
 
-use App\Domain\DTO\AddElementCollectionDTO;
+use App\Domain\DTO\ElementCollection\AddElementCollectionDTO;
 use App\Entity\Collection;
 use App\Entity\ImageCollection;
 use PHPUnit\Framework\TestCase;

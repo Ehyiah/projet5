@@ -28,4 +28,6 @@ interface CategoryCollectionInterface
      * @return mixed
      */
     public function getCollections();
+
+
 }

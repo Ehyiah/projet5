@@ -4,9 +4,8 @@ namespace App\Controller\ElementCollection;
 
 
 use App\Controller\ElementCollection\Interfaces\AddElementCollectionFromCollectionActionInterface;
-use App\Domain\DTO\AddElementCollectionDTO;
+use App\Domain\DTO\ElementCollection\AddElementCollectionDTO;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
-use App\UI\Form\Handler\ElementCollection\AddElementCollectionHandler;
 use App\UI\Form\Handler\ElementCollection\Interfaces\AddElementCollectionHandlerInterface;
 use App\UI\Form\Type\ElementCollection\AddElementCollectionFromCollectionType;
 use App\UI\Responder\ElementCollection\AddElementFromCollectionResponder;

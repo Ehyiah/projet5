@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Tests\Domain\DTO;
+namespace App\Tests\Domain\DTO\Security;
 
 
-use App\Domain\DTO\AddUserDTO;
+use App\Domain\DTO\Security\AddUserDTO;
 use PHPUnit\Framework\TestCase;
 
 final class AddUserDTOTest extends TestCase

@@ -3,6 +3,7 @@
 namespace App\Infra\Doctrine\Repository\Interfaces;
 
 
+use App\Entity\Collection;
 use App\Entity\ImageCollection;
 use App\Entity\Interfaces\CollectionInterface;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -42,7 +43,7 @@ interface CollectionRepositoryInterface
     /**
      * @param $id
      *
-     * @return mixed
+     * @return Collection|null
      */
     public function findCollection($id);
 

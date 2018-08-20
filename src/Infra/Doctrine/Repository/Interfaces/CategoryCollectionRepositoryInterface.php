@@ -27,4 +27,11 @@ interface CategoryCollectionRepositoryInterface
      * @return mixed
      */
     public function remove(CategoryCollection $collection);
+
+    /**
+     * @param $id
+     *
+     * @return CategoryCollection|null
+     */
+    public function findCategory($id);
 }

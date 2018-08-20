@@ -3,15 +3,18 @@
 namespace App\Tests\entity;
 
 
-use App\Domain\DTO\AddElementCollectionDTO;
+use App\Domain\DTO\ElementCollection\AddElementCollectionDTO;
 use App\Domain\DTO\AddElementImageDTO;
 use App\Entity\Collection;
 use App\Entity\ElementCollection;
 use App\Entity\ImageCollection;
 use PHPUnit\Framework\TestCase;
 
-class ElementCollectionTest extends TestCase
+final class ElementCollectionTest extends TestCase
 {
+    /**
+     * @throws \Exception
+     */
     public function testConstruct()
     {
         $collection = $this->createMock(Collection::class);

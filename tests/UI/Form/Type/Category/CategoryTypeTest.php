@@ -3,7 +3,7 @@
 namespace App\Tests\UI\Form\Type\Category;
 
 
-use App\Domain\DTO\AddCategoryDTO;
+use App\Domain\DTO\Category\AddCategoryDTO;
 use App\UI\Form\Type\Category\CategoryType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Test\TypeTestCase;

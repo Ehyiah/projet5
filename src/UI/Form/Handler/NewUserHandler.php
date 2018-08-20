@@ -39,6 +39,8 @@ final class NewUserHandler implements NewUserHandlerInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @throws \Exception
      */
     public function handle(FormInterface $form) : bool
     {
