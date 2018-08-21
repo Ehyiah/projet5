@@ -21,11 +21,6 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 class NewElementCollectionAction implements NewElementCollectionActionInterface
 {
     /**
-     * @var EncoderFactoryInterface
-     */
-    private $encoderFactory;
-
-    /**
      * @var FormFactoryInterface
      */
     private $formFactory;
@@ -41,11 +36,9 @@ class NewElementCollectionAction implements NewElementCollectionActionInterface
      * {@inheritdoc}
      */
     public function __construct(
-        EncoderFactoryInterface $encoderFactory,
         FormFactoryInterface $formFactory,
         NewElementCollectionHandlerInterface $handler
     ) {
-        $this->encoderFactory = $encoderFactory;
         $this->formFactory = $formFactory;
         $this->handler = $handler;
     }

@@ -11,9 +11,9 @@ use App\Domain\ValueObject\Interfaces\PictureInterface;
 final class Picture implements PictureInterface
 {
     /**
-     * @var string
+     * @var string|null
      */
-    private $name;
+    private $name = null;
 
     /**
      * @var string

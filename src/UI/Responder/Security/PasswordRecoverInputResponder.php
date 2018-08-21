@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
+/**
+ * Class PasswordRecoverInputResponder
+ */
 class PasswordRecoverInputResponder implements PasswordRecoverInputResponderInterface
 {
     /**
@@ -25,8 +28,7 @@ class PasswordRecoverInputResponder implements PasswordRecoverInputResponderInte
     /**
      * PasswordRecoverInputResponder constructor.
      *
-     * @param Environment $twig
-     * @param UrlGeneratorInterface $urlGenerator
+     * {@inheritdoc}
      */
     public function __construct(
         Environment $twig,
@@ -37,9 +39,8 @@ class PasswordRecoverInputResponder implements PasswordRecoverInputResponderInte
     }
 
     /**
-     * @param bool $redirect
-     * @param FormInterface|null $form
-     * @return RedirectResponse|Response
+     * {@inheritdoc}
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax

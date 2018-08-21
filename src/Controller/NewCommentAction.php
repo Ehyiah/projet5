@@ -13,7 +13,6 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 /**
  * Class NewCommentAction
- * @package App\Controller
  * @Route("/newComment", name="newComment")
  */
 class NewCommentAction

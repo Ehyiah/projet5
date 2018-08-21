@@ -10,6 +10,9 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
+/**
+ * Class UserFixture
+ */
 class UserFixture extends Fixture implements UserFixtureInterface
 {
     public const USER_REFERENCE = 'user-reference';

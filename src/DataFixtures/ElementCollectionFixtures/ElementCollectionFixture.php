@@ -6,6 +6,7 @@ namespace App\DataFixtures\ElementCollectionFixtures;
 use App\DataFixtures\CategoryCollectionFixture\CategoryFixture;
 use App\DataFixtures\CollectionFixtures\CollectionFixture;
 use App\DataFixtures\ElementCollectionFixtures\Interfaces\ElementCollectionFixtureInterface;
+use App\DataFixtures\ImageFixtures\ImageFixture;
 use App\DataFixtures\UserFixtures\UserFixture;
 use App\Domain\DTO\ElementCollection\AddElementCollectionDTO;
 use App\Entity\ElementCollection;
@@ -58,14 +59,14 @@ class ElementCollectionFixture extends Fixture implements ElementCollectionFixtu
         $elementCollectionDTO = new AddElementCollectionDTO(
             'titreElement', 'regionElement', 'publisherElement',
             'etatElement', 12, 'support', 2,
-            12, $collection[0], null
+            12, $collection[0], []
         );
         $elementCollection = new ElementCollection($elementCollectionDTO);
 
         $manager->persist($elementCollection);
         $manager->flush();
 
-        $this->addReference(self::ELEMENT_REFERENCE, $elementCollection);
+        //$this->addReference(self::ELEMENT_REFERENCE, $elementCollection);
     }
 
     /**
@@ -76,7 +77,8 @@ class ElementCollectionFixture extends Fixture implements ElementCollectionFixtu
         return array(
             UserFixture::class,
             CategoryFixture::class,
-            CollectionFixture::class
+            CollectionFixture::class,
+            ImageFixture::class
         );
     }
 }

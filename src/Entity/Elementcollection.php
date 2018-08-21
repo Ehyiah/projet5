@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 
-use App\Domain\DTO\AddElementCollectionDTO;
+use App\Domain\DTO\ElementCollection\AddElementCollectionDTO;
 use App\Domain\DTO\ElementCollection\EditElementCollectionDTO;
 use App\Entity\Interfaces\ElementCollectionInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -13,7 +13,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class ElementCollection
- * @package App\Entity
  */
 class ElementCollection implements ElementCollectionInterface
 {
@@ -88,7 +87,7 @@ class ElementCollection implements ElementCollectionInterface
 
 
     /**
-     * @return UuidInterface
+     * {@inheritdoc}
      */
     public function getId(): UuidInterface
     {
@@ -96,7 +95,7 @@ class ElementCollection implements ElementCollectionInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getTitle(): string
     {
@@ -104,7 +103,7 @@ class ElementCollection implements ElementCollectionInterface
     }
 
     /**
-     * @return string|null
+     * {@inheritdoc}
      */
     public function getRegion(): ?string
     {
@@ -112,7 +111,7 @@ class ElementCollection implements ElementCollectionInterface
     }
 
     /**
-     * @return string|null
+     * {@inheritdoc}
      */
     public function getAuthor(): ?string
     {
@@ -120,7 +119,7 @@ class ElementCollection implements ElementCollectionInterface
     }
 
     /**
-     * @return string|null
+     * {@inheritdoc}
      */
     public function getPublisher(): ?string
     {
@@ -128,7 +127,7 @@ class ElementCollection implements ElementCollectionInterface
     }
 
     /**
-     * @return string|null
+     * {@inheritdoc}
      */
     public function getEtat(): ?string
     {
@@ -136,7 +135,7 @@ class ElementCollection implements ElementCollectionInterface
     }
 
     /**
-     * @return float|null
+     * {@inheritdoc}
      */
     public function getBuyPrice(): ?float
     {
@@ -144,7 +143,7 @@ class ElementCollection implements ElementCollectionInterface
     }
 
     /**
-     * @return string|null
+     * {@inheritdoc}
      */
     public function getSupport(): ?string
     {
@@ -152,7 +151,7 @@ class ElementCollection implements ElementCollectionInterface
     }
 
     /**
-     * @return int|null
+     * {@inheritdoc}
      */
     public function getPlayerNumber(): ?int
     {
@@ -160,7 +159,7 @@ class ElementCollection implements ElementCollectionInterface
     }
 
     /**
-     * @return float|null
+     * {@inheritdoc}
      */
     public function getValue(): ?float
     {
@@ -168,7 +167,7 @@ class ElementCollection implements ElementCollectionInterface
     }
 
     /**
-     * @return ImageCollection
+     * {@inheritdoc}
      */
     public function getImages()
     {
@@ -176,7 +175,7 @@ class ElementCollection implements ElementCollectionInterface
     }
 
     /**
-     * @param ArrayCollection $images
+     * {@inheritdoc}
      */
     public function setImages(ArrayCollection $images): void
     {
@@ -185,7 +184,7 @@ class ElementCollection implements ElementCollectionInterface
 
 
     /**
-     * @return Collection
+     * {@inheritdoc}
      */
     public function getCollectionName(): Collection
     {
@@ -197,6 +196,7 @@ class ElementCollection implements ElementCollectionInterface
      * ElementCollection constructor.
      *
      * @param AddElementCollectionDTO $addElementCollectionDTO
+     *
      * @throws \Exception
      */
     public function __construct(AddElementCollectionDTO $addElementCollectionDTO)
@@ -218,7 +218,7 @@ class ElementCollection implements ElementCollectionInterface
     }
 
     /**
-     * @param array|null $images
+     * {@inheritdoc}
      */
     public function addImageToCollection(array $images = null)
     {
@@ -232,7 +232,7 @@ class ElementCollection implements ElementCollectionInterface
 
 
     /**
-     * @param EditElementCollectionDTO $elementCollectionDTO
+     * {@inheritdoc}
      */
     public function editElement(EditElementCollectionDTO $elementCollectionDTO)
     {
@@ -250,7 +250,7 @@ class ElementCollection implements ElementCollectionInterface
     }
 
     /**
-     * @param array|null $images
+     * {@inheritdoc}
      */
     public function editImageToCollection(array $images = null)
     {
@@ -264,7 +264,7 @@ class ElementCollection implements ElementCollectionInterface
     }
 
     /**
-     * @param ImageCollection $image
+     * {@inheritdoc}
      */
     public function removeImageFromCollection(ImageCollection $image)
     {

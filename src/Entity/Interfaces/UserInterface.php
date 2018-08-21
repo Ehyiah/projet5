@@ -3,6 +3,8 @@
 namespace App\Entity\Interfaces;
 
 
+use App\Entity\User;
+
 interface UserInterface
 {
     /**
@@ -16,4 +18,9 @@ interface UserInterface
      * @return bool
      */
     public function addRoleAdmin(): bool;
+
+    /**
+     * @return User
+     */
+    public function getUser(): User;
 }

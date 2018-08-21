@@ -5,7 +5,7 @@ namespace App\Controller\Security;
 
 use App\Controller\Security\Interfaces\ChangePasswordFromEmailActionInterface;
 use App\Domain\DTO\Security\ChangePasswordFromEmailDTO;
-use App\Infra\Doctrine\Repository\UserRepository;
+use App\Infra\Doctrine\Repository\Interfaces\UserRepositoryInterface;
 use App\UI\Form\Handler\Security\Interfaces\ChangePasswordFromEmailHandlerInterface;
 use App\UI\Form\Type\User\ChangePasswordFromEmailType;
 use App\UI\Responder\Security\Interfaces\ChangePasswordFromEmailResponderInterface;
@@ -21,7 +21,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 class ChangePasswordFromEmailAction implements ChangePasswordFromEmailActionInterface
 {
     /**
-     * @var UserRepository
+     * @var UserRepositoryInterface
      */
     private $userRepository;
 
@@ -46,7 +46,7 @@ class ChangePasswordFromEmailAction implements ChangePasswordFromEmailActionInte
      * {@inheritdoc}
      */
     public function __construct(
-        UserRepository $userRepository,
+        UserRepositoryInterface $userRepository,
         TokenStorageInterface $security,
         FormFactoryInterface $formFactory,
         ChangePasswordFromEmailHandlerInterface $handler
@@ -79,6 +79,5 @@ class ChangePasswordFromEmailAction implements ChangePasswordFromEmailActionInte
         }
 
         return $responder(false, $form);
-
     }
 }

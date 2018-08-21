@@ -54,7 +54,10 @@ final class DeleteCollectionActionTest extends KernelTestCase
             $this->fileSystem
         );
 
-        static::assertInstanceOf(DeleteCollectionAction::class, $action);
+        static::assertInstanceOf(
+            DeleteCollectionAction::class,
+            $action
+        );
     }
 
     /**

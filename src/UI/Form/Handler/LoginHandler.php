@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 /**
  * Class LoginHandler
  */
-final class LoginHandler implements LoginHandlerInterface
+class LoginHandler implements LoginHandlerInterface
 {
     /**
      * @var UserRepositoryInterface

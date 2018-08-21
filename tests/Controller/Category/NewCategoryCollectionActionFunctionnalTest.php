@@ -3,8 +3,6 @@
 namespace App\Tests\Controller\Category;
 
 
-use App\Domain\DTO\Security\AddUserDTO;
-use App\Entity\User;
 use App\Infra\Doctrine\Repository\Interfaces\UserRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\Cookie;
@@ -24,7 +22,7 @@ final class NewCategoryCollectionActionFunctionnalTest extends WebTestCase
     private $userRepository = null;
 
 
-    public function setUp()
+    protected function setUp()
     {
         $this->client = static::createClient();
         $this->userRepository = self::$container->get('App\Infra\Doctrine\Repository\UserRepository');

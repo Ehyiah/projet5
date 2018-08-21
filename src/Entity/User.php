@@ -258,4 +258,12 @@ class User implements BaseUserInterface, UserInterface, \Serializable
 
         return true;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUser(): User
+    {
+        return $this;
+    }
 }

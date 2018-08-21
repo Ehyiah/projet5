@@ -9,6 +9,9 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
 
+/**
+ * Class ChangePasswordResponder
+ */
 class ChangePasswordResponder implements ChangePasswordResponderInterface
 {
     /**
@@ -18,7 +21,8 @@ class ChangePasswordResponder implements ChangePasswordResponderInterface
 
     /**
      * ChangePasswordResponder constructor.
-     * @param Environment $twig
+     *
+     * {@inheritdoc}
      */
     public function __construct(Environment $twig)
     {
@@ -26,9 +30,8 @@ class ChangePasswordResponder implements ChangePasswordResponderInterface
     }
 
     /**
-     * @param bool $redirect
-     * @param FormInterface|null $form
-     * @return RedirectResponse|Response
+     * {@inheritdoc}
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax

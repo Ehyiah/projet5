@@ -15,7 +15,6 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 /**
  * Class NewImageAction
- * @package App\Controller
  * @Route("/newImage", name="newImage")
  */
 class NewImageAction

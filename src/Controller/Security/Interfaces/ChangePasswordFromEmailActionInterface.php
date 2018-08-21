@@ -3,7 +3,7 @@
 namespace App\Controller\Security\Interfaces;
 
 
-use App\Infra\Doctrine\Repository\UserRepository;
+use App\Infra\Doctrine\Repository\Interfaces\UserRepositoryInterface;
 use App\UI\Form\Handler\Security\Interfaces\ChangePasswordFromEmailHandlerInterface;
 use App\UI\Responder\Security\Interfaces\ChangePasswordFromEmailResponderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -15,13 +15,13 @@ interface ChangePasswordFromEmailActionInterface
     /**
      * ChangePasswordFromEmailActionInterface constructor.
      *
-     * @param UserRepository $userRepository
+     * @param UserRepositoryInterface $userRepository
      * @param TokenStorageInterface $security
      * @param FormFactoryInterface $formFactory
      * @param ChangePasswordFromEmailHandlerInterface $handler
      */
     public function __construct(
-        UserRepository $userRepository,
+        UserRepositoryInterface $userRepository,
         TokenStorageInterface $security,
         FormFactoryInterface $formFactory,
         ChangePasswordFromEmailHandlerInterface $handler

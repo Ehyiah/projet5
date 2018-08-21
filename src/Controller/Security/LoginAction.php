@@ -5,7 +5,6 @@ namespace App\Controller\Security;
 
 use App\Controller\Security\Interfaces\LoginActionInterface;
 use App\UI\Form\Handler\Interfaces\LoginHandlerInterface;
-use App\UI\Form\Handler\LoginHandler;
 use App\UI\Form\Type\User\LoginType;
 use App\UI\Responder\Interfaces\LoginResponderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -31,11 +30,6 @@ class LoginAction implements LoginActionInterface
     private $formFactory;
 
     /**
-     * @var LoginHandler
-     */
-    private $loginHandler;
-
-    /**
      * @var AuthenticationUtils
      */
     private $authenticationUtils;
@@ -53,13 +47,11 @@ class LoginAction implements LoginActionInterface
     public function __construct(
         EncoderFactoryInterface $encoder,
         FormFactoryInterface $formFactory,
-        LoginHandler $loginHandler,
         AuthenticationUtils $authenticationUtils,
         LoginHandlerInterface $handler
     ) {
         $this->encoder = $encoder;
         $this->formFactory = $formFactory;
-        $this->loginHandler = $loginHandler;
         $this->authenticationUtils = $authenticationUtils;
         $this->handler = $handler;
     }

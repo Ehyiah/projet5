@@ -58,7 +58,7 @@ class DeleteImageFromElementCollectionAction implements DeleteImageFromElementCo
         $idElement,
         $id
     ) {
-        $image = $this->imageRepository->find($id);
+        $image = $this->imageRepository->findImage($id);
 
         $this->filesystem->remove('../public/upload/CollectionImage/'.$image->getTitle());
         $this->elementRepository->removeImage($image);
