@@ -9,7 +9,10 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
-final class EditElementCollectionTypeSubscriber implements EventSubscriberInterface
+/**
+ * Class EditElementCollectionTypeSubscriber
+ */
+class EditElementCollectionTypeSubscriber implements EventSubscriberInterface
 {
     /**
      * @var array

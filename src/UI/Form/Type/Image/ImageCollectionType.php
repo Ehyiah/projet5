@@ -11,7 +11,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-
+/**
+ * Class ImageCollectionType
+ */
 class ImageCollectionType extends AbstractType
 {
     /**
@@ -29,7 +31,10 @@ class ImageCollectionType extends AbstractType
         $this->imageElementTransformer = $imageElementTransformer;
     }
 
-
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -41,6 +46,9 @@ class ImageCollectionType extends AbstractType
         $builder->get('image')->addModelTransformer($this->imageElementTransformer);
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

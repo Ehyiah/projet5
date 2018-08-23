@@ -15,6 +15,9 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Count;
 
+/**
+ * Class EditElementCollectionType
+ */
 class EditElementCollectionType extends AbstractType
 {
     /**
@@ -32,7 +35,10 @@ class EditElementCollectionType extends AbstractType
         $this->editElementCollectionTypeSubscriber = $editElementCollectionTypeSubscriber;
     }
 
-
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -68,6 +74,9 @@ class EditElementCollectionType extends AbstractType
         ;
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

@@ -40,6 +40,8 @@ final class NewImageHandler implements NewImageHandlerInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @throws \Exception
      */
     public function handle(FormInterface $form): bool
     {

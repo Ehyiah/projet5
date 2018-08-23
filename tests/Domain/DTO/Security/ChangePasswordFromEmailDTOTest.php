@@ -5,17 +5,20 @@ namespace App\Tests\Domain\DTO\Security;
 
 use App\Domain\DTO\Security\ChangePasswordFromEmailDTO;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
+/**
+ * Class ChangePasswordFromEmailDTOTest
+ * @group DTO
+ */
 final class ChangePasswordFromEmailDTOTest extends TestCase
 {
     /**
-     * @param PasswordType $password
+     * @param string $password
      * @param string $token
      *
      * @dataProvider dataProvide
      */
-    public function testItImplements(PasswordType $password, string $token)
+    public function testItImplements(string $password, string $token)
     {
 
         $dto = new ChangePasswordFromEmailDTO(
@@ -31,14 +34,12 @@ final class ChangePasswordFromEmailDTOTest extends TestCase
      */
     public function dataProvide()
     {
-        $pass = new PasswordType();
-
         yield array(
-            $pass,
+            'pass',
             'token'
         );
         yield array(
-            $pass,
+            'pass2',
             'token2'
         );
     }

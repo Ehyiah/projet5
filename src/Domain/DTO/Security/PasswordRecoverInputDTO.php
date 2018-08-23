@@ -5,6 +5,9 @@ namespace App\Domain\DTO\Security;
 
 use App\Domain\DTO\Security\Interfaces\PasswordRecoverInputDTOInterface;
 
+/**
+ * Class PasswordRecoverInputDTO
+ */
 class PasswordRecoverInputDTO implements PasswordRecoverInputDTOInterface
 {
     /**

@@ -39,6 +39,8 @@ final class NewCollectionHandler implements NewCollectionHandlerInterface
 
     /**
      * {@inheritdoc}
+     *
+     * @throws \Exception
      */
     public function handle(FormInterface $form): bool
     {

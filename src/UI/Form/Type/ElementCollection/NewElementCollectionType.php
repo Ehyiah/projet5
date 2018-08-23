@@ -16,6 +16,9 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Count;
 
+/**
+ * Class NewElementCollectionType
+ */
 class NewElementCollectionType extends AbstractType
 {
     /**
@@ -33,7 +36,10 @@ class NewElementCollectionType extends AbstractType
         $this->imageElementTransformer = $imageElementTransformer;
     }
 
-
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

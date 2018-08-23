@@ -30,6 +30,8 @@ class NewCategoryCollectionHandler implements NewCategoryCollectionHandlerInterf
 
     /**
      * {@inheritdoc}
+     *
+     * @throws \Exception
      */
     public function handle(FormInterface $form): bool
     {

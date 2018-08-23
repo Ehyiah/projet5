@@ -9,7 +9,9 @@ use App\Service\FileUploader;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
-
+/**
+ * Class ImageCollectionDataTransformer
+ */
 class ImageCollectionDataTransformer implements DataTransformerInterface
 {
     /**

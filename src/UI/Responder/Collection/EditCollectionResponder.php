@@ -14,7 +14,7 @@ use Twig\Environment;
 /**
  * Class EditCollectionResponder
  */
-final class EditCollectionResponder implements EditCollectionResponderInterface
+class EditCollectionResponder implements EditCollectionResponderInterface
 {
     /**
      * @var Environment

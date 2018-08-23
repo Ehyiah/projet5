@@ -2,6 +2,7 @@
 
 namespace App\Domain\DTO\Collection;
 
+
 use App\Domain\DTO\Collection\Interfaces\EditCollectionDTOInterface;
 use App\Entity\CategoryCollection;
 use App\Entity\ImageCollection;

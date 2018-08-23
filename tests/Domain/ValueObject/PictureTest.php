@@ -6,6 +6,9 @@ namespace App\Tests\Domain\ValueObject;
 use App\Domain\ValueObject\Picture;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class PictureTest
+ */
 final class PictureTest extends TestCase
 {
     /**

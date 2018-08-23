@@ -8,6 +8,10 @@ use App\UI\Form\Type\Category\CategoryType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
+/**
+ * Class CategoryTypeTest
+ * @group Type
+ */
 final class CategoryTypeTest extends TypeTestCase
 {
     public function testItImplements()
@@ -15,6 +19,7 @@ final class CategoryTypeTest extends TypeTestCase
         $type = new CategoryType();
 
         static::assertInstanceOf(AbstractType::class, $type);
+        static::assertInstanceOf(CategoryType::class, $type);
     }
 
     /**

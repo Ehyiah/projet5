@@ -4,6 +4,7 @@ namespace App\Domain\DTO;
 
 
 use App\Entity\ImageCollection;
+use App\Entity\Interfaces\ImageCollectionInterface;
 
 class AddElementImageDTO
 {
@@ -15,9 +16,9 @@ class AddElementImageDTO
     /**
      * AddElementImageDTO constructor.
      *
-     * @param ImageCollection $imageCollection
+     * @param ImageCollectionInterface $imageCollection
      */
-    public function __construct(ImageCollection $imageCollection)
+    public function __construct(ImageCollectionInterface $imageCollection)
     {
         $this->image = $imageCollection;
     }

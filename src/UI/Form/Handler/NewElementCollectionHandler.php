@@ -30,6 +30,8 @@ final class NewElementCollectionHandler implements NewElementCollectionHandlerIn
 
     /**
      * {@inheritdoc}
+     *
+     * @throws \Exception
      */
     public function handle(FormInterface $form): bool
     {
