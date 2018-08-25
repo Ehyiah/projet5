@@ -30,7 +30,6 @@ class Authenticator extends AbstractGuardAuthenticator implements AuthenticatorI
      */
     private $urlGenerator;
 
-
     /**
      * Authenticator constructor.
      *

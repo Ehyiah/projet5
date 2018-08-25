@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Tests\UI\Responder\Category;
+namespace App\Tests\UI\Responder\Security;
 
 
-use App\UI\Responder\Category\SelectCollectionResponder;
+use App\UI\Responder\Security\PasswordRecoverInputResponder;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -12,23 +12,23 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
 /**
- * Class SelectCollectionResponderTest
+ * Class PasswordRecoverInputResponderTest
  * @group Responder
  */
-final class SelectCollectionResponderTest extends TestCase
+final class PasswordRecoverInputResponderTest extends TestCase
 {
     /**
-     * @var Environment|null
+     * @var Environment
      */
     private $twig = null;
 
     /**
-     * @var UrlGeneratorInterface|null
+     * @var UrlGeneratorInterface
      */
     private $urlGenerator = null;
 
     /**
-     * @var SelectCollectionResponder|null
+     * @var PasswordRecoverInputResponder
      */
     private $responder = null;
 
@@ -36,22 +36,21 @@ final class SelectCollectionResponderTest extends TestCase
     {
         $this->twig = $this->createMock(Environment::class);
         $this->urlGenerator = $this->createMock(UrlGeneratorInterface::class);
-        $this->responder = new SelectCollectionResponder(
+        $this->responder = new PasswordRecoverInputResponder(
             $this->twig,
             $this->urlGenerator
         );
     }
 
-
     public function testItImplements()
     {
-        $responder = new SelectCollectionResponder(
+        $responder = new PasswordRecoverInputResponder(
             $this->twig,
             $this->urlGenerator
         );
 
         static::assertInstanceOf(
-            SelectCollectionResponder::class,
+            PasswordRecoverInputResponder::class,
             $responder
         );
     }

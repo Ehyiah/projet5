@@ -53,6 +53,4 @@ final class Picture implements PictureInterface
     {
         return $this->newFileName;
     }
-
-
 }

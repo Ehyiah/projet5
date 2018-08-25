@@ -1,57 +1,43 @@
 <?php
 
-namespace App\Tests\UI\Responder\Category;
+namespace App\Tests\UI\Responder;
 
 
-use App\UI\Responder\Category\SelectCollectionResponder;
+use App\UI\Responder\NewElementCollectionResponder;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
 /**
- * Class SelectCollectionResponderTest
+ * Class NewElementCollectionResponderTest
  * @group Responder
  */
-final class SelectCollectionResponderTest extends TestCase
+final class NewElementCollectionResponderTest extends TestCase
 {
     /**
-     * @var Environment|null
+     * @var Environment
      */
     private $twig = null;
 
     /**
-     * @var UrlGeneratorInterface|null
-     */
-    private $urlGenerator = null;
-
-    /**
-     * @var SelectCollectionResponder|null
+     * @var NewElementCollectionResponder
      */
     private $responder = null;
 
     protected function setUp()
     {
         $this->twig = $this->createMock(Environment::class);
-        $this->urlGenerator = $this->createMock(UrlGeneratorInterface::class);
-        $this->responder = new SelectCollectionResponder(
-            $this->twig,
-            $this->urlGenerator
-        );
+        $this->responder = new NewElementCollectionResponder($this->twig);
     }
-
 
     public function testItImplements()
     {
-        $responder = new SelectCollectionResponder(
-            $this->twig,
-            $this->urlGenerator
-        );
+        $responder = new NewElementCollectionResponder($this->twig);
 
         static::assertInstanceOf(
-            SelectCollectionResponder::class,
+            NewElementCollectionResponder::class,
             $responder
         );
     }

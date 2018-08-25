@@ -18,7 +18,7 @@ interface FileUploaderInterface
      * @param UploadedFile $file
      * @param string $fileName
      *
-     * @return mixed
+     * @return bool
      */
     public function upload(UploadedFile $file, string $fileName);
 

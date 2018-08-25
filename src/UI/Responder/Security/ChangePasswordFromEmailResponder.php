@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
+/**
+ * Class ChangePasswordFromEmailResponder
+ */
 class ChangePasswordFromEmailResponder implements ChangePasswordFromEmailResponderInterface
 {
     /**
@@ -25,8 +28,7 @@ class ChangePasswordFromEmailResponder implements ChangePasswordFromEmailRespond
     /**
      * ChangePasswordFromEmailResponder constructor.
      *
-     * @param Environment $twig
-     * @param UrlGeneratorInterface $urlGenerator
+     * {@inheritdoc}
      */
     public function __construct(
         Environment $twig,
@@ -38,9 +40,8 @@ class ChangePasswordFromEmailResponder implements ChangePasswordFromEmailRespond
 
 
     /**
-     * @param bool $redirect
-     * @param FormInterface|null $form
-     * @return RedirectResponse|Response
+     * {@inheritdoc}
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax

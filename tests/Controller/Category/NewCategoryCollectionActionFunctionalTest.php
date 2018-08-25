@@ -10,9 +10,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Guard\Token\PostAuthenticationGuardToken;
 
 /**
- * Class NewCategoryCollectionActionFunctionnalTest
+ * Class NewCategoryCollectionActionFunctionalTest
+ * @group Functional
  */
-final class NewCategoryCollectionActionFunctionnalTest extends WebTestCase
+final class NewCategoryCollectionActionFunctionalTest extends WebTestCase
 {
     private $client = null;
 
@@ -28,9 +29,6 @@ final class NewCategoryCollectionActionFunctionnalTest extends WebTestCase
         $this->userRepository = self::$container->get('App\Infra\Doctrine\Repository\UserRepository');
     }
 
-    /**
-     * @throws \Exception
-     */
     private function logIn()
     {
         $session = $this->client->getContainer()->get('session');
@@ -49,14 +47,16 @@ final class NewCategoryCollectionActionFunctionnalTest extends WebTestCase
         $this->client->getCookieJar()->set($cookie);
     }
 
-    /**
-     * @throws \Exception
-     */
     public function testNewCategoryPageStatusCode()
     {
         $this->logIn();
         $this->client->request('GET', '/newCategory');
 
-        static::assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
+        static::assertSame(
+            Response::HTTP_OK,
+            $this->client->getResponse()->getStatusCode()
+        );
     }
+
+
 }

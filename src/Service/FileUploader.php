@@ -31,6 +31,8 @@ class FileUploader implements FileUploaderInterface
     public function upload(UploadedFile $file, string $fileName)
     {
         $file->move($this->getTargetDirectory(), $fileName);
+
+        return true;
     }
 
     /**

@@ -5,7 +5,7 @@ namespace App\UI\Form\DataTransformer;
 
 use App\Domain\ValueObject\Picture;
 use App\Entity\ImageCollection;
-use App\Service\FileUploader;
+use App\Service\Interfaces\FileUploaderInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
@@ -15,16 +15,16 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 class ImageCollectionDataTransformer implements DataTransformerInterface
 {
     /**
-     * @var FileUploader
+     * @var FileUploaderInterface
      */
     private $fileUploader;
 
     /**
      * ImageCollectionDataTransformer constructor.
      *
-     * @param FileUploader $fileUploader
+     * @param FileUploaderInterface $fileUploader
      */
-    public function __construct(FileUploader $fileUploader)
+    public function __construct(FileUploaderInterface $fileUploader)
     {
         $this->fileUploader = $fileUploader;
     }
@@ -35,6 +35,13 @@ class ImageCollectionDataTransformer implements DataTransformerInterface
       // TODO: Implement transform() method.
     }
 
+    /**
+     * @param mixed $value
+     *
+     * @return ImageCollection|mixed|null
+     *
+     * @throws \Exception
+     */
     public function reverseTransform($value)
     {
         if ($value == null) {

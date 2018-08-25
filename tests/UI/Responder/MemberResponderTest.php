@@ -1,58 +1,48 @@
 <?php
 
-namespace App\Tests\UI\Responder\Category;
+namespace App\Tests\UI\Responder;
 
 
-use App\UI\Responder\Category\SelectCollectionResponder;
+use App\UI\Responder\MemberResponder;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
 /**
- * Class SelectCollectionResponderTest
+ * Class MemberResponderTest
  * @group Responder
  */
-final class SelectCollectionResponderTest extends TestCase
+final class MemberResponderTest extends TestCase
 {
     /**
-     * @var Environment|null
-     */
-    private $twig = null;
-
-    /**
-     * @var UrlGeneratorInterface|null
-     */
-    private $urlGenerator = null;
-
-    /**
-     * @var SelectCollectionResponder|null
+     * @var MemberResponder
      */
     private $responder = null;
+
+    /**
+     * @var Environment
+     */
+    private $twig = null;
 
     protected function setUp()
     {
         $this->twig = $this->createMock(Environment::class);
-        $this->urlGenerator = $this->createMock(UrlGeneratorInterface::class);
-        $this->responder = new SelectCollectionResponder(
-            $this->twig,
-            $this->urlGenerator
+        $this->responder = new MemberResponder(
+            $this->twig
         );
     }
 
-
     public function testItImplements()
     {
-        $responder = new SelectCollectionResponder(
-            $this->twig,
-            $this->urlGenerator
+        $response = new MemberResponder(
+            $this->twig
         );
 
         static::assertInstanceOf(
-            SelectCollectionResponder::class,
-            $responder
+            MemberResponder::class,
+            $response
         );
     }
 
@@ -67,7 +57,7 @@ final class SelectCollectionResponderTest extends TestCase
 
         static::assertInstanceOf(
             RedirectResponse::class,
-            $response(true)
+            $response(true, [])
         );
     }
 
@@ -79,11 +69,10 @@ final class SelectCollectionResponderTest extends TestCase
     public function testResponseIfFalse()
     {
         $response = $this->responder;
-        $form = $this->createMock(FormInterface::class);
 
         static::assertInstanceOf(
             Response::class,
-            $response(false, $form)
+            $response([], [])
         );
     }
 }

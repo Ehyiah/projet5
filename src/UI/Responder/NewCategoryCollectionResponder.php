@@ -12,7 +12,7 @@ use Twig\Environment;
 /**
  * Class NewCategoryCollectionResponder
  */
-final class NewCategoryCollectionResponder implements NewCategoryCollectionResponderInterface
+class NewCategoryCollectionResponder implements NewCategoryCollectionResponderInterface
 {
     /**
      * @var Environment
@@ -36,7 +36,7 @@ final class NewCategoryCollectionResponder implements NewCategoryCollectionRespo
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke($redirect = false, FormInterface $form)
+    public function __invoke($redirect = false, FormInterface $form = null)
     {
         $redirect
             ? $response = new RedirectResponse('home')

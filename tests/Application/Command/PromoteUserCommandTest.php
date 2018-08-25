@@ -14,6 +14,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 
 /**
  * Class PromoteUserCommandTest.
+ * @group Command
  */
 final class PromoteUserCommandTest extends KernelTestCase
 {
