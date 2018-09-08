@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-
 {% block body %}
 
     <div class="container">
         <p>Eléments présents dans la collection : <strong>{{ app.request.get('collectionName') }}</strong>
-            <a class="btn btn-primary btn-sm" href="{{ path('addElement', {'id' : app.request.get('idCollection')}) }}">Ajouter un élément</a>
+            <br>
+            <a class="btn btn-primary btn-sm" href="{{ path('addElement', {'id' : app.request.get('idCollection')}) }}">Ajouter un élément à cette Collection</a>
         </p>
     </div>
 
 
 
-
-    <div class="table-responsive">
+{# Desktop Display #}
+    <div class="table-responsive" id="DetailledCollectionResponsiveBIG">
         <table class="table table-striped">
             <thead>
             <tr>
@@ -35,9 +35,32 @@
                     <th scope="row"><a href="{{ path('editElementCollection', {'id' : element.id}) }}">
                             {{ element.title }}</a>
                         <p>
-                            <a class="btn btn-outline-danger btn-sm" href="{{ path('deleteElement', {'id' : element.id}) }}">Supprimer</a>
+                            <a class="btn btn-outline-danger btn-sm" href="#" data-toggle="modal" data-target="#{{ element.id }}">Supprimer</a>
                             <a class="btn btn-primary" href="{{ path('editElementCollection', {'id' : element.id}) }}">Modifier</a>
                         </p>
+
+                            <div class="modal fade" id="{{ element.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteElement" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Supprimer cet élement de la collection</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">x</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Etes-vous sur de vouloir supprimer cet élément ?</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                                            <a class="card-link btn btn-outline-danger" href="{{ path('deleteElement', {'id' : element.id}) }}">Supprimer</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
                     </th>
                     <td>{{ element.region }}</td>
                     <td>{{ element.author }}</td>
@@ -66,7 +89,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <img src="{{ asset('upload/CollectionImage/') }}{{ image.title }}">
+                                            <img src="{{ asset('upload/CollectionImage/') }}{{ image.title }}" class="img-fluid text-center">
                                             <p>Etes-vous sur ?</p>
                                             <p>Cette image sera supprimée de cet élément</p>
                                         </div>
@@ -87,6 +110,81 @@
         </table>
     </div>
 
+
+
+{# Responsive Display #}
+<div class="container" id="DetailledCollectionResponsiveSMALL">
+    <div id="accordion">
+        {% for element in collection %}
+            <div class="card">
+                <div class="card-header" id="heading{{ element.id }}">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#{{ element.title }}" aria-expanded="true" aria-controls="{{ element.title }}">
+                            {{ element.title }}
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="{{ element.title }}" class="collapse" aria-labelledby="heading{{ element.id }}" data-parent="#accordion">
+                    <div class="card-body">
+                        <strong>titre : </strong> <p>{{ element.title }}</p>
+                        <strong>Région : </strong> <p>{{ element.region }}</p>
+                        <strong>Auteur : </strong> <p>{{ element.author }}</p>
+                        <strong>Editeur : </strong> <p>{{ element.publisher }}</p>
+                        <strong>Etat : </strong> <p>{{ element.etat }}</p>
+                        <strong>Prix d'achat : </strong> <p>{{ element.buyPrice }}</p>
+                        <strong>Support : </strong> <p>{{ element.support }}</p>
+                        <strong>Nombre de joueurs : </strong> <p>{{ element.playerNumber }}</p>
+                        <strong>Valeur : </strong> <p>{{ element.value }}</p>
+                        {% if element.images is defined and element.images is not empty%}
+                            <strong>Images : </strong>
+                            <br>
+                        {% endif %}
+                        <div class="text-center">
+                            {% for image in element.images %}
+                                <a href="#" data-toggle="modal" data-target="#{{ image.title }}0">
+                                    <img src="{{ asset('upload/CollectionImage/') }}{{ image.title }}" alt="Image d'illustration de l'élément" id="ImageElementCollection{{ image.id }}"
+                                         width="80px" height="80px"
+                                    >
+                                </a>
+
+                                <div class="modal fade" id="{{ image.title }}0" tabindex="-1" role="dialog" aria-labelledby="deleteImage" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Supprimer cette image</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">x</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <img src="{{ asset('upload/CollectionImage/') }}{{ image.title }}" class="img-fluid">
+                                                <p>Etes-vous sur ?</p>
+                                                <p>Cette image sera supprimée de cet élément</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                                                <a class="card-link btn btn-outline-danger" href="{{ path('deleteImageFromCollection', {'id' : image.id, 'idElement' : element.id}) }}">Supprimer</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        {# edit, delete in responsive #}
+                        <br>
+                        <hr>
+                        <div class="text-center">
+                            <a class="card-link btn btn-outline-primary" href="{{ path('editElementCollection', {'id' : element.id}) }}">Edit</a>
+                            <a class="card-link btn btn-outline-danger" href="">Supprimer</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 
 
 {% endblock body %}

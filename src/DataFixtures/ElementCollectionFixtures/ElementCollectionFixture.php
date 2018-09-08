@@ -66,6 +66,18 @@ class ElementCollectionFixture extends Fixture implements ElementCollectionFixtu
         $manager->persist($elementCollection);
         $manager->flush();
 
+
+        $elementCollectionDTO0 = new AddElementCollectionDTO(
+            'titreElement', 'regionElement', 'publisherElement',
+            'etatElement', 12, 'support', 2,
+            12, $collection[0], []
+        );
+        $elementCollection0 = new ElementCollection($elementCollectionDTO0);
+
+        $manager->persist($elementCollection0);
+        $manager->flush();
+
+
         //$this->addReference(self::ELEMENT_REFERENCE, $elementCollection);
     }
 

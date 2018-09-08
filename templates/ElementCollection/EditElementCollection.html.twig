@@ -7,11 +7,14 @@
 
 {% block body %}
     <div class="container">
-
+        <hr>
+        <h1>Modification de l'élément</h1>
+        <hr>
         {{ form_start(form) }}
 
         {{ form_row(form.title) }}
         {{ form_row(form.region) }}
+        {{ form_row(form.author) }}
         {{ form_row(form.publisher) }}
         {{ form_row(form.etat) }}
         {{ form_row(form.buy_price) }}
@@ -27,9 +30,9 @@
             {% if form.images is empty %}
                 <p>Aucune image associée à cet élément</p>
             {% endif %}
-            <div class="rounded mx-auto d-block">
+            <div class="rounded mx-auto d-block ">
                 {% for imagesForm in form.images %}
-                        <img src="{{ imagesForm.image.vars.image_url }}">
+                        <img src="{{ imagesForm.image.vars.image_url }}" class="img-thumbnail">
                 {% endfor %}
             </div>
 

@@ -8,13 +8,14 @@
 
 {% block body %}
     <div class="container">
+        <hr>
         <h1>Création de Catégories</h1>
+        <hr>
         <h3>Formulaire de création d'une nouvelle Catégorie de Collections</h3>
-
         <hr>
 
         {{ form_start(form) }}
-        {{ form_row(form.category_collection, {label : 'Nom de la nouvelle Catégorie'}) }}
+        {{ form_row(form.category_collection) }}
         <button type="submit" class="btn btn-primary">Créer une nouvelle Catégorie</button>
         {{ form_end(form) }}
 

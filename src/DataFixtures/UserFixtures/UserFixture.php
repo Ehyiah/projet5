@@ -51,6 +51,7 @@ class UserFixture extends Fixture implements UserFixtureInterface
 
         $user = new User($userDTO);
         $user->addRoleAdmin();
+        $user->newResetToken('1');
         $manager->persist($user);
         $manager->flush();
 

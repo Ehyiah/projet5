@@ -2,7 +2,6 @@
 
 {% block body %}
 
-
 {% if (collections is defined) and (collections is not null) %}
     <div class="container" style="padding: 5px">
         <div class="card-deck">
@@ -12,7 +11,7 @@
                     <div class="card mb-4">
                         {% if collection.title is not null %}
                             <a href="#" data-toggle="modal" data-target="#{{ collection.title }}">
-                                <img class="card-img-top img-fluid" src="{{ asset('upload/CollectionImage/') }}{{ collection.title }}"
+                                <img class="card-img-top img-fluid img-thumbnail" src="{{ asset('upload/CollectionImage/') }}{{ collection.title }}"
                                      style="height: 180px;"
                                 >
                             </a>

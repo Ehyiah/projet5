@@ -7,6 +7,7 @@ use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 interface DeleteCollectionActionInterface
 {
@@ -27,7 +28,7 @@ interface DeleteCollectionActionInterface
      * @param Request $request
      * @param $id
      *
-     * @return mixed
+     * @return Response
      */
-    public function __invoke(Request $request, $id);
+    public function __invoke(Request $request, $id): Response;
 }

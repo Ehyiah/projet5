@@ -5,9 +5,12 @@ namespace App\DataFixtures\CollectionFixtures;
 
 use App\DataFixtures\CategoryCollectionFixture\CategoryFixture;
 use App\DataFixtures\CollectionFixtures\Interfaces\CollectionFixtureInterface;
+use App\DataFixtures\ImageFixtures\ImageFixture;
 use App\DataFixtures\UserFixtures\UserFixture;
 use App\Domain\DTO\Collection\AddCollectionDTO;
+use App\Domain\ValueObject\Picture;
 use App\Entity\Collection;
+use App\Entity\ImageCollection;
 use App\Infra\Doctrine\Repository\Interfaces\CategoryCollectionRepositoryInterface;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use App\Infra\Doctrine\Repository\Interfaces\UserRepositoryInterface;
@@ -60,15 +63,32 @@ class CollectionFixture extends Fixture implements CollectionFixtureInterface, D
         $category = $this->categoryRepository->findAll();
         $user = $this->userRepository->findAll();
 
-        $collectionDTO = new AddCollectionDTO(
-            'nomCollectionFixture', 'pasDeTag', $category[0], true, null
-        );
+        $picture = new Picture('nom', 'extension');
+        $picture->getFileName();
+        $image = new ImageCollection($picture);
 
+        $collectionDTO = new AddCollectionDTO(
+            'nomCollectionFixture', 'pasDeTag', $category[0], true, $image
+        );
         $collection = new Collection($collectionDTO);
         $collection->setOwner($user[0]);
 
         $manager->persist($collection);
         $manager->flush();
+
+        $picture0 = new Picture('nom2', 'extension');
+        $picture0->getFileName();
+        $image0 = new ImageCollection($picture0);
+
+        $collectionDTO0 = new AddCollectionDTO(
+            '0nomCollectionFixture', '0pasDeTag', $category[0], true, $image0
+        );
+        $collection0 = new Collection($collectionDTO0);
+        $collection0->setOwner($user[0]);
+
+        $manager->persist($collection0);
+        $manager->flush();
+
 
         $this->addReference(self::COLLECTION_REFERENCE, $collection);
     }
@@ -80,7 +100,8 @@ class CollectionFixture extends Fixture implements CollectionFixtureInterface, D
     {
         return array(
             UserFixture::class,
-            CategoryFixture::class
+            CategoryFixture::class,
+            ImageFixture::class
         );
     }
 }

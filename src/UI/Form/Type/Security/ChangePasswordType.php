@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 
 /**
  * Class ChangePasswordType
@@ -23,11 +24,14 @@ class ChangePasswordType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('oldPassword', PasswordType::class)
+            ->add('oldPassword', PasswordType::class, array(
+                'label' => 'Mot de passe actuel'
+            ))
             ->add('password', RepeatedType::class, array(
                 'type' => PasswordType::class,
-                'first_options'  => array('label' => 'Password'),
-                'second_options' => array('label' => 'Repeat Password')
+                'first_options'  => array('label' => 'Nouveau Mot de Passe'),
+                'second_options' => array('label' => 'Confirmation du Nouveau Mot de Passe'),
+                'constraints' => array(new Length(array('min' => 6)))
             ));
     }
 

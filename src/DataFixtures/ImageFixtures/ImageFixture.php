@@ -66,7 +66,6 @@ class ImageFixture extends Fixture implements ImageFixtureInterface, DependentFi
         return array(
             UserFixture::class,
             CategoryFixture::class,
-            CollectionFixture::class
         );
     }
 }

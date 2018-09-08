@@ -71,7 +71,7 @@ final class ChangePasswordHandler implements ChangePasswordHandlerInterface
                 // on peut changer le mot de passe
                 $newPassEncoded = $encoder->encodePassword($newPass, null);
                 $user->editPassword($newPassEncoded);
-                dump($user);
+                //dump($user);
                 $this->user->edit($user);
             }
             else {

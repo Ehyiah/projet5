@@ -68,7 +68,7 @@ class AddElementCollectionFromCollectionAction implements AddElementCollectionFr
     // id est l'id de la collection dans laquelle ajouter l'élément
         $collection = $this->collection->find($id);
 
-        $dto = new AddElementCollectionDTO(null, null, null, null, null, null, null, null, $collection);
+        $dto = new AddElementCollectionDTO(null, null,null, null, null, null, null, null, null, $collection);
 
         $form = $this->formFactory->create(AddElementCollectionFromCollectionType::class, $dto)
                                     ->handleRequest($request);

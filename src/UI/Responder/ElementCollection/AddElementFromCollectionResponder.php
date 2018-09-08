@@ -56,7 +56,6 @@ final class AddElementFromCollectionResponder implements AddElementFromCollectio
      */
     public function __invoke($redirect = false, FormInterface $form = null)
     {
-
         $redirect
             ? $response = new RedirectResponse(
                 $this->urlGenerator->generate('showDetailled', array(

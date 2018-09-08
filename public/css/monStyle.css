@@ -1,15 +1,44 @@
-/*
-#monMenu{
-    background-image: url("../images/bann.png") ;
-}
-*/
 html {
     position: relative;
     min-height: 100%;
+
 }
+
+body{
+    background-color: #d7e3f9;
+}
+
 .footer{
     background-color: #31b0d5;
     position: absolute;
     width: 100%;
     bottom: 0;
+    /*background-image: url("/images/bg.jpg");*/
+}
+
+#Menu{
+    margin-bottom: 5px;
+    width: auto;
+}
+
+#DetailledCollectionResponsiveSMALL{
+    display: none;
+}
+
+
+@media screen and (max-width: 575px) {
+    #DetailledCollectionResponsiveBIG{
+        display: none;
+    }
+    #DetailledCollectionResponsiveSMALL{
+        display: block;
+    }
+
+    .container{
+        margin: 0;
+    }
+
+    #Menu{
+        padding: 0;
+    }
 }

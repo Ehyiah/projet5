@@ -30,6 +30,11 @@ class EditElementCollectionDTO implements EditElementCollectionDTOInterface
     /**
      * @var string
      */
+    public $author;
+
+    /**
+     * @var string
+     */
     public $publisher;
 
     /**
@@ -38,7 +43,7 @@ class EditElementCollectionDTO implements EditElementCollectionDTOInterface
     public $etat;
 
     /**
-     * @var int
+     * @var float
      */
     public $buy_price;
 
@@ -75,9 +80,10 @@ class EditElementCollectionDTO implements EditElementCollectionDTOInterface
     public function __construct(
         string $title,
         string $region = null,
+        string $author = null,
         string $publisher = null,
         string $etat = null,
-        int $buy_price = null,
+        float $buy_price = null,
         string $support = null,
         int $player_number = null,
         float $value = null,
@@ -86,6 +92,7 @@ class EditElementCollectionDTO implements EditElementCollectionDTOInterface
     ) {
         $this->title = $title;
         $this->region = $region;
+        $this->author = $author;
         $this->publisher = $publisher;
         $this->etat = $etat;
         $this->buy_price = $buy_price;

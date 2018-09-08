@@ -8,7 +8,7 @@
         <title>{% block title %} Bienvenue !{% endblock %}</title>
 
         <!-- favicon -->
-        <link rel="icon" type="image/png" href="images/favicon/favicon.png" />
+        <link rel="icon" type="image/png" href={{ asset('images/favicon/favicon.png') }} />
         <meta name="description" content="Organisez vos collections">
         <!-- Open Graph data -->
         <meta property="og:title" content="Collec'Online, Gestion de collections" />
@@ -31,6 +31,7 @@
 
     <body>
         <!-- menu -->
+        <div class="container" id="Menu">
         {% block menu %}
         <nav class="navbar sticky-top navbar-expand-lg navbar-dark" id="monMenu" style="background-color: #31b0d5;">
             <a class="navbar-brand" href="{{ path('home') }}">
@@ -95,6 +96,7 @@
             </div>
         </nav>
         {% endblock menu %}
+        </div>
 
 
         <!-- message flash -->

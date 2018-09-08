@@ -8,14 +8,15 @@
 
 {% block body %}
     <div class="container">
-        <h1>Création</h1>
-        <p>Formulaire de création d'un élément de collection</p>
+        <hr>
+        <h1>Ajout d'un élément à la collection</h1>
         <hr>
 
         {{ form_start(form) }}
 
         {{ form_row(form.title) }}
         {{ form_row(form.region) }}
+        {{ form_row(form.author) }}
         {{ form_row(form.publisher) }}
         {{ form_row(form.etat) }}
         {{ form_row(form.buy_price) }}
@@ -31,7 +32,7 @@
         <div class="images" data-prototype="{{ form_row(form.images.vars.prototype)|e('html_attr') }}">
         </div>
 
-        <button type="submit" class="btn btn-primary">Ajout d'un nouvel élément</button>
+        <button type="submit" class="btn btn-primary">Ajouter l'élément</button>
         {{ form_end(form) }}
 
         <a href="{{ app.request.headers.get('referer') }}">Retour</a>

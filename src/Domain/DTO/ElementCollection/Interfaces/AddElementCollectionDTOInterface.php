@@ -12,6 +12,7 @@ interface AddElementCollectionDTOInterface
      *
      * @param string|null $title
      * @param string|null $region
+     * @param string|null $author
      * @param string|null $publisher
      * @param string|null $etat
      * @param int|null $buy_price
@@ -24,6 +25,7 @@ interface AddElementCollectionDTOInterface
     public function __construct(
         string $title = null,
         string $region = null,
+        string $author = null,
         string $publisher = null,
         string $etat = null,
         int $buy_price = null,

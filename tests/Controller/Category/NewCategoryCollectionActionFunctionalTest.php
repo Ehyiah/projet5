@@ -22,7 +22,6 @@ final class NewCategoryCollectionActionFunctionalTest extends WebTestCase
      */
     private $userRepository = null;
 
-
     protected function setUp()
     {
         $this->client = static::createClient();
@@ -50,7 +49,10 @@ final class NewCategoryCollectionActionFunctionalTest extends WebTestCase
     public function testNewCategoryPageStatusCode()
     {
         $this->logIn();
-        $this->client->request('GET', '/newCategory');
+        $this->client->request(
+            'GET',
+            '/newCategory'
+        );
 
         static::assertSame(
             Response::HTTP_OK,
@@ -58,5 +60,43 @@ final class NewCategoryCollectionActionFunctionalTest extends WebTestCase
         );
     }
 
+    /**
+     * @param string $category
+     *
+     * @dataProvider dataProvider
+     */
+    public function testNewCategoryCollectionGoodProcess(string $category)
+    {
+        $this->logIn();
+        $crawler = $this->client->request(
+            'GET',
+            '/newCategory'
+        );
 
+        static::assertContains(
+            'Création de Catégories',
+            $this->client->getResponse()->getContent()
+        );
+
+        $form = $crawler->selectButton('Créer une nouvelle Catégorie')->form();
+        $form['category[category_collection]']->setValue($category);
+
+        $this->client->submit($form);
+        $this->client->followRedirect();
+
+        static::assertContains(
+            'Nouvelle catégorie créée',
+            $this->client->getResponse()->getContent()
+        );
+    }
+
+    /**
+     * @return \Generator
+     */
+    public function dataProvider()
+    {
+        yield array('test');
+        yield array('test0');
+        yield array('test1');
+    }
 }

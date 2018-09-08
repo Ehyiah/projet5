@@ -46,7 +46,9 @@ class EditCollectionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, array(
+                'label' => 'Nom de la Collection'
+            ))
             ->add('tag', TextType::class, array(
                 'required' => false
             ))

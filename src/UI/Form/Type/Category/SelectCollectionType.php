@@ -25,7 +25,7 @@ class SelectCollectionType extends AbstractType
         $builder
             ->add('categoryCollection', EntityType::class, array(
                 'class' => CategoryCollection::class,
-                'label' => 'Choisissez le type de Collection',
+                'label' => 'Choisissez la Catégorie à supprimer',
                 'choice_label' => 'category_collection'
             ))
         ;

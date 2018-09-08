@@ -25,6 +25,11 @@ class AddElementCollectionDTO implements AddElementCollectionDTOInterface
     /**
      * @var string
      */
+    public $author;
+
+    /**
+     * @var string
+     */
     public $publisher;
 
     /**
@@ -70,6 +75,7 @@ class AddElementCollectionDTO implements AddElementCollectionDTOInterface
     public function __construct(
         string $title = null,
         string $region = null,
+        string $author = null,
         string $publisher = null,
         string $etat = null,
         int $buy_price = null,
@@ -81,6 +87,7 @@ class AddElementCollectionDTO implements AddElementCollectionDTOInterface
     ) {
         $this->title = $title;
         $this->region = $region;
+        $this->author = $author;
         $this->publisher = $publisher;
         $this->etat = $etat;
         $this->buy_price = $buy_price;

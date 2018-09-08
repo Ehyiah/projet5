@@ -3,12 +3,16 @@
 namespace App\Subscriber\Form;
 
 
+use App\Subscriber\Form\Interfaces\EditCollectionTypeSubscriberInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
-class EditCollectionTypeSubscriber implements EventSubscriberInterface
+/**
+ * Class EditCollectionTypeSubscriber
+ */
+class EditCollectionTypeSubscriber implements EditCollectionTypeSubscriberInterface, EventSubscriberInterface
 {
     /**
      * @var FileType

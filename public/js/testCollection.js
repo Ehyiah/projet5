@@ -56,3 +56,5 @@ function addImageForm($collectionHolder, $newLink) {
     // add a delete link to the new form
     addImageFormDeleteLink($newFormLi);
 }
+
+

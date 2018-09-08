@@ -12,9 +12,10 @@ interface EditElementCollectionDTOInterface
      *
      * @param string $title
      * @param string|null $region
+     * @param string|null $author
      * @param string|null $publisher
      * @param string|null $etat
-     * @param int|null $buy_price
+     * @param float|null $buy_price
      * @param string|null $support
      * @param int|null $player_number
      * @param float|null $value
@@ -24,9 +25,10 @@ interface EditElementCollectionDTOInterface
     public function __construct(
         string $title,
         string $region = null,
+        string $author = null,
         string $publisher = null,
         string $etat = null,
-        int $buy_price = null,
+        float $buy_price = null,
         string $support = null,
         int $player_number = null,
         float $value = null,

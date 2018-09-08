@@ -43,8 +43,12 @@ class CategoryFixture extends Fixture implements CategoryFixtureInterface, Depen
     {
         $categoryDTO = new AddCategoryDTO('testCategorieFixture');
         $category = new CategoryCollection($categoryDTO);
+        $category1 = new CategoryCollection($categoryDTO);
 
         $manager->persist($category);
+        $manager->flush();
+
+        $manager->persist($category1);
         $manager->flush();
 
         $this->addReference(self::CATEGORY_REFERENCE, $category);

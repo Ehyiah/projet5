@@ -75,6 +75,7 @@ class EditElementCollectionAction implements EditElementCollectionActionInterfac
         $dto = new EditElementCollectionDTO(
             $elementObjet->getTitle(),
             $elementObjet->getRegion(),
+            $elementObjet->getAuthor(),
             $elementObjet->getPublisher(),
             $elementObjet->getEtat(),
             $elementObjet->getBuyPrice(),
