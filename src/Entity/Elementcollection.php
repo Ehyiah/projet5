@@ -204,7 +204,7 @@ class ElementCollection implements ElementCollectionInterface
         $this->id = Uuid::uuid4();
         $this->title = $addElementCollectionDTO->title;
         $this->region = $addElementCollectionDTO->region;
-        #$this->author = $author;
+        $this->author = $addElementCollectionDTO->author;
         $this->publisher = $addElementCollectionDTO->publisher;
         $this->etat = $addElementCollectionDTO->etat;
         $this->buy_price = $addElementCollectionDTO->buy_price;
@@ -238,7 +238,7 @@ class ElementCollection implements ElementCollectionInterface
     {
         $this->title = $elementCollectionDTO->title;
         $this->region = $elementCollectionDTO->region;
-        // $this->author = $elementCollectionDTO->author;
+        $this->author = $elementCollectionDTO->author;
         $this->publisher = $elementCollectionDTO->publisher;
         $this->etat = $elementCollectionDTO->etat;
         $this->buy_price = $elementCollectionDTO->buy_price;

@@ -129,6 +129,14 @@ class User implements BaseUserInterface, UserInterface, \Serializable
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function editEmail(string $email): string
+    {
+        return $this->email = $email;
+    }
+
+    /**
      * @param $token
      *
      * @throws \Exception

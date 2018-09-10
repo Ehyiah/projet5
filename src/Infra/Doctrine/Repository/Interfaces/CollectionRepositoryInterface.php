@@ -62,6 +62,14 @@ interface CollectionRepositoryInterface
     public function menuFindByOwnerAndCategory($user);
 
     /**
+     * @param $user
+     *
+     * @return mixed
+     */
+    public function FindCollectionForMemberPage($user);
+
+
+    /**
      * @param CollectionInterface $collection
      *
      * @return mixed

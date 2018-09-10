@@ -3,53 +3,37 @@
 
 {% block body %}
     <div class="container">
-        <p>bienvenue dans votre espace membre : <strong>{{ collections.0.username }}</strong></p>
-
-        {{ dump(collections) }}
-
-
-
-
-        <a class="btn btn-primary" href="{{ path('changePassword') }}">
-            Changer le mot de passe
-        </a>
-
-
+        <hr>
+        <h1>Bienvenue dans votre espace membre</h1>
+        <hr>
 
         <div>
-            <h3>Voici la liste de vos collections</h3>
+            <h2>Informations sur votre Compte Personnel</h2>
+            <hr>
+            <h5>Nom : {{ collections.user.username }}</h5>
+            <p><strong>Email</strong> : {{ collections.user.email }} <a href="{{ path('changeEmail') }}" class="btn btn-outline-primary btn-sm">Modifier</a> </p>
+            <a class="btn btn-primary" href="{{ path('changePassword') }}">
+                Changer le mot de passe
+            </a>
+        </div>
 
-            {% for collection in collections.2 %}
-                <p>
-                    <a href="{{ path('showDetailled', {'idCollection':collection.id, 'collectionName' : collection.collectionName}) }}">{{ collection.collectionName }}</a>
-                </p>
+        <hr>
+        <div>
+            <h2>Aperçu de vos Collections</h2>
 
+            {% for category,value in collections.count %}
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ category }}
+                    <span class="badge badge-primary badge-pill">{{ value }}</span>
+                </li>
+            </ul>
             {% endfor %}
         </div>
 
 
-        <div>
-            {% for collection in collections.2 %}
-
-
-                {{ dump(collection.category.categoryCollection) }}
-
-
-
-            {% endfor %}
-        </div>
-
-
-
-
-
-        <div>
-            <a href="{{ path('home') }}">Accueil</a>
-        </div>
 
     </div>
-
-
 
 
 {% endblock body %}

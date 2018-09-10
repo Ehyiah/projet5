@@ -68,14 +68,17 @@ class MemberAction implements MemberActionInterface
     ) {
         $user = $this->security->getToken()->getUser();
 
-        $collections = $this->imageRepository->findAll();
+        $collection = $this->collection->FindCollectionForMemberPage($user);
 
-        $collection = $this->collection->findByOwner($user);
+        foreach ($collection as $cat) {
+            $tabToCount[] = $cat->getCategory()->getCategoryCollection();
+        }
 
-        $tab[] = $user;
-        $tab[] = $collections;
-        $tab[] = $collection;
+        $tabCount = array_count_values($tabToCount);
 
+        $tab['user'] = $user;
+        $tab['count'] = $tabCount;
+        $tab['collection'] = $collection;
 
         return $responder(false, $tab);
     }

@@ -6,6 +6,9 @@ namespace App\Tests\Domain\DTO\Security;
 use App\Domain\DTO\Security\ChangePasswordDTO;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class ChangePasswordDTOTest
+ */
 final class ChangePasswordDTOTest extends TestCase
 {
     /**

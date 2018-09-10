@@ -52,14 +52,11 @@ final class ChangePasswordHandler implements ChangePasswordHandlerInterface
     public function handle(FormInterface $form)
     {
         if ($form->isSubmitted() && $form->isValid()) {
-            // recupération du salt
             $encoder = $this->encoderFactory->getEncoder(User::class);
 
-            //recuperation de l'utilisateur connecté et de son mot de passe encodé
             $user = $this->security->getToken()->getUser();
             $passEncoded = $user->getPassword();
 
-            //vieux et nouveau mot de passe
             $oldpass = $form->getData()->oldPassword;
             $newPass = $form->getData()->password;
 
@@ -71,13 +68,11 @@ final class ChangePasswordHandler implements ChangePasswordHandlerInterface
                 // on peut changer le mot de passe
                 $newPassEncoded = $encoder->encodePassword($newPass, null);
                 $user->editPassword($newPassEncoded);
-                //dump($user);
                 $this->user->edit($user);
             }
             else {
                 // on ne peut pas changer le mot de passe
             }
-
 
             return true;
         }

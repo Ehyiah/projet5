@@ -127,15 +127,33 @@
 
                 <div id="{{ element.title }}" class="collapse" aria-labelledby="heading{{ element.id }}" data-parent="#accordion">
                     <div class="card-body">
-                        <strong>titre : </strong> <p>{{ element.title }}</p>
-                        <strong>Région : </strong> <p>{{ element.region }}</p>
-                        <strong>Auteur : </strong> <p>{{ element.author }}</p>
-                        <strong>Editeur : </strong> <p>{{ element.publisher }}</p>
-                        <strong>Etat : </strong> <p>{{ element.etat }}</p>
-                        <strong>Prix d'achat : </strong> <p>{{ element.buyPrice }}</p>
-                        <strong>Support : </strong> <p>{{ element.support }}</p>
-                        <strong>Nombre de joueurs : </strong> <p>{{ element.playerNumber }}</p>
-                        <strong>Valeur : </strong> <p>{{ element.value }}</p>
+                        <strong>Titre : </strong> <p>{{ element.title }}</p>
+
+                        {% if element.region is defined and element.region is not empty%}
+                            <strong>Région : </strong> <p>{{ element.region }}</p>
+                        {% endif %}
+                        {% if element.author is defined and element.author is not empty%}
+                            <strong>Auteur : </strong> <p>{{ element.author }}</p>
+                        {% endif %}
+                        {% if element.publisher is defined and element.publisher is not empty%}
+                            <strong>Editeur : </strong> <p>{{ element.publisher }}</p>
+                        {% endif %}
+                        {% if element.etat is defined and element.etat is not empty%}
+                            <strong>Etat : </strong> <p>{{ element.etat }}</p>
+                        {% endif %}
+                        {% if element.buyPrice is defined and element.buyPrice is not empty%}
+                            <strong>Prix d'achat : </strong> <p>{{ element.buyPrice }}</p>
+                        {% endif %}
+                        {% if element.support is defined and element.support is not empty%}
+                            <strong>Support : </strong> <p>{{ element.support }}</p>
+                        {% endif %}
+                        {% if element.playerNumber is defined and element.playerNumber is not empty%}
+                            <strong>Nombre de joueurs : </strong> <p>{{ element.playerNumber }}</p>
+                        {% endif %}
+                        {% if element.value is defined and element.value is not empty%}
+                            <strong>Valeur : </strong> <p>{{ element.value }}</p>
+                        {% endif %}
+
                         {% if element.images is defined and element.images is not empty%}
                             <strong>Images : </strong>
                             <br>
@@ -176,8 +194,8 @@
                         <br>
                         <hr>
                         <div class="text-center">
-                            <a class="card-link btn btn-outline-primary" href="{{ path('editElementCollection', {'id' : element.id}) }}">Edit</a>
-                            <a class="card-link btn btn-outline-danger" href="">Supprimer</a>
+                            <a class="card-link btn btn-outline-primary" href="{{ path('editElementCollection', {'id' : element.id}) }}">Editer</a>
+                            <a class="card-link btn btn-outline-danger btn-sm" href="">Supprimer</a>
                         </div>
                     </div>
                 </div>

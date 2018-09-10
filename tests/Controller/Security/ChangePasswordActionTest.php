@@ -122,10 +122,6 @@ final class ChangePasswordActionTest extends KernelTestCase
             'POST'
         );
 
-        $session = new Session(new MockArraySessionStorage());
-        $request->setSession($session);
-        $request->getSession()->getFlashBag()->add('success', 'Le mot de passe a bien été modifié');
-
         static::assertInstanceOf(Response::class,
             $action($request, $this->responder)
         );

@@ -118,7 +118,6 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
         ->getResult();
     }
 
-
     /**
      * {@inheritdoc}
      */
@@ -130,6 +129,20 @@ final class CollectionRepository extends ServiceEntityRepository implements Coll
             ->leftJoin('c.category', 'category')
                 ->addSelect('category')
             ->groupBy('category')
+
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function FindCollectionForMemberPage($user)
+    {
+        return $this->createQueryBuilder('c')
+            ->where('c.owner = :owner')
+            ->setParameter('owner', $user)
+            ->leftJoin('c.category', 'category')
 
             ->getQuery()
             ->getResult();

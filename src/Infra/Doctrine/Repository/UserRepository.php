@@ -72,7 +72,6 @@ final class UserRepository extends ServiceEntityRepository implements UserReposi
             ->getSingleResult();
     }
 
-
     /**
      * {@inheritdoc}
      */

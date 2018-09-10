@@ -15,6 +15,13 @@ interface UserInterface
     public function editPassword(string $password): string;
 
     /**
+     * @param string $email
+     *
+     * @return string
+     */
+    public function editEmail(string $email): string;
+
+    /**
      * @return bool
      */
     public function addRoleAdmin(): bool;

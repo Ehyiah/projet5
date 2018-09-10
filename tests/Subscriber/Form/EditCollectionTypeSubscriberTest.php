@@ -4,7 +4,6 @@ namespace App\Tests\Subscriber\Form;
 
 
 use PHPUnit\Framework\TestCase;
-use SebastianBergmann\CodeCoverage\Node\File;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
