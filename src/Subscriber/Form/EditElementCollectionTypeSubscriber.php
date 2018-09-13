@@ -4,22 +4,25 @@ namespace App\Subscriber\Form;
 
 
 use App\Domain\DTO\AddElementImageDTO;
+use App\Subscriber\Form\Interfaces\EditElementCollectionTypeSubscriberInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
 /**
- * Class EditElementCollectionTypeSubscriber
+ * Class EditElementCollectionTypeSubscriberInterface
  */
-class EditElementCollectionTypeSubscriber implements EventSubscriberInterface
+class EditElementCollectionTypeSubscriber implements EditElementCollectionTypeSubscriberInterface,EventSubscriberInterface
 {
     /**
      * @var array
      */
     private $image;
 
-
+    /**
+     * {@inheritdoc}
+     */
     public static function getSubscribedEvents()
     {
         return [
@@ -28,44 +31,51 @@ class EditElementCollectionTypeSubscriber implements EventSubscriberInterface
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function onPostSetData(FormEvent $event)
     {
-        //stock les images deja presentes
         foreach ($event->getForm()->getData()->images as $image) {
             $this->image[] = $image->image;
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function onSubmit(FormEvent $event)
     {
+
         if (\is_null($this->image)) {
             return;
         }
 
+        //
         // replace les images déjà présentes dans un tableau
         foreach ($this->image as $imageCollection) {
             $newImage = new AddElementImageDTO($imageCollection);
             $newTab[] = $newImage;
         }
 
-        // tableau d'images nouvelles soumises dans le formulaire
+        // make a tab with the new submitted images
         $tab = $event->getData()->images;
 
         foreach ($tab as $item) {
-            // compte le nombre d'images déjà présentes dans le tableau
+            // count images already existing in tab
             $number = \count($newTab);
 
-            // on complète le tableau contenant les anciennes imags avec les nouvelles images
+            // filling up the tab with new images
             if ((!\is_null($item->image)) && ($number < 3) ) {
                 $newTab[] = new AddElementImageDTO($item->image);
             }
 
-            /*
+
             // si plus de 3 images dans le tableau erreur
             if ($number > 3) {
-                $event->getForm()->get('title')->addError(new FormError('3 images maximum par éléments'));
+                $event->getForm()->get('images')->addError(new FormError('3 images maximum par éléments'));
             }
-            */
+
 
         }
 

@@ -2,7 +2,7 @@
 
 
 {% block title %}
-    Création
+    Création de Catégorie
 {% endblock %}
 
 
@@ -16,12 +16,12 @@
 
         {{ form_start(form) }}
         {{ form_row(form.category_collection) }}
+
         <button type="submit" class="btn btn-primary">Créer une nouvelle Catégorie</button>
+        <a href="{{ path('home') }}" class="btn btn-primary">Retour</a>
+
         {{ form_end(form) }}
 
-        <div class="divider"></div>
-        <a href="{{ path('home') }}">Retour</a>
     </div>
-
 
 {% endblock %}

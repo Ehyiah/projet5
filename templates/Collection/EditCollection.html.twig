@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 
+
 {% block body %}
     <div class="container">
         <hr>
@@ -20,11 +21,9 @@
 
 
         <button type="submit" class="btn btn-primary">Modifier</button>
+        <a href="{{ path('show', {'id' : form.vars.value.category.id}) }}" class="btn btn-primary">Retour</a>
+
         {{ form_end(form) }}
-
-        <a href="{{ app.request.headers.get('referer') }}">Retour</a>
-
     </div>
-
 
 {% endblock body %}

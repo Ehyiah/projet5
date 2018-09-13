@@ -60,6 +60,21 @@ final class DeleteCollectionActionFunctionalTest extends WebTestCase
         $this->client->getCookieJar()->set($cookie);
     }
 
+    public function testIfNotLogged()
+    {
+        $collection = $this->collectionRepository->findOneBy([]);
+        $collectionID = $collection->getId();
+        $this->client->request(
+            'GET',
+            '/delete/collection/'.$collectionID
+        );
+        $this->client->followRedirect();
+
+        static::assertContains(
+            'Connection',
+            $this->client->getResponse()->getContent()
+        );
+    }
 
     public function testDeleteCollectionGoodProcess()
     {

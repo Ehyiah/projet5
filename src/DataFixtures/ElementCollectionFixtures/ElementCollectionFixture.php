@@ -57,7 +57,7 @@ class ElementCollectionFixture extends Fixture implements ElementCollectionFixtu
         $collection = $this->collectionRepository->findAll();
 
         $elementCollectionDTO = new AddElementCollectionDTO(
-            'titreElement', 'regionElement', 'publisherElement',
+            'titreElement', 'regionElement','author', 'publisherElement',
             'etatElement', 12, 'support', 2,
             12, $collection[0], []
         );
@@ -68,7 +68,7 @@ class ElementCollectionFixture extends Fixture implements ElementCollectionFixtu
 
 
         $elementCollectionDTO0 = new AddElementCollectionDTO(
-            'titreElement', 'regionElement', 'publisherElement',
+            'titreElement', 'regionElement','author', 'publisherElement',
             'etatElement', 12, 'support', 2,
             12, $collection[0], []
         );

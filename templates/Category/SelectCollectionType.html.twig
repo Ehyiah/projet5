@@ -1,10 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
 
+{% block title %}
+    Suppression de Catégorie
+{% endblock title %}
+
+
+{% block body %}
     <div class="container">
         <hr>
-        <h1>Formulaire de suppression d'une Catégorie de Collections</h1>
+        <h1>Suppression d'une Catégorie de Collections</h1>
         <hr>
 
         {{ form_start(form) }}
@@ -35,11 +40,8 @@
             </div>
         </div>
 
-
+        <a href="{{ path('home') }}" class="btn btn-primary">Retour</a>
         {{ form_end(form) }}
     </div>
-
-
-
 
 {% endblock body %}

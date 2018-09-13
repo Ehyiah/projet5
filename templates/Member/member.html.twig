@@ -1,5 +1,8 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+    Espace Membre
+{% endblock title %}
 
 {% block body %}
     <div class="container">
@@ -8,9 +11,10 @@
         <hr>
 
         <div>
-            <h2>Informations sur votre Compte Personnel</h2>
+            <h2>Informations sur votre Compte : </h2>
             <hr>
-            <h5>Nom : {{ collections.user.username }}</h5>
+            <h5>Nom d'utilisateur : {{ collections.user.username }}</h5>
+            <p><strong>Date de création du compte : </strong> {{ collections.user.creationDate.date|date("d/m/y") }}</p>
             <p><strong>Email</strong> : {{ collections.user.email }} <a href="{{ path('changeEmail') }}" class="btn btn-outline-primary btn-sm">Modifier</a> </p>
             <a class="btn btn-primary" href="{{ path('changePassword') }}">
                 Changer le mot de passe
@@ -30,10 +34,6 @@
             </ul>
             {% endfor %}
         </div>
-
-
-
     </div>
-
 
 {% endblock body %}

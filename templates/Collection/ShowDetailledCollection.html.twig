@@ -1,18 +1,28 @@
 {% extends 'base.html.twig' %}
 
+
+{% block title %}
+    {{ app.request.get('collectionName') }}
+{% endblock title %}
+
+
 {% block body %}
-
-    <div class="container">
-        <p>Eléments présents dans la collection : <strong>{{ app.request.get('collectionName') }}</strong>
-            <br>
-            <a class="btn btn-primary btn-sm" href="{{ path('addElement', {'id' : app.request.get('idCollection')}) }}">Ajouter un élément à cette Collection</a>
-        </p>
-    </div>
-
-
 
 {# Desktop Display #}
     <div class="table-responsive" id="DetailledCollectionResponsiveBIG">
+
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <p>Eléments présents dans la collection : <strong>{{ app.request.get('collectionName') }}</strong></p>
+                </div>
+                <div class="col text-center">
+                    <a class="btn btn-primary btn-sm" href="{{ path('addElement', {'id' : app.request.get('idCollection')}) }}">Ajouter un élément à cette Collection</a>
+                </div>
+            </div>
+        </div>
+
+
         <table class="table table-striped">
             <thead>
             <tr>
@@ -39,6 +49,7 @@
                             <a class="btn btn-primary" href="{{ path('editElementCollection', {'id' : element.id}) }}">Modifier</a>
                         </p>
 
+                            {# modal for delete element#}
                             <div class="modal fade" id="{{ element.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteElement" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
@@ -59,8 +70,6 @@
                                 </div>
                             </div>
 
-
-
                     </th>
                     <td>{{ element.region }}</td>
                     <td>{{ element.author }}</td>
@@ -78,7 +87,7 @@
                                 >
                             </a>
 
-
+                            {# modal for delete image #}
                             <div class="modal fade" id="{{ image.title }}" tabindex="-1" role="dialog" aria-labelledby="deleteImage" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
@@ -114,18 +123,26 @@
 
 {# Responsive Display #}
 <div class="container" id="DetailledCollectionResponsiveSMALL">
+
+    <div class="container text-center">
+        <p>Eléments présents dans la collection : <br><strong>{{ app.request.get('collectionName') }}</strong>
+            <br>
+            <a class="btn btn-primary btn-sm" href="{{ path('addElement', {'id' : app.request.get('idCollection')}) }}">Ajouter un élément à cette Collection</a>
+        </p>
+    </div>
+
     <div id="accordion">
         {% for element in collection %}
             <div class="card">
                 <div class="card-header" id="heading{{ element.id }}">
                     <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#{{ element.title }}" aria-expanded="true" aria-controls="{{ element.title }}">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#{{ element.title }}{{ element.id }}" aria-expanded="true" aria-controls="{{ element.title }}">
                             {{ element.title }}
                         </button>
                     </h5>
                 </div>
 
-                <div id="{{ element.title }}" class="collapse" aria-labelledby="heading{{ element.id }}" data-parent="#accordion">
+                <div id="{{ element.title }}{{ element.id }}" class="collapse" aria-labelledby="heading{{ element.id }}" data-parent="#accordion">
                     <div class="card-body">
                         <strong>Titre : </strong> <p>{{ element.title }}</p>
 
@@ -166,6 +183,7 @@
                                     >
                                 </a>
 
+                                {# modal for delete images #}
                                 <div class="modal fade" id="{{ image.title }}0" tabindex="-1" role="dialog" aria-labelledby="deleteImage" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
@@ -195,8 +213,30 @@
                         <hr>
                         <div class="text-center">
                             <a class="card-link btn btn-outline-primary" href="{{ path('editElementCollection', {'id' : element.id}) }}">Editer</a>
-                            <a class="card-link btn btn-outline-danger btn-sm" href="">Supprimer</a>
+                            <a class="card-link btn btn-outline-danger btn-sm" href="#" data-toggle="modal" data-target="#{{ element.id }}Delete">Supprimer</a>
                         </div>
+
+                        {# modal for delete element #}
+                        <div class="modal fade" id="{{ element.id }}Delete" tabindex="-1" role="dialog" aria-labelledby="deleteElement" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Supprimer cet élement de la collection</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">x</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Etes-vous sur de vouloir supprimer cet élément ?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                                        <a class="card-link btn btn-outline-danger" href="{{ path('deleteElement', {'id' : element.id}) }}">Supprimer</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

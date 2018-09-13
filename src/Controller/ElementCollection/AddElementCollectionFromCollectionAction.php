@@ -64,8 +64,6 @@ class AddElementCollectionFromCollectionAction implements AddElementCollectionFr
         $id,
         AddElementFromCollectionResponder $responder
     ) {
-
-    // id est l'id de la collection dans laquelle ajouter l'élément
         $collection = $this->collection->find($id);
 
         $dto = new AddElementCollectionDTO(null, null,null, null, null, null, null, null, null, $collection);
@@ -75,9 +73,8 @@ class AddElementCollectionFromCollectionAction implements AddElementCollectionFr
 
         $request->getSession()->set('id', $id);
 
-
         if ($this->handler->handle($form)) {
-            $request->getSession()->getFlashBag()->add('success', 'L\'élément a bien été ajoutée à la collection');
+            $request->getSession()->getFlashBag()->add('success', 'L\'élément a bien été ajouté à la collection');
             return $responder(true);
         }
 

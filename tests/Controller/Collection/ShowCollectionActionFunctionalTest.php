@@ -53,18 +53,31 @@ final class ShowCollectionActionFunctionalTest extends WebTestCase
         $this->client->getCookieJar()->set($cookie);
     }
 
+    public function testIfNotLogged()
+    {
+        $id = $this->collectionRepository->findOneBy([]);
+
+        $this->client->request(
+            'GET',
+            '/show'.'/'.$id->getId()
+        );
+        $this->client->followRedirect();
+
+        static::assertContains(
+            'Connection',
+            $this->client->getResponse()->getContent()
+        );
+    }
+
     public function testShowCollectionGoodProcess()
     {
         $this->logIn();
-
         $id = $this->collectionRepository->findOneBy([]);
-
 
         $this->client->request(
             'GET',
             '/show/'.$id->getId()
         );
-
 
         static::assertSame(
             Response::HTTP_OK,

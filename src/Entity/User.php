@@ -7,11 +7,13 @@ use App\Domain\DTO\Security\Interfaces\AddUserDTOInterface;
 use App\Entity\Interfaces\UserInterface as BaseUserInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Class User
+ * @UniqueEntity(fields={"username"}, message="Nom d'utilisateur déjà utilisé")
  */
 class User implements BaseUserInterface, UserInterface, \Serializable
 {
@@ -137,7 +139,7 @@ class User implements BaseUserInterface, UserInterface, \Serializable
     }
 
     /**
-     * @param $token
+     * {@inheritdoc}
      *
      * @throws \Exception
      */
@@ -159,7 +161,7 @@ class User implements BaseUserInterface, UserInterface, \Serializable
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getRoles()
     {
@@ -167,7 +169,7 @@ class User implements BaseUserInterface, UserInterface, \Serializable
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getPassword()
     {
@@ -175,7 +177,7 @@ class User implements BaseUserInterface, UserInterface, \Serializable
     }
 
     /**
-     * @return null|string|void
+     * {@inheritdoc}
      */
     public function getSalt()
     {
@@ -183,7 +185,7 @@ class User implements BaseUserInterface, UserInterface, \Serializable
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getUsername()
     {
@@ -217,7 +219,7 @@ class User implements BaseUserInterface, UserInterface, \Serializable
     }
 
     /**
-     * @return UuidInterface
+     * {@inheritdoc}
      */
     public function getId(): UuidInterface
     {
@@ -225,7 +227,7 @@ class User implements BaseUserInterface, UserInterface, \Serializable
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
     public function getTokenValidity(): \DateTime
     {
@@ -233,7 +235,7 @@ class User implements BaseUserInterface, UserInterface, \Serializable
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getTokenReset(): string
     {
@@ -241,7 +243,7 @@ class User implements BaseUserInterface, UserInterface, \Serializable
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getEmail(): string
     {
@@ -273,5 +275,13 @@ class User implements BaseUserInterface, UserInterface, \Serializable
     public function getUser(): User
     {
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCreationDate(): \DateTime
+    {
+        return $this->creation_date;
     }
 }

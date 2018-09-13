@@ -23,14 +23,9 @@
         <meta name="twitter:title" content="Collec'Online, Gestion de collections">
         <meta name="twitter:description" content="Organisez vos collections">
         <meta name="twitter:image" content="http://projet5.gostiaux.net/images/logo.png">
-
-        <!-- {% block stylesheets %}
-
-        {% endblock %} -->
     </head>
 
     <body>
-        <!-- menu -->
         <div class="container" id="Menu">
         {% block menu %}
         <nav class="navbar sticky-top navbar-expand-lg navbar-dark" id="monMenu" style="background-color: #31b0d5;">
@@ -47,7 +42,7 @@
                         <a class="nav-link" href="{{ path('home') }}">Home <span class="sr-only">(current)</span></a>
                     </li>
 
-                <!-- actions pour roles ADMIN -->
+                <!-- Actions for ADMIN ONLY -->
                     {% if is_granted('ROLE_ADMIN') %}
                     <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" id="navAdminDropdown" href="#" role="button" data-toggle="dropdown">
@@ -61,7 +56,7 @@
                     {% endif %}
 
 
-                <!-- menu personnalisé s'affiche en fonction des collections de l'utilisateur si celui-ci est connecté -->
+                <!-- Customized Menu for each USER if connected -->
                     {% if is_granted('ROLE_USER') %}
                     <li class="nav-item dropdown active">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown">
@@ -76,8 +71,6 @@
                         </div>
                     </li>
 
-                <!-- si connecté alors espace membre et menu gestion des collections-->
-
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ path('member') }}">Espace Membre</a>
                     </li>
@@ -86,7 +79,7 @@
                     </li>
                     {% endif %}
 
-                <!-- si non connecté bouton connection -->
+                <!-- if NOT connected -->
                     {% if not is_granted('ROLE_USER') %}
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ path('login') }}">Connection</a>
@@ -99,7 +92,7 @@
         </div>
 
 
-        <!-- message flash -->
+        <!-- flash messages -->
         <div class="container">
             {% for message in app.flashes('notice') %}
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -121,47 +114,16 @@
         </div>
 
 
-
-{#
-        {% block test %}
-            {{ dump(app.request.headers.get('referer')) }}
-        {% endblock test %}
-#}
-
-
         {% block body %}
 
         {% endblock body %}
-
-
-
-
-
-{#
-        {% block footer %}
-            <div class="footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <p>Collec'Online</p>
-                        </div>
-                        <div class="col">
-                            <p>2018</p>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        {% endblock footer %}
-#}
-
 
 
         {% block javascripts %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-            <script src="{{ asset('js/testCollection.js') }}"></script>
+            <script src="{{ asset('js/Collection.js') }}"></script>
         {% endblock %}
     </body>
 

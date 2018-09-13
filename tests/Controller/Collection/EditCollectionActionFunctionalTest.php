@@ -53,6 +53,21 @@ final class EditCollectionActionFunctionalTest extends WebTestCase
         $this->client->getCookieJar()->set($cookie);
     }
 
+    public function testIfNotLogged()
+    {
+        $id = $this->collectionRepository->findOneBy([]);
+        $this->client->request(
+            'GET',
+            '/editCollection'.'/'.$id->getId()
+        );
+        $this->client->followRedirect();
+
+        static::assertContains(
+            'Connection',
+            $this->client->getResponse()->getContent()
+        );
+    }
+
     public function testEditCollectionGoodProcess()
     {
         $this->logIn();

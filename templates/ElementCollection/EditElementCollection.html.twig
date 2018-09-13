@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
 {% form_theme form _self %}
-{#
-{% form_theme form 'form/fields.html.twig' %}
-#}
+
+{% block title %}
+    Editer un Element
+{% endblock title %}
 
 
 {% block body %}
@@ -47,35 +48,11 @@
         </div>
 
 
-
-
-
-{#
-            <div>
-                {% for image in form.children.images.children %}
-                    {% spaceless %}
-
-
-                        {% if image.children.image.vars.image_url is not null %}
-                            <img src="{{ asset(image.children.image.vars.image_url) }}"/>
-
-                        {% endif %}
-
-                    {% endspaceless %}
-                {% endfor %}
-                <div class="images" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
-                </div>
-            </div>
-#}
-
-
-
-
-
         <button type="submit" class="btn btn-primary">Modifier</button>
+        <a href="{{ path('showDetailled', {'idCollection' : app.request.session.get('id'), 'collectionName' : form.vars.value.collection.collectionName })}}" class="btn btn-primary">Retour</a>
+
         {{ form_end(form) }}
 
-        <a href="{{ app.request.headers.get('referer') }}">Retour</a>
 
     </div>
 

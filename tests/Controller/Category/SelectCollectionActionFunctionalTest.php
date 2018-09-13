@@ -67,6 +67,20 @@ final class SelectCollectionActionFunctionalTest extends WebTestCase
         );
     }
 
+    public function testIfNotLogged()
+    {
+        $this->client->request(
+            'GET',
+            '/select'
+        );
+        $this->client->followRedirect();
+
+        static::assertContains(
+            'Connection',
+            $this->client->getResponse()->getContent()
+        );
+    }
+
     public function testDeleteCategoryGoodProcess()
     {
         $this->Login();

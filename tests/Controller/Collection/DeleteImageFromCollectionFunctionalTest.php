@@ -13,7 +13,7 @@ use Symfony\Component\Security\Guard\Token\PostAuthenticationGuardToken;
 
 /**
  * Class DeleteImageFromCollectionFunctionalTest
- * @group Functional
+ * @group Functional0
  */
 final class DeleteImageFromCollectionFunctionalTest extends WebTestCase
 {
@@ -60,19 +60,25 @@ final class DeleteImageFromCollectionFunctionalTest extends WebTestCase
         $this->client->getCookieJar()->set($cookie);
     }
 
+
+
     public function testDeleteImageGoodProcess()
     {
         $this->logIn();
 
-        $id = $this->imageRepository->findOneBy([]);
+        $element = $this->collectionRepository->findOneBy([]);
+
+        $elementImage = $element->getImage();
+        $elementImageId = $elementImage->getId()->__toString();
+        $idElement = $element->getId()->__toString();
+
+
         $this->client->request(
             'GET',
-            '/deleteImageFromCollection/'.$id->getId()
+            '/deleteImage'.'/'.$elementImageId.'/'.$idElement
         );
 
-        //$this->client->followRedirect();
-
-
+        $this->client->followRedirect();
 
         static::assertSame(
             RedirectResponse::HTTP_OK,

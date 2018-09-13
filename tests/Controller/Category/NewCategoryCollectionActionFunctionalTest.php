@@ -60,6 +60,20 @@ final class NewCategoryCollectionActionFunctionalTest extends WebTestCase
         );
     }
 
+    public function testIfNotLogged()
+    {
+        $this->client->request(
+            'GET',
+            '/newCategory'
+        );
+        $this->client->followRedirect();
+
+        static::assertContains(
+            'Connection',
+            $this->client->getResponse()->getContent()
+        );
+    }
+
     /**
      * @param string $category
      *

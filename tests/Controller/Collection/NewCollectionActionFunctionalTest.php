@@ -60,10 +60,27 @@ final class NewCollectionActionFunctionalTest extends WebTestCase
         $this->client->getCookieJar()->set($cookie);
     }
 
+    public function testIfNotLogged()
+    {
+        $this->client->request(
+            'GET',
+            '/newCollection'
+        );
+        $this->client->followRedirect();
+
+        static::assertContains(
+            'Connection',
+            $this->client->getResponse()->getContent()
+        );
+    }
+
     public function testNewCollectionStatusCode()
     {
         $this->Login();
-        $this->client->request('GET', '/newCollection');
+        $this->client->request(
+            'GET',
+            '/newCollection'
+        );
 
         static::assertSame(
             Response::HTTP_OK,
@@ -82,7 +99,7 @@ final class NewCollectionActionFunctionalTest extends WebTestCase
         $category = $this->categoryRepository->findAll();
 
         static::assertContains(
-            'Création de votre nouvelle bibliothèque',
+            'Création de votre nouvelle Bibliothèque',
             $this->client->getResponse()->getContent()
         );
 
