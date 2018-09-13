@@ -12,6 +12,8 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
+use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
+use Symfony\Component\Serializer\Encoder\EncoderInterface;
 
 /**
  * Class ChangePasswordHandlerTest
@@ -58,7 +60,43 @@ final class ChangePasswordHandlerTest extends TestCase
     /**
      * @throws \Exception
      */
-    public function testGoodHandling()
+    public function testWrongHandling()
+    {
+        $handler = new ChangePasswordHandler(
+            $this->security,
+            $this->userRepository,
+            $this->encoderFactory
+        );
+
+        $addUserDTO = new AddUserDTO(
+            'nom', 'pass', 'mail@mail.fr'
+        );
+        $user = new User($addUserDTO);
+
+        $dto = new ChangePasswordDTO('pass', 'pass0');
+
+        $this->security->expects($this->once())
+            ->method('getToken')
+            ->willReturn($user)
+        ;
+
+        $passwordEncoderMock = $this->createMock(PasswordEncoderInterface::class);
+        $passwordEncoderMock->method('encodePassword')->willReturn('pass');
+        $this->encoderFactory->method('getEncoder')->willReturn($passwordEncoderMock);
+
+        $form = $this->createMock(FormInterface::class);
+        $form->method('getData')->willReturn($dto);
+        $form->method('isValid')->willReturn(true);
+        $form->method('isSubmitted')->willReturn(true);
+
+        static::assertFalse($handler->handle($form));
+
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testGoodhandling()
     {
         $handler = new ChangePasswordHandler(
             $this->security,
@@ -78,9 +116,9 @@ final class ChangePasswordHandlerTest extends TestCase
             ->willReturn($user)
         ;
 
-        $this->encoderFactory->method('getEncoder')->willReturn(User::class);
-
-
+        $passwordEncoderMock = $this->createMock(PasswordEncoderInterface::class);
+        $passwordEncoderMock->method('encodePassword')->willReturn('pass0');
+        $this->encoderFactory->method('getEncoder')->willReturn($passwordEncoderMock);
 
         $form = $this->createMock(FormInterface::class);
         $form->method('getData')->willReturn($dto);
@@ -88,6 +126,5 @@ final class ChangePasswordHandlerTest extends TestCase
         $form->method('isSubmitted')->willReturn(true);
 
         static::assertTrue($handler->handle($form));
-
     }
 }

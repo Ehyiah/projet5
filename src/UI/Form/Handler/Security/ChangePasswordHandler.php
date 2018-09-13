@@ -49,7 +49,7 @@ final class ChangePasswordHandler implements ChangePasswordHandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function handle(FormInterface $form)
+    public function handle0(FormInterface $form)
     {
         if ($form->isSubmitted() && $form->isValid()) {
             $encoder = $this->encoderFactory->getEncoder(User::class);
@@ -76,6 +76,30 @@ final class ChangePasswordHandler implements ChangePasswordHandlerInterface
 
             return true;
         }
+        return false;
+    }
+
+    public function handle(FormInterface $form)
+    {
+        if ($form->isSubmitted() && $form->isValid()) {
+            $encoder = $this->encoderFactory->getEncoder(User::class);
+
+            $user = $this->security->getToken()->getUser();
+            $passEncoded = $user->getPassword();
+
+            $oldpass = $form->getData()->oldPassword;
+            $newPass = $form->getData()->password;
+
+            if (!$encoder->isPasswordValid($passEncoded, $oldpass, $encoder)) {
+                return false;
+            }
+
+            $user->editPassword($encoder->encodePassword($newPass, null));
+            $this->user->edit($user);
+
+            return true;
+        }
+
         return false;
     }
 }
