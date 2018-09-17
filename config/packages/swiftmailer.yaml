@@ -1,0 +1,9 @@
+swiftmailer:
+    transport: 'smtp'
+    host: '%env(MAILER_HOST)%'
+    port: '%env(MAILER_PORT)%'
+    username: '%env(MAILER_USERNAME)%'
+    password: '%env(MAILER_PASSWORD)%'
+    encryption: 'ssl'
+    spool:
+        type: 'memory'
