@@ -72,7 +72,7 @@
         },
         "post-install-cmd": [
             //"@auto-scripts",
-            "composer install --no-dev -o -a"
+            "assets:composer install --no-dev -o -a"
         ],
         "post-update-cmd": [
             "@auto-scripts"
