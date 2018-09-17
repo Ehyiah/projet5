@@ -71,10 +71,11 @@
             "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
-            "@auto-scripts"
+            //"@auto-scripts",
+            "composer install --no-dev -o -a"
         ],
         "post-update-cmd": [
-            "@auto-scripts"
+            //"@auto-scripts"
         ]
     },
     "conflict": {
