@@ -70,6 +70,8 @@ class MemberAction implements MemberActionInterface
 
         $collection = $this->collection->FindCollectionForMemberPage($user);
 
+        $tabToCount = [];
+
         foreach ($collection as $cat) {
             $tabToCount[] = $cat->getCategory()->getCategoryCollection();
         }
