@@ -5,7 +5,7 @@
                           http://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
 
 
-    <entity name="App\Entity\User" table="user" schema="public">
+    <entity name="App\Entity\User" table="user">
         <id name="id" type="uuid" />
         <field name="username" type="string" length="255" unique="true" />
         <field name="password" type="string" length="255" unique="false" />
