@@ -8,7 +8,7 @@ parameters:
 doctrine:
     dbal:
         # configure these for your database server
-        driver: 'pdo_pgsql'
+        driver: 'pgsql'
         #driver: 'pdo_mysql'
         server_version: '10.4'
         #server_version: '5.5'
