@@ -5,7 +5,6 @@ namespace App\UI\Form\Handler\Security;
 
 use App\Entity\User;
 use App\Infra\Doctrine\Repository\Interfaces\UserRepositoryInterface;
-use App\Infra\Doctrine\Repository\UserRepository;
 use App\UI\Form\Handler\Security\Interfaces\ChangePasswordHandlerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -46,10 +45,13 @@ final class ChangePasswordHandler implements ChangePasswordHandlerInterface
         $this->encoderFactory = $encoderFactory;
     }
 
+
     /**
-     * {@inheritdoc}
+     * @param FormInterface $form
+     *
+     * @return bool
      */
-    public function handle0(FormInterface $form)
+    public function handle(FormInterface $form): bool
     {
         if ($form->isSubmitted() && $form->isValid()) {
             $encoder = $this->encoderFactory->getEncoder(User::class);
@@ -57,47 +59,15 @@ final class ChangePasswordHandler implements ChangePasswordHandlerInterface
             $user = $this->security->getToken()->getUser();
             $passEncoded = $user->getPassword();
 
-            $oldpass = $form->getData()->oldPassword;
+            $oldPass = $form->getData()->oldPassword;
             $newPass = $form->getData()->password;
 
-            // renvoie true si vieux mot de passe est correct
-            $checkPassword = $encoder->isPasswordValid($passEncoded, $oldpass, $encoder);
-
-            // si le vieux mot de passe est le bon
-            if ($checkPassword == true) {
-                // on peut changer le mot de passe
-                $newPassEncoded = $encoder->encodePassword($newPass, null);
-                $user->editPassword($newPassEncoded);
+            if ($encoder->isPasswordValid($passEncoded, $oldPass, null)) {
+                $user->editPassword($encoder->encodePassword($newPass, null));
                 $this->user->edit($user);
+
+                return true;
             }
-            else {
-                // on ne peut pas changer le mot de passe
-            }
-
-            return true;
-        }
-        return false;
-    }
-
-    public function handle(FormInterface $form)
-    {
-        if ($form->isSubmitted() && $form->isValid()) {
-            $encoder = $this->encoderFactory->getEncoder(User::class);
-
-            $user = $this->security->getToken()->getUser();
-            $passEncoded = $user->getPassword();
-
-            $oldpass = $form->getData()->oldPassword;
-            $newPass = $form->getData()->password;
-
-            if (!$encoder->isPasswordValid($passEncoded, $oldpass, $encoder)) {
-                return false;
-            }
-
-            $user->editPassword($encoder->encodePassword($newPass, null));
-            $this->user->edit($user);
-
-            return true;
         }
 
         return false;

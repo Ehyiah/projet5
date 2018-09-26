@@ -13,7 +13,6 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
-use Symfony\Component\Serializer\Encoder\EncoderInterface;
 
 /**
  * Class ChangePasswordHandlerTest
@@ -93,10 +92,12 @@ final class ChangePasswordHandlerTest extends TestCase
 
     }
 
+
+
     /**
      * @throws \Exception
      */
-    public function testGoodhandling()
+    public function testGoodHandling2()
     {
         $handler = new ChangePasswordHandler(
             $this->security,
@@ -104,27 +105,31 @@ final class ChangePasswordHandlerTest extends TestCase
             $this->encoderFactory
         );
 
+        $form = $this->createMock(FormInterface::class);
+
         $addUserDTO = new AddUserDTO(
-            'nom', 'pass', 'mail@mail.fr'
+            'name', 'password', 'mail@mail.fr'
         );
         $user = new User($addUserDTO);
+        $this->security->method('getToken')->willReturn($user);
 
-        $dto = new ChangePasswordDTO('pass0', 'pass');
-
-        $this->security->expects($this->once())
-            ->method('getToken')
-            ->willReturn($user)
-        ;
+        $changePassDTO = new ChangePasswordDTO('newPassword', 'password');
 
         $passwordEncoderMock = $this->createMock(PasswordEncoderInterface::class);
-        $passwordEncoderMock->method('encodePassword')->willReturn('pass0');
         $this->encoderFactory->method('getEncoder')->willReturn($passwordEncoderMock);
+        $passwordEncoderMock->method('isPasswordValid')->willReturn(true);
+        $passwordEncoderMock->method('encodePassword')->willReturn('newPassword');
 
-        $form = $this->createMock(FormInterface::class);
-        $form->method('getData')->willReturn($dto);
+        $form->method('getData')->willReturn($changePassDTO);
         $form->method('isValid')->willReturn(true);
         $form->method('isSubmitted')->willReturn(true);
 
+        static::assertTrue($form->isSubmitted());
+        static::assertTrue($form->isValid());
+        static::assertInstanceOf(ChangePasswordDTO::class, $form->getData());
+        static::assertSame('newPassword', $form->getData()->password);
+        static::assertSame('password', $form->getData()->oldPassword);
         static::assertTrue($handler->handle($form));
+
     }
 }
