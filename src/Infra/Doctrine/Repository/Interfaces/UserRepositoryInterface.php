@@ -45,4 +45,11 @@ interface UserRepositoryInterface
      * @return UserInterface|null
      */
     public function loadUserByUsername($username): ?UserInterface;
+
+    /**
+     * @param string $value
+     *
+     * @return UserInterface|null
+     */
+    public function findUserByUsernameOrEmail(string $value): ?UserInterface;
 }

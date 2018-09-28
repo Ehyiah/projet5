@@ -16,7 +16,7 @@ use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 
 /**
  * Class ChangePasswordHandlerTest
- * @group Handler1
+ * @group Handler
  */
 final class ChangePasswordHandlerTest extends TestCase
 {
@@ -82,6 +82,7 @@ final class ChangePasswordHandlerTest extends TestCase
         $passwordEncoderMock = $this->createMock(PasswordEncoderInterface::class);
         $passwordEncoderMock->method('encodePassword')->willReturn('pass');
         $this->encoderFactory->method('getEncoder')->willReturn($passwordEncoderMock);
+        $passwordEncoderMock->method('isPasswordValid')->willReturn(false);
 
         $form = $this->createMock(FormInterface::class);
         $form->method('getData')->willReturn($dto);
@@ -93,11 +94,10 @@ final class ChangePasswordHandlerTest extends TestCase
     }
 
 
-
     /**
      * @throws \Exception
      */
-    public function testGoodHandling2()
+    public function testGoodHandling()
     {
         $handler = new ChangePasswordHandler(
             $this->security,

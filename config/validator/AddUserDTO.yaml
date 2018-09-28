@@ -1,0 +1,20 @@
+App\Domain\DTO\Security\AddUserDTO:
+    properties:
+        username:
+            - NotBlank: ~
+            - Length:
+                min: 4
+                max: 20
+            - App\Application\Validator\UniqueEntity:
+        email:
+            - NotBlank: ~
+            - Email: ~
+            - Length:
+                min: 8
+                max: 40
+            - App\Application\Validator\UniqueEntity:
+        password:
+            - NotBlank: ~
+            - Length:
+                min: 6
+                max: 20

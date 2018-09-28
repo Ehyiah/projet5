@@ -8,6 +8,7 @@ use App\Infra\Doctrine\Repository\Interfaces\UserRepositoryInterface;
 use App\UI\Form\Handler\Interfaces\NewUserHandlerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Class NewUserHandler
@@ -25,16 +26,23 @@ final class NewUserHandler implements NewUserHandlerInterface
     private $encoderFactory;
 
     /**
+     * @var ValidatorInterface
+     */
+    private $validator;
+
+    /**
      * NewUserHandler constructor.
      *
      * {@inheritdoc}
      */
     public function __construct(
         UserRepositoryInterface $user,
-        EncoderFactoryInterface $encoderFactory
+        EncoderFactoryInterface $encoderFactory,
+        ValidatorInterface $validator
     ) {
         $this->user = $user;
         $this->encoderFactory = $encoderFactory;
+        $this->validator = $validator;
     }
 
     /**
@@ -51,6 +59,12 @@ final class NewUserHandler implements NewUserHandlerInterface
             $form->getData()->password = $pass0;
 
             $newUser = new User($form->getData());
+
+            $errors = $this->validator->validate($newUser, [], ['User']);
+            if (\Count($errors) > 0) {
+                return false;
+            }
+
             $this->user->save($newUser);
 
             return true;

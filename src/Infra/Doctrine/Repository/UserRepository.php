@@ -84,4 +84,19 @@ final class UserRepository extends ServiceEntityRepository implements UserReposi
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * {@inheritdoc}
+     *
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findUserByUsernameOrEmail(string $value): ?UserInterface
+    {
+        return $this->createQueryBuilder('u')
+            ->where('u.username = :username OR u.email = :email')
+            ->setParameter('username', $value)
+            ->setParameter('email', $value)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }
