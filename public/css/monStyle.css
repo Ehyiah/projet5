@@ -22,6 +22,10 @@ body{
     width: auto;
 }
 
+.images-padding{
+    padding: .75rem 1.25rem;
+}
+
 #DetailledCollectionResponsiveSMALL{
     display: none;
 }

@@ -25,7 +25,7 @@ interface PasswordRecoverInputHandlerInterface
     /**
      * @param FormInterface $form
      *
-     * @return mixed
+     * @return bool
      */
     public function handle(FormInterface $form);
 }

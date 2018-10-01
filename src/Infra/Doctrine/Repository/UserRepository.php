@@ -60,7 +60,6 @@ final class UserRepository extends ServiceEntityRepository implements UserReposi
     /**
      * {@inheritdoc}
      *
-     * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function findByName(string $name): ?UserInterface
@@ -69,7 +68,7 @@ final class UserRepository extends ServiceEntityRepository implements UserReposi
             ->where('n.username = :name')
                 ->setParameter('name', $name)
             ->getQuery()
-            ->getSingleResult();
+            ->getOneOrNullResult();
     }
 
     /**

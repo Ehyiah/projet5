@@ -48,7 +48,6 @@ final class PasswordRecoverInputHandler implements PasswordRecoverInputHandlerIn
     /**
      * {@inheritdoc}
      *
-     * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
@@ -57,21 +56,23 @@ final class PasswordRecoverInputHandler implements PasswordRecoverInputHandlerIn
     public function handle(FormInterface $form)
     {
         if ($form->isSubmitted() && $form->isValid()) {
-            // on récupère le nom dans le Form
             $userName = $form->getData()->name;
 
-            // on récupère les infos de l'user dans la BDD
+            // getting user from DB
             $user = $this->userRepository->findByName($userName);
+            if ($user == null) {
+                return false;
+            }
             $email = $user->getEmail();
 
-            // on génère le token pour le reset
+            // generate a reset token
             $token = md5(uniqid(str_rot13((string) time())));
 
-            // on stocke le token en BDD
+            // store token in DB
             $user->newResetToken($token);
             $this->userRepository->edit($user);
 
-            //envoi du mail avec lien pour reset
+            //sending mail with link to reset password
             $message = (new \Swift_Message('Reset Password'))
                 ->setFrom('projet5@gostiaux.net')
                 ->setTo($email)

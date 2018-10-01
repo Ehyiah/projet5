@@ -7,13 +7,11 @@ use App\Domain\DTO\Security\Interfaces\AddUserDTOInterface;
 use App\Entity\Interfaces\UserInterface as BaseUserInterface;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Class User
- * @UniqueEntity(fields={"username"}, message="Nom d'utilisateur déjà utilisé")
  */
 class User implements BaseUserInterface, UserInterface, \Serializable
 {
@@ -151,14 +149,6 @@ class User implements BaseUserInterface, UserInterface, \Serializable
         $this->token_validity = $date;
     }
 
-
-    /**
-     * @return array
-     */
-    public function getRoles0()
-    {
-        return array('ROLE_USER');
-    }
 
     /**
      * {@inheritdoc}

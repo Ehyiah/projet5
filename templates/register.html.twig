@@ -11,13 +11,16 @@
             <hr>
 
             {{ form_start(form) }}
+
             {{ form_widget(form) }}
+
             <button type="submit" class="btn btn-primary">Créer nouvel utilisateur</button>
+            <a class="btn btn-primary" href="{{ path('home') }}">Retour</a>
+
             {{ form_end(form) }}
-            <p>
-                <a href="{{ path('home') }}">Retour</a>
-            </p>
+
         {% endif %}
+
 
         {% if is_granted('ROLE_USER') %}
         <p>Vous êtes déjà enregistré en tant qu'utilisateur</p>

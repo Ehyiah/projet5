@@ -51,8 +51,8 @@ class EditElementCollectionTypeSubscriber implements EditElementCollectionTypeSu
             return;
         }
 
-        //
-        // replace les images déjà présentes dans un tableau
+
+        // getting Back images
         foreach ($this->image as $imageCollection) {
             $newImage = new AddElementImageDTO($imageCollection);
             $newTab[] = $newImage;
@@ -70,13 +70,9 @@ class EditElementCollectionTypeSubscriber implements EditElementCollectionTypeSu
                 $newTab[] = new AddElementImageDTO($item->image);
             }
 
-
-            // si plus de 3 images dans le tableau erreur
             if ($number > 3) {
                 $event->getForm()->get('images')->addError(new FormError('3 images maximum par éléments'));
             }
-
-
         }
 
         foreach ($event->getData()->images as $oldImage) {

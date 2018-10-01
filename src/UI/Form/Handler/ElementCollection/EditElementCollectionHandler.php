@@ -23,7 +23,9 @@ final class EditElementCollectionHandler implements EditElementCollectionHandler
      *
      * {@inheritdoc}
      */
-    public function __construct(ElementCollectionRepositoryInterface $elementRepository)
+    public function __construct(
+        ElementCollectionRepositoryInterface $elementRepository
+    )
     {
         $this->elementRepository = $elementRepository;
     }

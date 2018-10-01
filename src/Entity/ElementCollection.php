@@ -9,7 +9,6 @@ use App\Entity\Interfaces\ElementCollectionInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class ElementCollection
@@ -70,12 +69,6 @@ class ElementCollection implements ElementCollectionInterface
     /**
      * relation avec ImageCollection
      * @var ImageCollection
-     * @Assert\Count(
-     * min = 0,
-     * max = 3,
-     * minMessage = "",
-     * maxMessage = "Vous ne pouvez pas avoir plus de {{ limit }} images"
-     * )
      */
     private $images;
 
@@ -269,7 +262,7 @@ class ElementCollection implements ElementCollectionInterface
     public function removeImageFromCollection(ImageCollection $image)
     {
         dump($this->images);
-        die();
+
         $this->images->removeElement($image);
     }
 }

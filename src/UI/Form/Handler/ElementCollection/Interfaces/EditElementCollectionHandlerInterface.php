@@ -6,6 +6,7 @@ namespace App\UI\Form\Handler\ElementCollection\Interfaces;
 use App\Entity\ElementCollection;
 use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 interface EditElementCollectionHandlerInterface
 {
@@ -14,7 +15,9 @@ interface EditElementCollectionHandlerInterface
      *
      * @param ElementCollectionRepositoryInterface $elementRepository
      */
-    public function __construct(ElementCollectionRepositoryInterface $elementRepository);
+    public function __construct(
+        ElementCollectionRepositoryInterface $elementRepository
+    );
 
     /**
      * @param FormInterface $form
