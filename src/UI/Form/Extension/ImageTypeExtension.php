@@ -17,6 +17,21 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 class ImageTypeExtension extends AbstractTypeExtension implements ImageTypeExtensionInterface
 {
     /**
+     * @var string
+     */
+    private $publicImageFolder;
+
+    /**
+     * ImageTypeExtension constructor.
+     *
+     * {@inheritdoc}
+     */
+    public function __construct(string $publicImageFolder)
+    {
+        $this->publicImageFolder = $publicImageFolder;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getExtendedType()
@@ -41,12 +56,12 @@ class ImageTypeExtension extends AbstractTypeExtension implements ImageTypeExten
             $parentData = $form->getParent()->getData();
 
             $imageUrl = null;
-            if (null !== $parentData) {
+            if (!\is_null($parentData)) {
                 $accessor = PropertyAccess::createPropertyAccessor();
-                $imageUrl = $accessor->getValue($parentData, $options['image_property']);
+                $imageUrl = $accessor->getValue($parentData, 'image');
             }
 
-            $view->vars['image_url'] = $imageUrl;
+            $view->vars['image_url'] = sprintf('%s/%s', $this->publicImageFolder, !\is_null($imageUrl) ? $imageUrl->getTitle() : null);
         }
     }
 }

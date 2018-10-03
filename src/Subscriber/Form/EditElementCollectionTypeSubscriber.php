@@ -46,11 +46,9 @@ class EditElementCollectionTypeSubscriber implements EditElementCollectionTypeSu
      */
     public function onSubmit(FormEvent $event)
     {
-
         if (\is_null($this->image)) {
             return;
         }
-
 
         // getting Back images
         foreach ($this->image as $imageCollection) {
@@ -68,10 +66,6 @@ class EditElementCollectionTypeSubscriber implements EditElementCollectionTypeSu
             // filling up the tab with new images
             if ((!\is_null($item->image)) && ($number < 3) ) {
                 $newTab[] = new AddElementImageDTO($item->image);
-            }
-
-            if ($number > 3) {
-                $event->getForm()->get('images')->addError(new FormError('3 images maximum par éléments'));
             }
         }
 

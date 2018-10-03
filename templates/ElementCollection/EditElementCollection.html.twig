@@ -49,7 +49,7 @@
 
 
         <button type="submit" class="btn btn-primary">Modifier</button>
-        <a href="{{ path('showDetailled', {'idCollection' : app.request.session.get('id'), 'collectionName' : form.vars.value.collection.collectionName })}}" class="btn btn-primary">Retour</a>
+        <a href="{{ path('showDetailled', {'idCollection' : app.request.session.get('id'), 'collectionName' : app.request.session.get('collectionName') })}}" class="btn btn-primary">Retour</a>
 
         {{ form_end(form) }}
 

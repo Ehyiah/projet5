@@ -18,18 +18,8 @@ class AddElementImageDTO
      *
      * @param ImageCollectionInterface $imageCollection
      */
-    public function __construct(ImageCollectionInterface $imageCollection)
+    public function __construct(ImageCollectionInterface $imageCollection = null)
     {
         $this->image = $imageCollection;
-    }
-
-    /**
-     * @return string
-     */
-    public function getImageUrl()
-    {
-        $title = $this->image->getTitle();
-
-        return '/upload/CollectionImage/'.$title;
     }
 }

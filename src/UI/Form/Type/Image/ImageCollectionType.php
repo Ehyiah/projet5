@@ -40,7 +40,9 @@ class ImageCollectionType extends AbstractType
         $builder
             ->add('image', FileType::class, array(
                 'required' => false,
-                'image_property' => 'image_url'
+                'image_property' => 'image_url',
+                'error_bubbling' => true,
+                'invalid_message' => 'Le fichier ne doit pas faire plus de 1mo'
             ))
         ;
         $builder->get('image')->addModelTransformer($this->imageElementTransformer);

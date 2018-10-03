@@ -10,6 +10,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 interface ImageTypeExtensionInterface
 {
     /**
+     * ImageTypeExtensionInterface constructor.
+     *
+     * @param string $publicImageFolder
+     */
+    public function __construct(string $publicImageFolder);
+
+    /**
      * @return mixed
      */
     public function getExtendedType();

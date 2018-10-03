@@ -40,7 +40,6 @@ final class EditCollectionHandler implements EditCollectionHandlerInterface
 
             $this->collectionRepository->edit($collection);
 
-
             return true;
         }
 

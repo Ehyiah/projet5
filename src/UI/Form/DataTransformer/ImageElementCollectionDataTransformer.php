@@ -7,7 +7,7 @@ use App\Domain\ValueObject\Picture;
 use App\Entity\ImageCollection;
 use App\Service\Interfaces\FileUploaderInterface;
 use Symfony\Component\Form\DataTransformerInterface;
-use Symfony\Component\Form\Exception\TransformationFailedException;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class ImageElementCollectionDataTransformer implements DataTransformerInterface
 {
@@ -17,13 +17,19 @@ class ImageElementCollectionDataTransformer implements DataTransformerInterface
     private $fileUploader;
 
     /**
+     * @var SessionInterface
+     */
+    private $session;
+
+    /**
      * ImageElementCollectionDataTransformer constructor.
      *
      * @param FileUploaderInterface $fileUploader
      */
-    public function __construct(FileUploaderInterface $fileUploader)
+    public function __construct(FileUploaderInterface $fileUploader, SessionInterface $session)
     {
         $this->fileUploader = $fileUploader;
+        $this->session = $session;
     }
 
 
@@ -34,49 +40,30 @@ class ImageElementCollectionDataTransformer implements DataTransformerInterface
 
     /**
      * @param mixed $value
+     *
      * @return ImageCollection|mixed|null
+     *
      * @throws \Exception
      */
     public function reverseTransform($value)
     {
-        if ($value == null) {
+        if (\is_null($value)) {
             return null;
         }
 
+        if (filesize($value) == null){
+            $this->session->getFlashBag()->add('notice', 'Les images ne doivent pas faire plus de 1mo');
+            return null;
+        }
+        if (filesize($value) > 1048576){
+            $this->session->getFlashBag()->add('notice', 'Les images ne doivent pas faire plus de 1mo');
+            return null;
+        }
 
         $picture = new Picture($value->getClientOriginalName(), $value->guessExtension());
 
         $this->fileUploader->upload($value, $picture->getFileName());
 
         return new ImageCollection($picture);
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-    public function reverseTransformOLD($value)
-    {
-        dump($value);
-
-
-        if ($value == null) {
-            return null;
-        }
-
-        foreach ($value as $image) {
-            $image->title = $this->fileUploader->upload($image->image);
-            $value[] = new ImageCollection($image);
-            unset($value[array_search($image, $value)]);
-        }
-
-        return $value;
     }
 }

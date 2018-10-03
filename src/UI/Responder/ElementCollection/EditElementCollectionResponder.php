@@ -60,8 +60,10 @@ final class EditElementCollectionResponder implements EditElementCollectionRespo
     ) {
         $redirect
             ? $response = new RedirectResponse(
-                $this->urlGenerator->generate('editElementCollection', array(
-                    'id' => $this->session->get('idElement')
+                $this->urlGenerator->generate('showDetailled', array(
+                    'id' => $this->session->get('idElement'),
+                    'idCollection' => $this->session->get('idCollection'),
+                    'collectionName' => $this->session->get('collectionName')
                 ))
             )
             : $response = new Response(

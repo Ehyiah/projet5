@@ -64,13 +64,17 @@ class EditCollectionType extends AbstractType
                 'label' => 'Masquer la collection aux autres utilisateurs'
             ))
             ->add('image', FileType::class, array(
-                'required' => false
+                'required' => false,
+                'invalid_message' => 'Le fichier ne doit pas faire plus de 1mo',
             ))
             ->addEventSubscriber($this->editCollectionTypeSubscriber)
         ;
         $builder->get('image')->addModelTransformer($this->imageCollectionDataTransformer);
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

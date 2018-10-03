@@ -44,8 +44,15 @@ class ImageCollectionDataTransformer implements DataTransformerInterface
      */
     public function reverseTransform($value)
     {
-        if ($value == null) {
+        if (\is_null($value)) {
             return null;
+        }
+
+        if (filesize($value) > 1048576){
+            throw new TransformationFailedException();
+        }
+        if (filesize($value) == null){
+            throw new TransformationFailedException();
         }
 
         $picture = new Picture($value->getClientOriginalName(), $value->guessExtension());
