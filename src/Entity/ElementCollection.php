@@ -217,6 +217,14 @@ class ElementCollection implements ElementCollectionInterface
     {
         if ($images != null) {
             foreach ($images as $image) {
+                if ($image->image == null) {
+                    return null;
+                }
+            }
+        }
+
+        if ($images != null) {
+            foreach ($images as $image) {
                 $this->images[] = $image->image;
                 $image->image->setImageElementCollection($this);
             }
@@ -247,6 +255,15 @@ class ElementCollection implements ElementCollectionInterface
      */
     public function editImageToCollection(array $images = null)
     {
+        if ($images != null) {
+            foreach ($images as $image) {
+                if ($image->image == null) {
+                    return null;
+                }
+            }
+        }
+
+
         if ($images != null) {
             unset($this->images);
             foreach ($images as $image) {

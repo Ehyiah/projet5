@@ -59,7 +59,7 @@ class ImageCollectionType extends AbstractType
                 return new AddElementImageDTO(
                     $form->get('image')->getData()
                 );
-            },
+            }
         ]);
     }
 }

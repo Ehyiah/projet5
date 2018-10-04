@@ -75,9 +75,10 @@ class AddElementCollectionFromCollectionType extends AbstractType
                 'entry_type' => ImageCollectionType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
+                'delete_empty' => true,
                 'prototype' => true,
                 'entry_options' => array('label' => false),
-                'required' => false
+                'required' => false,
             ))
         ;
     }

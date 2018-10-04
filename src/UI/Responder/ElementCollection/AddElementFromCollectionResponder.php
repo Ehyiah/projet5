@@ -60,7 +60,7 @@ final class AddElementFromCollectionResponder implements AddElementFromCollectio
             ? $response = new RedirectResponse(
                 $this->urlGenerator->generate('showDetailled', array(
                     'idCollection' => $this->session->get('id'),
-                    'collectionName' => $this->session->get('collectionName')
+                    'collectionName' => $this->session->get('collectionName'),
                 ))
             )
             : $response = new Response(
