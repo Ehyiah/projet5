@@ -9,12 +9,13 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 /**
  * Class ImageTypeExtensionTest
+ * @group Extension
  */
 final class ImageTypeExtensionTest extends TestCase
 {
     public function testItImplements()
     {
-        $imageType = new ImageTypeExtension();
+        $imageType = new ImageTypeExtension('test');
 
         static::assertInstanceOf(
             ImageTypeExtension::class,
@@ -24,7 +25,7 @@ final class ImageTypeExtensionTest extends TestCase
 
     public function testItReturns()
     {
-        $imageType = new ImageTypeExtension();
+        $imageType = new ImageTypeExtension('test');
         $return = $imageType->getExtendedType();
 
         static::assertSame(

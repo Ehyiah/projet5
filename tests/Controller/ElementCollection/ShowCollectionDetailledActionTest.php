@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
 /**
  * Class ShowCollectionDetailledActionTest
+ * @group Action
  */
 final class ShowCollectionDetailledActionTest extends KernelTestCase
 {

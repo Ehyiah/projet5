@@ -9,7 +9,11 @@ use App\Entity\Collection;
 use App\Entity\Interfaces\CollectionInterface;
 use PHPUnit\Framework\TestCase;
 
-class CollectionTest extends TestCase
+/**
+ * Class CollectionTest
+ * @group Entity
+ */
+final class CollectionTest extends TestCase
 {
     /**
      * @throws \Exception

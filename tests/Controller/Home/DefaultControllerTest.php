@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
  * Class DefaultControllerTest
+ * @group Action
  */
 final class DefaultControllerTest extends KernelTestCase
 {

@@ -8,6 +8,10 @@ use App\Entity\CategoryCollection;
 use App\Entity\ImageCollection;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class EditCollectionDTOTest
+ * @group DTO
+ */
 final class EditCollectionDTOTest extends TestCase
 {
     /**

@@ -18,6 +18,10 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Twig\Environment;
 
+/**
+ * Class RegistrationActionTest
+ * @group Action
+ */
 final class RegistrationActionTest extends KernelTestCase
 {
     /**

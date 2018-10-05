@@ -50,7 +50,7 @@ final class ChangePasswordFromEmailHandler implements ChangePasswordFromEmailHan
     /**
      * {@inheritdoc}
      */
-    public function handle(FormInterface $form, Request $request)
+    public function handle(FormInterface $form)
     {
         // on récupère les infos de l'utilisateur et on change le MDP en BDD
         if ($form->isSubmitted() && $form->isValid()) {
@@ -71,7 +71,7 @@ final class ChangePasswordFromEmailHandler implements ChangePasswordFromEmailHan
             // vérification que le token n'est pas expiré
             if ($now > $tokenDate) {
                 // token n'est plus valide => impossibilité de changer le MDP
-                $request->getSession()->getFlashBag()->add('notice', 'le token n\'est plus valide, impossible de changer le mot de passe');
+                $this->session->getFlashBag()->add('notice', 'le token n\'est plus valide, impossible de changer le mot de passe');
 
             } else {
                 // token valide => changement du mot de passe possible

@@ -89,15 +89,9 @@ final class SelectCollectionActionFunctionalTest extends WebTestCase
             '/select'
         );
 
-        static::assertEquals(
-            1,
-            $crawler->filter('h1:contains("bienvenue")')->count()
-        );
-
         $category = $this->categoryRepository->findAll();
 
         $form = $crawler->selectButton('Oui')->form();
-        dump($form);
         $form['select_collection[categoryCollection]']->setValue($category[1]->getId());
 
         $this->client->submit($form);

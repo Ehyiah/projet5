@@ -5,6 +5,10 @@ namespace App\Tests\Domain\DTO\Category;
 use App\Domain\DTO\Category\AddCategoryDTO;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class AddCategoryDTOTest
+ * @group DTO
+ */
 final class AddCategoryDTOTest extends TestCase
 {
     /**

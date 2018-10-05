@@ -15,6 +15,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
  * Class LoginActionTest
+ * @group Action
  */
 final class LoginActionTest extends KernelTestCase
 {

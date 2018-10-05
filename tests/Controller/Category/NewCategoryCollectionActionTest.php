@@ -17,6 +17,10 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Twig\Environment;
 
+/**
+ * Class NewCategoryCollectionActionTest
+ * @group Action
+ */
 final class NewCategoryCollectionActionTest extends KernelTestCase
 {
     /**

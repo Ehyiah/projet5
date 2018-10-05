@@ -8,11 +8,16 @@ use App\Entity\Collection;
 use App\Entity\ImageCollection;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class EditElementCollectionDTOTest
+ * @group DTO
+ */
 final class EditElementCollectionDTOTest extends TestCase
 {
     /**
      * @param string $title
      * @param string $region
+     * @param string $author
      * @param string $publisher
      * @param string $etat
      * @param int $buy_price
@@ -27,6 +32,7 @@ final class EditElementCollectionDTOTest extends TestCase
     public function testItImplements(
         string $title,
         string $region,
+        string $author,
         string $publisher,
         string $etat,
         int $buy_price,
@@ -39,6 +45,7 @@ final class EditElementCollectionDTOTest extends TestCase
         $dto = new EditElementCollectionDTO(
             $title,
             $region,
+            $author,
             $publisher,
             $etat,
             $buy_price,
@@ -74,6 +81,7 @@ final class EditElementCollectionDTOTest extends TestCase
         yield array(
             'titre',
             'region',
+            'author',
             'publisher',
             'etat',
             10,
@@ -86,6 +94,7 @@ final class EditElementCollectionDTOTest extends TestCase
         yield array(
             'titre',
             'region',
+            'author',
             'publisher',
             'etat',
             10,

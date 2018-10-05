@@ -47,13 +47,13 @@ final class LoginActionFunctionalTest extends WebTestCase
 
         $form = $crawler->selectButton('Se connecter')->form();
         $form['login[username]']->setValue('test');
-        $form['login[password]']->setValue('test');
+        $form['login[password]']->setValue('test00');
 
         $this->client->submit($form);
         $this->client->followRedirect();
 
         static::assertContains(
-            'Accès espace membre',
+            'Bon retour',
             $this->client->getResponse()->getContent()
         );
     }

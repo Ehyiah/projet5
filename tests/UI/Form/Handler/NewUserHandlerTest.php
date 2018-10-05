@@ -10,6 +10,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Class NewUserHandlerTest
@@ -27,10 +28,16 @@ final class NewUserHandlerTest extends TestCase
      */
     private $encoderFactory = null;
 
+    /**
+     * @var ValidatorInterface
+     */
+    private $validator = null;
+
     protected function setUp()
     {
         $this->userRepository = $this->createMock(UserRepositoryInterface::class);
         $this->encoderFactory = $this->createMock(EncoderFactoryInterface::class);
+        $this->validator = $this->createMock(ValidatorInterface::class);
 
         $encoder = $this->createMock(BCryptPasswordEncoder::class);
         $this->encoderFactory->method('getEncoder')->willReturn($encoder);
@@ -41,7 +48,8 @@ final class NewUserHandlerTest extends TestCase
     {
         $handler = new NewUserHandler(
             $this->userRepository,
-            $this->encoderFactory
+            $this->encoderFactory,
+            $this->validator
         );
 
         static::assertInstanceOf(NewUserHandler::class, $handler);
@@ -54,7 +62,8 @@ final class NewUserHandlerTest extends TestCase
     {
         $handler = new NewUserHandler(
             $this->userRepository,
-            $this->encoderFactory
+            $this->encoderFactory,
+            $this->validator
         );
 
         $addUserDTO = new AddUserDTO(

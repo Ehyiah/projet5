@@ -85,6 +85,8 @@ final class EditElementCollectionActionFunctionalTest extends WebTestCase
 
         $session = new Session(new MockFileSessionStorage());
         $session->set('idElement', $id->getId());
+        $session->set('collectionName', $id->getCollectionName());
+        $session->set('idCollection', $id->getId());
 
         $form = $crawler->selectButton('Modifier')->form();
         $form['edit_element_collection[region]']->setValue('RegionFunctionalTest');

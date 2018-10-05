@@ -7,7 +7,11 @@ use App\Domain\DTO\Category\AddCategoryDTO;
 use App\Entity\CategoryCollection;
 use PHPUnit\Framework\TestCase;
 
-class CategoryCollectionTest extends TestCase
+/**
+ * Class CategoryCollectionTest
+ * @group Entity
+ */
+final class CategoryCollectionTest extends TestCase
 {
     /**
      * @throws \Exception

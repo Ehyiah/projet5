@@ -7,6 +7,10 @@ use App\Domain\DTO\Collection\ShowCollectionDTO;
 use App\Entity\CategoryCollection;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class ShowCollectionDTOTest
+ * @group DTO
+ */
 final class ShowCollectionDTOTest extends TestCase
 {
     /**

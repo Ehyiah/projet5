@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class ChangeEmailDTOTest
+ * @group DTO
  */
 class ChangeEmailDTOTest extends TestCase
 {

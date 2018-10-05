@@ -98,7 +98,7 @@ final class ShowCollectionDetailledActionFunctionalTest extends WebTestCase
         $this->client->followRedirect();
 
         static::assertContains(
-            'Formulaire de création d\'un élément de collection',
+            'Ajout',
             $this->client->getResponse()->getContent()
         );
     }

@@ -51,12 +51,4 @@ final class EditCollectionTypeSubscriberTest extends TestCase
         );
     }
 
-    public function testOnSubmit()
-    {
-        $fileTypeMock = $this->createMock(FileType::class);
-
-        $eventMock = $this->createMock(FormEvent::class);
-        $eventMock->method('getData')->willReturn($fileTypeMock);
-
-    }
 }

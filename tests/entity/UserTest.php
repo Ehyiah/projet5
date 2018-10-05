@@ -7,7 +7,11 @@ use App\Domain\DTO\Security\AddUserDTO;
 use App\Entity\User;
 use PHPUnit\Framework\TestCase;
 
-class UserTest extends TestCase
+/**
+ * Class UserTest
+ * @group Entity
+ */
+final class UserTest extends TestCase
 {
     /**
      * @throws \Exception

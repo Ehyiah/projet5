@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * Class ChangePasswordDTOTest
+ * @group DTO
  */
 final class ChangePasswordDTOTest extends TestCase
 {

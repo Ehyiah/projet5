@@ -26,9 +26,8 @@ interface ChangePasswordFromEmailHandlerInterface
 
     /**
      * @param FormInterface $form
-     * @param Request $request
      *
      * @return mixed
      */
-    public function handle(FormInterface $form, Request $request);
+    public function handle(FormInterface $form);
 }

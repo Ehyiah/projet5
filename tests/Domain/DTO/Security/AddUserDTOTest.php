@@ -6,6 +6,10 @@ namespace App\Tests\Domain\DTO\Security;
 use App\Domain\DTO\Security\AddUserDTO;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class AddUserDTOTest
+ * @group DTO
+ */
 final class AddUserDTOTest extends TestCase
 {
     /**

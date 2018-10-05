@@ -6,7 +6,12 @@ namespace App\Tests\UI\Form\Type\Security;
 use App\Domain\DTO\Security\Interfaces\ChangePasswordDTOInterface;
 use App\UI\Form\Type\Security\ChangePasswordType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
+use Symfony\Component\Form\Form;
 use Symfony\Component\Form\Test\TypeTestCase;
+use Symfony\Component\Validator\ConstraintViolationList;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Class ChangePasswordTypeTest
@@ -14,6 +19,23 @@ use Symfony\Component\Form\Test\TypeTestCase;
  */
 final class ChangePasswordTypeTest extends TypeTestCase
 {
+    /**
+     * @var ValidatorInterface
+     */
+    private $validator = null;
+
+    protected function getExtensions()
+    {
+        $this->validator = $this->createMock(ValidatorInterface::class);
+        $this->validator->method('validate')
+            ->will($this->returnValue(new ConstraintViolationList()));
+        $this->validator->method('getMetaDataFor')
+            ->will($this->returnValue(new ClassMetadata(Form::class)));
+
+        return [new ValidatorExtension($this->validator)];
+    }
+
+
     public function testItImplements()
     {
         $type = new ChangePasswordType();

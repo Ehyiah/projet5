@@ -19,6 +19,7 @@ use Twig\Environment;
 
 /**
  * Class ChangePasswordActionTest
+ * @group Action
  */
 final class ChangePasswordActionTest extends KernelTestCase
 {

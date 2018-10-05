@@ -14,11 +14,13 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
 /**
  * Class DeleteCollectionActionTest
+ * @group Action
  */
 final class DeleteCollectionActionTest extends KernelTestCase
 {
@@ -93,7 +95,7 @@ final class DeleteCollectionActionTest extends KernelTestCase
         $request->headers->set('referer', '/home');
 
         static::assertInstanceOf(
-            RedirectResponse::class,
+            Response::class,
             $action($request, $id)
         );
     }

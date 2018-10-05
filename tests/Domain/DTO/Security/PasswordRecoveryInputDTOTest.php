@@ -6,6 +6,10 @@ namespace App\Tests\Domain\DTO\Security;
 use App\Domain\DTO\Security\PasswordRecoverInputDTO;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class PasswordRecoveryInputDTOTest
+ * @group DTO
+ */
 final class PasswordRecoveryInputDTOTest extends TestCase
 {
     /**

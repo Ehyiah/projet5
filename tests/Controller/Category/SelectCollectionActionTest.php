@@ -18,6 +18,10 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
+/**
+ * Class SelectCollectionActionTest
+ * @group Action
+ */
 final class SelectCollectionActionTest extends KernelTestCase
 {
     /**

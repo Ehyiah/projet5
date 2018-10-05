@@ -16,6 +16,7 @@ use Twig\Environment;
 
 /**
  * Class ShowCollectionActionTest
+ * @group Action
  */
 final class ShowCollectionActionTest extends KernelTestCase
 {

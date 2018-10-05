@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
 /**
  * Class ChangeEmailActionTest
+ * @group Action
  */
 final class ChangeEmailActionTest extends KernelTestCase
 {

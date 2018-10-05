@@ -16,6 +16,7 @@ use Twig\Environment;
 
 /**
  * Class MemberActionTest
+ * @group Action
  */
 final class MemberActionTest extends KernelTestCase
 {

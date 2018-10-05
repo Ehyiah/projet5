@@ -73,9 +73,9 @@ final class ChangePasswordActionFunctionalTest extends WebTestCase
         );
 
         $form = $crawler->selectButton('Changer le mot de passe')->form();
-        $form['change_password[oldPassword]']->setValue('test');
-        $form['change_password[password][first]']->setValue('pass0');
-        $form['change_password[password][second]']->setValue('pass0');
+        $form['change_password[oldPassword]']->setValue('test00');
+        $form['change_password[password][first]']->setValue('test00');
+        $form['change_password[password][second]']->setValue('test00');
 
         $this->client->submit($form);
         $this->client->followRedirect();

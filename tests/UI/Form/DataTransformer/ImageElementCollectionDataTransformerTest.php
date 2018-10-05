@@ -8,6 +8,7 @@ use App\Entity\ImageCollection;
 use App\Service\Interfaces\FileUploaderInterface;
 use App\UI\Form\DataTransformer\ImageElementCollectionDataTransformer;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Class ImageElementCollectionDataTransformerTest
@@ -18,16 +19,22 @@ final class ImageElementCollectionDataTransformerTest extends TestCase
     /**
      * @var FileUploaderInterface
      */
-    private $fileUploader;
+    private $fileUploader = null;
+
+    /**
+     * @var SessionInterface
+     */
+    private $session = null;
 
     protected function setUp()
     {
         $this->fileUploader = $this->createMock(FileUploaderInterface::class);
+        $this->session = $this->createMock(SessionInterface::class);
     }
 
     public function testItImplements()
     {
-        $dt = new ImageElementCollectionDataTransformer($this->fileUploader);
+        $dt = new ImageElementCollectionDataTransformer($this->fileUploader, $this->session);
 
         static::assertInstanceOf(ImageElementCollectionDataTransformer::class, $dt);
     }

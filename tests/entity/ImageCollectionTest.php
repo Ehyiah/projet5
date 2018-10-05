@@ -6,7 +6,11 @@ namespace App\Tests\entity;
 use App\Domain\ValueObject\Interfaces\PictureInterface;
 use PHPUnit\Framework\TestCase;
 
-class ImageCollectionTest extends TestCase
+/**
+ * Class ImageCollectionTest
+ * @group Entity
+ */
+final class ImageCollectionTest extends TestCase
 {
     public function testConstruct()
     {

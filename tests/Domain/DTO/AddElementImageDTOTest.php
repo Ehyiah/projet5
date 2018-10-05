@@ -7,6 +7,10 @@ use App\Domain\DTO\AddElementImageDTO;
 use App\Entity\ImageCollection;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class AddElementImageDTOTest
+ * @group DTO
+ */
 final class AddElementImageDTOTest extends TestCase
 {
     /**

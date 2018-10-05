@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
 /**
  * Class DeleteElementCollectionActionTest
+ * @group Action
  */
 final class DeleteElementCollectionActionTest extends KernelTestCase
 {

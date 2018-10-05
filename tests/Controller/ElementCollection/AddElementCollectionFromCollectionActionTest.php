@@ -20,6 +20,7 @@ use Twig\Environment;
 
 /**
  * Class AddElementCollectionFromCollectionActionTest
+ * @group Action
  */
 final class AddElementCollectionFromCollectionActionTest extends KernelTestCase
 {

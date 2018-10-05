@@ -50,10 +50,15 @@ final class ChangePasswordFromEmailActionFunctionalTest extends WebTestCase
     {
         $this->Login();
 
+        $getUser = $this->userRepository->findAll();
+        $user = $getUser[0];
+        $resetToken = $user->getTokenReset();
+
         $this->client->request(
             'GET',
-            '/recovery/1'
+            '/recovery/'.$resetToken
         );
+
 
         static::assertSame(
             Response::HTTP_OK,
@@ -69,19 +74,23 @@ final class ChangePasswordFromEmailActionFunctionalTest extends WebTestCase
     {
         $this->Login();
 
+        $getUser = $this->userRepository->findAll();
+        $user = $getUser[0];
+        $resetToken = $user->getTokenReset();
+
         $crawler = $this->client->request(
             'GET',
-            '/recovery/1'
+            '/recovery/'.$resetToken
         );
 
         $form = $crawler->selectButton('Confirmer')->form();
-        $form['change_password_from_email[password]']->setValue('test0');
+        $form['change_password_from_email[password]']->setValue('test00');
 
         $this->client->submit($form);
         $this->client->followRedirect();
 
         static::assertContains(
-            'Le mot de passe a bien été modifié',
+            'Le mot de passe a bien été changé',
             $this->client->getResponse()->getContent()
         );
     }

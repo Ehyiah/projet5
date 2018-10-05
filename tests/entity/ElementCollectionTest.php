@@ -10,6 +10,10 @@ use App\Entity\ElementCollection;
 use App\Entity\ImageCollection;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Class ElementCollectionTest
+ * @group Entity
+ */
 final class ElementCollectionTest extends TestCase
 {
     /**
@@ -22,7 +26,7 @@ final class ElementCollectionTest extends TestCase
         $addElementImageDTO = new AddElementImageDTO($image);
 
         $elementCollectionDTO = new AddElementCollectionDTO(
-            'titre', 'region', 'publisher', 'etat', '20.0', 'support', '2', '12', $collection, [$addElementImageDTO]
+            'titre', 'region', 'author', 'publisher', 'etat', '20.0', 'support', '2', '12', $collection, [$addElementImageDTO]
         );
 
         $elementCollection = new ElementCollection($elementCollectionDTO);

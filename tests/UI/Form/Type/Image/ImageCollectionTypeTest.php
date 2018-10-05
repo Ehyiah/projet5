@@ -13,9 +13,14 @@ use App\UI\Form\Extension\ImageTypeExtension;
 use App\UI\Form\Type\Image\ImageCollectionType;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
+use Symfony\Component\Form\Form;
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Form\Tests\Extension\Core\Type\FileTypeTest;
+use Symfony\Component\Validator\ConstraintViolationList;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
  * Class ImageCollectionTypeTest
@@ -28,17 +33,28 @@ final class ImageCollectionTypeTest extends TypeTestCase
      */
     private $transformer = null;
 
+    /**
+     * @var ValidatorInterface
+     */
+    private $validator = null;
+
     protected function getExtensions()
     {
         $this->transformer = $this->createMock(ImageElementCollectionDataTransformer::class);
         $type = new ImageCollectionType($this->transformer);
 
-        return [new PreloadedExtension([$type], [])];
+        $this->validator = $this->createMock(ValidatorInterface::class);
+        $this->validator->method('validate')
+            ->will($this->returnValue(new ConstraintViolationList()));
+        $this->validator->method('getMetaDataFor')
+            ->will($this->returnValue(new ClassMetadata(Form::class)));
+
+        return [new ValidatorExtension($this->validator), new PreloadedExtension([$type], [])];
     }
 
     protected function getTypeExtensions()
     {
-        return [new ImageTypeExtension()];
+        return [new ImageTypeExtension('test')];
     }
 
     public function testItImplements()

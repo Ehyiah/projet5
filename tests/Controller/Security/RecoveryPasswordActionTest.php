@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 
 /**
  * Class RecoveryPasswordActionTest
+ * @group Action
  */
 final class RecoveryPasswordActionTest extends KernelTestCase
 {

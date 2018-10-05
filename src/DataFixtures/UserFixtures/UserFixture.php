@@ -41,7 +41,7 @@ class UserFixture extends Fixture implements UserFixtureInterface
     public function load(ObjectManager $manager)
     {
         $encoder = $this->encoderFactory->getEncoder(User::class);
-        $passwordEncoded = $encoder->encodePassword('test', null);
+        $passwordEncoded = $encoder->encodePassword('test00', null);
 
         $userDTO = new AddUserDTO(
             'test',

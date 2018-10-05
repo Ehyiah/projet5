@@ -18,6 +18,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 /**
  * Class ChangePasswordFromEmailActionTest
+ * @group Action
  */
 final class ChangePasswordFromEmailActionTest extends KernelTestCase
 {
