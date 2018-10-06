@@ -4,11 +4,10 @@ namespace App\Controller\Collection\Interfaces;
 
 
 use App\UI\Form\Handler\Interfaces\NewCollectionHandlerInterface;
-use App\UI\Responder\NewCollectionResponder;
+use App\UI\Responder\Interfaces\NewCollectionResponderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 interface NewCollectionActionInterface
 {
@@ -25,12 +24,12 @@ interface NewCollectionActionInterface
 
     /**
      * @param Request $request
-     * @param NewCollectionResponder $responder
+     * @param NewCollectionResponderInterface $responder
      *
      * @return Response
      */
     public function __invoke(
         Request $request,
-        NewCollectionResponder $responder
+        NewCollectionResponderInterface $responder
     ): Response;
 }

@@ -41,7 +41,7 @@ final class NewCollectionResponder implements NewCollectionResponderInterface
         $redirect
             ? $response = new RedirectResponse('home')
             : $response = new Response(
-                $this->twig->render('CreateNewCollection/CreateNewCollection.html.twig', array(
+                $this->twig->render('Collection/CreateNewCollection.html.twig', array(
                     'form' => $form->createView()
                 ))
         );

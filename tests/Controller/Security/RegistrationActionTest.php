@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Twig\Environment;
 
@@ -40,16 +39,6 @@ final class RegistrationActionTest extends KernelTestCase
     private $encoderFactory;
 
     /**
-     * @var Environment
-     */
-    private $environment;
-
-    /**
-     * @var UrlGeneratorInterface
-     */
-    private $urlGenerator;
-
-    /**
      * @var RegistrationResponderInterface
      */
     private $responder;
@@ -66,8 +55,6 @@ final class RegistrationActionTest extends KernelTestCase
 
         $this->handler = $this->createMock(NewUserHandlerInterface::class);
         $this->encoderFactory = $this->createMock(EncoderFactoryInterface::class);
-        $this->environment = $this->createMock(Environment::class);
-        $this->urlGenerator = $this->createMock(UrlGeneratorInterface::class);
     }
 
     public function testConstruct()
@@ -75,8 +62,6 @@ final class RegistrationActionTest extends KernelTestCase
         $action = new RegistrationAction(
             $this->encoderFactory,
             $this->formFactory,
-            $this->environment,
-            $this->urlGenerator,
             $this->handler
         );
 
@@ -91,8 +76,6 @@ final class RegistrationActionTest extends KernelTestCase
         $action = new RegistrationAction(
             $this->encoderFactory,
             $this->formFactory,
-            $this->environment,
-            $this->urlGenerator,
             $this->handler
         );
 
@@ -118,8 +101,6 @@ final class RegistrationActionTest extends KernelTestCase
         $action = new RegistrationAction(
             $this->encoderFactory,
             $this->formFactory,
-            $this->environment,
-            $this->urlGenerator,
             $this->handler
         );
 

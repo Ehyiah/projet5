@@ -6,7 +6,7 @@ namespace App\Controller\Collection;
 use App\Controller\Collection\Interfaces\NewCollectionActionInterface;
 use App\UI\Form\Type\Collection\CreateCollectionType;
 use App\UI\Form\Handler\Interfaces\NewCollectionHandlerInterface;
-use App\UI\Responder\NewCollectionResponder;
+use App\UI\Responder\Interfaces\NewCollectionResponderInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -46,14 +46,10 @@ class NewCollectionAction implements NewCollectionActionInterface
 
     /**
      * {@inheritdoc}
-     *
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
      */
     public function __invoke(
         Request $request,
-        NewCollectionResponder $responder
+        NewCollectionResponderInterface $responder
     ): Response {
         $form = $this->formFactory->create(CreateCollectionType::class)->handleRequest($request);
 

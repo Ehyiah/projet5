@@ -13,7 +13,7 @@ use Symfony\Component\Security\Guard\Token\PostAuthenticationGuardToken;
 
 /**
  * Class DeleteCollectionActionFunctionalTest
- * @group Functional
+ * @group Functional1
  */
 final class DeleteCollectionActionFunctionalTest extends WebTestCase
 {
@@ -91,6 +91,7 @@ final class DeleteCollectionActionFunctionalTest extends WebTestCase
                 'HTTP_REFERER' => '/home'
             )
         );
+        $this->client->followRedirect();
 
         static::assertSame(
             Response::HTTP_OK,

@@ -8,8 +8,8 @@ use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -56,7 +56,7 @@ class DeleteCollectionAction implements DeleteCollectionActionInterface
     public function __invoke(
         Request $request,
         $id
-    ): Response {
+    ): RedirectResponse {
         $collection = $this->collectionRepository->findCollection($id);
 
         foreach ($collection->getElementsCollection() as $item) {
@@ -75,6 +75,6 @@ class DeleteCollectionAction implements DeleteCollectionActionInterface
 
         $request->getSession()->getFlashBag()->add('success', 'La collection a bien été supprimée');
 
-        return new Response($request->headers->get('referer'));
+        return new RedirectResponse($request->headers->get('referer'));
     }
 }

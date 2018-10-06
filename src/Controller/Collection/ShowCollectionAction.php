@@ -64,7 +64,7 @@ class ShowCollectionAction implements ShowCollectionActionInterface
         }
 
         else {
-            return $responder(true, null);
+            return $responder(true);
         }
     }
 }
