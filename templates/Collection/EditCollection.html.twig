@@ -13,7 +13,7 @@
         {{ form_row(form.category) }}
         {{ form_row(form.visibility) }}
         {% if form.vars.data.image is not null %}
-            <img src="{{ asset('upload/CollectionImage/') }}{{ form.vars.data.image.title }}" alt="image d'illustration de la collection">
+            <img class="img-fluid" src="{{ asset('upload/CollectionImage/') }}{{ form.vars.data.image.title }}" alt="image d'illustration de la collection">
         {% else %}
             <h6>aucune image n'est associée à cette collection</h6>
         {% endif %}
