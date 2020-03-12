@@ -2,19 +2,18 @@
 
 namespace App\Controller\Security;
 
-
 use App\Controller\Security\Interfaces\ChangeEmailActionInterface;
 use App\UI\Form\Handler\Security\Interfaces\ChangeEmailHandlerInterface;
 use App\UI\Form\Type\Security\ChangeEmailType;
 use App\UI\Responder\Security\Interfaces\ChangeEmailResponderInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class ChangeEmailAction
- * @Security("has_role('ROLE_USER')")
+ * @IsGranted("ROLE_USER")
  * @Route("/changeEmail", name="changeEmail")
  */
 class ChangeEmailAction implements ChangeEmailActionInterface

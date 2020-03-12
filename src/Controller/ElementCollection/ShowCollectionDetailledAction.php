@@ -2,18 +2,17 @@
 
 namespace App\Controller\ElementCollection;
 
-
 use App\Controller\ElementCollection\Interfaces\ShowCollectionDetailledActionInterface;
 use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface;
 use App\UI\Responder\Collection\Interfaces\ShowCollectionDetailledResponderInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class ShowCollectionDetailledAction
  * @Route("/show/{idCollection}/{collectionName}", name="showDetailled")
- * @Security("has_role('ROLE_USER')")
+ * @IsGranted("ROLE_USER")
  */
 class ShowCollectionDetailledAction implements ShowCollectionDetailledActionInterface
 {

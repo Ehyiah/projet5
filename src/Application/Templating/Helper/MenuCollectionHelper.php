@@ -5,12 +5,13 @@ namespace App\Application\Templating\Helper;
 
 use App\Application\Templating\Helper\Interfaces\MenuCollectionHelperInterface;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
+use Symfony\Bundle\TwigBundle\DependencyInjection\TwigExtension;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * Class MenuCollectionHelper
  */
-class MenuCollectionHelper extends \Twig_Extension implements MenuCollectionHelperInterface
+class MenuCollectionHelper extends TwigExtension implements MenuCollectionHelperInterface
 {
     /**
      * @var TokenStorageInterface

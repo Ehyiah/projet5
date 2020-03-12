@@ -2,7 +2,6 @@
 
 namespace App\UI\Form\Extension;
 
-
 use App\UI\Form\Extension\Interfaces\ImageTypeExtensionInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -29,6 +28,11 @@ class ImageTypeExtension extends AbstractTypeExtension implements ImageTypeExten
     public function __construct(string $publicImageFolder)
     {
         $this->publicImageFolder = $publicImageFolder;
+    }
+
+    public static function getExtendedTypes(): iterable
+    {
+        return [FileType::class];
     }
 
     /**

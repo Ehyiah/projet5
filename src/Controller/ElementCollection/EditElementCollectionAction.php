@@ -2,7 +2,6 @@
 
 namespace App\Controller\ElementCollection;
 
-
 use App\Controller\ElementCollection\Interfaces\EditElementCollectionActionInterface;
 use App\Domain\DTO\AddElementImageDTO;
 use App\Domain\DTO\ElementCollection\EditElementCollectionDTO;
@@ -10,7 +9,7 @@ use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterfac
 use App\UI\Form\Handler\ElementCollection\Interfaces\EditElementCollectionHandlerInterface;
 use App\UI\Form\Type\ElementCollection\EditElementCollectionType;
 use App\UI\Responder\ElementCollection\EditElementCollectionResponder;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class EditElementCollectionAction
  * @Route("/edit/{id}", name="editElementCollection")
- * @Security("has_role('ROLE_USER')")
+ * @IsGranted("ROLE_USER")
  */
 class EditElementCollectionAction implements EditElementCollectionActionInterface
 {

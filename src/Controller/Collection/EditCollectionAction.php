@@ -2,14 +2,13 @@
 
 namespace App\Controller\Collection;
 
-
 use App\Controller\Collection\Interfaces\EditCollectionActionInterface;
 use App\Domain\DTO\Collection\EditCollectionDTO;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use App\UI\Form\Handler\Collection\Interfaces\EditCollectionHandlerInterface;
 use App\UI\Form\Type\Collection\EditCollectionType;
 use App\UI\Responder\Collection\Interfaces\EditCollectionResponderInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class EditCollectionAction
  * @Route("/editCollection/{id}", name="editCollection")
- * @Security("has_role('ROLE_USER')")
+ * @IsGranted("ROLE_USER")
  */
 class EditCollectionAction implements EditCollectionActionInterface
 {

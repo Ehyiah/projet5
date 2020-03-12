@@ -2,7 +2,6 @@
 
 namespace App\Controller\Security;
 
-
 use App\Controller\Security\Interfaces\RegistrationActionInterface;
 use App\UI\Form\Type\User\UserType;
 use App\UI\Form\Handler\Interfaces\NewUserHandlerInterface;

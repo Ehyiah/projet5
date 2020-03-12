@@ -2,21 +2,19 @@
 
 namespace App\Controller\ElementCollection;
 
-
 use App\Controller\ElementCollection\Interfaces\NewElementCollectionActionInterface;
 use App\UI\Form\Type\ElementCollection\NewElementCollectionType;
 use App\UI\Form\Handler\Interfaces\NewElementCollectionHandlerInterface;
 use App\UI\Responder\Interfaces\NewElementCollectionResponderInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 /**
  * Class NewElementCollectionAction
  * @Route("/newElement", name="newElement")
- * @Security("has_role('ROLE_ADMIN')")
+ * @IsGranted("ROLE_ADMIN")
  */
 class NewElementCollectionAction implements NewElementCollectionActionInterface
 {

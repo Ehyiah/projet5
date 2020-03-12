@@ -2,7 +2,6 @@
 
 namespace App\Controller\Security;
 
-
 use App\Controller\Security\Interfaces\ChangePasswordFromEmailActionInterface;
 use App\Domain\DTO\Security\ChangePasswordFromEmailDTO;
 use App\Infra\Doctrine\Repository\Interfaces\UserRepositoryInterface;

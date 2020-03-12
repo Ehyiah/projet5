@@ -7,7 +7,7 @@ use App\Controller\Category\Interfaces\NewCategoryCollectionActionInterface;
 use App\UI\Form\Handler\Interfaces\NewCategoryCollectionHandlerInterface;
 use App\UI\Form\Type\Category\CategoryType;
 use App\UI\Responder\NewImageCollectionResponder;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class NewCategoryCollectionAction
  * @Route ("/newCategory", name="newCategory")
- * @Security("has_role('ROLE_ADMIN')")
+ * @IsGranted("ROLE_ADMIN")
  */
 class NewCategoryCollectionAction implements NewCategoryCollectionActionInterface
 {

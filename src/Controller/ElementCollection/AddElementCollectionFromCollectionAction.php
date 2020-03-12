@@ -2,14 +2,13 @@
 
 namespace App\Controller\ElementCollection;
 
-
 use App\Controller\ElementCollection\Interfaces\AddElementCollectionFromCollectionActionInterface;
 use App\Domain\DTO\ElementCollection\AddElementCollectionDTO;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use App\UI\Form\Handler\ElementCollection\Interfaces\AddElementCollectionHandlerInterface;
 use App\UI\Form\Type\ElementCollection\AddElementCollectionFromCollectionType;
 use App\UI\Responder\ElementCollection\AddElementFromCollectionResponder;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class AddElementCollectionFromCollectionAction
  * @Route("/addElement/{id}", name="addElement")
- * @Security("has_role('ROLE_USER')")
+ * @IsGranted("ROLE_USER")
  */
 class AddElementCollectionFromCollectionAction implements AddElementCollectionFromCollectionActionInterface
 {

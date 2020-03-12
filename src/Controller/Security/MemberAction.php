@@ -2,12 +2,11 @@
 
 namespace App\Controller\Security;
 
-
 use App\Controller\Security\Interfaces\MemberActionInterface;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use App\Infra\Doctrine\Repository\Interfaces\ImageRepositoryInterface;
 use App\UI\Responder\Interfaces\MemberResponderInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -16,7 +15,7 @@ use Twig\Environment;
 /**
  * Class MemberAction
  * @Route("/member", name="member")
- * @Security("has_role('ROLE_USER')")
+ * @IsGranted("ROLE_USER")
  */
 class MemberAction implements MemberActionInterface
 {

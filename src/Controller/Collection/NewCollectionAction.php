@@ -2,12 +2,11 @@
 
 namespace App\Controller\Collection;
 
-
 use App\Controller\Collection\Interfaces\NewCollectionActionInterface;
 use App\UI\Form\Type\Collection\CreateCollectionType;
 use App\UI\Form\Handler\Interfaces\NewCollectionHandlerInterface;
 use App\UI\Responder\Interfaces\NewCollectionResponderInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class NewCollectionAction
  * @Route("/newCollection", name="newCollection")
- * @Security("has_role('ROLE_USER')")
+ * @IsGranted("ROLE_USER")
  */
 class NewCollectionAction implements NewCollectionActionInterface
 {

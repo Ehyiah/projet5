@@ -2,7 +2,6 @@
 
 namespace App\Controller\Security;
 
-
 use App\Controller\Security\Interfaces\LoginActionInterface;
 use App\UI\Form\Handler\Interfaces\LoginHandlerInterface;
 use App\UI\Form\Type\User\LoginType;

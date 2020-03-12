@@ -2,7 +2,6 @@
 
 namespace App\Controller\Security;
 
-
 use App\Controller\Security\Interfaces\RecoveryPasswordActionInterface;
 use App\UI\Form\Handler\Security\Interfaces\PasswordRecoverInputHandlerInterface;
 use App\UI\Form\Type\Security\PasswordRecoverInputType;

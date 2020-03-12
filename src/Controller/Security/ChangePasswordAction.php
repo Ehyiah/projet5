@@ -2,12 +2,11 @@
 
 namespace App\Controller\Security;
 
-
 use App\Controller\Security\Interfaces\ChangePasswordActionInterface;
 use App\UI\Form\Handler\Security\Interfaces\ChangePasswordHandlerInterface;
 use App\UI\Form\Type\Security\ChangePasswordType;
 use App\UI\Responder\Security\Interfaces\ChangePasswordResponderInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -17,7 +16,7 @@ use Twig\Environment;
 
 /**
  * Class ChangePasswordAction
- * @Security("has_role('ROLE_USER')")
+ * @IsGranted("ROLE_USER")
  * @Route("/passwordChange", name="changePassword")
  */
 class ChangePasswordAction implements ChangePasswordActionInterface

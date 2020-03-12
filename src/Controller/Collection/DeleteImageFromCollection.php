@@ -2,11 +2,10 @@
 
 namespace App\Controller\Collection;
 
-
 use App\Controller\Collection\Interfaces\DeleteImageFromCollectionInterface;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use App\Infra\Doctrine\Repository\Interfaces\ImageRepositoryInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class DeleteImageFromCollection
  * @Route("/deleteImageFromCollection/{id}", name="deleteImage")
- * @Security("has_role('ROLE_USER')")
+ * @IsGranted("ROLE_USER")
  */
 class DeleteImageFromCollection implements DeleteImageFromCollectionInterface
 {

@@ -7,7 +7,7 @@ use App\Controller\Category\Interfaces\SelectCollectionActionInterface;
 use App\Infra\Doctrine\Repository\Interfaces\CategoryCollectionRepositoryInterface;
 use App\UI\Form\Handler\Collection\Interfaces\SelectCollectionHandlerInterface;
 use App\UI\Responder\Category\SelectCollectionResponder;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class SelectCollectionAction
  * @Route("/select", name="select")
- * @Security("has_role('ROLE_USER')")
+ * @IsGranted("ROLE_USER")
  */
 class SelectCollectionAction implements SelectCollectionActionInterface
 {
