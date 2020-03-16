@@ -19,7 +19,7 @@ set('default_stage', 'prod');
 host('perso')
     ->hostname('projet5.gostiaux.net')
     ->stage('prod')
-    ->set('deploy_path', '/var/www/projet5-test')
+    ->set('deploy_path', '/var/www/projet5')
     ->user('deployer')
 ;
 
