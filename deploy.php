@@ -10,6 +10,7 @@ set('repository', 'git@github.com:Ehyiah/projet5.git');
 
 set('writable_dirs', ['var/cache']);
 set('shared_files', ['.env']);
+set('shared_dirs', ['public/upload/CollectionImage']);
 
 set('git_tty', false);
 set('ssh_multiplexing', false);
