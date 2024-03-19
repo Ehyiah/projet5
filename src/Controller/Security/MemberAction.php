@@ -5,6 +5,8 @@ namespace App\Controller\Security;
 use App\Controller\Security\Interfaces\MemberActionInterface;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use App\Infra\Doctrine\Repository\Interfaces\ImageRepositoryInterface;
+use App\Repository\CollectionRepository;
+use App\Repository\ImageRepository;
 use App\UI\Responder\Interfaces\MemberResponderInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +19,7 @@ use Twig\Environment;
  * @Route("/member", name="member")
  * @IsGranted("ROLE_USER")
  */
-class MemberAction implements MemberActionInterface
+class MemberAction
 {
     /**
      * @var Environment
@@ -25,12 +27,12 @@ class MemberAction implements MemberActionInterface
     private $twig;
 
     /**
-     * @var ImageRepositoryInterface
+     * @var ImageRepository
      */
     private $imageRepository;
 
     /**
-     * @var CollectionRepositoryInterface
+     * @var CollectionRepository
      */
     private $collection;
 
@@ -47,8 +49,8 @@ class MemberAction implements MemberActionInterface
      */
     public function __construct(
         Environment $twig,
-        ImageRepositoryInterface $imageRepository,
-        CollectionRepositoryInterface $collection,
+        ImageRepository $imageRepository,
+        CollectionRepository $collection,
         TokenStorageInterface $security
     ) {
         $this->twig = $twig;

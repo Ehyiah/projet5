@@ -3,19 +3,18 @@
 namespace App\Application\Validator;
 
 
-use App\Application\Validator\Interfaces\UniqueEntityValidatorInterface;
 use App\Entity\Interfaces\UserInterface;
-use App\Infra\Doctrine\Repository\Interfaces\UserRepositoryInterface;
+use App\Repository\UserRepository;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 /**
  * Class UniqueEntityValidator
  */
-final class UniqueEntityValidator extends ConstraintValidator implements UniqueEntityValidatorInterface
+final class UniqueEntityValidator extends ConstraintValidator
 {
     /**
-     * @var UserRepositoryInterface
+     * @var UserRepository
      */
     private $userRepository;
 
@@ -24,7 +23,7 @@ final class UniqueEntityValidator extends ConstraintValidator implements UniqueE
      *
      * {@inheritdoc}
      */
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
     }

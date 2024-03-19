@@ -4,16 +4,17 @@ namespace App\UI\Form\Handler\Collection;
 
 
 use App\Infra\Doctrine\Repository\Interfaces\CategoryCollectionRepositoryInterface;
+use App\Repository\CategoryCollectionRepository;
 use App\UI\Form\Handler\Collection\Interfaces\SelectCollectionHandlerInterface;
 use Symfony\Component\Form\FormInterface;
 
 /**
  * Class SelectCollectionHandler
  */
-final class SelectCollectionHandler implements SelectCollectionHandlerInterface
+final class SelectCollectionHandler
 {
     /**
-     * @var CategoryCollectionRepositoryInterface
+     * @var CategoryCollectionRepository
      */
     private $categoryRepository;
 
@@ -22,7 +23,7 @@ final class SelectCollectionHandler implements SelectCollectionHandlerInterface
      *
      * {@inheritdoc}
      */
-    public function __construct(CategoryCollectionRepositoryInterface $categoryRepository)
+    public function __construct(CategoryCollectionRepository $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }

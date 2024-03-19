@@ -18,7 +18,7 @@ use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 /**
  * Class Authenticator
  */
-class Authenticator extends AbstractGuardAuthenticator implements AuthenticatorInterface
+class Authenticator extends AbstractGuardAuthenticator
 {
     /**
      * @var UserPasswordEncoderInterface

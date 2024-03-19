@@ -3,24 +3,23 @@
 namespace App\DataFixtures\CategoryCollectionFixture;
 
 
-use App\DataFixtures\CategoryCollectionFixture\Interfaces\CategoryFixtureInterface;
 use App\DataFixtures\UserFixtures\UserFixture;
 use App\Domain\DTO\Category\AddCategoryDTO;
 use App\Entity\CategoryCollection;
-use App\Infra\Doctrine\Repository\Interfaces\CategoryCollectionRepositoryInterface;
+use App\Repository\CategoryCollectionRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 
 /**
  * Class CategoryFixture
  */
-class CategoryFixture extends Fixture implements CategoryFixtureInterface, DependentFixtureInterface
+class CategoryFixture extends Fixture implements DependentFixtureInterface
 {
     public const CATEGORY_REFERENCE = 'category-reference';
 
     /**
-     * @var CategoryCollectionRepositoryInterface
+     * @var CategoryCollectionRepository
      */
     private $categoryRepository;
 
@@ -29,7 +28,7 @@ class CategoryFixture extends Fixture implements CategoryFixtureInterface, Depen
      *
      * {@inheritdoc}
      */
-    public function __construct(CategoryCollectionRepositoryInterface $categoryRepository)
+    public function __construct(CategoryCollectionRepository $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
     }

@@ -51,7 +51,7 @@ final class DeleteElementCollectionActionTest extends KernelTestCase
         $this->elementRepository = self::$container->get('App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface');
         $this->fileSystem = $this->createMock(Filesystem::class);
 
-        $this->collectionRepository = self::$container->get('App\Infra\Doctrine\Repository\CollectionRepository');
+        $this->collectionRepository = self::$container->get('App\Repository\CollectionRepository');
 
         $this->doctrine = self::$container->get('doctrine');
         $em = $this->doctrine->getManager();

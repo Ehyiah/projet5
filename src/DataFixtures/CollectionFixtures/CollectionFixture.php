@@ -4,7 +4,6 @@ namespace App\DataFixtures\CollectionFixtures;
 
 
 use App\DataFixtures\CategoryCollectionFixture\CategoryFixture;
-use App\DataFixtures\CollectionFixtures\Interfaces\CollectionFixtureInterface;
 use App\DataFixtures\ImageFixtures\ImageFixture;
 use App\DataFixtures\UserFixtures\UserFixture;
 use App\Domain\DTO\Collection\AddCollectionDTO;
@@ -14,26 +13,29 @@ use App\Entity\ImageCollection;
 use App\Infra\Doctrine\Repository\Interfaces\CategoryCollectionRepositoryInterface;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use App\Infra\Doctrine\Repository\Interfaces\UserRepositoryInterface;
+use App\Repository\CategoryCollectionRepository;
+use App\Repository\CollectionRepository;
+use App\Repository\UserRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 
-class CollectionFixture extends Fixture implements CollectionFixtureInterface, DependentFixtureInterface
+class CollectionFixture extends Fixture implements DependentFixtureInterface
 {
     public const COLLECTION_REFERENCE = 'collection-reference';
 
     /**
-     * @var CollectionRepositoryInterface
+     * @var CollectionRepository
      */
     private $collectionRepository;
 
     /**
-     * @var CategoryCollectionRepositoryInterface
+     * @var CategoryCollectionRepository
      */
     private $categoryRepository;
 
     /**
-     * @var UserRepositoryInterface
+     * @var UserRepository
      */
     private $userRepository;
 
@@ -43,9 +45,9 @@ class CollectionFixture extends Fixture implements CollectionFixtureInterface, D
      * {@inheritdoc}
      */
     public function __construct(
-        CollectionRepositoryInterface $collectionRepository,
-        CategoryCollectionRepositoryInterface $categoryRepository,
-        UserRepositoryInterface $userRepository
+        CollectionRepository $collectionRepository,
+        CategoryCollectionRepository $categoryRepository,
+        UserRepository $userRepository
     ) {
         $this->collectionRepository = $collectionRepository;
         $this->categoryRepository = $categoryRepository;

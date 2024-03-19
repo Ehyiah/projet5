@@ -5,6 +5,7 @@ namespace App\Controller\Security;
 use App\Controller\Security\Interfaces\ChangePasswordFromEmailActionInterface;
 use App\Domain\DTO\Security\ChangePasswordFromEmailDTO;
 use App\Infra\Doctrine\Repository\Interfaces\UserRepositoryInterface;
+use App\Repository\UserRepository;
 use App\UI\Form\Handler\Security\Interfaces\ChangePasswordFromEmailHandlerInterface;
 use App\UI\Form\Type\User\ChangePasswordFromEmailType;
 use App\UI\Responder\Security\Interfaces\ChangePasswordFromEmailResponderInterface;
@@ -17,10 +18,10 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  * Class ChangePasswordFromEmailAction
  * @Route("/recovery/{token}", name="recoveryToken")
  */
-class ChangePasswordFromEmailAction implements ChangePasswordFromEmailActionInterface
+class ChangePasswordFromEmailAction
 {
     /**
-     * @var UserRepositoryInterface
+     * @var UserRepository
      */
     private $userRepository;
 
@@ -45,7 +46,7 @@ class ChangePasswordFromEmailAction implements ChangePasswordFromEmailActionInte
      * {@inheritdoc}
      */
     public function __construct(
-        UserRepositoryInterface $userRepository,
+        UserRepository $userRepository,
         TokenStorageInterface $security,
         FormFactoryInterface $formFactory,
         ChangePasswordFromEmailHandlerInterface $handler

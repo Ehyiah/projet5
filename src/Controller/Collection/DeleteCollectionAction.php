@@ -2,10 +2,8 @@
 
 namespace App\Controller\Collection;
 
-
-use App\Controller\Collection\Interfaces\DeleteCollectionActionInterface;
-use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
-use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface;
+use App\Repository\CollectionRepository;
+use App\Repository\ElementCollectionRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -17,15 +15,15 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/delete/collection/{id}", name="deleteCollection")
  * @IsGranted("ROLE_USER")
  */
-class DeleteCollectionAction implements DeleteCollectionActionInterface
+class DeleteCollectionAction
 {
     /**
-     * @var CollectionRepositoryInterface
+     * @var CollectionRepository
      */
     private $collectionRepository;
 
     /**
-     * @var ElementCollectionRepositoryInterface
+     * @var ElementCollectionRepository
      */
     private $elementRepository;
 
@@ -40,8 +38,8 @@ class DeleteCollectionAction implements DeleteCollectionActionInterface
      * {@inheritdoc}
      */
     public function __construct(
-        CollectionRepositoryInterface $collectionRepository,
-        ElementCollectionRepositoryInterface $elementRepository,
+        CollectionRepository $collectionRepository,
+        ElementCollectionRepository $elementRepository,
         Filesystem $fileSystem
     ) {
         $this->collectionRepository = $collectionRepository;

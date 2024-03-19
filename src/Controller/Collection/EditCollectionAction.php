@@ -4,7 +4,8 @@ namespace App\Controller\Collection;
 
 use App\Controller\Collection\Interfaces\EditCollectionActionInterface;
 use App\Domain\DTO\Collection\EditCollectionDTO;
-use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
+use App\Repository\CollectionRepository;
+use App\UI\Form\Handler\Collection\EditCollectionHandler;
 use App\UI\Form\Handler\Collection\Interfaces\EditCollectionHandlerInterface;
 use App\UI\Form\Type\Collection\EditCollectionType;
 use App\UI\Responder\Collection\Interfaces\EditCollectionResponderInterface;
@@ -18,10 +19,10 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/editCollection/{id}", name="editCollection")
  * @IsGranted("ROLE_USER")
  */
-class EditCollectionAction implements EditCollectionActionInterface
+class EditCollectionAction
 {
     /**
-     * @var CollectionRepositoryInterface
+     * @var CollectionRepository
      */
     private $collectionRepository;
 
@@ -31,7 +32,7 @@ class EditCollectionAction implements EditCollectionActionInterface
     private $formFactory;
 
     /**
-     * @var EditCollectionHandlerInterface
+     * @var EditCollectionHandler
      */
     private $handler;
 
@@ -41,9 +42,9 @@ class EditCollectionAction implements EditCollectionActionInterface
      * {@inheritdoc}
      */
     public function __construct(
-        CollectionRepositoryInterface $collectionRepository,
+        CollectionRepository $collectionRepository,
         FormFactoryInterface $formFactory,
-        EditCollectionHandlerInterface $handler
+        EditCollectionHandler $handler
     ) {
         $this->collectionRepository = $collectionRepository;
         $this->formFactory = $formFactory;

@@ -1,0 +1,14 @@
+{
+        # disable https redirection
+        auto_https disable_redirects
+
+        # Debug mode (disable it in production!)
+        {$DEBUG}
+}
+
+http://website.docker.localhost https://website.docker.localhost {
+    root * /var/www/symfony/public/
+    encode zstd gzip
+    file_server
+    php_fastcgi php:9000
+}

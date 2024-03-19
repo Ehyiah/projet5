@@ -4,6 +4,7 @@ namespace App\Controller\ElementCollection;
 
 use App\Controller\ElementCollection\Interfaces\DeleteElementCollectionActionInterface;
 use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface;
+use App\Repository\ElementCollectionRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -15,10 +16,10 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/delete/element/{id}", name="deleteElement")
  * @IsGranted("ROLE_USER")
  */
-class DeleteElementCollectionAction implements DeleteElementCollectionActionInterface
+class DeleteElementCollectionAction
 {
     /**
-     * @var ElementCollectionRepositoryInterface
+     * @var ElementCollectionRepository
      */
     private $elementRepository;
 
@@ -33,7 +34,7 @@ class DeleteElementCollectionAction implements DeleteElementCollectionActionInte
      * {@inheritdoc}
      */
     public function __construct(
-        ElementCollectionRepositoryInterface $elementRepository,
+        ElementCollectionRepository $elementRepository,
         Filesystem $fileSystem
     ) {
         $this->elementRepository = $elementRepository;

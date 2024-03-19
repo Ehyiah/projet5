@@ -4,8 +4,9 @@ namespace App\Controller\Category;
 
 
 use App\Controller\Category\Interfaces\SelectCollectionActionInterface;
-use App\Infra\Doctrine\Repository\Interfaces\CategoryCollectionRepositoryInterface;
+use App\Repository\CategoryCollectionRepository;
 use App\UI\Form\Handler\Collection\Interfaces\SelectCollectionHandlerInterface;
+use App\UI\Form\Handler\Collection\SelectCollectionHandler;
 use App\UI\Responder\Category\SelectCollectionResponder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -13,11 +14,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class SelectCollectionAction
  * @Route("/select", name="select")
  * @IsGranted("ROLE_USER")
  */
-class SelectCollectionAction implements SelectCollectionActionInterface
+class SelectCollectionAction
 {
     /**
      * @var FormFactoryInterface
@@ -25,7 +25,7 @@ class SelectCollectionAction implements SelectCollectionActionInterface
     private $formFactory;
 
     /**
-     * @var CategoryCollectionRepositoryInterface
+     * @var CategoryCollectionRepository
      */
     private $categoryCollection;
 
@@ -41,14 +41,13 @@ class SelectCollectionAction implements SelectCollectionActionInterface
      */
     public function __construct(
         FormFactoryInterface $formFactory,
-        CategoryCollectionRepositoryInterface $categoryCollection,
-        SelectCollectionHandlerInterface $handler
+        CategoryCollectionRepository $categoryCollection,
+        SelectCollectionHandler $handler
     ) {
         $this->formFactory = $formFactory;
         $this->categoryCollection = $categoryCollection;
         $this->handler = $handler;
     }
-
 
     /**
      * {@inheritdoc}

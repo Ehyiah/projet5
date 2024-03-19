@@ -40,7 +40,7 @@ final class DeleteImageFromElementCollectionActionTest extends KernelTestCase
     {
         static::bootKernel();
 
-        $this->elementCollectionRepository = self::$container->get('App\Infra\Doctrine\Repository\ElementCollectionRepository');
+        $this->elementCollectionRepository = self::$container->get('App\Repository\ElementCollectionRepository');
         $this->imageRepository = $this->createMock(ImageRepositoryInterface::class);
         $this->fileSystem = $this->createMock(Filesystem::class);
     }

@@ -4,6 +4,7 @@ namespace App\Controller\Collection;
 
 use App\Controller\Collection\Interfaces\ShowCollectionActionInterface;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
+use App\Repository\CollectionRepository;
 use App\UI\Responder\Collection\ShowCollectionResponder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,10 +16,10 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  * @Route("/show/{id}", name="show")
  * @IsGranted("ROLE_USER")
  */
-class ShowCollectionAction implements ShowCollectionActionInterface
+class ShowCollectionAction
 {
     /**
-     * @var CollectionRepositoryInterface
+     * @var CollectionRepository
      */
     private $collectionRepository;
 
@@ -33,7 +34,7 @@ class ShowCollectionAction implements ShowCollectionActionInterface
      * {@inheritdoc}
      */
     public function __construct(
-        CollectionRepositoryInterface $collectionRepository,
+        CollectionRepository $collectionRepository,
         TokenStorageInterface $security
     ) {
         $this->collectionRepository = $collectionRepository;

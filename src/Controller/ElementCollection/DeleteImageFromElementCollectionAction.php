@@ -5,6 +5,8 @@ namespace App\Controller\ElementCollection;
 use App\Controller\ElementCollection\Interfaces\DeleteImageFromElementCollectionActionInterface;
 use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface;
 use App\Infra\Doctrine\Repository\Interfaces\ImageRepositoryInterface;
+use App\Repository\ElementCollectionRepository;
+use App\Repository\ImageRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -16,15 +18,15 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/deleteImage/{id}/{idElement}", name="deleteImageFromCollection")
  * @IsGranted("ROLE_USER")
  */
-class DeleteImageFromElementCollectionAction implements DeleteImageFromElementCollectionActionInterface
+class DeleteImageFromElementCollectionAction
 {
     /**
-     * @var ElementCollectionRepositoryInterface
+     * @var ElementCollectionRepository
      */
     private $elementRepository;
 
     /**
-     * @var ImageRepositoryInterface
+     * @var ImageRepository
      */
     private $imageRepository;
 
@@ -39,8 +41,8 @@ class DeleteImageFromElementCollectionAction implements DeleteImageFromElementCo
      * {@inheritdoc}
      */
     public function __construct(
-        ElementCollectionRepositoryInterface $elementRepository,
-        ImageRepositoryInterface $imageRepository,
+        ElementCollectionRepository $elementRepository,
+        ImageRepository $imageRepository,
         Filesystem $filesystem
     ) {
         $this->elementRepository = $elementRepository;

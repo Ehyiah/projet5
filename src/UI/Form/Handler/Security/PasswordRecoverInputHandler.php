@@ -4,7 +4,7 @@ namespace App\UI\Form\Handler\Security;
 
 
 use App\Infra\Doctrine\Repository\Interfaces\UserRepositoryInterface;
-use App\Infra\Doctrine\Repository\UserRepository;
+use App\Repository\UserRepository;
 use App\UI\Form\Handler\Security\Interfaces\PasswordRecoverInputHandlerInterface;
 use Symfony\Component\Form\FormInterface;
 use Twig\Environment;

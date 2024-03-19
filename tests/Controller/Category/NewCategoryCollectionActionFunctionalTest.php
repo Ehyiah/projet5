@@ -25,7 +25,7 @@ final class NewCategoryCollectionActionFunctionalTest extends WebTestCase
     protected function setUp()
     {
         $this->client = static::createClient();
-        $this->userRepository = self::$container->get('App\Infra\Doctrine\Repository\UserRepository');
+        $this->userRepository = self::$container->get('App\Repository\UserRepository');
     }
 
     private function logIn()

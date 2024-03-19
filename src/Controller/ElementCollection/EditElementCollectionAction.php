@@ -6,6 +6,7 @@ use App\Controller\ElementCollection\Interfaces\EditElementCollectionActionInter
 use App\Domain\DTO\AddElementImageDTO;
 use App\Domain\DTO\ElementCollection\EditElementCollectionDTO;
 use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface;
+use App\Repository\ElementCollectionRepository;
 use App\UI\Form\Handler\ElementCollection\Interfaces\EditElementCollectionHandlerInterface;
 use App\UI\Form\Type\ElementCollection\EditElementCollectionType;
 use App\UI\Responder\ElementCollection\EditElementCollectionResponder;
@@ -19,10 +20,10 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/edit/{id}", name="editElementCollection")
  * @IsGranted("ROLE_USER")
  */
-class EditElementCollectionAction implements EditElementCollectionActionInterface
+class EditElementCollectionAction
 {
     /**
-     * @var ElementCollectionRepositoryInterface
+     * @var ElementCollectionRepository
      */
     private $elementRepository;
 
@@ -42,7 +43,7 @@ class EditElementCollectionAction implements EditElementCollectionActionInterfac
      * {@inheritdoc}
      */
     public function __construct(
-        ElementCollectionRepositoryInterface $elementRepository,
+        ElementCollectionRepository $elementRepository,
         FormFactoryInterface $formFactory,
         EditElementCollectionHandlerInterface $handler
     ) {

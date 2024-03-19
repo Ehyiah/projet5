@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/newElement", name="newElement")
  * @IsGranted("ROLE_ADMIN")
  */
-class NewElementCollectionAction implements NewElementCollectionActionInterface
+class NewElementCollectionAction
 {
     /**
      * @var FormFactoryInterface

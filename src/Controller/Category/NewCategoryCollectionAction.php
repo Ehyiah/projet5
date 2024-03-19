@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route ("/newCategory", name="newCategory")
  * @IsGranted("ROLE_ADMIN")
  */
-class NewCategoryCollectionAction implements NewCategoryCollectionActionInterface
+class NewCategoryCollectionAction
 {
     /**
      * @var EncoderFactoryInterface

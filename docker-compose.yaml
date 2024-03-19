@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  caddy:
+    image: caddy:2.6-alpine
+    working_dir: /etc/caddy
+    depends_on:
+      - php
+    restart: unless-stopped
+    volumes:
+      - ./public:/var/www/symfony/public:delegated
+      - ./docker/caddy/Caddyfile:/etc/caddy/Caddyfile:delegated
+      - ./.data/caddy_data:/data
+      - ./.data/caddy_config:/config
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.collection.rule=Host(`collection.docker.localhost`)
+      - traefik.http.services.collection.loadbalancer.server.port=80
+    networks:
+      - default
+      - traefik
+
+  php:
+    build:
+      context: docker/php-fpm
+    volumes:
+      - .:/var/www/symfony:cached
+      - ./docker/php-fpm/php.ini:/usr/local/etc/php/php.ini:delegated
+
+  db:
+    container_name: collection_db
+    image: mariadb:10.11.2
+    working_dir: /var/lib/mysql
+    volumes:
+      - ".data/db:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: root
+    ports:
+      - 13305:3306
+
+networks:
+  default:
+    name: collection_default
+    driver: bridge

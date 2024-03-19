@@ -4,14 +4,14 @@ namespace App\Application\Templating\Helper;
 
 
 use App\Application\Templating\Helper\Interfaces\MenuCollectionHelperInterface;
-use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
+use App\Repository\CollectionRepository;
 use Symfony\Bundle\TwigBundle\DependencyInjection\TwigExtension;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * Class MenuCollectionHelper
  */
-class MenuCollectionHelper extends TwigExtension implements MenuCollectionHelperInterface
+class MenuCollectionHelper extends TwigExtension
 {
     /**
      * @var TokenStorageInterface
@@ -19,7 +19,7 @@ class MenuCollectionHelper extends TwigExtension implements MenuCollectionHelper
     private $security;
 
     /**
-     * @var CollectionRepositoryInterface
+     * @var CollectionRepository
      */
     private $collectionRepository;
 
@@ -30,7 +30,7 @@ class MenuCollectionHelper extends TwigExtension implements MenuCollectionHelper
      */
     public function __construct(
         TokenStorageInterface $security,
-        CollectionRepositoryInterface $collectionRepository
+        CollectionRepository $collectionRepository
     ) {
         $this->security = $security;
         $this->collectionRepository = $collectionRepository;

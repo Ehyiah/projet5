@@ -2,19 +2,17 @@
 
 namespace App\UI\Form\Handler\Collection;
 
-
 use App\Entity\Collection;
-use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
-use App\UI\Form\Handler\Collection\Interfaces\EditCollectionHandlerInterface;
+use App\Repository\CollectionRepository;
 use Symfony\Component\Form\FormInterface;
 
 /**
  * Class EditCollectionHandler
  */
-final class EditCollectionHandler implements EditCollectionHandlerInterface
+final class EditCollectionHandler
 {
     /**
-     * @var CollectionRepositoryInterface
+     * @var CollectionRepository
      */
     private $collectionRepository;
 
@@ -23,7 +21,7 @@ final class EditCollectionHandler implements EditCollectionHandlerInterface
      *
      * {@inheritdoc}
      */
-    public function __construct(CollectionRepositoryInterface $collectionRepository)
+    public function __construct(CollectionRepository $collectionRepository)
     {
         $this->collectionRepository = $collectionRepository;
     }

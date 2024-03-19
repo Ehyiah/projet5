@@ -49,7 +49,7 @@ final class AddElementCollectionFromCollectionActionTest extends KernelTestCase
         static::bootKernel();
 
         $this->formFactory = static::$kernel->getContainer()->get('form.factory');
-        $this->collection = self::$container->get('App\Infra\Doctrine\Repository\CollectionRepository');
+        $this->collection = self::$container->get('App\Repository\CollectionRepository');
         $this->handler = $this->createMock(AddElementCollectionHandlerInterface::class);
         $this->responder = new AddElementFromCollectionResponder(
             $this->createMock(Environment::class),

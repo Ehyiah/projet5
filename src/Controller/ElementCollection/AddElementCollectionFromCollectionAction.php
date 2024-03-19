@@ -5,6 +5,7 @@ namespace App\Controller\ElementCollection;
 use App\Controller\ElementCollection\Interfaces\AddElementCollectionFromCollectionActionInterface;
 use App\Domain\DTO\ElementCollection\AddElementCollectionDTO;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
+use App\Repository\CollectionRepository;
 use App\UI\Form\Handler\ElementCollection\Interfaces\AddElementCollectionHandlerInterface;
 use App\UI\Form\Type\ElementCollection\AddElementCollectionFromCollectionType;
 use App\UI\Responder\ElementCollection\AddElementFromCollectionResponder;
@@ -18,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/addElement/{id}", name="addElement")
  * @IsGranted("ROLE_USER")
  */
-class AddElementCollectionFromCollectionAction implements AddElementCollectionFromCollectionActionInterface
+class AddElementCollectionFromCollectionAction
 {
     /**
      * @var FormFactoryInterface
@@ -26,7 +27,7 @@ class AddElementCollectionFromCollectionAction implements AddElementCollectionFr
     private $formFactory;
 
     /**
-     * @var CollectionRepositoryInterface
+     * @var CollectionRepository
      */
     private $collection;
 
@@ -42,7 +43,7 @@ class AddElementCollectionFromCollectionAction implements AddElementCollectionFr
      */
     public function __construct(
         FormFactoryInterface $formFactory,
-        CollectionRepositoryInterface $collection,
+        CollectionRepository $collection,
         AddElementCollectionHandlerInterface $handler
     ) {
         $this->formFactory = $formFactory;

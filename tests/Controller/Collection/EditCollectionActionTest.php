@@ -76,7 +76,7 @@ final class EditCollectionActionTest extends KernelTestCase
         $this->handler = $this->createMock(EditCollectionHandlerInterface::class);
 
         $this->responder = self::$container->get('App\UI\Responder\Collection\Interfaces\EditCollectionResponderInterface');
-        $this->categoryRepository = self::$container->get('App\Infra\Doctrine\Repository\CategoryCollectionRepository');
+        $this->categoryRepository = self::$container->get('App\Repository\CategoryCollectionRepository');
 
         $this->twig = $this->createMock(Environment::class);
         $this->urlGenerator = $this->createMock(UrlGeneratorInterface::class);

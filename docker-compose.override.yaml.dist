@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+    php:
+        volumes:
+            - ~/.ssh:/home/matthieu/.ssh
+
+#github local
+### https://lindevs.com/install-act-on-ubuntu
+### start with act -s GITHUB_TOKEN and provide a github personnal access token
+
+    mailer:
+        image: axllent/mailpit
+        container_name: mailer_website
+        environment:
+            MP_SMTP_AUTH_ACCEPT_ANY: 1
+            MP_SMTP_AUTH_ALLOW_INSECURE: 1
+        labels:
+            - traefik.enable=true
+            - traefik.http.routers.mailer_collection.rule=Host(`collection-mailer.docker.localhost`)
+            - traefik.http.services.mailer_collection.loadbalancer.server.port=8025
+        networks:
+            - default
+            - traefik
+
+#    mailer:
+#        image: schickling/mailcatcher
+#        container_name: mailer_website
+#        labels:
+#            - traefik.enable=true
+#            - traefik.http.routers.mailer_website.rule=Host(`website-mailer.docker.localhost`)
+#            - traefik.http.services.mailer_website.loadbalancer.server.port=1080
+#        networks:
+#            - default
+#            - traefik
+
+networks:
+    traefik:
+        external: true

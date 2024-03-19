@@ -17,7 +17,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/newCollection", name="newCollection")
  * @IsGranted("ROLE_USER")
  */
-class NewCollectionAction implements NewCollectionActionInterface
+class NewCollectionAction
 {
     /**
      * @var FormFactoryInterface

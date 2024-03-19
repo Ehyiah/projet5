@@ -12,24 +12,26 @@ use App\Domain\DTO\ElementCollection\AddElementCollectionDTO;
 use App\Entity\ElementCollection;
 use App\Infra\Doctrine\Repository\Interfaces\CollectionRepositoryInterface;
 use App\Infra\Doctrine\Repository\Interfaces\ElementCollectionRepositoryInterface;
+use App\Repository\CollectionRepository;
+use App\Repository\ElementCollectionRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 
 /**
  * Class ElementCollectionFixture
  */
-class ElementCollectionFixture extends Fixture implements ElementCollectionFixtureInterface, DependentFixtureInterface
+class ElementCollectionFixture extends Fixture implements DependentFixtureInterface
 {
     public const ELEMENT_REFERENCE = 'element-reference';
 
     /**
-     * @var ElementCollectionRepositoryInterface
+     * @var ElementCollectionRepository
      */
     private $elementCollectionRepository;
 
     /**
-     * @var CollectionRepositoryInterface
+     * @var CollectionRepository
      */
     private $collectionRepository;
 
@@ -39,8 +41,8 @@ class ElementCollectionFixture extends Fixture implements ElementCollectionFixtu
      * {@inheritdoc}
      */
     public function __construct(
-        ElementCollectionRepositoryInterface $elementCollectionRepository,
-        CollectionRepositoryInterface $collectionRepository
+        ElementCollectionRepository $elementCollectionRepository,
+        CollectionRepository $collectionRepository
     ) {
         $this->elementCollectionRepository = $elementCollectionRepository;
         $this->collectionRepository = $collectionRepository;
